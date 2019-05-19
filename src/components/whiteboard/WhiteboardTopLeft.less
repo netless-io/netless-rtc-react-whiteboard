@@ -1,0 +1,101 @@
+@import "../../../theme";
+
+.whiteboard-box-top-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 16px;
+  left: 8px;
+  border-radius: 16px;
+  position: absolute;
+  height: 32px;
+  width: 48px;
+  background-color: white;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-timing-function: ease-in-out;
+  transition-delay: 100ms;
+  transition-duration: 100ms;
+  z-index: 1001;
+  &:hover {
+    border: 1px solid @gray_light;
+    transition-timing-function: ease-in-out;
+    transition-delay: 100ms;
+    transition-duration: 100ms;
+  }
+}
+
+.go-back-title {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+  margin-top: 20px;
+}
+
+.go-back-script {
+  margin-bottom: 32px;
+  width: 100%;
+  text-align: center;
+}
+
+.go-back-btn-box {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 12px;
+}
+
+.whiteboard-box-top-left-home {
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whiteboard-box-top-left-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: @gray_light;
+  font-weight: 400;
+  margin-right: 6px;
+}
+
+.whiteboard-box-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    border-radius: 4px;
+  }
+}
+
+.whiteboard-box-name {
+  margin-left: 4px;
+  padding-right: 8px;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+
+.whiteboard-box-date {
+  padding-left: 4px;
+}
+
+.whiteboard-box-name-input {
+  padding: 0;
+  outline: none;
+  border: none;
+}

@@ -1,0 +1,47 @@
+@import "../../../theme";
+
+.whiteboard-box-bottom-left {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    left: 16px;
+    bottom: 48px;
+    height: 0;
+}
+
+.whiteboard-box-bottom-left-player {
+  width: 32px;
+  height: 32px;
+  margin-left: 4px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  .hover-transition;
+  img {
+    margin-left: 4px;
+  }
+  &:hover {
+    .hover-transition;
+    background-color: @white_nearly;
+  }
+}
+
+.whiteboard-box-bottom-left-cell {
+  width: 32px;
+  height: 32px;
+  margin-left: 4px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  .hover-transition;
+  &:hover {
+    .hover-transition;
+    background-color: @white_nearly;
+  }
+}

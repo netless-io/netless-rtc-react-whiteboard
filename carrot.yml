@@ -1,0 +1,4 @@
+- name: white-library
+  repoPath: ../white-library
+  repoURL: 'git@github.com:duty-os/white-library.git'
+  commit: eea7683

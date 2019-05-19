@@ -1,0 +1,138 @@
+@import "../../../theme";
+
+.whiteboard-box-bottom-right {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  right: 8px;
+  bottom: 42px;
+  height: 0;
+}
+
+.whiteboard-box-bottom-right-mid {
+  height: 32px;
+  background-color: white;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.whiteboard-bottom-right-cell {
+  width: 32px;
+  height: 32px;
+  background-color: white;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.whiteboard-chat {
+  width: 360px;
+}
+
+.whiteboard-annex-box {
+  height: 32px;
+  background-color: @white;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  user-select: none;
+}
+
+.whiteboard-annex-arrow-left {
+  width: 32px;
+  height: 32px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: #EBEBEB;
+    transition-timing-function: ease-in-out;
+    transition-delay: 100ms;
+    transition-duration: 200ms;
+    cursor: pointer;
+  }
+  img {
+    height: 14px;
+    opacity: 0.6;
+  }
+}
+
+.whiteboard-annex-arrow-right {
+  width: 32px;
+  height: 32px;
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: #EBEBEB;
+    transition-timing-function: ease-in-out;
+    transition-delay: 100ms;
+    transition-duration: 200ms;
+    cursor: pointer;
+  }
+  img {
+    height: 14px;
+    opacity: 0.6;
+  }
+}
+
+.whiteboard-annex-arrow-mid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding-right: 6px;
+  &:hover {
+    background-color: #EBEBEB;
+    transition-timing-function: ease-in-out;
+    transition-delay: 100ms;
+    transition-duration: 200ms;
+    cursor: pointer;
+  }
+}
+
+.whiteboard-annex-arrow-page {
+  margin-left: 8px;
+  color: #7A7A7A;
+}
+
+.whiteboard-annex-img-box {
+  width: 30px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.whiteboard-update-box {
+  width: 152px;
+  height: 152px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.whiteboard-update-box-cell {
+  width: 76px;
+  height: 76px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  .hover-transition;
+  &:hover {
+    .hover-transition;
+    background-color: #F5F5F5;
+  }
+}

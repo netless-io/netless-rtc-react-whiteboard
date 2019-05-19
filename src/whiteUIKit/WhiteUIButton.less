@@ -1,0 +1,54 @@
+@import "../../theme";
+.white-button-primary {
+  .ant-btn-primary {
+    color: @white;
+    background-color: @main_color_blue;
+    border-color: @main_color_blue;
+    box-shadow: 2px 4px 8px rgba(0, 102, 255, 0.32);
+    &:hover {
+      background-color: @main_color_blue;
+      opacity: 0.8;
+      box-shadow: 2px 6px 24px rgba(0, 102, 255, 0.32);
+    }
+  }
+  .ant-btn {
+    border-radius: 100px;
+  }
+  .ant-btn-clicked:after {
+    opacity: 0;
+  }
+}
+
+
+.white-button {
+  .ant-btn {
+    border-radius: 100px;
+    background-color: @white;
+    box-sizing: border-box;
+    box-shadow: 2px 4px 8px #E7EAEE;
+    &:hover {
+      box-sizing: border-box;
+      border: 1px solid #E7EAEE;
+      box-shadow: 2px 6px 24px #E7EAEE;
+    }
+  }
+  .ant-btn-clicked:after {
+    opacity: 0;
+  }
+}
+
+.white-button-danger {
+  .ant-btn {
+    border-radius: 100px;
+    box-sizing: border-box;
+    box-shadow: 2px 4px 8px #E7EAEE;
+    &:hover {
+      box-sizing: border-box;
+      border: 1px solid #E7EAEE;
+      box-shadow: 2px 6px 24px #E7EAEE;
+    }
+  }
+  .ant-btn-clicked:after {
+    opacity: 0;
+  }
+}
