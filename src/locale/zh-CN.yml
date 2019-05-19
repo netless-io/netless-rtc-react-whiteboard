@@ -1,0 +1,213 @@
+modules:
+
+  global:
+    white: White
+    slogan: 让想法同步。
+    copy: 复制
+    copy-fail: 复制失败！
+    copy-success: 已经成功复制到剪贴板！
+    unnamed: 未命名
+    cancel: 取消
+    default-room-name: 未命名
+
+  footer:
+    product-title: 产品
+    loading-page: 官方网站
+    console: 管理控制台
+    product-download: App 下载
+    company-title: 公司
+    company-about: 关于我们
+    company-join: 加入我们
+    company-service: 服务条款
+    company-privacy: 隐私协议
+    connect-us: 联系我们
+    email: support@herewhite.com
+  error-page:
+    title-not-exist: 您访问的页面不存在
+    title-not-disconnect: 房间断开连接
+    title-room-not-exist: 房间不存在
+    btn: 返回首页
+
+  landing-nav:
+    downloads: 下载
+    about: 关于我们
+    login: 登录
+    start: 立即开始
+
+  sign:
+    have-no-account: 没有帐号 ?
+    have-account: 已有账户 ?
+    login: 登录
+    register: 注册
+    sign-in-with: 第三方账户登录
+    login-with-wechat: 微信登录
+    login-with-google: 谷歌登录
+
+    phone-or-email: 手机号码 / 邮箱
+    email: 邮箱
+    password: 设置密码
+    need-phone-or-email: 必须输入手机号码或邮箱
+    need-email: 必须输入邮箱
+    need-password: 必须输入密码
+    need-code: 必须输入验证码
+    invalid-phone-or-email: 无效的手机号码或邮箱
+    invalid-email: 无效的邮箱
+    password-too-short: 密码不能少于 6 个字
+    password-too-long: 密码不能超过 30 个字
+    invalid-code: 无效的验证码
+    invalid-code-length: 验证码必须是 6 位
+
+    get-code: 获取验证码
+    next-step: 下一步
+    under-text: 点击"下一步"，即代表你同意 White 的
+    privacy: 隐私条款
+    terms: 服务协议
+    get-code-failed: 获取验证码失败
+    code-input-place-hold: 输入 6 位验证码
+    check-the-mail: 前往邮箱查收
+
+
+pages:
+
+  login:
+    login: 登录
+    forget-password: 忘记密码？
+    input-phone-or-email: 请输入手机号 / 邮箱
+    input-email: 请输入邮箱
+    input-password: 请输入密码
+
+  register:
+    title: 注册
+    send-email-failed: 发送邮件失败
+    register-failed: 注册用户失败
+    email-has-been-send: 注册验证邮件已发送至邮箱
+    valid-for-24-hours: 有效期为 24 小时
+    check-the-mail: 前往邮箱查收
+
+  add_user_inf:
+    title: 个人信息
+    information: 完善的个人信息可以让协作更轻松
+    input-nickname: 输入称呼
+    complete: 完成
+
+  forget-password:
+    title: 忘记密码
+    phone-or-email: 手机号码 / 邮箱
+    email: 邮箱
+    reset-password-failed: 重制密码失败
+    need-phone-or-email: 必须输入手机号码或邮箱
+    need-email: 必须输入邮箱
+    invalid-phone-or-email: 无效的手机号码或邮箱
+    invalid-email: 无效的邮箱
+    check-the-mail: 前往邮箱查收
+    email-has-been-send: 注册验证邮件已发送至邮箱
+    valid-for-24-hours: 有效期为 24 小时
+    congratulation: 恭喜
+    password-has-bean-reset: 您的密码已经重置成功
+    relogin: 重新登录
+    next-step: 下一步
+
+  home:
+    all-doc: 全部文档
+    my-created: 我创建的
+    share-to-me: 分享给我的
+    recycle-bin: 回收站
+    my-doc: 我的文档
+    search-input: 输入房间链接/名称
+    account-setting: 帐号设置
+    user-name: 名字
+    user-phone: 电话
+    user-email: 邮件
+    user-logout: 退出账户
+    user-add-email: 添加邮箱
+    user-add-phone: 添加电话
+    third-party-account: 第三方帐号
+    wechat: 微信
+    unbound: 未绑定
+    bind: 已绑定
+    create-room: 创建房间
+    delete: 删除
+    leave: 离开
+    share: 分享
+    recovery: 恢复
+    delete-source: 彻底删除
+    bind-change-phone: 绑定/更改电话号码
+    bind-change-mail: 绑定/更改邮箱
+    bind-phone: 绑定电话号码
+    bind-mail: 绑定邮箱
+    go-back: 返回
+    rename: 重命名
+    replay: 回放
+
+  whiteboard:
+    goback: 回到首页
+    docSet: 文档设置
+    to-be-broadcaster: 成为演讲者
+    audio-and-video-call: 音视频通话
+    upload-images-and-files: 上传图片和文件
+    playback: 点击回放
+    hot-key: 快捷键
+    add-page: 增减页面
+    attachment: 附件资料
+    page: 页面
+    cancel: 取消
+    delete: 删除
+    tool: 工具
+    selector: 选择工具
+    pencil: 铅笔
+    text: 文字
+    eraser: 橡皮
+    ellipse: 椭圆
+    rectangle: 矩形
+    other: 其他
+    switch-page: 切换页面
+    move-canvas: 移动画布
+    space-key: 空格键
+    drag: 拖动
+    scale-big: 放大画布
+    scale-small: 缩小画布
+    more: 更多
+    doc-name: 文档名称
+    doc-share: 分享
+    founder: 创建人
+    doc-member: 文档成员
+    online: 在线
+    in-lecture: 您正在演讲中...
+    out-lecture: 退出演讲模式，他人不再跟随您的视角
+    go-to-lecture: 进入演讲模式，他人会跟随您的视角
+    freedom-perspective: 目前为自由视角
+    current-speaker: 当前演讲者为
+    follow-perspective: 您将跟随其视角
+    others: 路人
+    testRoom: 测试房间
+    reconnected: 网络状况不稳定，正在重连中...
+    unconnect: 目前房间已经断开连接
+    refresh: 刷新
+    download: 下载
+    broadcaster-method: 演讲者模式
+    current-perspective: 当前视角
+    follow-perspective-title: 跟随视角
+    calling: 人通话中
+
+  player:
+    broadcaster-perspective: 导演视角
+    freedom-perspective: 自由视角
+    menu-title: 回放列表
+    notification-title: 回放功能 Beta 版本说明
+    notification-inner: White 会在后续版本开放出强大的回放功能，目前这个版本主要用于演示 White 回放的流畅和优雅暂时没有混入声音和视频，请关注我们后续的演进。
+
+  white_screen_record_page:
+    download: 下载
+    install: 安装
+    download-center: 下载中心
+    native-app: 本地应用
+    chrome-plugin: Chrome 插件
+    title: White 尚不兼容您的浏览器，请下载以下应用
+
+  white_screen_native_app:
+    download: 下载
+    install: 安装
+    download-center: 下载中心
+    native-app: 本地应用
+    chrome-plugin: Chrome 插件
+    title: White 尚不兼容您的浏览器，请下载以下应用

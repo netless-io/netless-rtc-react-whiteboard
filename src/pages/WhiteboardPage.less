@@ -1,0 +1,197 @@
+@import "../../theme";
+
+.whiteboard-out-box {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ppt-box {
+  width: 100%;
+  height: 100%;
+  background-color: @black_light;
+}
+
+.white-board-loading {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whiteboard-tool-layer-down {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tool-out-box {
+  width: 304px;
+}
+
+.head-box {
+  width: 32px;
+  height: 32px;
+  background-color: #ebf7fd;
+  border-radius: 50%;
+  margin-left: 120px;
+  overflow:hidden;
+}
+
+.slide-box-active {
+  width: 18px;
+  height: 80px;
+  background-color: @black_light;
+  position: absolute;
+  z-index: 4;
+  margin-top: calc(~'50vh - 40px');
+  cursor: pointer;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: -2px;
+  img {
+    width: 9px;
+    transform: scaleX(-1);
+  }
+}
+
+.slide-box {
+  width: 18px;
+  height: 80px;
+  background-color: @black_light;
+  opacity: 0.3;
+  position: absolute;
+  z-index: 4;
+  margin-top: calc(~'50vh - 40px');
+  cursor: pointer;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  .hover-transition;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: -2px;
+  img {
+    width: 9px;
+  }
+  span {
+    color: white;
+  }
+  &:hover {
+    opacity: 1;
+    .hover-transition;
+  }
+}
+
+
+.whiteboard-tool-box {
+  width: 100%;
+  height: 0;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  z-index: 2;
+  margin-top: 16px;
+}
+
+.video-box {
+  width: 300px;
+  height: 300px;
+  background-color: yellow;
+  position: absolute;
+  z-index: 3;
+}
+
+.whiteboard-top-bar {
+  width: 100%;
+  height: 0;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 2;
+  margin-top: 16px;
+}
+
+.whiteboard-top-left {
+  width: 48px;
+  height: 32px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+}
+
+.whiteboard-box-gift-box {
+  position: absolute;
+  z-index: 2000;
+  height: 0;
+  width: 0;
+  margin-left: calc(~'50% - 32px');
+  margin-top: calc(~'50vh - 35px');
+}
+
+.whiteboard-box-gift-inner-box {
+  width: 64px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 64px;
+  }
+}
+
+//覆盖在白板之上的 div
+.user-cursor-layout {
+
+  pointer-events: none;
+
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  > * {
+    position: absolute;
+  }
+}
+
+//用户头像
+.user-cursor-inner {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+//用户图片
+.user-cursor-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  margin: 2px;
+}
+
+.user-cursor-tool {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  border-radius: 8px;
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  margin-top: -14px;
+  margin-left: 16px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

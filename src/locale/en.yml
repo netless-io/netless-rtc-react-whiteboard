@@ -1,0 +1,211 @@
+modules:
+
+  global:
+    white: White
+    slogan: Keep ideas in sync.
+    copy: Copy
+    copy-fail: Copy fail!
+    copy-success: Has been copied to the clipboard!
+    unnamed: Unnamed
+    cancel: Cancel
+    default-room-name: Unname
+
+  footer:
+    product-title: product
+    loading-page: Landing page
+    console: Console
+    product-download: Native App
+    company-title: Company
+    company-about: About us
+    company-join: Join us
+    company-service: Terms
+    company-privacy: Privacy
+    connect-us: Connect us
+    email: support@herewhite.com
+
+  landing-nav:
+    downloads: Downloads
+    about: About Us
+    login: Login
+    start: Get Started
+
+  error-page:
+    title-not-exist: The page you visited does not exist
+    title-not-disconnect: Room disconnected
+    title-room-not-exist: Room does not exist
+    btn: Back to home
+
+  sign:
+    have-no-account: No account ?
+    have-account: Have account ?
+    register: Register
+    login: Login
+    sign-in-with: Sign in with
+    login-with-wechat: WeChat login
+    login-with-google: Google login
+
+    phone-or-email: Phone number or email
+    email: Email
+    password: Set password
+    need-phone-or-email: Need Phone number or email
+    need-email: Need email
+    need-password: Need password
+    need-code: Need verification code
+    invalid-phone-or-email: Invalid phone number or email
+    invalid-email: Invalid email
+    password-too-short: Password can’t shorter than 6
+    password-too-long: Password can’t longer than 30
+    invalid-code: Invalid verification code
+    invalid-code-length: Length of verification code should be 6
+
+    get-code: Verify code
+    next-step: Next step
+    under-text: By click "Next step", you agree White's
+    privacy: Privacy
+    terms: Terms
+    get-code-failed: Failed to get verification code
+    code-input-place-hold: Enter verification code
+    check-the-mail: Check the mail
+
+pages:
+
+  login:
+    login: Login
+    forget-password: Forgot password ?
+    input-password: Input password
+    input-phone-or-email: Phone number / Email
+    input-email: Input Email
+
+  register:
+    title: Register
+    send-email-failed: Failed to send email
+    register-failed: Failed to register
+    email-has-been-send: The verification mail has been sent to the email
+    valid-for-24-hours: Valid for 24 hours
+    check-the-mail: Check the mail
+
+  add_user_inf:
+    title: Personal information
+    information: Good personal information can make collaboration easier
+    input-nickname: Input nickname
+    complete: Complete
+
+  forget-password:
+    title: Forget password
+    phone-or-email: Phone number or email
+    email: Email
+    reset-password-failed: Failed to reset passowrd
+    need-phone-or-email: Need Phone number or email
+    need-email: Need email
+    invalid-phone-or-email: Invalid phone number or email
+    invalid-email: Invalid email
+    check-the-mail: Check the mail
+    email-has-been-send: The verification mail has been sent to the email
+    valid-for-24-hours: Valid for 24 hours
+    congratulation: Congratulation
+    password-has-bean-reset: Your password has been reset
+    relogin: Login
+    next-step: Next step
+
+  home:
+    all-doc: All Document
+    my-created: I Created
+    share-to-me: Share To Me
+    recycle-bin: Recycle Bin
+    my-doc: My Document
+    search-input: Link / Doc Name
+    account-setting: Account Set
+    user-name: Name
+    user-phone: Phone
+    user-email: Email
+    user-logout: Logout
+    user-add-phone: Add phone
+    user-add-email: Add email
+    third-party-account: Third party account
+    wechat: Wechat
+    unbound: Unbound
+    bind: Bind
+    create-room: Create room
+    delete: Delete
+    leave: Leave
+    share: Share
+    recovery: Recovery
+    delete-source: Delete source
+    bind-change-phone: Bind / change phone number
+    bind-change-mail: Bind / change email
+    bind-phone: Bind phone
+    bind-mail: Bind email
+    go-back: Go back
+    rename: Rename
+    replay: Replay
+
+  whiteboard:
+    goback: Go back
+    docSet: Document set
+    to-be-broadcaster: Control
+    audio-and-video-call: Audio and video call
+    upload-images-and-files: Upload images and files
+    playback: Playback
+    hot-key: Hot key
+    add-page: Add page
+    attachment: Attachment
+    page: Page
+    delete: Delete
+    tool: Tool
+    selector: Selector
+    pencil: Pencil
+    text: Text
+    eraser: Eraser
+    ellipse: Ellipse
+    rectangle: Rectangle
+    other: Other
+    switch-page: Switch page
+    move-canvas: Move
+    space-key: Space key
+    drag: Drag
+    scale-big: Scale big
+    scale-small: Scale small
+    more: More
+    doc-name: Document Name
+    doc-share: Document Share
+    founder: Founder
+    doc-member: Member
+    online: Online
+    in-lecture: You are lecturing
+    out-lecture: Exit the lecture mode, others no longer follow your perspective
+    go-to-lecture: Enter the lecture mode, others will follow your perspective
+    freedom-perspective: Currently a free perspective
+    current-speaker: Current speaker is
+    follow-perspective: You will be more with your perspective
+    others: Others
+    testRoom: Test Room
+    reconnected: The network is unstable and is reconnecting...
+    unconnect: The room is currently disconnected
+    refresh: Refresh
+    download: Download
+    broadcaster-method: Broadcaster method
+    current-perspective: Current perspective
+    follow-perspective-title: Follow
+    calling: Calling
+
+  player:
+    broadcaster-perspective: Broadcaster Perspective
+    menu-title: Replay list
+    freedom-perspective: Freedom Perspective
+    notification-title: Playback function Beta release notes
+    notification-inner: White will open up a powerful playback function in subsequent versions. Currently, this version is mainly used to demonstrate the smoothness and elegance of white playback. There is no mixing of sound and video for the time being. Please pay attention to our subsequent evolution.
+
+  white_screen_record_page:
+    download: Download
+    install: Install
+    download-center: Download center
+    native-app: Native App
+    chrome-plugin: Chrome plugin
+    title: White is not yet compatible with your browser, please download the following app
+  white_screen_native_app:
+    download: Download
+    install: Install
+    download-center: Download center
+    native-app: Native App
+    chrome-plugin: Chrome plugin
+    title: White is not yet compatible with your browser, please download the following app
