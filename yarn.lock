@@ -12008,8 +12008,8 @@ white-react-sdk@^2.0.0-beta.11:
 
 white-web-sdk@2.0.0-beta.10, white-web-sdk@2.0.0-beta.11:
   version "2.0.0-beta.11"
-  resolved "https://registry.npm.taobao.org/white-web-sdk/download/white-web-sdk-2.0.0-beta.11.tgz#abdc38fdbb4ea4314f535ceabe31443aebbbd07d"
-  integrity sha1-q9w4/btOpDFPU1zqvjFEOuu70H0=
+  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.0.0-beta.11.tgz#abdc38fdbb4ea4314f535ceabe31443aebbbd07d"
+  integrity sha512-sqnRn+uhMWhvgCuJ7NfOChbjavh3nLohxiNDUS1z2QQTJZ3zRxqNptnxRikAJebB79BaQAHp7uyHKfJExQ/ODg==
   dependencies:
     "@types/query-string" "5"
     "@types/react" "^16.8.8"
