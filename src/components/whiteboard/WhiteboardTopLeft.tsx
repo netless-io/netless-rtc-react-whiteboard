@@ -7,7 +7,6 @@ import {Button, message, Modal, Tooltip} from "antd";
 import {InjectedIntlProps, injectIntl} from "react-intl";
 import {push} from "@netless/i18n-react-router";
 import {Room} from "white-react-sdk";
-// const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 import {userInfDataStore} from "../../models/UserInfDataStore";
 
 export type WhiteboardTopLeftState = {

@@ -14,7 +14,7 @@ export class RoomOperator {
         const json = await fetcher.post<any>({
             path: `room`,
             query: {
-                token: netlessToken,
+                token: netlessToken.sdkToken,
             },
             body: {
                 name: name,
@@ -30,7 +30,7 @@ export class RoomOperator {
             path: `room/join`,
             query: {
                 uuid: uuid,
-                token: netlessToken,
+                token: netlessToken.sdkToken,
             },
         });
         return json as any;
@@ -40,7 +40,7 @@ export class RoomOperator {
         const json = await fetcher.post<any>({
             path: `services/static-conversion/tasks`,
             query: {
-                token: netlessToken,
+                token: netlessToken.sdkToken,
             },
             body: {
                 sourceUrl: sourceUrl,

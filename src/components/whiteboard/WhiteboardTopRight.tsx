@@ -125,6 +125,17 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
         this.setState({isSetVisible: true});
     }
 
+    private handleUrl = (url: string): string => {
+        const regex = /[\w]+\/$/gm;
+        const match = regex.exec(url);
+        if (match) {
+            return url.substring(0, match.index);
+        } else {
+            return url;
+        }
+
+    }
+
     public render(): React.ReactNode {
         return (
             <div className="whiteboard-box-top-right">
@@ -151,7 +162,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                     onCancel={() => this.setState({isInviteVisible: false})}
                 >
                     <div className="whiteboard-share-box">
-                        <Input readOnly className="whiteboard-share-text" size="large" value={`${location.host}/whiteboard/${this.props.uuid}/${this.props.room.state.roomMembers.length + 1}/`}/>
+                        <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(location.href)}`}/>
                     </div>
                     <div className="whiteboard-share-footer">
                         <div style={{marginRight: 16}}>
@@ -161,7 +172,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                                 className="white-btn-size">Cancel</Button>
                         </div>
                         <Clipboard
-                            data-clipboard-text={`${location.host}/whiteboard/${this.props.uuid}/${this.props.room.state.roomMembers.length + 1}/`}
+                            data-clipboard-text={`${this.handleUrl(location.href)}`}
                             component="div"
                             onSuccess={() => {
                                 message.success("Copy already copied address to clipboard");

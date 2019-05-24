@@ -1,5 +1,5 @@
 import * as React from "react";
-import {AppRouter, Redirect, RouteInterceptor} from "@netless/i18n-react-router";
+import {AppRouter, HistoryType} from "@netless/i18n-react-router";
 import {language} from "../locale";
 import {message} from "antd";
 import Homepage from "./Homepage";
@@ -19,12 +19,12 @@ export class AppRoutes extends React.Component<{}, {}> {
 
     public render(): React.ReactNode {
         return (
-            <AppRouter language={language} routes={[
+            <AppRouter historyType={HistoryType.HashRouter} language={language} routes={[
                 {path: "/", component: Homepage},
-                {path: "/replay/:uuid/:number/", component: PlayerPage},
+                {path: "/replay/:uuid/:userId/", component: PlayerPage},
                 {path: "/name/", component: PageNameInput},
-                {path: "/whiteboard/", component: WhiteboardCreatorPage},
-                {path: "/whiteboard/:uuid/:number/", component: WhiteboardPage},
+                {path: "/whiteboard/:uuid?/", component: WhiteboardCreatorPage},
+                {path: "/whiteboard/:uuid/:userId/", component: WhiteboardPage},
             ]}/>
         );
     }
