@@ -1,3 +1,4 @@
+set -exo pipefail
 yarn
 yarn build
 image=netless-agora-react-whiteboard
