@@ -9,7 +9,7 @@
   "proxy": "http://localhost:3009/",
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
-    "build": "rimraf build && react-app-rewired build --scripts-version react-scripts-ts"
+    "build": "rimraf build && NODE_ENV=production react-app-rewired --max-old-space-size=4096 build --scripts-version react-scripts-ts"
   },
   "dependencies": {
     "@livechat/ui-kit": "^0.4.0-1",
