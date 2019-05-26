@@ -1,22 +1,19 @@
 import * as React from "react";
 import "./WhiteboardPerspectiveSet.less";
-import {observer} from "mobx-react";
 import {message, Switch} from "antd";
-import {applianceStore} from "../../models/ApplianceStore";
-import {ViewMode} from "white-react-sdk";
+import {RoomState, ViewMode, Room} from "white-react-sdk";
 import {FormattedMessage, InjectedIntlProps, injectIntl} from "react-intl";
 import Identicon from "react-identicons";
-import {userInfDataStore, UserInfType} from "../../models/UserInfDataStore";
 
-@observer
-class WhiteboardPerspectiveSet extends React.Component<InjectedIntlProps, {}> {
+export type WhiteboardPerspectiveSetProps = {
+    roomState: RoomState;
+    room: Room;
+} & InjectedIntlProps;
 
-    public constructor(props: InjectedIntlProps) {
-        super(props);
-    }
-
+class WhiteboardPerspectiveSet extends React.Component<WhiteboardPerspectiveSetProps, {}> {
     public render(): React.ReactNode {
-        const perspectiveState = applianceStore.state!.broadcastState;
+        const {roomState, room} = this.props;
+        const perspectiveState = roomState.broadcastState;
         return (
             <div className="whiteboard-perspective-box">
                 <div>
@@ -47,9 +44,9 @@ class WhiteboardPerspectiveSet extends React.Component<InjectedIntlProps, {}> {
                         size="small"
                         onChange={checked => {
                             if (checked) {
-                                applianceStore.state!.room.setViewMode(ViewMode.Follower);
+                                room.setViewMode(ViewMode.Follower);
                             } else {
-                                applianceStore.state!.room.setViewMode(ViewMode.Freedom);
+                                room.setViewMode(ViewMode.Freedom);
                             }
                         }}/>
                 </div>
@@ -63,10 +60,10 @@ class WhiteboardPerspectiveSet extends React.Component<InjectedIntlProps, {}> {
                             checked={perspectiveState.mode === ViewMode.Broadcaster}
                             onChange={checked => {
                                 if (checked) {
-                                    applianceStore.state!.room.setViewMode(ViewMode.Broadcaster);
+                                    room.setViewMode(ViewMode.Broadcaster);
                                     message.info(this.props.intl.formatMessage({id: "go-to-lecture"}));
                                 } else {
-                                    applianceStore.state!.room.setViewMode(ViewMode.Freedom);
+                                    room.setViewMode(ViewMode.Freedom);
                                 }
                             }}/>
                 </div>

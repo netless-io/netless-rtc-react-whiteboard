@@ -2,19 +2,18 @@ import * as React from "react";
 import {Button, Input, message, Modal, Popover, Tooltip} from "antd";
 import {Room, RoomState} from "white-react-sdk";
 import {ViewMode} from "white-react-sdk";
-import {IReactionDisposer} from "mobx/lib/core/reaction";
 import Identicon from "react-identicons";
 import {InjectedIntlProps, injectIntl} from "react-intl";
 import Clipboard from "react-clipboard.js";
 import * as add from "../../assets/image/add.svg";
 import * as board from "../../assets/image/board.svg";
 import * as board_black from "../../assets/image/board_black.svg";
-import {observer} from "mobx-react";
 import WhiteboardPerspectiveSet from "./WhiteboardPerspectiveSet";
 import "./WhiteboardTopRight.less";
-import {userInfDataStore, UserInfType} from "../../models/UserInfDataStore";
 import {withRouter} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
+import {netlessWhiteboardApi} from "../../apiMiddleware/netlessWhiteboardApi";
+import {UserInfType} from "../../apiMiddleware/UserOperator";
 
 export type WhiteboardTopRightState = {
     scaleAnimation: boolean;
@@ -26,10 +25,8 @@ export type WhiteboardTopRightState = {
 
 export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProps & {room: Room, number: string, uuid: string, roomState: RoomState};
 
-@observer
 class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, WhiteboardTopRightState> {
 
-    private autorun: IReactionDisposer;
     public constructor(props: WhiteboardTopRightProps) {
         super(props);
         this.state = {
@@ -94,7 +91,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                 return (
                     <Popover
                         overlayClassName="whiteboard-perspective"
-                        content={<WhiteboardPerspectiveSet/>}
+                        content={<WhiteboardPerspectiveSet roomState={roomState} room={room}/>}
                         placement="bottom">
                         <div
                             className="whiteboard-top-bar-btn">
@@ -108,8 +105,6 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                         <div
                             onClick={ () => {
                                 room.setViewMode(ViewMode.Broadcaster);
-                                // const roomMembers = roomState.roomMembers.filter(data => data.information!.id !== this.props.number);
-                                // this.props.room.dispatchMagixEvent("follow", roomMembers);
                                 message.info(this.props.intl.formatMessage({id: "go-to-lecture"}));
                             }}
                             className="whiteboard-top-bar-btn">
@@ -148,7 +143,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                     <div onClick={this.handleSetting} className="whiteboard-top-bar-box">
                         <Identicon
                             size={28}
-                            string={userInfDataStore.getUserInf(UserInfType.uuid, `${parseInt(this.props.number)}`)}/>
+                            string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.number)}`)}/>
                     </div>
                     {this.renderBroadController()}
                     <Tooltip placement="bottomLeft" title={"invite your friend"}>
@@ -197,17 +192,17 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                         <div className="whiteboard-set-box-img">
                             <Identicon
                                 size={36}
-                                string={userInfDataStore.getUserInf(UserInfType.uuid, `${parseInt(this.props.number)}`)}/>
+                                string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.number)}`)}/>
                         </div>
-                        <div className="whiteboard-set-box-inner"> <span>name: </span>{userInfDataStore.getUserInf(UserInfType.name, `${this.props.number}`)}</div>
-                        <div className="whiteboard-set-box-inner"> <span>uuid: </span>{userInfDataStore.getUserInf(UserInfType.uuid, `${this.props.number}`)}</div>
+                        <div className="whiteboard-set-box-inner"> <span>name: </span>{netlessWhiteboardApi.user.getUserInf(UserInfType.name, `${this.props.number}`)}</div>
+                        <div className="whiteboard-set-box-inner"> <span>uuid: </span>{netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${this.props.number}`)}</div>
                     </div>
                     <div className="whiteboard-set-footer">
                         <div style={{marginRight: 16}}>
                             <Button
                                 size="large"
                                 onClick={() => {
-                                    userInfDataStore.logout();
+                                    netlessWhiteboardApi.user.logout();
                                     this.props.history.push("/");
                                 }}
                                 className="white-btn-size">Clean</Button>

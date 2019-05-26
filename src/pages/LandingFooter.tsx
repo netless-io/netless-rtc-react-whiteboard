@@ -1,11 +1,9 @@
 import * as React from "react";
 import "./LandingFooter.less";
-import {observer} from "mobx-react";
 import netless_black from "../assets/image/netless_black.svg";
 import SwitchLanguages from "./SwitchLanguages";
 import {FormattedMessage} from "react-intl";
 
-@observer
 export default class LandingFooter extends React.Component<{}, {}> {
 
     public constructor(props: {}) {

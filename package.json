@@ -23,8 +23,6 @@
     "ali-oss": "^6.1.1",
     "antd": "^3.10.4",
     "is-touch-device": "^1.0.1",
-    "mobx": "^4.2.0",
-    "mobx-react": "^5.0.0",
     "query-string": "5",
     "rc-queue-anim": "^1.6.12",
     "rc-tween-one": "^2.4.1",

@@ -7,7 +7,7 @@ import {Button, message, Modal, Tooltip} from "antd";
 import {InjectedIntlProps, injectIntl} from "react-intl";
 import {push} from "@netless/i18n-react-router";
 import {Room} from "white-react-sdk";
-import {userInfDataStore} from "../../models/UserInfDataStore";
+import {netlessWhiteboardApi} from "../../apiMiddleware";
 
 export type WhiteboardTopLeftState = {
     isMouseOn: boolean;
@@ -34,7 +34,7 @@ class WhiteboardTopLeft extends React.Component<WhiteboardTopLeftProps, Whiteboa
     private disconnect = async (): Promise<void> => {
         try {
             await this.props.room.disconnect();
-            userInfDataStore.logout();
+            netlessWhiteboardApi.user.logout();
             push(this.props.history, "/");
         } catch (err) {
             message.error("disconnect fail");

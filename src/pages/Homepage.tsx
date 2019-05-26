@@ -4,13 +4,11 @@ import QueueAnim from "rc-queue-anim";
 import netless_black from "../assets/image/netless_black.svg";
 import netless_bg from "../assets/image/netless_bg.svg";
 import web_app from "../assets/image/web_app.png";
-import {observer} from "mobx-react";
 import "./Homepage.less";
 import {WhiteUIButton} from "../whiteUIKit/WhiteUIButton";
 import {Button} from "antd";
 import LandingFooter from "./LandingFooter";
 
-@observer
 export default class Homepage extends React.Component<{}, {}> {
     public constructor(props: {}) {
         super(props);
