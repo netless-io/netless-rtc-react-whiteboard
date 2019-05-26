@@ -19,6 +19,7 @@ import TweenOne from "rc-tween-one";
 import * as like from "../assets/image/like.svg";
 import {message} from "antd";
 import {userInfDataStore, UserInfType} from "../models/UserInfDataStore";
+import {UserCursor} from "../components/whiteboard/UserCursor";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
 export type PlayerPageProps = RouteComponentProps<{
@@ -55,8 +56,9 @@ class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
         const uuid = this.props.match.params.uuid;
         const whiteWebSdk = new WhiteWebSdk();
         const roomToken = await whiteboardPageStore.joinRoom(uuid);
+        const cursor = new UserCursor();
         if (uuid && roomToken) {
-            const player = await whiteWebSdk.replayRoom({room: uuid, roomToken: roomToken}, {
+            const player = await whiteWebSdk.replayRoom({room: uuid, roomToken: roomToken, cursorAdapter: cursor}, {
                 onPhaseChanged: phase => {
                     this.setState({phase: phase});
                 },

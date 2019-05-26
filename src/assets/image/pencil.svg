@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>pencil</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="pencil">
+            <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" opacity="0.01" x="0" y="0" width="24" height="24"></rect>
+            <path d="M5.8208793,6.15834907 C8.8208793,6.15834907 18.8208793,0.960529072 18.8208793,4.74076907 C18.8208793,8.99352907 4.8208793,8.04846907 4.8208793,12.3012391 C4.8208793,16.0814791 18.7610793,7.50306907 19.5170793,11.1086791 C20.2729793,14.7142791 5.6240963,15.1712791 6.5170293,18.6691791 C7.4099693,22.1669791 18.4177793,13.4593791 19.8208793,17.9715791 C20.5781793,20.4069791 15.1390793,21.7899791 11.8208793,22.2243791" id="Shape" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(12.356600, 12.793729) rotate(-12.186000) translate(-12.356600, -12.793729) "></path>
+        </g>
+    </g>
+</svg>

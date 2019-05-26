@@ -1,8 +1,7 @@
 import * as React from "react";
-import {Button, Icon, Input, message, Modal, Popover, Tooltip} from "antd";
-import {Room} from "white-react-sdk";
+import {Button, Input, message, Modal, Popover, Tooltip} from "antd";
+import {Room, RoomState} from "white-react-sdk";
 import {ViewMode} from "white-react-sdk";
-import {autorun} from "mobx";
 import {IReactionDisposer} from "mobx/lib/core/reaction";
 import Identicon from "react-identicons";
 import {InjectedIntlProps, injectIntl} from "react-intl";
@@ -12,7 +11,6 @@ import * as board from "../../assets/image/board.svg";
 import * as board_black from "../../assets/image/board_black.svg";
 import {observer} from "mobx-react";
 import WhiteboardPerspectiveSet from "./WhiteboardPerspectiveSet";
-import {applianceStore} from "../../models/ApplianceStore";
 import "./WhiteboardTopRight.less";
 import {userInfDataStore, UserInfType} from "../../models/UserInfDataStore";
 import {withRouter} from "react-router-dom";
@@ -26,7 +24,7 @@ export type WhiteboardTopRightState = {
     isSetVisible: boolean;
 };
 
-export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProps & {room: Room, number: string, uuid: string};
+export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProps & {room: Room, number: string, uuid: string, roomState: RoomState};
 
 @observer
 class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, WhiteboardTopRightState> {
@@ -45,33 +43,37 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
     }
 
     public componentWillMount(): void {
-       this.autorun = autorun(() => {
-           if (applianceStore.state) {
-               const perspectiveState = applianceStore.state.broadcastState;
-               const isBroadcaster = perspectiveState.mode === ViewMode.Broadcaster;
-               const hasBroadcaster = perspectiveState.broadcasterId !== undefined;
-               if (!isBroadcaster) {
-                   if (hasBroadcaster) {
-                       if (perspectiveState.mode === ViewMode.Follower) {
-                           message.info(this.props.intl.formatMessage({id: "current-speaker"}) + " " + perspectiveState.broadcasterInformation!.nickName + "," + this.props.intl.formatMessage({id: "follow-perspective"}));
-                       } else {
-                           message.info(this.props.intl.formatMessage({id: "freedom-perspective"}));
-                       }
-                   }
-               }
-           }
-       });
     }
 
-    public componentWillUnmount(): void {
-        if (this.autorun) {
-            this.autorun();
+    public componentWillReceiveProps(nextProps: WhiteboardTopRightProps): void {
+        if (this.props.roomState.broadcastState !== nextProps.roomState.broadcastState ) {
+            const perspectiveState = nextProps.roomState.broadcastState;
+            const isBeforeBroadcaster = this.props.roomState.broadcastState.mode === ViewMode.Broadcaster;
+            const isBroadcaster = perspectiveState.mode === ViewMode.Broadcaster;
+            const hasBroadcaster = perspectiveState.broadcasterId !== undefined;
+            if (!isBroadcaster) {
+                if (hasBroadcaster) {
+                    if (perspectiveState.mode === ViewMode.Follower) {
+                        this.props.room.disableOperations = true;
+                        message.info(this.props.intl.formatMessage({id: "current-speaker"}) + " " + perspectiveState.broadcasterInformation!.nickName + "," + this.props.intl.formatMessage({id: "follow-perspective"}));
+                    } else {
+                        this.props.room.disableOperations = false;
+                        message.info(this.props.intl.formatMessage({id: "freedom-perspective"}));
+                    }
+                } else {
+                    if (!isBeforeBroadcaster) {
+                        message.info(this.props.intl.formatMessage({id: "freedom-perspective"}));
+                    }
+                    this.props.room.disableOperations = false;
+                }
+            }
         }
     }
 
 
     private renderBroadController(): React.ReactNode {
-        const perspectiveState = applianceStore.state!.broadcastState;
+        const {room, roomState} = this.props;
+        const perspectiveState = roomState.broadcastState;
         const isBroadcaster = perspectiveState.mode === ViewMode.Broadcaster;
         const hasBroadcaster = perspectiveState.broadcasterId !== undefined;
         if (isBroadcaster) {
@@ -79,7 +81,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                 <Tooltip placement="bottom" title={this.props.intl.formatMessage({id: "in-lecture"})}>
                     <div
                         onClick={ () => {
-                            applianceStore.state!.room.setViewMode(ViewMode.Freedom);
+                            room.setViewMode(ViewMode.Freedom);
                             message.info(this.props.intl.formatMessage({id: "out-lecture"}));
                         }}
                         className="whiteboard-top-bar-btn">
@@ -105,7 +107,9 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                     <Tooltip placement="bottom" title={this.props.intl.formatMessage({id: "to-be-broadcaster"})}>
                         <div
                             onClick={ () => {
-                                applianceStore.state!.room.setViewMode(ViewMode.Broadcaster);
+                                room.setViewMode(ViewMode.Broadcaster);
+                                // const roomMembers = roomState.roomMembers.filter(data => data.information!.id !== this.props.number);
+                                // this.props.room.dispatchMagixEvent("follow", roomMembers);
                                 message.info(this.props.intl.formatMessage({id: "go-to-lecture"}));
                             }}
                             className="whiteboard-top-bar-btn">

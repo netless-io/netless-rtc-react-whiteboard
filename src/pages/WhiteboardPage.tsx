@@ -1,6 +1,5 @@
 import * as React from "react";
 import TopLoadingBar from "@netless/react-loading-bar";
-import Agora from "@netless/react-agora";
 import {PPTProgressPhase, UploadManager} from "@netless/oss-upload-manager";
 import * as OSS from "ali-oss";
 import ToolBox from "@netless/react-tool-box";
@@ -10,7 +9,17 @@ import * as uuidv4 from "uuid/v4";
 import {RouteComponentProps} from "react-router";
 import TweenOne from "rc-tween-one";
 import Dropzone from "react-dropzone";
-import {WhiteWebSdk, RoomWhiteboard, Room, RoomState, RoomPhase, PptConverter, MemberState} from "white-react-sdk";
+import Agora from "@netless/react-agora";
+import {
+    WhiteWebSdk,
+    RoomWhiteboard,
+    Room,
+    RoomState,
+    RoomPhase,
+    PptConverter,
+    MemberState,
+    ViewMode,
+} from "white-react-sdk";
 import "white-web-sdk/style/index.css";
 import "./WhiteboardPage.less";
 import {whiteboardPageStore} from "../models/WhiteboardPageStore";
@@ -307,12 +316,17 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         if (this.state.connectedFail) {
             errorPageStore.pageErrorState = PageErrorType.PageRoomNotConnected;
             return <PageError/>;
+
         } else if (this.state.phase === RoomPhase.Connecting ||
             this.state.phase === RoomPhase.Disconnecting) {
             return <div className="white-board-loading">
                 <img src={loading}/>
             </div>;
         } else if (!this.state.room) {
+            return <div className="white-board-loading">
+                <img src={loading}/>
+            </div>;
+        } else if (!this.state.roomState) {
             return <div className="white-board-loading">
                 <img src={loading}/>
             </div>;
@@ -344,15 +358,17 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                             <div className="whiteboard-out-box">
                                 {this.renderClipView()}
                                 <WhiteboardTopLeft room={this.state.room}/>
-                                <WhiteboardTopRight uuid={this.props.match.params.uuid} room={this.state.room} number={this.state.userId}/>
+                                <WhiteboardTopRight
+                                    roomState={this.state.roomState}
+                                    uuid={this.props.match.params.uuid} room={this.state.room} number={this.state.userId}/>
                                 <WhiteboardBottomLeft uuid={this.props.match.params.uuid} room={this.state.room} number={this.state.userId}/>
                                 <WhiteboardBottomRight
                                     number={this.state.userId}
-                                    roomState={this.state.roomState!}
+                                    roomState={this.state.roomState}
                                     handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}
                                     handleHotKeyMenuState={this.handleHotKeyMenuState}
                                     room={this.state.room}/>
-                                <div className="whiteboard-tool-box">
+                                <div className={this.state.roomState.broadcastState.mode === ViewMode.Follower ? "whiteboard-tool-box-disable" : "whiteboard-tool-box"}>
                                     <ToolBox
                                         setMemberState={this.setMemberState}
                                         customerComponent={[
