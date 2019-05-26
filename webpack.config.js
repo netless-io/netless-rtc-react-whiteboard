@@ -5,6 +5,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const basic = {
 
@@ -81,6 +82,7 @@ const basic = {
             path: __dirname + "/build",
             inject: "body",
         }),
+        new ForkTsCheckerWebpackPlugin({ memoryLimit : 10000, workers: 2 })
     ]
 };
 

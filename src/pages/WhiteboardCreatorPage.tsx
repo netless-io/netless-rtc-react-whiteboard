@@ -5,15 +5,21 @@ import {whiteboardPageStore} from "../models/WhiteboardPageStore";
 import PageError from "./PageError";
 import {RoomType} from "../apiMiddleware";
 import {message} from "antd";
+import {RouteComponentProps} from "react-router";
 
 export type WhiteboardCreatorPageState = {
     uuid?: string;
+    userId?: string;
     foundError: boolean;
 };
+export type WhiteboardCreatorPageProps = InjectedIntlProps & RouteComponentProps<{
+    uuid?: string;
+}>;
 
-class WhiteboardCreatorPage extends React.Component<InjectedIntlProps, WhiteboardCreatorPageState> {
 
-    public constructor(props: InjectedIntlProps) {
+class WhiteboardCreatorPage extends React.Component<WhiteboardCreatorPageProps, WhiteboardCreatorPageState> {
+
+    public constructor(props: WhiteboardCreatorPageProps) {
         super(props);
         this.state = {
             foundError: false,
@@ -22,7 +28,14 @@ class WhiteboardCreatorPage extends React.Component<InjectedIntlProps, Whiteboar
 
     public async componentWillMount(): Promise<void> {
         try {
-            const uuid = await whiteboardPageStore.createRoomAndGetUuid("test1", 0, RoomType.historied);
+            let uuid: string | null;
+            if (this.props.match.params.uuid) {
+                uuid = this.props.match.params.uuid;
+            } else {
+                uuid = await whiteboardPageStore.createRoomAndGetUuid("test1", 0, RoomType.historied);
+            }
+            const userId = `${Math.floor(Math.random() * 100000)}`;
+            this.setState({userId: userId});
             if (uuid) {
                 this.setState({uuid: uuid});
             } else {
@@ -37,8 +50,8 @@ class WhiteboardCreatorPage extends React.Component<InjectedIntlProps, Whiteboar
     public render(): React.ReactNode {
         if (this.state.foundError) {
             return <PageError/>;
-        } else if (this.state.uuid) {
-            return <Redirect to={`/whiteboard/${this.state.uuid}/1/`}/>;
+        } else if (this.state.uuid && this.state.userId) {
+            return <Redirect to={`/whiteboard/${this.state.uuid}/${this.state.userId}/`}/>;
         }
         return null;
     }

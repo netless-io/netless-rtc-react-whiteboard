@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49 (51002) - http://www.bohemiancoding.com/sketch -->
+    <title>selector</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="selector" fill="#FFFFFF" fill-rule="nonzero">
+            <rect id="Rectangle-path" opacity="0.01" x="0" y="0" width="24" height="24"></rect>
+            <path d="M21.7327,10.49306 L4.08322,3.433289 C3.675067,3.270027 3.270027,3.675067 3.433289,4.08322 L10.49306,21.7327 C10.66605,22.1651 11.28435,22.147 11.43164,21.7051 L13.6838,14.9487 C13.8828,14.3515 14.3515,13.8828 14.9487,13.6838 L21.7051,11.43164 C22.147,11.28435 22.1651,10.66605 21.7327,10.49306 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

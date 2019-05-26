@@ -19,12 +19,13 @@ import TweenOne from "rc-tween-one";
 import * as like from "../assets/image/like.svg";
 import {message} from "antd";
 import {userInfDataStore, UserInfType} from "../models/UserInfDataStore";
+import {UserCursor} from "../components/whiteboard/UserCursor";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
 export type PlayerPageProps = RouteComponentProps<{
     uuid: string;
-    number: string;
-}> & RouteComponentProps<{number: string}>;
+    userId: string;
+}>;
 
 export type PlayerPageStates = {
     player: Player | null;
@@ -55,8 +56,9 @@ class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
         const uuid = this.props.match.params.uuid;
         const whiteWebSdk = new WhiteWebSdk();
         const roomToken = await whiteboardPageStore.joinRoom(uuid);
+        const cursor = new UserCursor();
         if (uuid && roomToken) {
-            const player = await whiteWebSdk.replayRoom({room: uuid, roomToken: roomToken}, {
+            const player = await whiteWebSdk.replayRoom({room: uuid, roomToken: roomToken, cursorAdapter: cursor}, {
                 onPhaseChanged: phase => {
                     this.setState({phase: phase});
                 },
@@ -217,7 +219,7 @@ class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
                                 <img src={home}/>
                             </div>
                             <div
-                                onClick={() => push(this.props.history, `/whiteboard/${this.props.match.params.uuid}/${this.props.match.params.number}/`)}
+                                onClick={() => push(this.props.history, `/whiteboard/${this.props.match.params.uuid}/${this.props.match.params.userId}/`)}
                                 className="player-nav-icon-box-right">
                                 <img src={board}/>
                             </div>
@@ -226,7 +228,7 @@ class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
                     <div className="player-nav-right">
                         <Identicon
                             size={36}
-                            string={userInfDataStore.getUserInf(UserInfType.uuid, `${parseInt(this.props.match.params.number)}`)}/>
+                            string={userInfDataStore.getUserInf(UserInfType.uuid, `${parseInt(this.props.match.params.userId)}`)}/>
                     </div>
                 </div>
                 {this.renderScheduleView()}
