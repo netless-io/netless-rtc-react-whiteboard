@@ -44,14 +44,14 @@ modules:
     login-with-wechat: WeChat login
     login-with-google: Google login
 
-    phone-or-email: Phone number or email
+    phone-or-email: Phone userId or email
     email: Email
     password: Set password
-    need-phone-or-email: Need Phone number or email
+    need-phone-or-email: Need Phone userId or email
     need-email: Need email
     need-password: Need password
     need-code: Need verification code
-    invalid-phone-or-email: Invalid phone number or email
+    invalid-phone-or-email: Invalid phone userId or email
     invalid-email: Invalid email
     password-too-short: Password can’t shorter than 6
     password-too-long: Password can’t longer than 30
@@ -73,7 +73,7 @@ pages:
     login: Login
     forget-password: Forgot password ?
     input-password: Input password
-    input-phone-or-email: Phone number / Email
+    input-phone-or-email: Phone userId / Email
     input-email: Input Email
 
   register:
@@ -92,12 +92,12 @@ pages:
 
   forget-password:
     title: Forget password
-    phone-or-email: Phone number or email
+    phone-or-email: Phone userId or email
     email: Email
     reset-password-failed: Failed to reset passowrd
-    need-phone-or-email: Need Phone number or email
+    need-phone-or-email: Need Phone userId or email
     need-email: Need email
-    invalid-phone-or-email: Invalid phone number or email
+    invalid-phone-or-email: Invalid phone userId or email
     invalid-email: Invalid email
     check-the-mail: Check the mail
     email-has-been-send: The verification mail has been sent to the email
@@ -131,7 +131,7 @@ pages:
     share: Share
     recovery: Recovery
     delete-source: Delete source
-    bind-change-phone: Bind / change phone number
+    bind-change-phone: Bind / change phone userId
     bind-change-mail: Bind / change email
     bind-phone: Bind phone
     bind-mail: Bind email

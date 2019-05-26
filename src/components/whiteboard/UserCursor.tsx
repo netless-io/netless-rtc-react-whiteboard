@@ -1,9 +1,7 @@
 import * as React from "react";
-import {observer} from "mobx-react";
-import { CursorAdapter, CursorDescription, Cursor} from "white-react-sdk";
+import {CursorAdapter, CursorDescription, Cursor, RoomState} from "white-react-sdk";
 import Identicon from "react-identicons";
 import "./UserCursor.less";
-import {applianceStore} from "../../models/ApplianceStore";
 import * as selector from "../../assets/image/selector.svg";
 import * as pencil from "../../assets/image/pencil.svg";
 import * as text from "../../assets/image/text.svg";
@@ -13,6 +11,7 @@ import * as rectangle from "../../assets/image/rectangle.svg";
 
 export type CursorComponentProps = {
     memberId: number;
+    roomState?: RoomState;
 };
 type ApplianceDescription = {
     readonly iconUrl: string;
@@ -20,7 +19,6 @@ type ApplianceDescription = {
     readonly hasStroke: boolean;
 };
 
-@observer
 class CursorComponent extends React.Component<CursorComponentProps, {}> {
     public constructor(props: CursorComponentProps) {
         super(props);
@@ -63,8 +61,9 @@ class CursorComponent extends React.Component<CursorComponentProps, {}> {
     }
 
     public render(): React.ReactNode {
-        if (applianceStore.state) {
-            const userInf = applianceStore.state.roomMembers.find(data => data.memberId === this.props.memberId);
+        const {roomState} = this.props;
+        if (roomState) {
+            const userInf = roomState.roomMembers.find(data => data.memberId === this.props.memberId);
             if (userInf) {
                 const color = `rgb(${userInf.memberState.strokeColor[0]}, ${userInf.memberState.strokeColor[1]}, ${userInf.memberState.strokeColor[2]})`;
                 return <div>
@@ -87,10 +86,14 @@ class CursorComponent extends React.Component<CursorComponentProps, {}> {
 }
 
 export class UserCursor implements CursorAdapter {
+    private readonly roomState?: RoomState;
+    public constructor(roomState?: RoomState) {
+        this.roomState = roomState;
+    }
      public createCursor(memberId: number): CursorDescription & {
          readonly reactNode?: any;
      } {
-        return {reactNode: <CursorComponent memberId={memberId}/>, x: 16, y: 16, width: 32, height: 32};
+        return {reactNode: <CursorComponent roomState={this.roomState} memberId={memberId}/>, x: 16, y: 16, width: 32, height: 32};
      }
      public onAddedCursor(cursor: Cursor): void {
      }

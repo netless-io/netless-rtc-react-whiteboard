@@ -3,11 +3,10 @@ import * as uuidv4 from "uuid/v4";
 import {Input, Button} from "antd";
 import "./PageNameInput.less";
 import {withRouter} from "react-router-dom";
-import {observer} from "mobx-react";
 import {RouteComponentProps} from "react-router";
 import netless_black from "../assets/image/netless_black.svg";
 import {Link} from "@netless/i18n-react-router";
-import {userInfDataStore} from "../models/UserInfDataStore";
+import {netlessWhiteboardApi} from "../apiMiddleware";
 
 
 export type PageNameInputProps = RouteComponentProps<{}>;
@@ -15,7 +14,6 @@ export type PageNameInputStates = {
     name: string;
 };
 
-@observer
 class PageNameInput extends React.Component<PageNameInputProps, PageNameInputStates> {
     public constructor(props: PageNameInputProps) {
         super(props);
@@ -25,9 +23,9 @@ class PageNameInput extends React.Component<PageNameInputProps, PageNameInputSta
     }
     private handleClickBtn = (): void => {
         if (this.state.name) {
-            userInfDataStore.updateUserInf(this.state.name, uuidv4(), "1");
+            netlessWhiteboardApi.user.updateUserInf(this.state.name, uuidv4(), "1");
         } else {
-            userInfDataStore.updateUserInf("Netless user", uuidv4(), "1");
+            netlessWhiteboardApi.user.updateUserInf("Netless user", uuidv4(), "1");
         }
         this.props.history.push("/whiteboard/");
     }

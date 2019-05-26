@@ -3,7 +3,7 @@
 ## 一、前言
 
 1. `netless-react-whiteboard` 是 netless 提供的 web 实践项目，目的是为了让用户更加具象化的了解 netless 白板的功能和场景。
-2. 我们采用 react 前端框架，mobx 管理状态，Typescript 作为编程语言的技术选型编写这个项目，目的是让项目更加容易维护和迭代。
+2. 我们采用 react 前端框架，Typescript 作为编程语言的技术选型编写这个项目，目的是让项目更加容易维护和迭代。
 3. 我们将项目很多可复用的组件都抽象成了 react 的控件托管在 [netless-io](https://github.com/netless-io) 这个仓库，用户可以参考相关代码或者直接使用组件。我们也非常欢迎指正错误提交 PR.
 4. 如有疑问可以发邮件到： rick@herewhite.com
 

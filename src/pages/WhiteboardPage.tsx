@@ -4,7 +4,6 @@ import {PPTProgressPhase, UploadManager} from "@netless/oss-upload-manager";
 import * as OSS from "ali-oss";
 import ToolBox from "@netless/react-tool-box";
 import {message} from "antd";
-import {observer} from "mobx-react";
 import * as uuidv4 from "uuid/v4";
 import {RouteComponentProps} from "react-router";
 import TweenOne from "rc-tween-one";
@@ -22,10 +21,7 @@ import {
 } from "white-react-sdk";
 import "white-web-sdk/style/index.css";
 import "./WhiteboardPage.less";
-import {whiteboardPageStore} from "../models/WhiteboardPageStore";
-import {errorPageStore, PageErrorType} from "../models/ErrorPageStore";
 import PageError from "./PageError";
-import {applianceStore} from "../models/ApplianceStore";
 import WhiteboardTopLeft from "../components/whiteboard/WhiteboardTopLeft";
 import WhiteboardTopRight from "../components/whiteboard/WhiteboardTopRight";
 import WhiteboardBottomLeft from "../components/whiteboard/WhiteboardBottomLeft";
@@ -36,11 +32,11 @@ import * as arrow from "../assets/image/arrow.svg";
 import MenuHotKey from "../components/menu/MenuHotKey";
 import MenuBox from "../components/menu/MenuBox";
 import MenuAnnexBox from "../components/menu/MenuAnnexBox";
-import {userInfDataStore, UserInfType} from "../models/UserInfDataStore";
 import {netlessToken, ossConfigObj, rtcAppId} from "../appTokenConfig";
 import {UserCursor} from "../components/whiteboard/UserCursor";
 import MenuPPTDoc from "../components/menu/MenuPPTDoc";
 import UploadBtn from "../tools/UploadBtn";
+import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 export enum MenuInnerType {
@@ -75,7 +71,6 @@ export type WhiteboardPageState = {
     whiteboardLayerDownRef?: HTMLDivElement;
 };
 
-@observer
 class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPageState> {
     private didLeavePage: boolean = false;
     public constructor(props: WhiteboardPageProps) {
@@ -94,18 +89,27 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         };
     }
 
+    private getRoomToken = async (uuid: string): Promise<string | null> => {
+        const res = await netlessWhiteboardApi.room.joinRoomApi(uuid);
+        if (res.code === 200) {
+            return res.msg.roomToken;
+        } else {
+            return null;
+        }
+    }
+
     private startJoinRoom = async (): Promise<void> => {
         const uuid = this.props.match.params.uuid;
         const userId = this.props.match.params.userId;
         this.setState({userId: userId});
-        const roomToken = await whiteboardPageStore.joinRoom(uuid);
-        if (userInfDataStore.getUserInf(UserInfType.uuid, `${userId}`) === `Netless uuid ${userId}`) {
+        const roomToken = await this.getRoomToken(uuid);
+        if (netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${userId}`) === `Netless uuid ${userId}`) {
             const userUuid = uuidv4();
-            userInfDataStore.updateUserInf(userUuid, userUuid, userId);
+            netlessWhiteboardApi.user.updateUserInf(userUuid, userUuid, userId);
         }
-        const userUuid = userInfDataStore.getUserInf(UserInfType.uuid, `${userId}`);
-        const name = userInfDataStore.getUserInf(UserInfType.name, `${userId}`);
-        const cursor = new UserCursor();
+        const userUuid = netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${userId}`);
+        const name = netlessWhiteboardApi.user.getUserInf(UserInfType.name, `${userId}`);
+        const cursor = new UserCursor(this.state.roomState);
         if (roomToken && uuid) {
             const whiteWebSdk = new WhiteWebSdk();
             const pptConverter = whiteWebSdk.pptConverter(netlessToken.sdkToken);
@@ -129,9 +133,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         console.error("kicked with reason: " + reason);
                     },
                     onRoomStateChanged: modifyState => {
-                        if (applianceStore.state) {
-                            applianceStore.state.updateRoomState(modifyState);
-                        }
                         this.setState({
                             roomState: {...this.state.roomState, ...modifyState} as RoomState,
                         });
@@ -142,7 +143,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 await timeout(800);
                 this.setState({isHandClap: false});
             });
-            applianceStore.registerRoom(room);
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
         } else {
             message.error("join fail");
@@ -314,7 +314,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
     public render(): React.ReactNode {
 
         if (this.state.connectedFail) {
-            errorPageStore.pageErrorState = PageErrorType.PageRoomNotConnected;
             return <PageError/>;
 
         } else if (this.state.phase === RoomPhase.Connecting ||
@@ -361,7 +360,11 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                 <WhiteboardTopRight
                                     roomState={this.state.roomState}
                                     uuid={this.props.match.params.uuid} room={this.state.room} number={this.state.userId}/>
-                                <WhiteboardBottomLeft uuid={this.props.match.params.uuid} room={this.state.room} number={this.state.userId}/>
+                                <WhiteboardBottomLeft
+                                    uuid={this.props.match.params.uuid}
+                                    roomState={this.state.roomState}
+                                    room={this.state.room}
+                                    userId={this.state.userId}/>
                                 <WhiteboardBottomRight
                                     number={this.state.userId}
                                     roomState={this.state.roomState}

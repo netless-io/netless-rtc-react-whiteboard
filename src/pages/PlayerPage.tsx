@@ -1,5 +1,4 @@
 import * as React from "react";
-import {observer} from "mobx-react";
 import {Icon} from "antd";
 import {WhiteWebSdk, PlayerWhiteboard, PlayerPhase, Player} from "white-react-sdk";
 import "./PlayerPage.less";
@@ -10,7 +9,6 @@ import * as exit_full_screen from "../assets/image/exit_full_screen.svg";
 import * as player_stop from "../assets/image/player_stop.svg";
 import * as player_begin from "../assets/image/player_begin.svg";
 import {displayWatch} from "../tools/WatchDisplayer";
-import {whiteboardPageStore} from "../models/WhiteboardPageStore";
 import {push} from "@netless/i18n-react-router";
 import * as home from "../assets/image/home.svg";
 import * as board from "../assets/image/board.svg";
@@ -18,8 +16,8 @@ import Identicon from "react-identicons";
 import TweenOne from "rc-tween-one";
 import * as like from "../assets/image/like.svg";
 import {message} from "antd";
-import {userInfDataStore, UserInfType} from "../models/UserInfDataStore";
 import {UserCursor} from "../components/whiteboard/UserCursor";
+import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
 export type PlayerPageProps = RouteComponentProps<{
@@ -34,10 +32,10 @@ export type PlayerPageStates = {
     isFullScreen: boolean;
     isFirstScreenReady: boolean;
     isHandClap: boolean;
+    isPlayerSeeking: boolean;
 };
 
-@observer
-class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
+export default class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
     private scheduleTime: number = 0;
     public constructor(props: PlayerPageProps) {
         super(props);
@@ -48,14 +46,22 @@ class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
             isFirstScreenReady: false,
             isHandClap: false,
             player: null,
+            isPlayerSeeking: false,
         };
     }
-
+    private getRoomToken = async (uuid: string): Promise<string | null> => {
+        const res = await netlessWhiteboardApi.room.joinRoomApi(uuid);
+        if (res.code === 200) {
+            return res.msg.roomToken;
+        } else {
+            return null;
+        }
+    }
 
     public async componentDidMount(): Promise<void> {
         const uuid = this.props.match.params.uuid;
         const whiteWebSdk = new WhiteWebSdk();
-        const roomToken = await whiteboardPageStore.joinRoom(uuid);
+        const roomToken = await this.getRoomToken(uuid);
         const cursor = new UserCursor();
         if (uuid && roomToken) {
             const player = await whiteWebSdk.replayRoom({room: uuid, roomToken: roomToken, cursorAdapter: cursor}, {
@@ -123,7 +129,7 @@ class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
     }
 
     private getCurrentTime = (scheduleTime: number): number => {
-        if (whiteboardPageStore.isPlayerSeeking) {
+        if (this.state.isPlayerSeeking) {
             this.scheduleTime = scheduleTime;
             return this.state.currentTime;
         } else {
@@ -228,7 +234,7 @@ class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
                     <div className="player-nav-right">
                         <Identicon
                             size={36}
-                            string={userInfDataStore.getUserInf(UserInfType.uuid, `${parseInt(this.props.match.params.userId)}`)}/>
+                            string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.match.params.userId)}`)}/>
                     </div>
                 </div>
                 {this.renderScheduleView()}
@@ -260,5 +266,3 @@ class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
         );
     }
 }
-
-export default PlayerPage;

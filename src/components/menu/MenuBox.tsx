@@ -1,6 +1,5 @@
 import * as React from "react";
 import {slide as Menu, reveal as MenuLeft} from "react-burger-menu";
-import {observer} from "mobx-react";
 import {MenuInnerType} from "../../pages/WhiteboardPage";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
@@ -42,7 +41,6 @@ export type MenuBoxProps = {
 };
 
 
-@observer
 export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleState> {
 
     public constructor(props: MenuBoxProps) {
