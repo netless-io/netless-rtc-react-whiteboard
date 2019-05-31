@@ -1,5 +1,6 @@
 set -exo pipefail
 yarn
+node ./token.js
 yarn build
 image=netless-agora-react-whiteboard
 version=1.0.0

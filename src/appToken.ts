@@ -12,3 +12,7 @@ export const ossConfigObj = {
     folder: config.ossConfigObj.folder,
     prefix: config.ossConfigObj.prefix,
 };
+
+export const rtcAppId = {
+    agoraAppId: config.agoraAppId,
+};

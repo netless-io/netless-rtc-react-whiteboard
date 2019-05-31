@@ -8,6 +8,7 @@ import * as uuidv4 from "uuid/v4";
 import {RouteComponentProps} from "react-router";
 import TweenOne from "rc-tween-one";
 import Dropzone from "react-dropzone";
+import Agora from "@netless/react-agora";
 import {
     WhiteWebSdk,
     RoomWhiteboard,
@@ -31,7 +32,7 @@ import * as arrow from "../assets/image/arrow.svg";
 import MenuHotKey from "../components/menu/MenuHotKey";
 import MenuBox from "../components/menu/MenuBox";
 import MenuAnnexBox from "../components/menu/MenuAnnexBox";
-import {netlessToken, ossConfigObj} from "../appToken";
+import {netlessToken, ossConfigObj, rtcAppId} from "../appToken";
 import {UserCursor} from "../components/whiteboard/UserCursor";
 import MenuPPTDoc from "../components/menu/MenuPPTDoc";
 import UploadBtn from "../tools/UploadBtn";
@@ -355,6 +356,12 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         menuInnerState={this.state.menuInnerState}>
                         {this.renderMenuInner()}
                     </MenuBox>
+                    <Agora
+                        roomMembers={this.state.room.state.roomMembers}
+                        defaultStart={true}
+                        agoraAppId={rtcAppId.agoraAppId}
+                        userId={parseInt(this.state.userId)}
+                        channelId={this.props.match.params.uuid}/>
                     <div style={{backgroundColor: "white"}} id="page-wrap">
                         <Dropzone
                             accept={"image/*"}
