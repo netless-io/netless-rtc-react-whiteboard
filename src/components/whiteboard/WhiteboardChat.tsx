@@ -20,7 +20,7 @@ const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 export type WhiteboardChatProps = {
     room: Room;
     messages: MessageType[];
-    number: string;
+    userId: string;
 };
 
 export type WhiteboardChatStates = {
@@ -82,7 +82,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
             messageNodes = messages.map((data: MessageType, index: number) => {
                 const messageTextNode = data.messageInner.map((inner: string, index: number) => {
                     return (
-                        <Message key={`${index}`} isOwn={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, this.props.number) === data.id} authorName={data.name}>
+                        <Message key={`${index}`} isOwn={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, this.props.userId) === data.id} authorName={data.name}>
                             <MessageText>{inner}</MessageText>
                         </Message>
                     );
@@ -91,7 +91,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
                     <MessageGroup
                         key={`${index}`}
                         avatar={data.avatar}
-                        isOwn={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, this.props.number) === data.id}
+                        isOwn={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, this.props.userId) === data.id}
                         onlyFirstWithMeta
                     >
                         {messageTextNode}
@@ -142,9 +142,9 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
                             <TextComposer
                                 onSend={(event: any) => {
                                     this.props.room.dispatchMagixEvent("message", {
-                                        name: netlessWhiteboardApi.user.getUserInf(UserInfType.name, this.props.number).substring(0, 6),
+                                        name: netlessWhiteboardApi.user.getUserInf(UserInfType.name, this.props.userId).substring(0, 6),
                                         avatar: this.state.url,
-                                        id: netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, this.props.number),
+                                        id: netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, this.props.userId),
                                         messageInner: [event],
                                     });
                                 }}

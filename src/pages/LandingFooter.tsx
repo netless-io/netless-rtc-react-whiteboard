@@ -1,7 +1,6 @@
 import * as React from "react";
 import "./LandingFooter.less";
 import netless_black from "../assets/image/netless_black.svg";
-import SwitchLanguages from "./SwitchLanguages";
 import {FormattedMessage} from "react-intl";
 
 export default class LandingFooter extends React.Component<{}, {}> {
@@ -119,7 +118,6 @@ export default class LandingFooter extends React.Component<{}, {}> {
                         </div>
                         <div className="footer-mid-box-inner-right">
                             <div className="footer-mid-box-inner-right-Language">语言</div>
-                            <SwitchLanguages/>
                         </div>
                     </div>
                 </div>

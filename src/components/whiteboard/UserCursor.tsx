@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CursorAdapter, CursorDescription, Cursor, RoomState} from "white-react-sdk";
+import {CursorAdapter, CursorDescription, Cursor, RoomMember, Color} from "white-react-sdk";
 import Identicon from "react-identicons";
 import "./UserCursor.less";
 import * as selector from "../../assets/image/selector.svg";
@@ -10,8 +10,7 @@ import * as ellipse from "../../assets/image/ellipse.svg";
 import * as rectangle from "../../assets/image/rectangle.svg";
 
 export type CursorComponentProps = {
-    memberId: number;
-    roomState?: RoomState;
+    roomMember: RoomMember;
 };
 type ApplianceDescription = {
     readonly iconUrl: string;
@@ -61,42 +60,55 @@ class CursorComponent extends React.Component<CursorComponentProps, {}> {
     }
 
     public render(): React.ReactNode {
-        const {roomState} = this.props;
-        if (roomState) {
-            const userInf = roomState.roomMembers.find(data => data.memberId === this.props.memberId);
-            if (userInf) {
-                const color = `rgb(${userInf.memberState.strokeColor[0]}, ${userInf.memberState.strokeColor[1]}, ${userInf.memberState.strokeColor[2]})`;
-                return <div>
-                        <div style={{borderColor: color}} className="cursor-box">
-                            <Identicon
-                                size={24}
-                                string={userInf.information.avatar}/>
-                        </div>
-                        <div style={{backgroundColor: color}}  className="cursor-box-tool">
-                            <img src={this.iconUrl(userInf.memberState.currentApplianceName)}/>
-                        </div>
-                    </div>;
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
+        const {roomMember} = this.props;
+        const color = `rgb(${roomMember.memberState.strokeColor[0]}, ${roomMember.memberState.strokeColor[1]}, ${roomMember.memberState.strokeColor[2]})`;
+        return <div>
+            <div style={{borderColor: color}} className="cursor-box">
+                <Identicon
+                    size={24}
+                    string={roomMember.information.avatar}/>
+            </div>
+            <div style={{backgroundColor: color}}  className="cursor-box-tool">
+                <img src={this.iconUrl(roomMember.memberState.currentApplianceName)}/>
+            </div>
+        </div>;
+
     }
 }
 
 export class UserCursor implements CursorAdapter {
-    private readonly roomState?: RoomState;
-    public constructor(roomState?: RoomState) {
-        this.roomState = roomState;
+
+    private readonly cursors: {[memberId: number]: Cursor} = {};
+    private roomMembers: ReadonlyArray<RoomMember> = [];
+
+    public createCursor(memberId: number): CursorDescription {
+        return {x: 16, y: 16, width: 32, height: 32};
     }
-     public createCursor(memberId: number): CursorDescription & {
-         readonly reactNode?: any;
-     } {
-        return {reactNode: <CursorComponent roomState={this.roomState} memberId={memberId}/>, x: 16, y: 16, width: 32, height: 32};
-     }
-     public onAddedCursor(cursor: Cursor): void {
-     }
-     public onRemovedCursor(cursor: Cursor): void {
-     }
+
+    public onAddedCursor(cursor: Cursor): void {
+        for (const roomMember of this.roomMembers) {
+            if (roomMember.memberId === cursor.memberId) {
+                cursor.setReactNode((
+                    <CursorComponent roomMember={roomMember} />
+                ));
+                break;
+            }
+        }
+        this.cursors[cursor.memberId] = cursor;
+    }
+    public onRemovedCursor(cursor: Cursor): void {
+        delete this.cursors[cursor.memberId];
+    }
+
+    public setColorAndAppliance(roomMembers: ReadonlyArray<RoomMember>): void {
+        this.roomMembers = roomMembers;
+        for (const roomMember of roomMembers) {
+            const cursor = this.cursors[roomMember.memberId];
+            if (cursor) {
+                cursor.setReactNode((
+                    <CursorComponent roomMember={roomMember} />
+                ));
+            }
+        }
+    }
 }
