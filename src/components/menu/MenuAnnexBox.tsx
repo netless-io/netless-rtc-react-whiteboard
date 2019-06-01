@@ -14,6 +14,7 @@ export type MenuAnnexBoxProps = {
     room: Room;
     roomState: RoomState;
     handleAnnexBoxMenuState: () => void;
+    isMenuOpen: boolean;
 };
 
 class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState> {
@@ -60,9 +61,12 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
     public render(): React.ReactNode {
         const {roomState} = this.props;
         const scenes = roomState.sceneState.scenes;
+        const sceneDir = roomState.sceneState.scenePath.split("/");
+        sceneDir.pop();
         const activeIndex = roomState.sceneState.index;
         const renderPages = scenes.map((scene: Scene, index: number): React.ReactNode => {
             const isActive = index === activeIndex;
+
             return (
                     <div
                         key={`${scene.name}${index}`}
@@ -78,7 +82,7 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
                             this.setScenePath(index);
                         }} className="page-mid-box">
                             <div className="page-box">
-                                <PageImage scene={scene}/>
+                                <PageImage isActive={isActive} isMenuOpen={this.props.isMenuOpen} scene={scene} room={this.props.room} path={sceneDir.concat(scene.name).join("/")}/>
                             </div>
                         </div>
                         <div className="page-box-inner-index-delete-box">
@@ -140,37 +144,31 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
     }
 }
 
-class PageImage extends React.Component<{ scene: Scene }> {
+export type PageImageProps = { scene: Scene, path: string, room: Room, isMenuOpen: boolean, isActive: boolean};
 
-    public render(): React.ReactNode {
-        const {preview, ppt, didPreviewLoadFailed} = this.props.scene;
-        if (didPreviewLoadFailed && ppt) {
-            return this.renderPPT(ppt.src);
-        } else if (preview && !ppt) {
-            return <img src={preview}/>;
+class PageImage extends React.Component<PageImageProps, {}> {
 
-        } else if (preview && ppt) {
-            return [
-                this.renderPPT(ppt.src),
-                <img key="preview" src={preview}/>,
-            ];
-        } else if (ppt && !preview) {
-            return this.renderPPT(ppt.src);
-        } else {
-            return null;
+    private ref?: HTMLDivElement | null;
+    private clock: any;
+
+    public constructor(props: any) {
+        super(props);
+    }
+    public componentWillReceiveProps(nextProps: PageImageProps): void {
+        const ref = this.ref;
+        if (nextProps.isMenuOpen !== this.props.isMenuOpen && nextProps.isMenuOpen && ref) {
+            this.props.room.scenePreview(this.props.path, ref, 192, 112.5);
+        }
+    }
+    private setupDivRef = (ref: HTMLDivElement | null) => {
+        if (ref) {
+            this.ref = ref;
+            this.props.room.scenePreview(this.props.path, ref, 192, 112.5);
         }
     }
 
-    private renderPPT(pptSrc: string): React.ReactNode {
-        return (
-            <svg key="" width={192} height={112.5}>
-                <image
-                    width="100%"
-                    height="100%"
-                    xlinkHref={pptSrc + "?x-oss-process=style/ppt_preview"}
-                />
-            </svg>
-        );
+    public render(): React.ReactNode {
+        return <div className="ppt-image" ref={this.setupDivRef}/>;
     }
 }
 

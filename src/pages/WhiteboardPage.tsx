@@ -32,7 +32,7 @@ import * as arrow from "../assets/image/arrow.svg";
 import MenuHotKey from "../components/menu/MenuHotKey";
 import MenuBox from "../components/menu/MenuBox";
 import MenuAnnexBox from "../components/menu/MenuAnnexBox";
-import {netlessToken, ossConfigObj, rtcAppId} from "../appTokenConfig";
+import {netlessToken, ossConfigObj, rtcAppId} from "../appToken";
 import {UserCursor} from "../components/whiteboard/UserCursor";
 import MenuPPTDoc from "../components/menu/MenuPPTDoc";
 import UploadBtn from "../tools/UploadBtn";
@@ -61,8 +61,9 @@ export type WhiteboardPageState = {
     roomToken: string | null;
     ossPercent: number;
     converterPercent: number;
-    room?: Room;
     userId: string;
+    isMenuOpen: boolean;
+    room?: Room;
     roomState?: RoomState;
     pptConverter?: PptConverter;
     isMenuLeft?: boolean;
@@ -73,6 +74,7 @@ export type WhiteboardPageState = {
 
 class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPageState> {
     private didLeavePage: boolean = false;
+    private readonly cursor: UserCursor;
     public constructor(props: WhiteboardPageProps) {
         super(props);
         this.state = {
@@ -86,7 +88,9 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
             ossPercent: 0,
             converterPercent: 0,
             userId: "",
+            isMenuOpen: false,
         };
+       this.cursor = new UserCursor();
     }
 
     private getRoomToken = async (uuid: string): Promise<string | null> => {
@@ -109,7 +113,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         }
         const userUuid = netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${userId}`);
         const name = netlessWhiteboardApi.user.getUserInf(UserInfType.name, `${userId}`);
-        const cursor = new UserCursor(this.state.roomState);
         if (roomToken && uuid) {
             const whiteWebSdk = new WhiteWebSdk();
             const pptConverter = whiteWebSdk.pptConverter(netlessToken.sdkToken);
@@ -117,7 +120,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
             const room = await whiteWebSdk.joinRoom({
                     uuid: uuid,
                     roomToken: roomToken,
-                    cursorAdapter: cursor,
+                    cursorAdapter: this.cursor,
                     userPayload: {id: userId, userId: userUuid, nickName: name, avatar: userUuid}},
                 {
                     onPhaseChanged: phase => {
@@ -133,6 +136,9 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         console.error("kicked with reason: " + reason);
                     },
                     onRoomStateChanged: modifyState => {
+                        if (modifyState.roomMembers) {
+                            this.cursor.setColorAndAppliance(modifyState.roomMembers);
+                        }
                         this.setState({
                             roomState: {...this.state.roomState, ...modifyState} as RoomState,
                         });
@@ -162,6 +168,9 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
 
     public async componentDidMount(): Promise<void> {
         await this.startJoinRoom();
+        if (this.state.room && this.state.room.state.roomMembers) {
+            this.cursor.setColorAndAppliance(this.state.room.state.roomMembers);
+        }
     }
 
     public componentWillUnmount(): void {
@@ -174,6 +183,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 return <MenuHotKey handleHotKeyMenuState={this.handleHotKeyMenuState}/>;
             case MenuInnerType.AnnexBox:
                 return <MenuAnnexBox
+                    isMenuOpen={this.state.isMenuOpen}
                     room={this.state.room!}
                     roomState={this.state.roomState!}
                     handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}/>;
@@ -311,6 +321,10 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
             }
         }
     }
+
+    private setMenuState = (state: boolean) => {
+        this.setState({isMenuOpen: state});
+    }
     public render(): React.ReactNode {
 
         if (this.state.connectedFail) {
@@ -333,6 +347,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
             return (
                 <div id="outer-container">
                     <MenuBox
+                        setMenuState={this.setMenuState}
                         resetMenu={this.resetMenu}
                         pageWrapId={"page-wrap" }
                         outerContainerId={ "outer-container" }
@@ -343,7 +358,8 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                     </MenuBox>
                     <Agora
                         roomMembers={this.state.room.state.roomMembers}
-                        agoraAppId={rtcAppId.agora_app_id}
+                        defaultStart={true}
+                        agoraAppId={rtcAppId.agoraAppId}
                         userId={parseInt(this.state.userId)}
                         channelId={this.props.match.params.uuid}/>
                     <div style={{backgroundColor: "white"}} id="page-wrap">
@@ -366,7 +382,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     room={this.state.room}
                                     userId={this.state.userId}/>
                                 <WhiteboardBottomRight
-                                    number={this.state.userId}
+                                    userId={this.state.userId}
                                     roomState={this.state.roomState}
                                     handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}
                                     handleHotKeyMenuState={this.handleHotKeyMenuState}

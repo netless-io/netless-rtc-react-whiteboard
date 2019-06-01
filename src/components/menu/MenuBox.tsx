@@ -38,6 +38,7 @@ export type MenuBoxProps = {
     outerContainerId: string;
     isLeft?: boolean;
     resetMenu: () => void;
+    setMenuState: (state: boolean) => void;
 };
 
 
@@ -63,8 +64,6 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
             });
         }
     }
-
-
     public render(): React.ReactNode {
         if (this.props.isLeft) {
             return (
@@ -94,7 +93,14 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
                     width={280}
                     right={true}
                     isOpen={this.props.isVisible}
-                    onStateChange={async () => {
+                    onStateChange={async menuState => {
+                        if (!menuState.isOpen) {
+                            await timeout(500);
+                            this.props.setMenuState(false);
+                        }
+                        else {
+                            this.props.setMenuState(true);
+                        }
                         await this.getMenuStyle();
                     }}>
                     {this.props.children}
