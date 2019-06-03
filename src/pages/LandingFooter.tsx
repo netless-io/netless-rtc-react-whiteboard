@@ -33,7 +33,7 @@ export default class LandingFooter extends React.Component<{}, {}> {
                         </div>
                         <div className="footer-inner">
                             <div className="footer-inner-link">
-                                <a target="_blank" href="https://www.herewhite.com/">
+                                <a target="_blank" href="https://netless.link/">
                                     <FormattedMessage
                                         id="footer.loading-page"
                                     />
@@ -113,11 +113,8 @@ export default class LandingFooter extends React.Component<{}, {}> {
                     <div className="footer-cut-line"/>
                     <div className="footer-mid-box-inner">
                         <div className="footer-mid-box-inner-left">
-                            <span>© 2018 White</span>
+                            <span>© 2019 Netless</span>
                             <span style={{marginLeft: 24, fontSize: 12}}>沪 ICP 备 17052259 号 - 1</span>
-                        </div>
-                        <div className="footer-mid-box-inner-right">
-                            <div className="footer-mid-box-inner-right-Language">语言</div>
                         </div>
                     </div>
                 </div>
