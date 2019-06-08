@@ -29,7 +29,9 @@ export default class Homepage extends React.Component<{}, {}> {
                         <a href="https://console.herewhite.com/zh-CN/">
                             <div className="nav-box-right-console">Console</div>
                         </a>
-                        <Button icon="github" type="primary">Go To Github</Button>
+                        <a href="https://github.com/netless-io/netless-rtc-react-whiteboard">
+                            <Button icon="github" type="primary">Go To Github</Button>
+                        </a>
                     </div>
                 </div>
                 <div className="homepage-part1-box homepage-part1-box-height-zh">
