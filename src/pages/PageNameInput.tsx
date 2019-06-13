@@ -38,7 +38,7 @@ class PageNameInput extends React.Component<PageNameInputProps, PageNameInputSta
                 </Link>
                 <div className="page-input-left-box">
                     <div className="page-input-left-mid-box">
-                        <div className="name-title">输入临时用户名字<br/>可以方便您在互动的时候区别身份</div>
+                        <div className="name-title">输入临时用户名<br/>可以方便您在互动的时候区别身份</div>
                         <Input onChange={e => this.setState({name: e.target.value})} size={"large"} placeholder={"输入用户名"}/>
                         <Button
                             size="large"
