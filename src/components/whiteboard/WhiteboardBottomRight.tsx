@@ -7,7 +7,6 @@ import * as chat from "../../assets/image/chat.svg";
 import "./WhiteboardBottomRight.less";
 import WhiteboardChat from "./WhiteboardChat";
 import {Badge, Popover, Tooltip} from "antd";
-import {InjectedIntlProps, injectIntl} from "react-intl";
 import {Room, Scene, RoomState} from "white-web-sdk";
 
 export type MessageType = {
@@ -31,7 +30,7 @@ export type WhiteboardBottomRightProps = {
     roomState: RoomState;
     handleHotKeyMenuState: () => void;
     handleAnnexBoxMenuState: () => void;
-} & InjectedIntlProps;
+};
 
 class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, hotkeyTooltipState> {
 
@@ -53,11 +52,6 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
             this.setState({messages: [...this.state.messages, event.payload]});
         });
     }
-
-    private setScenePath = (newActiveIndex: number) => {
-        const {room} = this.props;
-        room.setSceneIndex(newActiveIndex);
-    }
     private renderAnnexBox(): React.ReactNode {
         const {roomState, room} = this.props;
         const activeIndex = roomState.sceneState.index;
@@ -71,7 +65,7 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
                             className="whiteboard-annex-arrow-left">
                             <img src={left_arrow}/>
                         </div>
-                        <Tooltip placement="top" title={this.props.intl.formatMessage({id: "attachment"})} visible={this.state.annexBoxTooltipDisplay}>
+                        <Tooltip placement="top" title={"附件资料"} visible={this.state.annexBoxTooltipDisplay}>
                             <div
                                 onMouseEnter={() => {
                                     this.setState({
@@ -99,7 +93,7 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
                             <img src={right_arrow}/>
                         </div>
                     </div> :
-                    <Tooltip placement="topRight" title={this.props.intl.formatMessage({id: "attachment"})} visible={this.state.annexBoxTooltipDisplay}>
+                    <Tooltip placement="topRight" title={"附件资料"} visible={this.state.annexBoxTooltipDisplay}>
                         <div
                             onMouseEnter={() => {
                                 this.setState({
@@ -124,7 +118,7 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
         return (
             <div className="whiteboard-box-bottom-right">
                 <div className="whiteboard-box-bottom-right-mid">
-                    <Tooltip placement="top" title={this.props.intl.formatMessage({id: "hot-key"})} visible={this.state.hotkeyTooltipDisplay}>
+                    <Tooltip placement="top" title={"快捷键"} visible={this.state.hotkeyTooltipDisplay}>
                         <div
                             style={{marginRight: 8}}
                             className="whiteboard-bottom-right-cell"
@@ -157,5 +151,5 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
     }
 }
 
-export default injectIntl(WhiteboardBottomRight);
+export default WhiteboardBottomRight;
 

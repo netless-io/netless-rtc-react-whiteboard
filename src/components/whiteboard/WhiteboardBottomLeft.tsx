@@ -7,7 +7,6 @@ import * as like_icon from "../../assets/image/like_icon.svg";
 import {Tooltip} from "antd";
 import {withRouter} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
-import {InjectedIntlProps, injectIntl} from "react-intl";
 import {push} from "@netless/i18n-react-router";
 
 export type WhiteboardBottomLeftInnerProps = {
@@ -17,7 +16,7 @@ export type WhiteboardBottomLeftInnerProps = {
     userId: string;
 };
 
-export type WhiteboardBottomLeftProps = RouteComponentProps<{}> & WhiteboardBottomLeftInnerProps & InjectedIntlProps;
+export type WhiteboardBottomLeftProps = RouteComponentProps<{}> & WhiteboardBottomLeftInnerProps;
 
 class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}> {
 
@@ -31,7 +30,7 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
         return (
             <div className="whiteboard-box-bottom-left">
                 <ScaleController zoomScale={roomState.zoomScale} zoomChange={this.zoomChange}/>
-                <Tooltip placement="top" title={this.props.intl.formatMessage({id: "playback"})}>
+                <Tooltip placement="top" title={"回放"}>
                     <div
                         onClick={async () => {
                             await this.props.room.disconnect();
@@ -53,4 +52,4 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
     }
 }
 
-export default withRouter(injectIntl(WhiteboardBottomLeft));
+export default withRouter(WhiteboardBottomLeft);
