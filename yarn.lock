@@ -110,7 +110,7 @@
     resize-observer-polyfill "^1.5.0"
     stylis-custom-properties "0.0.3"
 
-"@netless/fetch-middleware@^1.0.0":
+"@netless/fetch-middleware@^1.0.2":
   version "1.0.2"
   resolved "https://registry.npmjs.org/@netless/fetch-middleware/-/fetch-middleware-1.0.2.tgz#b71391926efb2b1bbc07f1c70d27bcf6a11adb6c"
   integrity sha512-uuFx4DpdMnYRDR0hI5x2jA13PJkrIlzAa/MC3srZe+F7AnTEZeaReOCQIEyfuNeTxi2GiMMYjk0Qj1mLu07lDQ==
@@ -130,7 +130,7 @@
     react-router "^4.3.1"
     react-router-dom "^4.3.1"
 
-"@netless/oss-upload-manager@^1.0.5":
+"@netless/oss-upload-manager@^1.0.6":
   version "1.0.6"
   resolved "https://registry.npmjs.org/@netless/oss-upload-manager/-/oss-upload-manager-1.0.6.tgz#48ac47fe4580d8c18df91cf810b0c88d5591293d"
   integrity sha512-0dUilABOmhG9aPYRRJ+c7Sor/E1K7inLUVQLY3sPEGXDebaYH25ut3UIGFK87RXIcUM8ctBWFUKgSegRR1srsQ==
@@ -157,7 +157,7 @@
   dependencies:
     rc-tween-one "^2.4.1"
 
-"@netless/react-scale-controller@^1.0.0":
+"@netless/react-scale-controller@^1.0.2":
   version "1.0.2"
   resolved "https://registry.npmjs.org/@netless/react-scale-controller/-/react-scale-controller-1.0.2.tgz#e391cddf09f6977ad27eb2692dd0901cab60f9de"
   integrity sha512-l99vZHlJzpMKEqWRqxAAcosnqxVhYnuUJ8gV/+FOQ5ndPppNH0kvq1sc7xn9AIKXchh5mXpi8od6lQG1yzk+pA==
@@ -183,9 +183,9 @@
   integrity sha1-F9klxFtL9EGJ5aOAONFJ30LYwLQ=
 
 "@types/agora-rtc-sdk@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.npm.taobao.org/@types/agora-rtc-sdk/download/@types/agora-rtc-sdk-2.3.0.tgz#7074bf37680a79b8d5d5d52bba53b881350ffdc4"
-  integrity sha1-cHS/N2gKebjV1dUrulO4gTUP/cQ=
+  version "2.6.0"
+  resolved "https://registry.npm.taobao.org/@types/agora-rtc-sdk/download/@types/agora-rtc-sdk-2.6.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fagora-rtc-sdk%2Fdownload%2F%40types%2Fagora-rtc-sdk-2.6.0.tgz#a31031fb19afe9f393f2efb89f415f13e24ab738"
+  integrity sha1-oxAx+xmv6fOT8u+4n0FfE+JKtzg=
 
 "@types/ali-oss@^6.0.3":
   version "6.0.3"
@@ -8671,10 +8671,10 @@ qs@~6.5.2:
   resolved "https://registry.npm.taobao.org/qs/download/qs-6.5.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fqs%2Fdownload%2Fqs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha1-yzroBuh0BERYTvFUzo7pjUA/PjY=
 
-query-string@*, query-string@^6.2.0, query-string@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.npm.taobao.org/query-string/download/query-string-6.5.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fquery-string%2Fdownload%2Fquery-string-6.5.0.tgz#2e1a70125af01f6f04573692d02c09302a1d8bfc"
-  integrity sha1-LhpwElrwH28EVzaS0CwJMCodi/w=
+query-string@*, query-string@^6.5.0:
+  version "6.7.0"
+  resolved "https://registry.npm.taobao.org/query-string/download/query-string-6.7.0.tgz#7e92bf8525140cf8c5ebf500f26716b0de5b7023"
+  integrity sha1-fpK/hSUUDPjF6/UA8mcWsN5bcCM=
   dependencies:
     decode-uri-component "^0.2.0"
     split-on-first "^1.0.0"
@@ -8696,6 +8696,15 @@ query-string@^4.1.0:
   dependencies:
     object-assign "^4.1.0"
     strict-uri-encode "^1.0.0"
+
+query-string@^6.2.0:
+  version "6.5.0"
+  resolved "https://registry.npm.taobao.org/query-string/download/query-string-6.5.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fquery-string%2Fdownload%2Fquery-string-6.5.0.tgz#2e1a70125af01f6f04573692d02c09302a1d8bfc"
+  integrity sha1-LhpwElrwH28EVzaS0CwJMCodi/w=
+  dependencies:
+    decode-uri-component "^0.2.0"
+    split-on-first "^1.0.0"
+    strict-uri-encode "^2.0.0"
 
 querystring-es3@^0.2.0:
   version "0.2.1"
