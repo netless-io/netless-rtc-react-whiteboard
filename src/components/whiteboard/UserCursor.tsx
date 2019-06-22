@@ -66,7 +66,7 @@ class CursorComponent extends React.Component<CursorComponentProps, {}> {
             <div style={{borderColor: color}} className="cursor-box">
                 <Identicon
                     size={24}
-                    string={roomMember.information.avatar}/>
+                    string={roomMember.payload.avatar}/>
             </div>
             <div style={{backgroundColor: color}}  className="cursor-box-tool">
                 <img src={this.iconUrl(roomMember.memberState.currentApplianceName)}/>
