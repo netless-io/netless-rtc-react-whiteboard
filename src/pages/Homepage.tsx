@@ -1,91 +1,112 @@
 import * as React from "react";
-import {Link} from "@netless/i18n-react-router";
-import QueueAnim from "rc-queue-anim";
-import netless_black from "../assets/image/netless_black.svg";
-import netless_bg from "../assets/image/netless_bg.svg";
-import web_app from "../assets/image/web_app.png";
+import * as uuidv4 from "uuid/v4";
+import {Input, Button, Tabs, Form} from "antd";
 import "./Homepage.less";
-import {WhiteUIButton} from "../whiteUIKit/WhiteUIButton";
-import {Button} from "antd";
-import LandingFooter from "./LandingFooter";
+import {withRouter} from "react-router-dom";
+import {RouteComponentProps} from "react-router";
+import netless_black from "../assets/image/netless_black.svg";
+import {Link} from "@netless/i18n-react-router";
+import {netlessWhiteboardApi} from "../apiMiddleware";
+import {FormComponentProps} from "antd/lib/form";
+const FormItem = Form.Item;
 
-export default class Homepage extends React.Component<{}, {}> {
-    public constructor(props: {}) {
+const { TabPane } = Tabs;
+
+export type HomepageProps = RouteComponentProps<{}> & FormComponentProps;
+export type HomepageStates = {
+    name: string;
+    url: string;
+};
+
+class Homepage extends React.Component<HomepageProps, HomepageStates> {
+    public constructor(props: HomepageProps) {
         super(props);
+        this.state = {
+            name: "",
+            url: "",
+        };
+    }
+    private handleClickBtn = (): void => {
+        if (this.state.name) {
+            netlessWhiteboardApi.user.updateUserInf(this.state.name, uuidv4(), "1");
+        } else {
+            netlessWhiteboardApi.user.updateUserInf("Netless user", uuidv4(), "1");
+        }
+        this.props.history.push("/whiteboard/");
+    }
+
+    private getActiveSelectedKey = (url: string): string => {
+        let str = url;
+        const regex = /([^\/]+)/gm;
+        regex.exec(str);
+        regex.exec(str);
+        regex.exec(str);
+        regex.exec(str);
+        regex.exec(str);
+        const arr2 = regex.exec(str);
+        if (arr2 === null) {
+            str = "";
+        } else {
+            str = arr2[0];
+        }
+        return str;
+    }
+    private handleClickBtnUrl = (): void => {
+        const isUrl = this.state.url.substring(0, 4) === "http";
+        if (this.state.url) {
+            if (isUrl) {
+                const uuid = this.getActiveSelectedKey(this.state.url);
+                this.props.history.push(`/whiteboard/${uuid}/`);
+            } else {
+                if (this.state.url.length === 32) {
+                    this.props.history.push(`/whiteboard/${this.state.url}/`);
+                }
+            }
+        }
     }
 
     public render(): React.ReactNode {
-
-        return(
-            <div>
-                <div className="homepage-part1-bg">
-                    <img src={netless_bg}/>
-                </div>
-                <div className="nav-box">
-                    <div className="nav-box-left">
-                        <img src={netless_black}/>| <span>Netless-whiteboard</span>
-                    </div>
-                    <div className="nav-box-right">
-                        <a href="https://console.herewhite.com/zh-CN/">
-                            <div className="nav-box-right-console">Console</div>
-                        </a>
-                        <a href="https://github.com/netless-io/netless-rtc-react-whiteboard">
-                            <Button icon="github" type="primary">Go To Github</Button>
-                        </a>
-                    </div>
-                </div>
-                <div className="homepage-part1-box homepage-part1-box-height-zh">
-                    <div className="homepage-part1">
-                        <QueueAnim
-                            delay={300}
-                            duration={300}
-                            key="box-a"
-                            type="bottom"
-                            leaveReverse
-                            ease={["easeOutCubic", "easeInCubic"]}
-                        >
-                            <div
-                                key="a"
-                                className="homepage-part1-up-zh">
-                                Netless Whiteboard
-                            </div>
-                            <div
-                                key="b"
-                                className="homepage-part1-mid">
-                                The White-SDK from Netless is a complete, interactive whiteboard solution. The client products cover mainstream platforms such as iOS, Android, and Web, and provide complete supporting functions. Netless-whiteboard is an upper layer open source solution based on White-SDK and looks forward to your participation and maintenance.
-                            </div>
-                            <div
-                                key="c"
-                                className="homepage-part1-down">
-                                <a href="https://app.herewhite.com/register">
-                                    <WhiteUIButton
-                                        className="homepage-part-one-btn"
-                                        size="large">
-                                        Landing Page
-                                    </WhiteUIButton>
-                                </a>
-                                <Link to={"/name/"}>
-                                    <WhiteUIButton
+        return (
+            <div className="page-input-box">
+                <Link to="/">
+                    <img src={netless_black}/>
+                </Link>
+                <div className="page-input-left-box">
+                    <div className="page-input-left-mid-box">
+                        <Tabs className="page-input-left-mid-box-tab"defaultActiveKey="1">
+                            <TabPane tab="创建房间" key="1">
+                                <div className="page-input-left-inner-box">
+                                    <Input className="page-input" onChange={e => this.setState({name: e.target.value})} size={"large"} placeholder={"输入用户名"}/>
+                                    <Button
+                                        size="large"
                                         type="primary"
-                                        className="homepage-part-one-btn homepage-part-one-margin"
-                                        size="large">
-                                        Start Netless
-                                    </WhiteUIButton>
-                                </Link>
-                            </div>
-                        </QueueAnim>
+                                        onClick={this.handleClickBtn}
+                                        className="name-button">
+                                        创建房间
+                                    </Button>
+                                </div>
+                            </TabPane>
+                            <TabPane tab="加入房间" key="2">
+                                <div className="page-input-left-inner-box">
+                                    <Input className="page-input"
+                                           onChange={e => this.setState({url: e.target.value})}
+                                           size={"large"} placeholder={"输入房间地址或者 UUID"}/>
+                                    <Button
+                                        size="large"
+                                        type="primary"
+                                        disabled={!this.state.url}
+                                        onClick={this.handleClickBtnUrl}
+                                        className="name-button">
+                                        加入房间
+                                    </Button>
+                                </div>
+                            </TabPane>
+                        </Tabs>
                     </div>
                 </div>
-                <div className="homepage-part2">
-                    <div className="homepage-inner-part2">
-                        <div className="homepage-inner-part2-img">
-                            <img src={web_app}/>
-                        </div>
-                    </div>
-                </div>
-                <div className="footer-cut-line"/>
-                <LandingFooter/>
-            </div>
-        );
+                <div className="page-input-right-box"/>
+            </div>);
     }
 }
+
+export default withRouter(Homepage);

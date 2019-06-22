@@ -358,8 +358,8 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                     </MenuBox>
                     <Agora
                         roomMembers={this.state.room.state.roomMembers}
-                        defaultStart={true}
                         agoraAppId={rtcAppId.agoraAppId}
+                        defaultStart={true}
                         userId={parseInt(this.state.userId)}
                         channelId={this.props.match.params.uuid}/>
                     <div style={{backgroundColor: "white"}} id="page-wrap">
