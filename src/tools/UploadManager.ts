@@ -47,23 +47,17 @@ export class UploadManager {
     rawFile: File,
     pptConverter: PptConverter,
     kind: PptKind,
-    target: {
-      bucket: string,
-      folder: string,
-      prefix: string,
-    },
     onProgress?: PPTProgressListener,
   ): Promise<void> {
     const filename = this.createUUID();
     const fileType = this.getFileType(rawFile.name);
-    const path = `/${target.folder}/${filename}${fileType}`;
+    const path = `/ppt/${filename}${fileType}`;
     const pptURL = await this.addFile(path, rawFile, onProgress);
     let res: Ppt;
     if (kind === PptKind.Static) {
             res = await pptConverter.convert({
             url: pptURL,
             kind: kind,
-            target: target,
             onProgressUpdated: progress => {
                 if (onProgress) {
                     onProgress(PPTProgressPhase.Converting, progress);

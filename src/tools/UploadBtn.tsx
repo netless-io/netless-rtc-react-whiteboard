@@ -57,11 +57,6 @@ export default class UploadBtn extends React.Component<UploadBtnProps, ToolBoxUp
             event.file,
             pptConverter,
             PptKind.Static,
-            {
-                bucket: this.props.oss.bucket,
-                folder: this.props.oss.folder,
-                prefix: this.props.oss.prefix,
-            },
             this.props.onProgress).catch(error => alert("upload file error" + error));
     }
 
@@ -73,11 +68,6 @@ export default class UploadBtn extends React.Component<UploadBtnProps, ToolBoxUp
             event.file,
             pptConverter,
             PptKind.Dynamic,
-            {
-                bucket: this.props.oss.bucket,
-                folder: this.props.oss.folder,
-                prefix: this.props.oss.prefix,
-            },
             this.props.onProgress).catch(error => alert("upload file error" + error));
     }
 
