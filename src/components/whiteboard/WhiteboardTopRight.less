@@ -54,16 +54,30 @@
 }
 
 .white-btn-size {
-  width: 82px;
+  width: 120px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 14px;
+}
+
+.white-btn-size-goback {
+  width: 120px;
+  font-size: 14px;
 }
 
 .whiteboard-share-box {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  height: 48px;
   align-items: center;
   margin-top: 8px;
+}
+
+.whiteboard-share-text-box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 .whiteboard-set-box {
@@ -113,11 +127,13 @@
 }
 
 .whiteboard-share-text {
-  width: 100%;
   font-size: 12px;
-  margin-left: 12px;
   background-color: #E9EDF4;
   color: #ADBCD9;
+  width: 280px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-right-width: 0;
   input {
     font-size: 12px;
     background-color: #E9EDF4;

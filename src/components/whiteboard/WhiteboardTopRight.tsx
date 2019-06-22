@@ -12,8 +12,9 @@ import WhiteboardPerspectiveSet from "./WhiteboardPerspectiveSet";
 import "./WhiteboardTopRight.less";
 import {withRouter} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
-import {netlessWhiteboardApi} from "../../apiMiddleware/netlessWhiteboardApi";
-import {UserInfType} from "../../apiMiddleware/UserOperator";
+import {netlessWhiteboardApi} from "../../apiMiddleware";
+import {UserInfType} from "../../apiMiddleware";
+import QRCode from "qrcode.react";
 
 export type WhiteboardTopRightState = {
     scaleAnimation: boolean;
@@ -161,25 +162,20 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                     onCancel={() => this.setState({isInviteVisible: false})}
                 >
                     <div className="whiteboard-share-box">
-                        <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(location.href)}`}/>
-                    </div>
-                    <div className="whiteboard-share-footer">
-                        <div style={{marginRight: 16}}>
-                            <Button
-                                size="large"
-                                onClick={() => this.setState({isInviteVisible: false})}
-                                className="white-btn-size">Cancel</Button>
+                        <QRCode value={`${this.handleUrl(location.href)}`} />
+                        <div className="whiteboard-share-text-box">
+                            <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(location.href)}`}/>
+                            <Clipboard
+                                data-clipboard-text={`${this.handleUrl(location.href)}`}
+                                component="div"
+                                onSuccess={() => {
+                                    message.success("Copy already copied address to clipboard");
+                                    this.setState({isInviteVisible: false});
+                                }}
+                            >
+                                <Button size="large" className="white-btn-size" type="primary">复制链接</Button>
+                            </Clipboard>
                         </div>
-                        <Clipboard
-                            data-clipboard-text={`${this.handleUrl(location.href)}`}
-                            component="div"
-                            onSuccess={() => {
-                                message.success("Copy already copied address to clipboard");
-                                this.setState({isInviteVisible: false});
-                            }}
-                        >
-                            <Button size="large" className="white-btn-size" type="primary">Copy</Button>
-                        </Clipboard>
                     </div>
                 </Modal>
                 <Modal
@@ -205,9 +201,8 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                                     netlessWhiteboardApi.user.logout();
                                     this.props.history.push("/");
                                 }}
-                                className="white-btn-size">Clean</Button>
+                                className="white-btn-size-goback">退出</Button>
                         </div>
-                        <Button size="large" className="white-btn-size" type="primary">Edit</Button>
                     </div>
                 </Modal>
             </div>
