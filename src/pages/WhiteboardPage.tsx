@@ -150,6 +150,8 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 this.setState({isHandClap: false});
             });
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
+            console.log(66666);
+            console.log(room.state.sceneState.scenes);
         } else {
             message.error("join fail");
         }
@@ -359,7 +361,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                     <Agora
                         roomMembers={this.state.room.state.roomMembers}
                         agoraAppId={rtcAppId.agoraAppId}
-                        defaultStart={true}
+                        defaultStart={false}
                         userId={parseInt(this.state.userId)}
                         channelId={this.props.match.params.uuid}/>
                     <div style={{backgroundColor: "white"}} id="page-wrap">
