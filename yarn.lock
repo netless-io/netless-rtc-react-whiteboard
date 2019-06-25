@@ -9339,6 +9339,11 @@ react-dev-utils@^5.0.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
+react-device-detect@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.npm.taobao.org/react-device-detect/download/react-device-detect-1.6.2.tgz#2587e4d1dc15bdfce7a1bf5417624ecd2a2fc31f"
+  integrity sha1-JYfk0dwVvfznob9UF2JOzSovwx8=
+
 react-dom@^16.3.2, react-dom@^16.8.4:
   version "16.8.6"
   resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"

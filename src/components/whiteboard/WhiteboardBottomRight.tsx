@@ -118,14 +118,14 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
         return (
             <div className="whiteboard-box-bottom-right">
                 <div className="whiteboard-box-bottom-right-mid">
-                    <Tooltip placement="top" title={"快捷键"} visible={this.state.hotkeyTooltipDisplay}>
-                        <div
-                            style={{marginRight: 8}}
-                            className="whiteboard-bottom-right-cell"
-                             onClick={this.props.handleHotKeyMenuState}>
-                            <img src={whiteboard_keyboard}/>
-                        </div>
-                    </Tooltip>
+                    {/*<Tooltip placement="top" title={"快捷键"} visible={this.state.hotkeyTooltipDisplay}>*/}
+                        {/*<div*/}
+                            {/*style={{marginRight: 8}}*/}
+                            {/*className="whiteboard-bottom-right-cell"*/}
+                             {/*onClick={this.props.handleHotKeyMenuState}>*/}
+                            {/*<img src={whiteboard_keyboard}/>*/}
+                        {/*</div>*/}
+                    {/*</Tooltip>*/}
                     {this.renderAnnexBox()}
                     <Badge overflowCount={99} offset={[-3, 6]} count={this.state.isVisible ? 0 : (this.state.messages.length - this.state.seenMessagesLength)}>
                         <Popover
