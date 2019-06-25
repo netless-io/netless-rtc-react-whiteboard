@@ -23,11 +23,16 @@ class MenuPPTDoc extends React.Component<MenuPPTDocProps, MenuPPTDocStates> {
        const docs: PPTDataType[] = PPTDatas.map((PPTData: PPTDataType) => {
             const dataObj = JSON.parse(PPTData.data);
             if (PPTData.pptType === PPTType.static) {
+                const newDataObj = dataObj.map((data: any) => {
+                    data.ppt.width = 1200;
+                    data.ppt.height = 675;
+                    return data;
+                });
                 return {
                     active: PPTData.active,
                     static_cover: dataObj[0].ppt.src,
                     id: PPTData.id,
-                    data: dataObj,
+                    data: newDataObj,
                     pptType: PPTData.pptType,
                 };
             } else {

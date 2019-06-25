@@ -9,6 +9,7 @@ import {RouteComponentProps} from "react-router";
 import TweenOne from "rc-tween-one";
 import Dropzone from "react-dropzone";
 import Agora from "@netless/react-agora";
+import {isMobile} from "react-device-detect";
 import {
     WhiteWebSdk,
     RoomWhiteboard,
@@ -18,6 +19,7 @@ import {
     PptConverter,
     MemberState,
     ViewMode,
+    DeviceType,
 } from "white-react-sdk";
 import "white-web-sdk/style/index.css";
 import "./WhiteboardPage.less";
@@ -114,7 +116,13 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         const userUuid = netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${userId}`);
         const name = netlessWhiteboardApi.user.getUserInf(UserInfType.name, `${userId}`);
         if (roomToken && uuid) {
-            const whiteWebSdk = new WhiteWebSdk();
+            let whiteWebSdk;
+            if (isMobile) {
+                whiteWebSdk = new WhiteWebSdk({deviceType: DeviceType.Touch});
+            } else {
+                whiteWebSdk = new WhiteWebSdk({deviceType: DeviceType.Desktop});
+            }
+
             const pptConverter = whiteWebSdk.pptConverter(netlessToken.sdkToken);
             this.setState({pptConverter: pptConverter});
             const room = await whiteWebSdk.joinRoom({
@@ -150,8 +158,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 this.setState({isHandClap: false});
             });
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
-            console.log(66666);
-            console.log(room.state.sceneState.scenes);
         } else {
             message.error("join fail");
         }

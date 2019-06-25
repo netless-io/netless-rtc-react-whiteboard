@@ -138,10 +138,10 @@
     ali-oss "^6.1.1"
     uuid "^3.3.2"
 
-"@netless/react-agora@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.npmjs.org/@netless/react-agora/-/react-agora-0.1.5.tgz#566c9ae51e10b23ceaaf7f45e13cdae045e5cc06"
-  integrity sha512-DaWi658JQmBj2oDnWUyaxQomwslHUDR3nOoNH2PuGwOm+BKsfn4AcnvBrkLBqUFiQohg8+yQrK3HUBBJ1wd6Ug==
+"@netless/react-agora@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.npmjs.org/@netless/react-agora/-/react-agora-0.1.6.tgz#248b1aabf9923760d574f442d739868a4818f12c"
+  integrity sha512-ltt0uE/e+Ftm0X6anT38G7jn0O5stDMuBS68UEzEnoUcSnKfVK6HtniqtkMbsx8hwO5KI6qWuDUvxCndVlQ/Bw==
   dependencies:
     "@types/agora-rtc-sdk" "^2.3.0"
     "@types/is-touch-device" "^1.0.0"
@@ -9338,6 +9338,11 @@ react-dev-utils@^5.0.1:
     sockjs-client "1.1.5"
     strip-ansi "3.0.1"
     text-table "0.2.0"
+
+react-device-detect@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.npm.taobao.org/react-device-detect/download/react-device-detect-1.6.2.tgz#2587e4d1dc15bdfce7a1bf5417624ecd2a2fc31f"
+  integrity sha1-JYfk0dwVvfznob9UF2JOzSovwx8=
 
 react-dom@^16.3.2, react-dom@^16.8.4:
   version "16.8.6"
