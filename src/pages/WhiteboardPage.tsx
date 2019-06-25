@@ -150,8 +150,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 this.setState({isHandClap: false});
             });
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
-            console.log(66666);
-            console.log(room.state.sceneState.scenes);
         } else {
             message.error("join fail");
         }
