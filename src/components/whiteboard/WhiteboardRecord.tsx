@@ -32,7 +32,7 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
             this.props.setStopTime(time.getTime());
             this.setState({isRecord: false});
         } else {
-            const recrod = netlessWhiteboardApi.recordFactory(channelName, userId, {
+            const recrod = netlessWhiteboardApi.recordFactory(channelName, {/* 可以不传?*/}, {
                 vendor: 2,
                 region: 0,
                 bucket: "netless-media",
