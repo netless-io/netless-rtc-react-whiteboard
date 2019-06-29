@@ -3,8 +3,7 @@ import "./WhiteboardTopLeft.less";
 import * as homeIcon from "../../assets/image/home.svg";
 import {RouteComponentProps} from "react-router";
 import {withRouter} from "react-router-dom";
-import {Button, message, Modal, Tooltip} from "antd";
-import {InjectedIntlProps, injectIntl} from "react-intl";
+import {Button, message, Modal} from "antd";
 import {push} from "@netless/i18n-react-router";
 import {Room} from "white-react-sdk";
 import {netlessWhiteboardApi} from "../../apiMiddleware";
@@ -15,7 +14,7 @@ export type WhiteboardTopLeftState = {
 };
 
 
-export type WhiteboardTopLeftProps = RouteComponentProps<{}> & InjectedIntlProps & {room: Room};
+export type WhiteboardTopLeftProps = RouteComponentProps<{}> & {room: Room};
 
 
 class WhiteboardTopLeft extends React.Component<WhiteboardTopLeftProps, WhiteboardTopLeftState> {
@@ -45,7 +44,7 @@ class WhiteboardTopLeft extends React.Component<WhiteboardTopLeftProps, Whiteboa
     public render(): React.ReactNode {
 
         return (
-            <Tooltip placement="bottomRight" title={this.props.intl.formatMessage({id: "goback"})}>
+            <div>
                 <div onClick={this.handleGoBackHome} className="whiteboard-box-top-left">
                     <img src={homeIcon}/>
                 </div>
@@ -72,10 +71,10 @@ class WhiteboardTopLeft extends React.Component<WhiteboardTopLeftProps, Whiteboa
                             onClick={this.disconnect}>Exit</Button>
                     </div>
                 </Modal>
-            </Tooltip>
+            </div>
         );
     }
 }
 
 
-export default withRouter(injectIntl(WhiteboardTopLeft));
+export default withRouter(WhiteboardTopLeft);

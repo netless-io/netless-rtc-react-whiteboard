@@ -39,6 +39,7 @@ import {UserCursor} from "../components/whiteboard/UserCursor";
 import MenuPPTDoc from "../components/menu/MenuPPTDoc";
 import UploadBtn from "../tools/UploadBtn";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
+import WhiteboardRecord from "../components/whiteboard/WhiteboardRecord";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 export enum MenuInnerType {
@@ -364,12 +365,12 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         menuInnerState={this.state.menuInnerState}>
                         {this.renderMenuInner()}
                     </MenuBox>
-                    <Agora
+                    {isMobile || <Agora
                         roomMembers={this.state.room.state.roomMembers}
                         agoraAppId={rtcAppId.agoraAppId}
-                        defaultStart={true}
+                        defaultStart={false}
                         userId={parseInt(this.state.userId)}
-                        channelId={this.props.match.params.uuid}/>
+                        channelId={this.props.match.params.uuid}/>}
                     <div style={{backgroundColor: "white"}} id="page-wrap">
                         <Dropzone
                             accept={"image/*"}
@@ -389,12 +390,14 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     roomState={this.state.roomState}
                                     room={this.state.room}
                                     userId={this.state.userId}/>
+                                <WhiteboardRecord/>
                                 <WhiteboardBottomRight
                                     userId={this.state.userId}
                                     roomState={this.state.roomState}
                                     handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}
                                     handleHotKeyMenuState={this.handleHotKeyMenuState}
                                     room={this.state.room}/>
+                                {isMobile ||
                                 <div className={this.state.roomState.broadcastState.mode === ViewMode.Follower ? "whiteboard-tool-box-disable" : "whiteboard-tool-box"}>
                                     <ToolBox
                                         setMemberState={this.setMemberState}
@@ -408,7 +411,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                             />,
                                         ]}
                                         memberState={this.state.room.state.memberState}/>
-                                </div>
+                                </div>}
                                 <div onClick={this.handlePPtBoxMenuState}
                                      className={(this.state.menuInnerState === MenuInnerType.PPTBox && this.state.isMenuVisible) ? "slide-box-active" : "slide-box"}>
                                     <img src={arrow}/>

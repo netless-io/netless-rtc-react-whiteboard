@@ -61,7 +61,7 @@ class WhiteboardPerspectiveSet extends React.Component<WhiteboardPerspectiveSetP
                             onChange={checked => {
                                 if (checked) {
                                     room.setViewMode(ViewMode.Broadcaster);
-                                    message.info(this.props.intl.formatMessage({id: "go-to-lecture"}));
+                                    message.info("进入演讲模式，他人会跟随您的视角");
                                 } else {
                                     room.setViewMode(ViewMode.Freedom);
                                 }
