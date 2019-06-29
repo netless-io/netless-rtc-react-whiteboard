@@ -19,7 +19,7 @@
     "@netless/react-loading-bar": "^1.0.0",
     "@netless/react-scale-controller": "^1.0.2",
     "@netless/react-seek-slider": "^1.0.4",
-    "@netless/react-tool-box": "^1.0.3",
+    "@netless/react-tool-box": "^1.0.5",
     "ali-oss": "^6.1.1",
     "antd": "^3.10.4",
     "is-touch-device": "^1.0.1",
@@ -35,7 +35,7 @@
     "react-dropzone": "4.2.10",
     "react-identicons": "^1.1.7",
     "uuid": "^3.3.2",
-    "white-react-sdk": "^2.0.1"
+    "white-react-sdk": "^2.2.1"
   },
   "devDependencies": {
     "@livechat/ui-kit": "^0.4.0-1",

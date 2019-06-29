@@ -2,7 +2,6 @@ import { UserOperator } from "./UserOperator";
 import { RoomOperator } from "./RoomOperator";
 import { RecordOperator } from "./RecordOperator";
 import { rtcAppId } from "../appToken";
-
 export const netlessWhiteboardApi = new class {
     public readonly user: UserOperator = new UserOperator();
     public readonly room: RoomOperator = new RoomOperator();

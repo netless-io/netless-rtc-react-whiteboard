@@ -39,6 +39,7 @@ import {UserCursor} from "../components/whiteboard/UserCursor";
 import MenuPPTDoc from "../components/menu/MenuPPTDoc";
 import UploadBtn from "../tools/UploadBtn";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
+import WhiteboardRecord from "../components/whiteboard/WhiteboardRecord";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 export enum MenuInnerType {
@@ -65,6 +66,8 @@ export type WhiteboardPageState = {
     converterPercent: number;
     userId: string;
     isMenuOpen: boolean;
+    startRecordTime?: number;
+    stopRecordTime?: number;
     room?: Room;
     roomState?: RoomState;
     pptConverter?: PptConverter;
@@ -330,6 +333,13 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         }
     }
 
+    private setStartTime = (time: number): void => {
+        this.setState({startRecordTime: time});
+    }
+    private setStopTime = (time: number): void => {
+        this.setState({stopRecordTime: time});
+    }
+
     private setMenuState = (state: boolean) => {
         this.setState({isMenuOpen: state});
     }
@@ -364,12 +374,12 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         menuInnerState={this.state.menuInnerState}>
                         {this.renderMenuInner()}
                     </MenuBox>
-                    <Agora
+                    {isMobile || <Agora
                         roomMembers={this.state.room.state.roomMembers}
                         agoraAppId={rtcAppId.agoraAppId}
-                        defaultStart={true}
+                        defaultStart={false}
                         userId={parseInt(this.state.userId)}
-                        channelId={this.props.match.params.uuid}/>
+                        channelId={this.props.match.params.uuid}/>}
                     <div style={{backgroundColor: "white"}} id="page-wrap">
                         <Dropzone
                             accept={"image/*"}
@@ -388,13 +398,17 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     uuid={this.props.match.params.uuid}
                                     roomState={this.state.roomState}
                                     room={this.state.room}
-                                    userId={this.state.userId}/>
+                                    userId={this.state.userId}
+                                    stopTime={this.state.stopRecordTime}
+                                    startTime={this.state.startRecordTime}/>
+                                <WhiteboardRecord channelName={this.props.match.params.uuid} userId={this.state.userId} setStopTime={this.setStopTime} setStartTime={this.setStartTime}/>
                                 <WhiteboardBottomRight
                                     userId={this.state.userId}
                                     roomState={this.state.roomState}
                                     handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}
                                     handleHotKeyMenuState={this.handleHotKeyMenuState}
                                     room={this.state.room}/>
+
                                 <div className={this.state.roomState.broadcastState.mode === ViewMode.Follower ? "whiteboard-tool-box-disable" : "whiteboard-tool-box"}>
                                     <ToolBox
                                         setMemberState={this.setMemberState}

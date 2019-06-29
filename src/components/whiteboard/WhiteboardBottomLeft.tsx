@@ -8,12 +8,16 @@ import {Tooltip} from "antd";
 import {withRouter} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
 import {push} from "@netless/i18n-react-router";
+import {netlessWhiteboardApi} from "../../apiMiddleware";
+import {isMobile} from "react-device-detect";
 
 export type WhiteboardBottomLeftInnerProps = {
     room: Room;
     roomState: RoomState;
     uuid: string;
     userId: string;
+    startTime?: number;
+    stopTime?: number;
 };
 
 export type WhiteboardBottomLeftProps = RouteComponentProps<{}> & WhiteboardBottomLeftInnerProps;
@@ -26,29 +30,66 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
     }
 
     public render(): React.ReactNode {
-        const {roomState} = this.props;
-        return (
-            <div className="whiteboard-box-bottom-left">
-                <ScaleController zoomScale={roomState.zoomScale} zoomChange={this.zoomChange}/>
-                <Tooltip placement="top" title={"回放"}>
+        const {roomState, startTime, stopTime} = this.props;
+        if (isMobile) {
+            return (
+                <div className="whiteboard-box-bottom-left">
+                    {/*<ScaleController zoomScale={roomState.zoomScale} zoomChange={this.zoomChange}/>*/}
                     <div
                         onClick={async () => {
                             await this.props.room.disconnect();
-                            push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
+                            if (startTime && stopTime) {
+                                const duration = (stopTime - startTime);
+                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
+                            } else if (startTime) {
+                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
+                            } else {
+                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
+                            }
                         }}
                         className="whiteboard-box-bottom-left-player">
                         <img src={player}/>
                     </div>
-                </Tooltip>
-                <div
-                    onClick={async () => {
-                        this.props.room.dispatchMagixEvent("handclap", "handclap");
-                    }}
-                    className="whiteboard-box-bottom-left-cell">
-                    <img style={{width: 15}} src={like_icon}/>
+                    {/*<div*/}
+                        {/*onClick={async () => {*/}
+                            {/*this.props.room.dispatchMagixEvent("handclap", "handclap");*/}
+                        {/*}}*/}
+                        {/*className="whiteboard-box-bottom-left-cell">*/}
+                        {/*<img style={{width: 15}} src={like_icon}/>*/}
+                    {/*</div>*/}
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div className="whiteboard-box-bottom-left">
+                    <ScaleController zoomScale={roomState.zoomScale} zoomChange={this.zoomChange}/>
+                    <Tooltip placement="top" title={"回放"}>
+                        <div
+                            onClick={async () => {
+                                await this.props.room.disconnect();
+                                if (startTime && stopTime) {
+                                    const duration = (stopTime - startTime);
+                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
+                                } else if (startTime) {
+                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
+                                } else {
+                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
+                                }
+                            }}
+                            className="whiteboard-box-bottom-left-player">
+                            <img src={player}/>
+                        </div>
+                    </Tooltip>
+                    <div
+                        onClick={async () => {
+                            this.props.room.dispatchMagixEvent("handclap", "handclap");
+                        }}
+                        className="whiteboard-box-bottom-left-cell">
+                        <img style={{width: 15}} src={like_icon}/>
+                    </div>
+                </div>
+            );
+        }
     }
 }
 
