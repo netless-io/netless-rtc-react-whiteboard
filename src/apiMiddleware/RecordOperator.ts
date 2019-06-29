@@ -4,8 +4,9 @@ const fetcher = new Fetcher(5000, "https://api.agora.io");
 
 export class RecordOperator {
 
-    private appId: string;
-    private appSecret: string;
+    private agoraAppId: string;
+    private customerId: string;
+    private customerCertificate: string;
     private channelName: string;
     private mode: string;
     private recordingConfig: any;
@@ -15,9 +16,10 @@ export class RecordOperator {
     private resourceId?: string;
     private userId: string;
 
-    public constructor(appId: string, appSecret: string, channelName: string, recordingConfig: any, storageConfig: any, mode: string = "mix") {
-        this.appId = appId;
-        this.appSecret = appSecret;
+    public constructor(agoraAppId: string, customerId: string, customerCertificate: string, channelName: string, recordingConfig: any, storageConfig: any, mode: string = "mix") {
+        this.agoraAppId = agoraAppId;
+        this.customerId = customerId;
+        this.customerCertificate = customerCertificate;
         this.channelName = channelName;
         this.recordingConfig = recordingConfig;
         this.storageConfig = storageConfig;
@@ -27,9 +29,9 @@ export class RecordOperator {
 
     public async acquire(): Promise<void> {
         const json = await fetcher.post<any>({
-            path: `/v1/apps/${this.appId}/cloud_recording/acquire`,
+            path: `/v1/apps/${this.agoraAppId}/cloud_recording/acquire`,
             headers: {
-                Authorization: this.basicAuthorization(this.appId, this.appSecret),
+                Authorization: this.basicAuthorization(this.customerId, this.customerCertificate),
             },
             body: {
                 cname: this.channelName,
@@ -56,9 +58,9 @@ export class RecordOperator {
             throw new Error("call 'acquire' method acquire resource");
         }
         const json = await fetcher.post<any>({
-            path: `/v1/apps/${this.appId}/cloud_recording/resourceid/${this.resourceId}/mode/${this.mode}/start`,
+            path: `/v1/apps/${this.agoraAppId}/cloud_recording/resourceid/${this.resourceId}/mode/${this.mode}/start`,
             headers: {
-                Authorization: this.basicAuthorization(this.appId, this.appSecret),
+                Authorization: this.basicAuthorization(this.customerId, this.customerCertificate),
             },
             body: {
                 cname: this.channelName,
@@ -84,9 +86,9 @@ export class RecordOperator {
         }
         try {
             const json = await fetcher.post<any>({
-                path: `/v1/apps/${this.appId}/cloud_recording/resourceid/${this.resourceId}/sid/${this.recordId}/mode/${this.mode}/stop`,
+                path: `/v1/apps/${this.agoraAppId}/cloud_recording/resourceid/${this.resourceId}/sid/${this.recordId}/mode/${this.mode}/stop`,
                 headers: {
-                    Authorization: this.basicAuthorization(this.appId, this.appSecret),
+                    Authorization: this.basicAuthorization(this.customerId, this.customerCertificate),
                 },
                 body: {
                     cname: this.channelName,
@@ -108,9 +110,9 @@ export class RecordOperator {
             throw new Error("call 'start' method start record");
         }
         const json = await fetcher.get<any>({
-            path: `/v1/apps/${this.appId}/cloud_recording/resourceid/${this.resourceId}/sid/${this.recordId}/mode/${this.mode}/query`,
+            path: `/v1/apps/${this.agoraAppId}/cloud_recording/resourceid/${this.resourceId}/sid/${this.recordId}/mode/${this.mode}/query`,
             headers: {
-                Authorization: this.basicAuthorization(this.appId, this.appSecret),
+                Authorization: this.basicAuthorization(this.customerId, this.customerCertificate),
             },
         });
         return json as any;
