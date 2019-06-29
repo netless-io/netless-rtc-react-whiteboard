@@ -401,7 +401,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     userId={this.state.userId}
                                     stopTime={this.state.stopRecordTime}
                                     startTime={this.state.startRecordTime}/>
-                                <WhiteboardRecord setStopTime={this.setStopTime} setStartTime={this.setStartTime}/>
+                                <WhiteboardRecord channelName={this.props.match.params.uuid} userId={this.state.userId} setStopTime={this.setStopTime} setStartTime={this.setStartTime}/>
                                 <WhiteboardBottomRight
                                     userId={this.state.userId}
                                     roomState={this.state.roomState}
