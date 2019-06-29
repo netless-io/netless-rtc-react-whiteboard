@@ -26,6 +26,33 @@
   }
 }
 
+
+.whiteboard-box-top-left-record {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 16px;
+  left: 64px;
+  border-radius: 16px;
+  position: absolute;
+  height: 32px;
+  width: 48px;
+  background-color: white;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition-timing-function: ease-in-out;
+  transition-delay: 100ms;
+  transition-duration: 100ms;
+  z-index: 1001;
+  &:hover {
+    border: 1px solid @gray_light;
+    transition-timing-function: ease-in-out;
+    transition-delay: 100ms;
+    transition-duration: 100ms;
+  }
+}
+
 .go-back-title {
   width: 100%;
   text-align: center;

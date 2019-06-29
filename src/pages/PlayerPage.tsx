@@ -25,6 +25,8 @@ const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 export type PlayerPageProps = RouteComponentProps<{
     uuid: string;
     userId: string;
+    time: string;
+    duration: string;
 }> & {room: Room};
 
 export type PlayerPageStates = {
@@ -73,7 +75,15 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
         const whiteWebSdk = new WhiteWebSdk();
         const roomToken = await this.getRoomToken(uuid);
         if (uuid && roomToken) {
-            const player = await whiteWebSdk.replayRoom({room: uuid, roomToken: roomToken, cursorAdapter: this.cursor}, {
+            const {time, duration} = this.props.match.params;
+            const player = await whiteWebSdk.replayRoom(
+                {
+                    beginTimestamp: time ? parseInt(time) : undefined,
+                    duration: duration ? parseInt(duration) : undefined,
+                    room: uuid,
+                    roomToken: roomToken,
+                    cursorAdapter: this.cursor,
+                }, {
                 onPhaseChanged: phase => {
                     this.setState({phase: phase});
                 },
@@ -89,7 +99,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     }
                 },
                 onStoppedWithError: error => {
-                  message.error("Playback error");
+                    message.error("Playback error");
                 },
                 onScheduleTimeChanged: scheduleTime => {
                     this.setState({currentTime: scheduleTime});
