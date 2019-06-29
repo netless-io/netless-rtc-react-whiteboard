@@ -4,16 +4,16 @@ const fetcher = new Fetcher(5000, "https://api.agora.io");
 
 export class RecordOperator {
 
-    private appId: string;
-    private appSecret: string;
-    private channelName: string;
-    private mode: string;
-    private recordingConfig: any;
-    private storageConfig: any;
+    private readonly appId: string;
+    private readonly appSecret: string;
+    private readonly channelName: string;
+    private readonly mode: string;
+    private readonly recordingConfig: any;
+    private readonly storageConfig: any;
 
     private recordId?: string;
     private resourceId?: string;
-    private userId: string;
+    private readonly userId: string;
 
     public constructor(appId: string, appSecret: string, channelName: string, recordingConfig: any, storageConfig: any, mode: string = "mix") {
         this.appId = appId;

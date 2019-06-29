@@ -7,10 +7,14 @@ import {netlessWhiteboardApi} from "../../apiMiddleware";
 export type WhiteboardRecordState = {
     isRecord: boolean,
 };
+export type WhiteboardRecordProps = {
+    setStartTime: (time: number) => void;
+    setStopTime: (time: number) => void;
+};
 
-class WhiteboardRecord extends React.Component<{}, WhiteboardRecordState> {
+class WhiteboardRecord extends React.Component<WhiteboardRecordProps, WhiteboardRecordState> {
 
-    public constructor(props: {}) {
+    public constructor(props: WhiteboardRecordProps) {
         super(props);
         this.state = {
             isRecord: false,
@@ -21,12 +25,12 @@ class WhiteboardRecord extends React.Component<{}, WhiteboardRecordState> {
         if (this.state.isRecord) {
             message.info("结束录制");
             const time =  new Date();
-            netlessWhiteboardApi.user.endTimestamp(time.getTime());
+            this.props.setStopTime(time.getTime());
             this.setState({isRecord: false});
         } else {
             message.success("开始录制");
             const time =  new Date();
-            netlessWhiteboardApi.user.startTimestamp(time.getTime());
+            this.props.setStartTime(time.getTime());
             this.setState({isRecord: true });
         }
     }

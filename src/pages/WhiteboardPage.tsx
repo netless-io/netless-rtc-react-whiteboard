@@ -66,6 +66,8 @@ export type WhiteboardPageState = {
     converterPercent: number;
     userId: string;
     isMenuOpen: boolean;
+    startRecordTime?: number;
+    stopRecordTime?: number;
     room?: Room;
     roomState?: RoomState;
     pptConverter?: PptConverter;
@@ -331,6 +333,13 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         }
     }
 
+    private setStartTime = (time: number): void => {
+        this.setState({startRecordTime: time});
+    }
+    private setStopTime = (time: number): void => {
+        this.setState({stopRecordTime: time});
+    }
+
     private setMenuState = (state: boolean) => {
         this.setState({isMenuOpen: state});
     }
@@ -389,15 +398,17 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     uuid={this.props.match.params.uuid}
                                     roomState={this.state.roomState}
                                     room={this.state.room}
-                                    userId={this.state.userId}/>
-                                <WhiteboardRecord/>
+                                    userId={this.state.userId}
+                                    stopTime={this.state.stopRecordTime}
+                                    startTime={this.state.startRecordTime}/>
+                                <WhiteboardRecord setStopTime={this.setStopTime} setStartTime={this.setStartTime}/>
                                 <WhiteboardBottomRight
                                     userId={this.state.userId}
                                     roomState={this.state.roomState}
                                     handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}
                                     handleHotKeyMenuState={this.handleHotKeyMenuState}
                                     room={this.state.room}/>
-                                {isMobile ||
+
                                 <div className={this.state.roomState.broadcastState.mode === ViewMode.Follower ? "whiteboard-tool-box-disable" : "whiteboard-tool-box"}>
                                     <ToolBox
                                         setMemberState={this.setMemberState}
@@ -411,7 +422,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                             />,
                                         ]}
                                         memberState={this.state.room.state.memberState}/>
-                                </div>}
+                                </div>
                                 <div onClick={this.handlePPtBoxMenuState}
                                      className={(this.state.menuInnerState === MenuInnerType.PPTBox && this.state.isMenuVisible) ? "slide-box-active" : "slide-box"}>
                                     <img src={arrow}/>

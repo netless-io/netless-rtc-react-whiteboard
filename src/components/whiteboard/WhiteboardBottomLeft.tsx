@@ -16,6 +16,8 @@ export type WhiteboardBottomLeftInnerProps = {
     roomState: RoomState;
     uuid: string;
     userId: string;
+    startTime?: number;
+    stopTime?: number;
 };
 
 export type WhiteboardBottomLeftProps = RouteComponentProps<{}> & WhiteboardBottomLeftInnerProps;
@@ -28,9 +30,7 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
     }
 
     public render(): React.ReactNode {
-        const {roomState} = this.props;
-        const time = netlessWhiteboardApi.user.getStartTimestamp();
-        const end = netlessWhiteboardApi.user.getEndTimestamp();
+        const {roomState, startTime, stopTime} = this.props;
         if (isMobile) {
             return (
                 <div className="whiteboard-box-bottom-left">
@@ -38,11 +38,11 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
                     <div
                         onClick={async () => {
                             await this.props.room.disconnect();
-                            if (time && end) {
-                                const duration = (parseInt(end) - parseInt(time));
-                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${time}/${duration}`);
-                            } else if (time) {
-                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${time}/`);
+                            if (startTime && stopTime) {
+                                const duration = (stopTime - startTime);
+                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
+                            } else if (startTime) {
+                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
                             } else {
                                 push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
                             }
@@ -67,11 +67,11 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
                         <div
                             onClick={async () => {
                                 await this.props.room.disconnect();
-                                if (time && end) {
-                                    const duration = (parseInt(end) - parseInt(time));
-                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${time}/${duration}`);
-                                } else if (time) {
-                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${time}/`);
+                                if (startTime && stopTime) {
+                                    const duration = (stopTime - startTime);
+                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
+                                } else if (startTime) {
+                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
                                 } else {
                                     push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
                                 }
