@@ -120,6 +120,6 @@ export class RecordOperator {
 
     private basicAuthorization(appId: string, appSecret: string): string {
         const plainCredentials = `${appId}:${appSecret}`;
-        return btoa(plainCredentials);
+        return `Basic ${btoa(plainCredentials)}`;
     }
 }
