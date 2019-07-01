@@ -1,6 +1,6 @@
 import Fetcher from "@netless/fetch-middleware";
 
-const fetcher = new Fetcher(5000, "https://api.agora.io");
+const fetcher = new Fetcher(5000, "https://apiagoraio.herewhite.com");
 
 export class RecordOperator {
 

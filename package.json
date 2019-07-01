@@ -15,7 +15,7 @@
     "@netless/fetch-middleware": "^1.0.2",
     "@netless/i18n-react-router": "^1.0.5",
     "@netless/oss-upload-manager": "^1.0.6",
-    "@netless/react-agora": "^0.1.6",
+    "@netless/react-agora": "^0.1.7",
     "@netless/react-loading-bar": "^1.0.0",
     "@netless/react-scale-controller": "^1.0.2",
     "@netless/react-seek-slider": "^1.0.4",

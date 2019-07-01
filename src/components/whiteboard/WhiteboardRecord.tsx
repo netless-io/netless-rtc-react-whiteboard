@@ -13,6 +13,7 @@ export type WhiteboardRecordProps = {
     setStopTime: (time: number) => void;
     channelName: string;
     userId: string;
+    isMediaRun?: boolean;
 };
 
 class WhiteboardRecord extends React.Component<WhiteboardRecordProps, WhiteboardRecordState> {
@@ -25,27 +26,34 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
     }
 
     public record = async (): Promise<void> => {
-        const {channelName, userId} = this.props;
+        const {channelName, userId, isMediaRun} = this.props;
         if (this.state.isRecord) {
             message.info("结束录制");
             const time =  new Date();
             this.props.setStopTime(time.getTime());
             this.setState({isRecord: false});
         } else {
-            const recrod = netlessWhiteboardApi.recordFactory(channelName, {/* 可以不传?*/}, {
-                vendor: 2,
-                region: 0,
-                bucket: "netless-media",
-                accessKey: ossConfigObj.accessKeyId,
-                secretKey: ossConfigObj.accessKeySecret,
-            });
-            await recrod.acquire();
-            const res = recrod.start();
-            console.log(res);
-            message.success("开始录制");
-            const time =  new Date();
-            this.props.setStartTime(time.getTime());
-            this.setState({isRecord: true });
+            if (isMediaRun) {
+                const recrod = netlessWhiteboardApi.recordFactory(channelName, {/* 可以不传?*/}, {
+                    vendor: 2,
+                    region: 0,
+                    bucket: "netless-media",
+                    accessKey: ossConfigObj.accessKeyId,
+                    secretKey: ossConfigObj.accessKeySecret,
+                });
+                await recrod.acquire();
+                const res = recrod.start();
+                console.log(res);
+                message.success("开始录制1");
+                const time =  new Date();
+                this.props.setStartTime(time.getTime());
+                this.setState({isRecord: true });
+            } else {
+                message.success("开始录制2");
+                const time =  new Date();
+                this.props.setStartTime(time.getTime());
+                this.setState({isRecord: true });
+            }
         }
     }
     public render(): React.ReactNode {

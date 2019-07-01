@@ -66,6 +66,7 @@ export type WhiteboardPageState = {
     converterPercent: number;
     userId: string;
     isMenuOpen: boolean;
+    isMediaRun?: boolean;
     startRecordTime?: number;
     stopRecordTime?: number;
     room?: Room;
@@ -105,6 +106,10 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         } else {
             return null;
         }
+    }
+
+    private setMediaState = (state: boolean): void => {
+        this.setState({isMediaRun: state});
     }
 
     private startJoinRoom = async (): Promise<void> => {
@@ -377,6 +382,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                     {isMobile || <Agora
                         roomMembers={this.state.room.state.roomMembers}
                         agoraAppId={rtcAppId.agoraAppId}
+                        setMediaState={this.setMediaState}
                         defaultStart={false}
                         userId={parseInt(this.state.userId)}
                         channelId={this.props.match.params.uuid}/>}
@@ -401,7 +407,12 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     userId={this.state.userId}
                                     stopTime={this.state.stopRecordTime}
                                     startTime={this.state.startRecordTime}/>
-                                <WhiteboardRecord channelName={this.props.match.params.uuid} userId={this.state.userId} setStopTime={this.setStopTime} setStartTime={this.setStartTime}/>
+                                <WhiteboardRecord
+                                    channelName={this.props.match.params.uuid}
+                                    isMediaRun={this.state.isMediaRun}
+                                    userId={this.state.userId}
+                                    setStopTime={this.setStopTime}
+                                    setStartTime={this.setStartTime}/>
                                 <WhiteboardBottomRight
                                     userId={this.state.userId}
                                     roomState={this.state.roomState}
