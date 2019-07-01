@@ -66,6 +66,7 @@ export type WhiteboardPageState = {
     converterPercent: number;
     userId: string;
     isMenuOpen: boolean;
+    mediaSource?: string;
     isMediaRun?: boolean;
     startRecordTime?: number;
     stopRecordTime?: number;
@@ -222,6 +223,10 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         } else {
             return null;
         }
+    }
+
+    private setMediaSource = (source: string): void => {
+        this.setState({mediaSource: source});
     }
 
     private handleHotKeyMenuState = (): void => {
@@ -405,12 +410,13 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     roomState={this.state.roomState}
                                     room={this.state.room}
                                     userId={this.state.userId}
+                                    mediaSource={this.state.mediaSource}
                                     stopTime={this.state.stopRecordTime}
                                     startTime={this.state.startRecordTime}/>
                                 <WhiteboardRecord
+                                    setMediaSource={this.setMediaSource}
                                     channelName={this.props.match.params.uuid}
                                     isMediaRun={this.state.isMediaRun}
-                                    userId={this.state.userId}
                                     setStopTime={this.setStopTime}
                                     setStartTime={this.setStartTime}/>
                                 <WhiteboardBottomRight

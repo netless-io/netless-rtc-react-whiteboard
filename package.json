@@ -12,7 +12,7 @@
     "build": "rimraf build && NODE_ENV=production react-app-rewired --max-old-space-size=4096 build --scripts-version react-scripts-ts"
   },
   "dependencies": {
-    "@netless/fetch-middleware": "^1.0.2",
+    "@netless/fetch-middleware": "^1.0.4",
     "@netless/i18n-react-router": "^1.0.5",
     "@netless/oss-upload-manager": "^1.0.6",
     "@netless/react-agora": "^0.1.7",
@@ -34,7 +34,9 @@
     "react-dom": "^16.3.2",
     "react-dropzone": "4.2.10",
     "react-identicons": "^1.1.7",
+    "react-player": "^1.11.1",
     "uuid": "^3.3.2",
+    "videojs-contrib-hls": "^5.15.0",
     "white-react-sdk": "^2.2.1"
   },
   "devDependencies": {
@@ -50,6 +52,7 @@
     "@types/react-dom": "^16.0.5",
     "@types/react-dropzone": "4.2.0",
     "@types/uuid": "^3.4.4",
+    "@types/video.js": "^7.2.10",
     "@types/webaudioapi": "^0.0.27",
     "fork-ts-checker-webpack-plugin": "^1.3.4",
     "js-yaml": "^3.12.0",
