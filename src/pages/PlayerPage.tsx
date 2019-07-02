@@ -32,10 +32,18 @@ export type PlayerPageProps = RouteComponentProps<{
     duration: string;
     mediaSource: string;
 }> & {room: Room};
-
+enum VideoPlayerPhase {
+    WaitingFirstFrame = "waitingFirstFrame",
+    Playing = "playing",
+    Pause = "pause",
+    Stopped = "stop",
+    Ended = "ended",
+    Buffering = "buffering",
+}
 export type PlayerPageStates = {
     player: Player | null;
     phase: PlayerPhase;
+    videoPhase: VideoPlayerPhase;
     currentTime: number;
     isFullScreen: boolean;
     isFirstScreenReady: boolean;
@@ -49,7 +57,6 @@ export type PlayerPageStates = {
 export default class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
     private scheduleTime: number = 0;
     private readonly cursor: any;
-    private ref: any;
     private videoPlayer: videojs.Player;
     public constructor(props: PlayerPageProps) {
         super(props);
@@ -57,6 +64,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
         this.state = {
             currentTime: 0,
             phase: PlayerPhase.Pause,
+            videoPhase: VideoPlayerPhase.Pause,
             isFullScreen: false,
             isFirstScreenReady: false,
             isHandClap: false,
@@ -184,6 +192,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
             }
             case PlayerPhase.Ended: {
                 player.seekToScheduleTime(0);
+                this.videoPlayer.currentTime(0);
                 break;
             }
         }
@@ -209,6 +218,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                                 if (this.state.player) {
                                     this.setState({currentTime: time});
                                    this.state.player.seekToScheduleTime(time);
+                                   this.videoPlayer.currentTime(time / 1000);
                                 }
                             }}
                             hideHoverTime={true}
@@ -317,10 +327,13 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     {mediaUrl &&
                     <Draggable>
                         <div className="player-video-out">
-                            <VideoPlayer controls={false} src={mediaUrl} className="player-video" onReady={this.setupPlayer}/>
+                            <VideoPlayer
+                                controls={false}
+                                src={mediaUrl}
+                                className="player-video"
+                                onReady={this.setupPlayer}/>
                         </div>
-                    </Draggable>
-                    }
+                    </Draggable>}
                     <PlayerWhiteboard className="player-box" player={this.state.player}/>
                 </div>
             );

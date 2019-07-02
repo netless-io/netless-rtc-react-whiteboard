@@ -34,13 +34,24 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
                 await this.recrod.acquire();
             }
         } else {
-            this.recrod = netlessWhiteboardApi.recordFactory(channelName, {/* 可以不传?*/}, {
-                vendor: 2,
-                region: 0,
-                bucket: "netless-media",
-                accessKey: ossConfigObj.accessKeyId,
-                secretKey: ossConfigObj.accessKeySecret,
-            });
+            this.recrod = netlessWhiteboardApi.recordFactory(channelName,
+                {
+                    maxIdleTime: 300,
+                    transcodingConfig: {
+                        width: 300,
+                        height: 300,
+                        fps: 30,
+                        bitrate: 500,
+                        mixedVideoLayout: 1,
+                    },
+                },
+                {
+                    vendor: 2,
+                    region: 0,
+                    bucket: "netless-media",
+                    accessKey: ossConfigObj.accessKeyId,
+                    secretKey: ossConfigObj.accessKeySecret,
+                });
             await this.recrod.acquire();
         }
         if (this.state.isRecord) {
@@ -48,6 +59,7 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
                 if (isMediaRun) {
                     const resp = await this.recrod.query();
                     if (resp.serverResponse.fileList) {
+                        alert(resp.serverResponse.fileList);
                         const res = await this.recrod.stop();
                         this.props.setMediaSource(res.serverResponse.fileList);
                         message.info("结束录制");
@@ -75,7 +87,8 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
                     this.props.setStartTime(time.getTime());
                     this.setState({isRecord: true });
                 } catch (err) {
-                    console.log("");
+                    console.log(err);
+                    message.error("录制错误");
                 }
             } else {
                 message.success("开始录制");
