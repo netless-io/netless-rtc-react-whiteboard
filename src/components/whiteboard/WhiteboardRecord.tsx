@@ -35,16 +35,7 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
             }
         } else {
             this.recrod = netlessWhiteboardApi.recordFactory(channelName,
-                {
-                    maxIdleTime: 300,
-                    transcodingConfig: {
-                        width: 300,
-                        height: 300,
-                        fps: 30,
-                        bitrate: 500,
-                        mixedVideoLayout: 1,
-                    },
-                },
+                {},
                 {
                     vendor: 2,
                     region: 0,
@@ -59,7 +50,6 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
                 if (isMediaRun) {
                     const resp = await this.recrod.query();
                     if (resp.serverResponse.fileList) {
-                        alert(resp.serverResponse.fileList);
                         const res = await this.recrod.stop();
                         this.props.setMediaSource(res.serverResponse.fileList);
                         message.info("结束录制");
