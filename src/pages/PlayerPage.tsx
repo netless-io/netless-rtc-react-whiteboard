@@ -21,9 +21,8 @@ import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 import {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
 import videojs from "video.js";
-import "video.js/dist/video-js.css";
-// import VideoPlayer from "../components/whiteboard/VideoPlayer";
-import ReactPlayer from "react-player";
+import Draggable from "react-draggable";
+import VideoPlayer from "../components/whiteboard/VideoPlayer";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
 export type PlayerPageProps = RouteComponentProps<{
@@ -175,10 +174,12 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
             case PlayerPhase.WaitingFirstFrame:
             case PlayerPhase.Pause: {
                 player.play();
+                this.videoPlayer.play();
                 break;
             }
             case PlayerPhase.Playing: {
                 player.pause();
+                this.videoPlayer.pause();
                 break;
             }
             case PlayerPhase.Ended: {
@@ -245,12 +246,16 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
 
     private setupPlayer = (player: videojs.Player): void => {
         this.videoPlayer = player;
-        this.videoPlayer.play();
     }
 
     public render(): React.ReactNode {
         const {mediaSource} = this.props.match.params;
-        const mediaUrl = `https://netless-media.oss-cn-hangzhou.aliyuncs.com/${mediaSource}/`;
+        let mediaUrl;
+        if (mediaSource) {
+            mediaUrl = `https://netless-media.oss-cn-hangzhou.aliyuncs.com/${mediaSource}`;
+        } else {
+            mediaUrl = null;
+        }
         if (!this.state.player) {
             return <div className="white-board-loading">
                 <img src={loading}/>
@@ -309,8 +314,13 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                             <img src={like}/>
                         </TweenOne>
                     </div>}
-                    <ReactPlayer url={"https://www.youtube.com/watch?v=ysz5S6PUM-U"} playing />
-                    {/*<VideoPlayer width={300} height={400} src={mediaUrl} className="player-video" onReady={this.setupPlayer}/>*/}
+                    {mediaUrl &&
+                    <Draggable>
+                        <div className="player-video-out">
+                            <VideoPlayer controls={false} src={mediaUrl} className="player-video" onReady={this.setupPlayer}/>
+                        </div>
+                    </Draggable>
+                    }
                     <PlayerWhiteboard className="player-box" player={this.state.player}/>
                 </div>
             );

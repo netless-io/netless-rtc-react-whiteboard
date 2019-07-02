@@ -46,14 +46,17 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
         if (this.state.isRecord) {
             try {
                 if (isMediaRun) {
-                    const res = await this.recrod.stop();
-                    console.log(res);
-                    // const source = res
-                    this.props.setMediaSource("a8def7183c4286372a6c1c98b9752a05_ed7d10f3cb2b415ba94dd30eab38d187.m3u8");
-                    message.info("结束录制");
-                    const time =  new Date();
-                    this.props.setStopTime(time.getTime());
-                    this.setState({isRecord: false});
+                    const resp = await this.recrod.query();
+                    if (resp.serverResponse.fileList) {
+                        const res = await this.recrod.stop();
+                        this.props.setMediaSource(res.serverResponse.fileList);
+                        message.info("结束录制");
+                        const time =  new Date();
+                        this.props.setStopTime(time.getTime());
+                        this.setState({isRecord: false});
+                    } else {
+                        message.info("录制时间过短");
+                    }
                 } else {
                     message.info("结束录制");
                     const time =  new Date();

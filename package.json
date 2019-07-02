@@ -32,9 +32,9 @@
     "react-clipboard.js": "^2.0.7",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.3.2",
+    "react-draggable": "^3.3.0",
     "react-dropzone": "4.2.10",
     "react-identicons": "^1.1.7",
-    "react-player": "^1.11.1",
     "uuid": "^3.3.2",
     "videojs-contrib-hls": "^5.15.0",
     "white-react-sdk": "^2.2.1"
