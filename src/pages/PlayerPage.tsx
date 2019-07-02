@@ -20,6 +20,9 @@ import {UserCursor} from "../components/whiteboard/UserCursor";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 import {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
+import videojs from "video.js";
+import Draggable from "react-draggable";
+import VideoPlayer from "../components/whiteboard/VideoPlayer";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
 export type PlayerPageProps = RouteComponentProps<{
@@ -27,11 +30,20 @@ export type PlayerPageProps = RouteComponentProps<{
     userId: string;
     time: string;
     duration: string;
+    mediaSource: string;
 }> & {room: Room};
-
+enum VideoPlayerPhase {
+    WaitingFirstFrame = "waitingFirstFrame",
+    Playing = "playing",
+    Pause = "pause",
+    Stopped = "stop",
+    Ended = "ended",
+    Buffering = "buffering",
+}
 export type PlayerPageStates = {
     player: Player | null;
     phase: PlayerPhase;
+    videoPhase: VideoPlayerPhase;
     currentTime: number;
     isFullScreen: boolean;
     isFirstScreenReady: boolean;
@@ -45,12 +57,14 @@ export type PlayerPageStates = {
 export default class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
     private scheduleTime: number = 0;
     private readonly cursor: any;
+    private videoPlayer: videojs.Player;
     public constructor(props: PlayerPageProps) {
         super(props);
         this.cursor = new UserCursor();
         this.state = {
             currentTime: 0,
             phase: PlayerPhase.Pause,
+            videoPhase: VideoPlayerPhase.Pause,
             isFullScreen: false,
             isFirstScreenReady: false,
             isHandClap: false,
@@ -168,14 +182,17 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
             case PlayerPhase.WaitingFirstFrame:
             case PlayerPhase.Pause: {
                 player.play();
+                this.videoPlayer.play();
                 break;
             }
             case PlayerPhase.Playing: {
                 player.pause();
+                this.videoPlayer.pause();
                 break;
             }
             case PlayerPhase.Ended: {
                 player.seekToScheduleTime(0);
+                this.videoPlayer.currentTime(0);
                 break;
             }
         }
@@ -201,6 +218,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                                 if (this.state.player) {
                                     this.setState({currentTime: time});
                                    this.state.player.seekToScheduleTime(time);
+                                   this.videoPlayer.currentTime(time / 1000);
                                 }
                             }}
                             hideHoverTime={true}
@@ -236,7 +254,18 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
         }
     }
 
+    private setupPlayer = (player: videojs.Player): void => {
+        this.videoPlayer = player;
+    }
+
     public render(): React.ReactNode {
+        const {mediaSource} = this.props.match.params;
+        let mediaUrl;
+        if (mediaSource) {
+            mediaUrl = `https://netless-media.oss-cn-hangzhou.aliyuncs.com/${mediaSource}`;
+        } else {
+            mediaUrl = null;
+        }
         if (!this.state.player) {
             return <div className="white-board-loading">
                 <img src={loading}/>
@@ -295,6 +324,16 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                             <img src={like}/>
                         </TweenOne>
                     </div>}
+                    {mediaUrl &&
+                    <Draggable>
+                        <div className="player-video-out">
+                            <VideoPlayer
+                                controls={false}
+                                src={mediaUrl}
+                                className="player-video"
+                                onReady={this.setupPlayer}/>
+                        </div>
+                    </Draggable>}
                     <PlayerWhiteboard className="player-box" player={this.state.player}/>
                 </div>
             );

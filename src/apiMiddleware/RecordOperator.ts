@@ -1,6 +1,6 @@
 import Fetcher from "@netless/fetch-middleware";
 
-const fetcher = new Fetcher(5000, "https://api.agora.io");
+const fetcher = new Fetcher(5000, "https://apiagoraio.herewhite.com");
 
 export class RecordOperator {
 
@@ -13,7 +13,7 @@ export class RecordOperator {
     private readonly storageConfig: any;
 
     private recordId?: string;
-    private resourceId?: string;
+    public resourceId?: string;
     private readonly userId: string;
 
     public constructor(agoraAppId: string, customerId: string, customerCertificate: string, channelName: string, recordingConfig: any, storageConfig: any, mode: string = "mix") {
@@ -97,6 +97,8 @@ export class RecordOperator {
                 },
             });
             return json as any;
+        } catch (err) {
+            console.log("stop", err);
         } finally {
             await this.release();
         }

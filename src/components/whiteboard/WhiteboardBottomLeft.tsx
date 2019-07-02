@@ -10,6 +10,7 @@ import {RouteComponentProps} from "react-router";
 import {push} from "@netless/i18n-react-router";
 import {netlessWhiteboardApi} from "../../apiMiddleware";
 import {isMobile} from "react-device-detect";
+import {InputProps} from "antd/lib/input/Input";
 
 export type WhiteboardBottomLeftInnerProps = {
     room: Room;
@@ -18,11 +19,17 @@ export type WhiteboardBottomLeftInnerProps = {
     userId: string;
     startTime?: number;
     stopTime?: number;
+    mediaSource?: string;
 };
 
 export type WhiteboardBottomLeftProps = RouteComponentProps<{}> & WhiteboardBottomLeftInnerProps;
 
 class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}> {
+
+    public constructor(props: WhiteboardBottomLeftProps) {
+        super(props);
+    }
+
 
     private zoomChange = (scale: number): void => {
         const {room} = this.props;
@@ -30,7 +37,7 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
     }
 
     public render(): React.ReactNode {
-        const {roomState, startTime, stopTime} = this.props;
+        const {roomState, startTime, stopTime, mediaSource} = this.props;
         if (isMobile) {
             return (
                 <div className="whiteboard-box-bottom-left">
@@ -69,7 +76,11 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
                                 await this.props.room.disconnect();
                                 if (startTime && stopTime) {
                                     const duration = (stopTime - startTime);
-                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
+                                    if (mediaSource) {
+                                        push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}/${mediaSource}`);
+                                    } else {
+                                        push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
+                                    }
                                 } else if (startTime) {
                                     push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
                                 } else {
