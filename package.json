@@ -37,7 +37,7 @@
     "react-identicons": "^1.1.7",
     "uuid": "^3.3.2",
     "videojs-contrib-hls": "^5.15.0",
-    "white-react-sdk": "^2.2.1"
+    "white-react-sdk": "^2.2.2"
   },
   "devDependencies": {
     "@livechat/ui-kit": "^0.4.0-1",
