@@ -8,6 +8,7 @@ import {PptKind, Room, WhiteWebSdk} from "white-react-sdk";
 import * as image from "../assets/image/image.svg";
 import * as doc_to_image from "../assets/image/doc_to_image.svg";
 import * as doc_to_web from "../assets/image/doc_to_web.svg";
+import * as upload from "../assets/image/upload.svg";
 
 export type ToolBoxUploadBoxState = {
     toolBoxColor: string,
@@ -30,6 +31,20 @@ export type UploadBtnProps = {
     },
     room: Room,
     roomToken: string | null,
+    whiteboardRef?: HTMLDivElement,
+    onProgress?: PPTProgressListener,
+};
+
+export type UploadBtnMobileProps = {
+    oss: {
+        accessKeyId: string,
+        accessKeySecret: string,
+        region: string,
+        bucket: string,
+        folder: string,
+        prefix: string,
+    },
+    room: Room,
     whiteboardRef?: HTMLDivElement,
     onProgress?: PPTProgressListener,
 };
@@ -120,7 +135,6 @@ export default class UploadBtn extends React.Component<UploadBtnProps, ToolBoxUp
                 </div>
             </Upload>
             <Upload
-                disabled={!this.props.roomToken}
                 accept={"image/*"}
                 showUploadList={false}
                 customRequest={this.uploadImage}>
@@ -149,6 +163,49 @@ export default class UploadBtn extends React.Component<UploadBtnProps, ToolBoxUp
                     </div>
                 </div>
             </Popover>
+        );
+    }
+}
+
+export class UploadBtnMobile extends React.Component <UploadBtnMobileProps, ToolBoxUploadBoxState> {
+    private readonly client: any;
+    public constructor(props: UploadBtnProps) {
+        super(props);
+        this.state = {
+            toolBoxColor: "#A2A7AD",
+        };
+        this.client = new OSS({
+            accessKeyId: this.props.oss.accessKeyId,
+            accessKeySecret: this.props.oss.accessKeySecret,
+            region: this.props.oss.region,
+            bucket: this.props.oss.bucket,
+        });
+    }
+    private uploadImage = (event: any) => {
+        const uploadFileArray: File[] = [];
+        uploadFileArray.push(event.file);
+        const uploadManager = new UploadManager(this.client, this.props.room);
+        if (this.props.whiteboardRef) {
+            const {clientWidth, clientHeight} = this.props.whiteboardRef;
+            uploadManager.uploadImageFiles(uploadFileArray, clientWidth / 2, clientHeight / 2, this.props.onProgress)
+                .catch(error => alert("upload file error" + error));
+        } else {
+            const clientWidth = window.innerWidth;
+            const clientHeight = window.innerHeight;
+            uploadManager.uploadImageFiles(uploadFileArray, clientWidth / 2, clientHeight / 2, this.props.onProgress)
+                .catch(error => alert("upload file error" + error));
+        }
+    }
+    public render(): React.ReactNode {
+        return (
+            <Upload
+                accept={"image/*"}
+                showUploadList={false}
+                customRequest={this.uploadImage}>
+                        <div className="whiteboard-top-bar-btn" >
+                            <img style={{width: 16}} src={upload}/>
+                        </div>
+            </Upload>
         );
     }
 }

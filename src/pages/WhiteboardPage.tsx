@@ -167,6 +167,15 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 await timeout(800);
                 this.setState({isHandClap: false});
             });
+            room.setViewMode(ViewMode.Broadcaster);
+            const proportion = window.innerWidth / window.innerHeight;
+            if (proportion > 1) {
+                const zoomNumber = window.innerHeight / 675;
+                room.zoomChange(zoomNumber);
+            } else {
+                const zoomNumber = window.innerWidth / 1200;
+                room.zoomChange(zoomNumber);
+            }
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
         } else {
             message.error("join fail");
@@ -403,8 +412,13 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                 {this.renderClipView()}
                                 <WhiteboardTopLeft room={this.state.room}/>
                                 <WhiteboardTopRight
+                                    oss={ossConfigObj}
+                                    onProgress={this.progress}
+                                    whiteboardRef={this.state.whiteboardLayerDownRef}
                                     roomState={this.state.roomState}
-                                    uuid={this.props.match.params.uuid} room={this.state.room} number={this.state.userId}/>
+                                    uuid={this.props.match.params.uuid}
+                                    room={this.state.room}
+                                    number={this.state.userId}/>
                                 <WhiteboardBottomLeft
                                     uuid={this.props.match.params.uuid}
                                     roomState={this.state.roomState}

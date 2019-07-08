@@ -34,12 +34,10 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
     private arrowControllerHotKey(evt: KeyboardEvent): void {
     }
 
-    private removeScene(index: number): void {
+    private removeScene(): void {
         const {room} = this.props;
-        const scenes = room.state.sceneState.scenes;
         const scenePath = room.state.sceneState.scenePath;
-        const pathName = this.pathName(scenePath);
-        room.removeScenes(`/${pathName}/${scenes[index].name}`);
+        room.removeScenes(`${scenePath}`);
     }
     private setScenePath = (newActiveIndex: number) => {
         const {room} = this.props;
@@ -73,7 +71,7 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
                     style={{
                         transform: "scale(0)",
                     }}
-                    className="page-box-inner-index-delete" onClick={() => this.removeScene(index)}>
+                    className="page-box-inner-index-delete" onClick={() => this.removeScene()}>
                     <img className="menu-title-close-icon" src={close}/>
                 </TweenOne>
             );
@@ -90,7 +88,6 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
         const activeIndex = roomState.sceneState.index;
         const renderPages = scenes.map((scene: Scene, index: number): React.ReactNode => {
             const isActive = index === activeIndex;
-
             return (
                     <div
                         key={`${scene.name}${index}`}

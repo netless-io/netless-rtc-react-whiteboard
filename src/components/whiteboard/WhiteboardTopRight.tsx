@@ -16,6 +16,8 @@ import {netlessWhiteboardApi} from "../../apiMiddleware";
 import {UserInfType} from "../../apiMiddleware";
 import QRCode from "qrcode.react";
 import {isMobile} from "react-device-detect";
+import {UploadBtnMobile} from "../../tools/UploadBtn";
+import {PPTProgressListener} from "../../tools/UploadManager";
 
 export type WhiteboardTopRightState = {
     scaleAnimation: boolean;
@@ -25,7 +27,22 @@ export type WhiteboardTopRightState = {
     isSetVisible: boolean;
 };
 
-export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProps & {room: Room, number: string, uuid: string, roomState: RoomState};
+export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProps & {
+    room: Room,
+    number: string,
+    uuid: string,
+    roomState: RoomState,
+    oss: {
+        accessKeyId: string,
+        accessKeySecret: string,
+        region: string,
+        bucket: string,
+        folder: string,
+        prefix: string,
+    },
+    whiteboardRef?: HTMLDivElement,
+    onProgress?: PPTProgressListener,
+};
 
 class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, WhiteboardTopRightState> {
 
@@ -53,17 +70,14 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
             if (!isBroadcaster) {
                 if (hasBroadcaster) {
                     if (perspectiveState.mode === ViewMode.Follower) {
-                        this.props.room.disableOperations = true;
                         message.info(this.props.intl.formatMessage({id: "current-speaker"}) + " " + perspectiveState.broadcasterInformation!.nickName + "," + this.props.intl.formatMessage({id: "follow-perspective"}));
                     } else {
-                        this.props.room.disableOperations = false;
                         message.info(this.props.intl.formatMessage({id: "freedom-perspective"}));
                     }
                 } else {
                     if (!isBeforeBroadcaster) {
                         message.info(this.props.intl.formatMessage({id: "freedom-perspective"}));
                     }
-                    this.props.room.disableOperations = false;
                 }
             }
         }
@@ -118,6 +132,50 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
         }
     }
 
+    private renderBroadControllerMbile = (): React.ReactNode => {
+        const {room, roomState} = this.props;
+        const perspectiveState = roomState.broadcastState;
+        const isBroadcaster = perspectiveState.mode === ViewMode.Broadcaster;
+        const hasBroadcaster = perspectiveState.broadcasterId !== undefined;
+        if (isBroadcaster) {
+            return (
+                <div
+                    onClick={ () => {
+                        room.setViewMode(ViewMode.Freedom);
+                        message.info(this.props.intl.formatMessage({id: "out-lecture"}));
+                    }}
+                    className="whiteboard-top-bar-btn">
+                    <img src={board_black}/>
+                </div>
+            );
+        } else {
+            if (hasBroadcaster) {
+                return (
+                    <Popover
+                        overlayClassName="whiteboard-perspective"
+                        content={<WhiteboardPerspectiveSet roomState={roomState} room={room}/>}
+                        placement="bottom">
+                        <div
+                            className="whiteboard-top-bar-btn">
+                            <img src={board}/>
+                        </div>
+                    </Popover>
+                );
+            } else {
+                return (
+                    <div
+                        onClick={ () => {
+                            room.setViewMode(ViewMode.Broadcaster);
+                            message.info(this.props.intl.formatMessage({id: "go-to-lecture"}));
+                        }}
+                        className="whiteboard-top-bar-btn">
+                        <img src={board}/>
+                    </div>
+                );
+            }
+        }
+    }
+
     private handleInvite = (): void => {
         this.setState({isInviteVisible: true});
     }
@@ -143,10 +201,12 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                 <div className="whiteboard-box-top-right-mb">
                     <div
                         className="whiteboard-box-top-right-mid-mb">
-                        <div className="whiteboard-top-bar-btn" >
-                            <img src={add}/>
-                        </div>
-                        {this.renderBroadController()}
+                        <UploadBtnMobile
+                            room={this.props.room}
+                            oss={this.props.oss}
+                            onProgress={this.props.onProgress}
+                            whiteboardRef={this.props.whiteboardRef} />
+                        {isMobile ? this.renderBroadControllerMbile() : this.renderBroadController()}
                         <div
                             className="whiteboard-top-bar-btn" onClick={this.handleInvite}>
                             <img src={add}/>

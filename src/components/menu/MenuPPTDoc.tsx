@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./MenuPPTDoc.less";
 import PPTDatas, {PPTDataType, PPTType} from "./PPTDatas";
-import {SceneDefinition, Room} from "white-react-sdk";
+import {Room} from "white-react-sdk";
 
 export type MenuPPTDocProps = {
     room: Room;
@@ -20,7 +20,7 @@ class MenuPPTDoc extends React.Component<MenuPPTDocProps, MenuPPTDocStates> {
         };
     }
     public componentDidMount(): void {
-       const docs: PPTDataType[] = PPTDatas.map((PPTData: PPTDataType) => {
+        const docs: PPTDataType[] = PPTDatas.map((PPTData: PPTDataType) => {
             const dataObj = JSON.parse(PPTData.data);
             if (PPTData.pptType === PPTType.static) {
                 const newDataObj = dataObj.map((data: any) => {
@@ -36,11 +36,16 @@ class MenuPPTDoc extends React.Component<MenuPPTDocProps, MenuPPTDocStates> {
                     pptType: PPTData.pptType,
                 };
             } else {
+                const newDataObj = dataObj.map((data: any) => {
+                    data.ppt.width = 1200;
+                    data.ppt.height = 675;
+                    return data;
+                });
                 return {
                     active: PPTData.active,
                     dynamic_cover: PPTData.dynamic_cover,
                     id: PPTData.id,
-                    data: dataObj,
+                    data: newDataObj,
                     pptType: PPTData.pptType,
                 };
             }
@@ -64,6 +69,14 @@ class MenuPPTDoc extends React.Component<MenuPPTDocProps, MenuPPTDocStates> {
             }
         });
         this.setState({docs: docsArray});
+        const proportion = window.innerWidth / window.innerHeight;
+        if (proportion > 1) {
+            const zoomNumber = window.innerHeight / 675;
+            room.zoomChange(zoomNumber);
+        } else {
+            const zoomNumber = window.innerWidth / 1200;
+            room.zoomChange(zoomNumber);
+        }
     }
 
     public render(): React.ReactNode {
