@@ -3,6 +3,7 @@ import close from "../../assets/image/close.svg";
 import add_icon from "../../assets/image/add_icon.svg";
 import TweenOne from "rc-tween-one";
 import {Room, RoomState, Scene} from "white-react-sdk";
+import html2canvas from "html2canvas";
 import "./MenuAnnexBox.less";
 
 export type MenuAnnexBoxState = {
@@ -58,6 +59,29 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
         document.body.removeEventListener("keydown", this.arrowControllerHotKey);
     }
 
+    private renderClose = (index: number, isActive: boolean): React.ReactNode => {
+        if (index === this.state.hoverCellIndex || isActive) {
+            return (
+                <TweenOne
+                    animation={[
+                        {
+                            scale: 1,
+                            duration: 200,
+                            ease: "easeInOutQuart",
+                        },
+                    ]}
+                    style={{
+                        transform: "scale(0)",
+                    }}
+                    className="page-box-inner-index-delete" onClick={() => this.removeScene(index)}>
+                    <img className="menu-title-close-icon" src={close}/>
+                </TweenOne>
+            );
+        } else {
+            return null;
+        }
+    }
+
     public render(): React.ReactNode {
         const {roomState} = this.props;
         const scenes = roomState.sceneState.scenes;
@@ -86,21 +110,7 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
                             </div>
                         </div>
                         <div className="page-box-inner-index-delete-box">
-                            {this.state.hoverCellIndex === index &&
-                            <TweenOne
-                                animation={[
-                                    {
-                                        scale: 1,
-                                        duration: 200,
-                                        ease: "easeInOutQuart",
-                                    },
-                                ]}
-                                style={{
-                                    transform: "scale(0)",
-                                }}
-                                className="page-box-inner-index-delete" onClick={() => this.removeScene(index)}>
-                                <img className="menu-title-close-icon" src={close}/>
-                            </TweenOne>}
+                            {this.renderClose(index, isActive)}
                         </div>
                     </div>
 
@@ -163,6 +173,9 @@ class PageImage extends React.Component<PageImageProps, {}> {
     private setupDivRef = (ref: HTMLDivElement | null) => {
         if (ref) {
             this.ref = ref;
+            // html2canvas(ref).then(canvas => {
+            //     console.log(canvas);
+            // });
             this.props.room.scenePreview(this.props.path, ref, 192, 112.5);
         }
     }

@@ -134,6 +134,23 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
                             <img src={left_arrow}/>
                         </div>
                         <div
+                            onMouseEnter={() => {
+                                this.setState({
+                                    annexBoxTooltipDisplay: true,
+                                });
+                            }}
+                            onMouseLeave={() => {
+                                this.setState({
+                                    annexBoxTooltipDisplay: false,
+                                });
+                            }}
+                            onClick={this.props.handleAnnexBoxMenuState}
+                            className="whiteboard-annex-arrow-mid">
+                            <div className="whiteboard-annex-arrow-page">
+                                {activeIndex + 1} / {scenes.length}
+                            </div>
+                        </div>
+                        <div
                             onClick={() => room.pptNextStep()}
                             className="whiteboard-annex-arrow-right-mb">
                             <img src={right_arrow}/>
@@ -160,7 +177,7 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
     public render(): React.ReactNode {
         if (isMobile) {
             return (
-                <div className="whiteboard-box-bottom-right">
+                <div className="whiteboard-box-bottom-right-mb">
                     <div className="whiteboard-box-bottom-right-mid-mb">
                         {this.renderAnnexBoxMobile()}
                     </div>

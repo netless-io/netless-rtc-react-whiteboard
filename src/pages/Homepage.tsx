@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as uuidv4 from "uuid/v4";
-import {Input, Button, Tabs, Form} from "antd";
+import {Input, Button, Tabs} from "antd";
 import "./Homepage.less";
 import {withRouter} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
@@ -8,7 +8,6 @@ import netless_black from "../assets/image/netless_black.svg";
 import {Link} from "@netless/i18n-react-router";
 import {netlessWhiteboardApi} from "../apiMiddleware";
 import {FormComponentProps} from "antd/lib/form";
-const FormItem = Form.Item;
 
 const { TabPane } = Tabs;
 
@@ -73,7 +72,7 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                 </Link>
                 <div className="page-input-left-box">
                     <div className="page-input-left-mid-box">
-                        <Tabs className="page-input-left-mid-box-tab"defaultActiveKey="1">
+                        <Tabs className="page-input-left-mid-box-tab" defaultActiveKey="1">
                             <TabPane tab="创建房间" key="1">
                                 <div className="page-input-left-inner-box">
                                     <Input className="page-input" onChange={e => this.setState({name: e.target.value})} size={"large"} placeholder={"输入用户名"}/>

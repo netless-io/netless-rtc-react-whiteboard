@@ -9,6 +9,15 @@
   height: 0;
 }
 
+.whiteboard-box-bottom-right-mb {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  right: 8px;
+  bottom: 40px;
+  height: 0;
+}
+
 .whiteboard-box-bottom-right-mid {
   height: 32px;
   background-color: white;
@@ -28,6 +37,7 @@
 }
 
 .whiteboard-bottom-right-cell {
+  border-radius: 4px;
   width: 32px;
   height: 32px;
   background-color: white;
@@ -78,13 +88,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
-    background-color: #EBEBEB;
-    transition-timing-function: ease-in-out;
-    transition-delay: 100ms;
-    transition-duration: 200ms;
-    cursor: pointer;
-  }
   img {
     height: 14px;
     opacity: 0.6;
@@ -118,13 +121,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  &:hover {
-    background-color: #EBEBEB;
-    transition-timing-function: ease-in-out;
-    transition-delay: 100ms;
-    transition-duration: 200ms;
-    cursor: pointer;
-  }
   img {
     height: 14px;
     opacity: 0.6;
