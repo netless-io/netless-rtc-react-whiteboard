@@ -88,7 +88,6 @@ class MenuAnnexBox extends React.Component<MenuAnnexBoxProps, MenuAnnexBoxState>
         const activeIndex = roomState.sceneState.index;
         const renderPages = scenes.map((scene: Scene, index: number): React.ReactNode => {
             const isActive = index === activeIndex;
-
             return (
                     <div
                         key={`${scene.name}${index}`}

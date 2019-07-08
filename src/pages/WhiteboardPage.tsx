@@ -167,6 +167,14 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 await timeout(800);
                 this.setState({isHandClap: false});
             });
+            const proportion = window.innerWidth / window.innerHeight;
+            if (proportion > 1) {
+                const zoomNumber = window.innerHeight / 675;
+                room.zoomChange(zoomNumber);
+            } else {
+                const zoomNumber = window.innerWidth / 1200;
+                room.zoomChange(zoomNumber);
+            }
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
         } else {
             message.error("join fail");
