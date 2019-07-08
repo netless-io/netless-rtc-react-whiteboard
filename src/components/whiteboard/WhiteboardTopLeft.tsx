@@ -7,6 +7,7 @@ import {Button, message, Modal} from "antd";
 import {push} from "@netless/i18n-react-router";
 import {Room} from "white-react-sdk";
 import {netlessWhiteboardApi} from "../../apiMiddleware";
+import {isMobile} from "react-device-detect";
 
 export type WhiteboardTopLeftState = {
     isMouseOn: boolean;
@@ -45,7 +46,8 @@ class WhiteboardTopLeft extends React.Component<WhiteboardTopLeftProps, Whiteboa
 
         return (
             <div>
-                <div onClick={this.handleGoBackHome} className="whiteboard-box-top-left">
+                <div onClick={this.handleGoBackHome}
+                     className={isMobile ? "whiteboard-box-top-left-mb" : "whiteboard-box-top-left"}>
                     <img src={homeIcon}/>
                 </div>
                 <Modal

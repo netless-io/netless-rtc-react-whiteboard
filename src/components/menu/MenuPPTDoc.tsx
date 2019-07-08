@@ -72,10 +72,10 @@ class MenuPPTDoc extends React.Component<MenuPPTDocProps, MenuPPTDocStates> {
         const proportion = window.innerWidth / window.innerHeight;
         if (proportion > 1) {
             const zoomNumber = window.innerHeight / 675;
-            room.zoomChange(zoomNumber);
+            room.moveCamera({scale: zoomNumber});
         } else {
             const zoomNumber = window.innerWidth / 1200;
-            room.zoomChange(zoomNumber);
+            room.moveCamera({scale: zoomNumber});
         }
     }
 

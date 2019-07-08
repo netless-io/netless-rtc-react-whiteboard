@@ -202,7 +202,7 @@ export class UploadBtnMobile extends React.Component <UploadBtnMobileProps, Tool
                 accept={"image/*"}
                 showUploadList={false}
                 customRequest={this.uploadImage}>
-                        <div className="whiteboard-top-bar-btn" >
+                        <div className="whiteboard-top-bar-btn-mb" >
                             <img style={{width: 16}} src={upload}/>
                         </div>
             </Upload>
