@@ -39,34 +39,27 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
     public render(): React.ReactNode {
         const {roomState, startTime, stopTime, mediaSource} = this.props;
         if (isMobile) {
-            return null;
-            // return (
-            //     <div className="whiteboard-box-bottom-left">
-            //         {/*<ScaleController zoomScale={roomState.zoomScale} zoomChange={this.zoomChange}/>*/}
-            //         <div
-            //             onClick={async () => {
-            //                 await this.props.room.disconnect();
-            //                 if (startTime && stopTime) {
-            //                     const duration = (stopTime - startTime);
-            //                     push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
-            //                 } else if (startTime) {
-            //                     push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
-            //                 } else {
-            //                     push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
-            //                 }
-            //             }}
-            //             className="whiteboard-box-bottom-left-player">
-            //             <img src={player}/>
-            //         </div>
-            //         {/*<div*/}
-            //             {/*onClick={async () => {*/}
-            //                 {/*this.props.room.dispatchMagixEvent("handclap", "handclap");*/}
-            //             {/*}}*/}
-            //             {/*className="whiteboard-box-bottom-left-cell">*/}
-            //             {/*<img style={{width: 15}} src={like_icon}/>*/}
-            //         {/*</div>*/}
-            //     </div>
-            // );
+            return (
+                <div
+                    onClick={async () => {
+                        await this.props.room.disconnect();
+                        if (startTime && stopTime) {
+                            const duration = (stopTime - startTime);
+                            if (mediaSource) {
+                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}/${mediaSource}`);
+                            } else {
+                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
+                            }
+                        } else if (startTime) {
+                            push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
+                        } else {
+                            push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
+                        }
+                    }}
+                    className="whiteboard-box-bottom-left-player-mb">
+                    <img src={player}/>
+                </div>
+            );
         } else {
             return (
                 <div className="whiteboard-box-bottom-left">
