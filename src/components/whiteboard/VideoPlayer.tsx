@@ -1,7 +1,5 @@
 import * as React from "react";
 import videojs from "video.js";
-// @ts-ignore: Unreachable code error
-// window.videojs = videojs;
 import "video.js/dist/video-js.css";
 
 enum PreloadEnum {
@@ -130,8 +128,7 @@ export default class VideoPlayer extends React.Component<VideoPlayerProps, {}> {
         this.player.ready(() => {
             if (onReady) {
                 onReady(this.player);
-                // @ts-ignore: Unreachable code error
-                window.videojs = videojs;
+                (window as any).videojs = videojs;
             }
         });
         this.player.on("play", () => {
