@@ -6,6 +6,14 @@
   z-index: 2;
 }
 
+.whiteboard-box-top-right-mb {
+  position: fixed;
+  right: 8px;
+  height: 0;
+  margin-top: 8px;
+  z-index: 2;
+}
+
 .whiteboard-box-top-right-mid {
   border-radius: 16px;
   height: 32px;
@@ -15,6 +23,16 @@
   width: 154px;
   user-select: none;
   padding-right: 16px;
+}
+
+.whiteboard-box-top-right-mid-mb {
+  border-radius: 4px;
+  height: 32px;
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: white;
+  user-select: none;
+  overflow: hidden;
 }
 
 .whiteboard-top-bar-box {
@@ -42,6 +60,8 @@
   pointer-events: auto;
   user-select: none;
   background-color: white;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .whiteboard-perspective {

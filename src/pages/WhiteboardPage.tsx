@@ -3,6 +3,7 @@ import TopLoadingBar from "@netless/react-loading-bar";
 import {PPTProgressPhase, UploadManager} from "@netless/oss-upload-manager";
 import * as OSS from "ali-oss";
 import ToolBox from "@netless/react-tool-box";
+import ToolBoxMobile from "@netless/react-mb-tool-box";
 import {message} from "antd";
 import * as uuidv4 from "uuid/v4";
 import {RouteComponentProps} from "react-router";
@@ -219,7 +220,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
     private renderWhiteboard(): React.ReactNode {
         if (this.state.room) {
             return <RoomWhiteboard room={this.state.room}
-                                   style={{width: "100%", height: "100vh"}}/>;
+                                   style={{width: "100%", height: "100vh", backgroundColor: "#F1F3F4"}}/>;
         } else {
             return null;
         }
@@ -388,7 +389,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         roomMembers={this.state.room.state.roomMembers}
                         agoraAppId={rtcAppId.agoraAppId}
                         setMediaState={this.setMediaState}
-                        defaultStart={true}
                         userId={parseInt(this.state.userId)}
                         channelId={this.props.match.params.uuid}/>}
                     <div style={{backgroundColor: "white"}} id="page-wrap">
@@ -425,21 +425,26 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}
                                     handleHotKeyMenuState={this.handleHotKeyMenuState}
                                     room={this.state.room}/>
-
-                                <div className={this.state.roomState.broadcastState.mode === ViewMode.Follower ? "whiteboard-tool-box-disable" : "whiteboard-tool-box"}>
-                                    <ToolBox
-                                        setMemberState={this.setMemberState}
-                                        customerComponent={[
-                                            <UploadBtn
-                                                oss={ossConfigObj}
-                                                room={this.state.room}
-                                                roomToken={this.state.roomToken}
-                                                onProgress={this.progress}
-                                                whiteboardRef={this.state.whiteboardLayerDownRef}
-                                            />,
-                                        ]}
-                                        memberState={this.state.room.state.memberState}/>
-                                </div>
+                                    {isMobile ?
+                                        <ToolBoxMobile
+                                            style={{justifyContent: "left", marginLeft: 8, bottom: 40}}
+                                            setMemberState={this.setMemberState}
+                                            memberState={this.state.room.state.memberState}
+                                        /> :
+                                        <div className={this.state.roomState.broadcastState.mode === ViewMode.Follower ? "whiteboard-tool-box-disable" : "whiteboard-tool-box"}>
+                                            <ToolBox
+                                                setMemberState={this.setMemberState}
+                                                customerComponent={[
+                                                    <UploadBtn
+                                                        oss={ossConfigObj}
+                                                        room={this.state.room}
+                                                        roomToken={this.state.roomToken}
+                                                        onProgress={this.progress}
+                                                        whiteboardRef={this.state.whiteboardLayerDownRef}
+                                                    />,
+                                                ]}
+                                                memberState={this.state.room.state.memberState}/>
+                                        </div>}
                                 <div onClick={this.handlePPtBoxMenuState}
                                      className={(this.state.menuInnerState === MenuInnerType.PPTBox && this.state.isMenuVisible) ? "slide-box-active" : "slide-box"}>
                                     <img src={arrow}/>

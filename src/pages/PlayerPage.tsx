@@ -182,17 +182,23 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
             case PlayerPhase.WaitingFirstFrame:
             case PlayerPhase.Pause: {
                 player.play();
-                this.videoPlayer.play();
+                if (this.videoPlayer) {
+                    this.videoPlayer.play();
+                }
                 break;
             }
             case PlayerPhase.Playing: {
                 player.pause();
-                this.videoPlayer.pause();
+                if (this.videoPlayer) {
+                    this.videoPlayer.pause();
+                }
                 break;
             }
             case PlayerPhase.Ended: {
                 player.seekToScheduleTime(0);
-                this.videoPlayer.currentTime(0);
+                if (this.videoPlayer) {
+                    this.videoPlayer.currentTime(0);
+                }
                 break;
             }
         }

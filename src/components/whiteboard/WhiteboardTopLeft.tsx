@@ -49,26 +49,26 @@ class WhiteboardTopLeft extends React.Component<WhiteboardTopLeftProps, Whiteboa
                     <img src={homeIcon}/>
                 </div>
                 <Modal
-                    title="Go Back"
+                    title="回到首页"
                     visible={this.state.isVisible}
                     footer={null}
                     onCancel={() => this.setState({isVisible: false})}
                 >
                     <div className="go-back-title">
-                        Are you leaving the room?
+                        你确定要离开房间么？
                     </div>
                     <div className="go-back-script">
-                        If you leave, we will delete all temporary user information.
+                        如果你离开房间，房间的信息将会清除！
                     </div>
                     <div className="go-back-btn-box">
                         <Button
                             size="large"
                             style={{width: 108}}
-                            type="primary" onClick={() => this.setState({isVisible: false})}>Continue</Button>
+                            type="primary" onClick={() => this.setState({isVisible: false})}>继续</Button>
                         <Button
                             size="large"
                             style={{width: 108}}
-                            onClick={this.disconnect}>Exit</Button>
+                            onClick={this.disconnect}>离开</Button>
                     </div>
                 </Modal>
             </div>

@@ -15,6 +15,7 @@ import {RouteComponentProps} from "react-router";
 import {netlessWhiteboardApi} from "../../apiMiddleware";
 import {UserInfType} from "../../apiMiddleware";
 import QRCode from "qrcode.react";
+import {isMobile} from "react-device-detect";
 
 export type WhiteboardTopRightState = {
     scaleAnimation: boolean;
@@ -137,76 +138,117 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
     }
 
     public render(): React.ReactNode {
-        return (
-            <div className="whiteboard-box-top-right">
-                <div
-                    className="whiteboard-box-top-right-mid">
-                    <div onClick={this.handleSetting} className="whiteboard-top-bar-box">
-                        <Identicon
-                            size={28}
-                            string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.number)}`)}/>
-                    </div>
-                    {this.renderBroadController()}
-                    <Tooltip placement="bottomLeft" title={"invite your friend"}>
+        if (isMobile) {
+            return (
+                <div className="whiteboard-box-top-right-mb">
+                    <div
+                        className="whiteboard-box-top-right-mid-mb">
+                        <div className="whiteboard-top-bar-btn" >
+                            <img src={add}/>
+                        </div>
+                        {this.renderBroadController()}
                         <div
-                            style={{marginRight: 12}}
                             className="whiteboard-top-bar-btn" onClick={this.handleInvite}>
                             <img src={add}/>
                         </div>
-                    </Tooltip>
-                </div>
-                <Modal
-                    visible={this.state.isInviteVisible}
-                    footer={null}
-                    title="Invite"
-                    onCancel={() => this.setState({isInviteVisible: false})}
-                >
-                    <div className="whiteboard-share-box">
-                        <QRCode value={`${this.handleUrl(location.href)}`} />
-                        <div className="whiteboard-share-text-box">
-                            <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(location.href)}`}/>
-                            <Clipboard
-                                data-clipboard-text={`${this.handleUrl(location.href)}`}
-                                component="div"
-                                onSuccess={() => {
-                                    message.success("Copy already copied address to clipboard");
-                                    this.setState({isInviteVisible: false});
-                                }}
-                            >
-                                <Button size="large" className="white-btn-size" type="primary">复制链接</Button>
-                            </Clipboard>
-                        </div>
                     </div>
-                </Modal>
-                <Modal
-                    visible={this.state.isSetVisible}
-                    footer={null}
-                    title="Setting"
-                    onCancel={() => this.setState({isSetVisible: false})}
-                >
-                    <div className="whiteboard-set-box">
-                        <div className="whiteboard-set-box-img">
+                    <Modal
+                        visible={this.state.isInviteVisible}
+                        footer={null}
+                        title="Invite"
+                        onCancel={() => this.setState({isInviteVisible: false})}
+                    >
+                        <div className="whiteboard-share-box">
+                            <QRCode value={`${this.handleUrl(location.href)}`} />
+                            <div className="whiteboard-share-text-box">
+                                <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(location.href)}`}/>
+                                <Clipboard
+                                    data-clipboard-text={`${this.handleUrl(location.href)}`}
+                                    component="div"
+                                    onSuccess={() => {
+                                        message.success("Copy already copied address to clipboard");
+                                        this.setState({isInviteVisible: false});
+                                    }}
+                                >
+                                    <Button size="large" className="white-btn-size" type="primary">复制链接</Button>
+                                </Clipboard>
+                            </div>
+                        </div>
+                    </Modal>
+                </div>
+            );
+        } else {
+            return (
+                <div className="whiteboard-box-top-right">
+                    <div
+                        className="whiteboard-box-top-right-mid">
+                        <div onClick={this.handleSetting} className="whiteboard-top-bar-box">
                             <Identicon
-                                size={36}
+                                size={28}
                                 string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.number)}`)}/>
                         </div>
-                        <div className="whiteboard-set-box-inner"> <span>name: </span>{netlessWhiteboardApi.user.getUserInf(UserInfType.name, `${this.props.number}`)}</div>
-                        <div className="whiteboard-set-box-inner"> <span>uuid: </span>{netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${this.props.number}`)}</div>
+                        {this.renderBroadController()}
+                        <Tooltip placement="bottomLeft" title={"invite your friend"}>
+                            <div
+                                style={{marginRight: 12}}
+                                className="whiteboard-top-bar-btn" onClick={this.handleInvite}>
+                                <img src={add}/>
+                            </div>
+                        </Tooltip>
                     </div>
-                    <div className="whiteboard-set-footer">
-                        <div style={{marginRight: 16}}>
-                            <Button
-                                size="large"
-                                onClick={() => {
-                                    netlessWhiteboardApi.user.logout();
-                                    this.props.history.push("/");
-                                }}
-                                className="white-btn-size-goback">退出</Button>
+                    <Modal
+                        visible={this.state.isInviteVisible}
+                        footer={null}
+                        title="Invite"
+                        onCancel={() => this.setState({isInviteVisible: false})}
+                    >
+                        <div className="whiteboard-share-box">
+                            <QRCode value={`${this.handleUrl(location.href)}`} />
+                            <div className="whiteboard-share-text-box">
+                                <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(location.href)}`}/>
+                                <Clipboard
+                                    data-clipboard-text={`${this.handleUrl(location.href)}`}
+                                    component="div"
+                                    onSuccess={() => {
+                                        message.success("Copy already copied address to clipboard");
+                                        this.setState({isInviteVisible: false});
+                                    }}
+                                >
+                                    <Button size="large" className="white-btn-size" type="primary">复制链接</Button>
+                                </Clipboard>
+                            </div>
                         </div>
-                    </div>
-                </Modal>
-            </div>
-        );
+                    </Modal>
+                    <Modal
+                        visible={this.state.isSetVisible}
+                        footer={null}
+                        title="Setting"
+                        onCancel={() => this.setState({isSetVisible: false})}
+                    >
+                        <div className="whiteboard-set-box">
+                            <div className="whiteboard-set-box-img">
+                                <Identicon
+                                    size={36}
+                                    string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.number)}`)}/>
+                            </div>
+                            <div className="whiteboard-set-box-inner"> <span>name: </span>{netlessWhiteboardApi.user.getUserInf(UserInfType.name, `${this.props.number}`)}</div>
+                            <div className="whiteboard-set-box-inner"> <span>uuid: </span>{netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${this.props.number}`)}</div>
+                        </div>
+                        <div className="whiteboard-set-footer">
+                            <div style={{marginRight: 16}}>
+                                <Button
+                                    size="large"
+                                    onClick={() => {
+                                        netlessWhiteboardApi.user.logout();
+                                        this.props.history.push("/");
+                                    }}
+                                    className="white-btn-size-goback">退出</Button>
+                            </div>
+                        </div>
+                    </Modal>
+                </div>
+            );
+        }
     }
 }
 
