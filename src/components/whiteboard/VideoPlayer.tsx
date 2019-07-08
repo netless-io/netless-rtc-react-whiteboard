@@ -3,7 +3,6 @@ import videojs from "video.js";
 // @ts-ignore: Unreachable code error
 // window.videojs = videojs;
 import "video.js/dist/video-js.css";
-import "videojs-contrib-hls";
 
 enum PreloadEnum {
     auto = "auto",
