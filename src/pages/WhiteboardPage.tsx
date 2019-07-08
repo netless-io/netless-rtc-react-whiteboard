@@ -167,6 +167,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 await timeout(800);
                 this.setState({isHandClap: false});
             });
+            room.setViewMode(ViewMode.Broadcaster);
             const proportion = window.innerWidth / window.innerHeight;
             if (proportion > 1) {
                 const zoomNumber = window.innerHeight / 675;

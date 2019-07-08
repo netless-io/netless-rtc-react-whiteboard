@@ -70,17 +70,14 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
             if (!isBroadcaster) {
                 if (hasBroadcaster) {
                     if (perspectiveState.mode === ViewMode.Follower) {
-                        this.props.room.disableOperations = true;
                         message.info(this.props.intl.formatMessage({id: "current-speaker"}) + " " + perspectiveState.broadcasterInformation!.nickName + "," + this.props.intl.formatMessage({id: "follow-perspective"}));
                     } else {
-                        this.props.room.disableOperations = false;
                         message.info(this.props.intl.formatMessage({id: "freedom-perspective"}));
                     }
                 } else {
                     if (!isBeforeBroadcaster) {
                         message.info(this.props.intl.formatMessage({id: "freedom-perspective"}));
                     }
-                    this.props.room.disableOperations = false;
                 }
             }
         }
