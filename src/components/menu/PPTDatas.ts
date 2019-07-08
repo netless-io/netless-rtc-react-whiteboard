@@ -1,5 +1,5 @@
-import cover_1 from "../../assets/image/cover_1.png";
-import cover_2 from "../../assets/image/cover_2.png";
+import cover_1 from "../../assets/image/cover_1.jpg";
+import cover_2 from "../../assets/image/cover_2.jpg";
 
 export type PPTDataType = {
     active: boolean,
