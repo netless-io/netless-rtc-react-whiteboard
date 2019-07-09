@@ -445,7 +445,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                             setMemberState={this.setMemberState}
                                             memberState={this.state.room.state.memberState}
                                         /> :
-                                        <div className={this.state.roomState.broadcastState.mode === ViewMode.Follower ? "whiteboard-tool-box-disable" : "whiteboard-tool-box"}>
+                                        <div className="whiteboard-tool-box">
                                             <ToolBox
                                                 setMemberState={this.setMemberState}
                                                 customerComponent={[
