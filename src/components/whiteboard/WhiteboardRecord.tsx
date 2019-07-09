@@ -35,7 +35,17 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
             }
         } else {
             this.recrod = netlessWhiteboardApi.recordFactory(channelName,
-                {},
+                {
+                    audioProfile: 1,
+                    transcodingConfig: {
+                        width: 240,
+                        height: 180,
+                        bitrate: 120,
+                        fps: 15,
+                        // "mixedVideoLayout": 1,
+                        // "maxResolutionUid": "1",
+                    },
+                },
                 {
                     vendor: 2,
                     region: 0,
