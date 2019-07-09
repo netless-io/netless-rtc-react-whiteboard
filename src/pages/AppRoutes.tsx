@@ -6,6 +6,10 @@ import WhiteboardCreatorPage from "./WhiteboardCreatorPage";
 import WhiteboardPage from "./WhiteboardPage";
 import PlayerPage from "./PlayerPage";
 import PageNameInput from "./Homepage";
+message.config({
+    top: (window.innerHeight / 2 - 64),
+    maxCount: 1,
+});
 export class AppRoutes extends React.Component<{}, {}> {
 
     public constructor(props: {}) {

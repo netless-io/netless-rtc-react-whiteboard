@@ -97,7 +97,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                             room.setViewMode(ViewMode.Freedom);
                             message.info(this.props.intl.formatMessage({id: "out-lecture"}));
                         }}
-                        className="whiteboard-top-bar-btn">
+                        className="whiteboard-top-bar-btn-mb">
                         <img src={board_black}/>
                     </div>
                 </Tooltip>
@@ -110,7 +110,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                         content={<WhiteboardPerspectiveSet roomState={roomState} room={room}/>}
                         placement="bottom">
                         <div
-                            className="whiteboard-top-bar-btn">
+                            className="whiteboard-top-bar-btn-mb">
                             <img src={board}/>
                         </div>
                     </Popover>
@@ -123,7 +123,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                                 room.setViewMode(ViewMode.Broadcaster);
                                 message.info(this.props.intl.formatMessage({id: "go-to-lecture"}));
                             }}
-                            className="whiteboard-top-bar-btn">
+                            className="whiteboard-top-bar-btn-mb">
                             <img src={board}/>
                         </div>
                     </Tooltip>
@@ -144,7 +144,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                         room.setViewMode(ViewMode.Freedom);
                         message.info(this.props.intl.formatMessage({id: "out-lecture"}));
                     }}
-                    className="whiteboard-top-bar-btn">
+                    className="whiteboard-top-bar-btn-mb">
                     <img src={board_black}/>
                 </div>
             );
@@ -156,7 +156,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                         content={<WhiteboardPerspectiveSet roomState={roomState} room={room}/>}
                         placement="bottom">
                         <div
-                            className="whiteboard-top-bar-btn">
+                            className="whiteboard-top-bar-btn-mb">
                             <img src={board}/>
                         </div>
                     </Popover>
@@ -168,7 +168,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                             room.setViewMode(ViewMode.Broadcaster);
                             message.info(this.props.intl.formatMessage({id: "go-to-lecture"}));
                         }}
-                        className="whiteboard-top-bar-btn">
+                        className="whiteboard-top-bar-btn-mb">
                         <img src={board}/>
                     </div>
                 );
@@ -208,7 +208,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                             whiteboardRef={this.props.whiteboardRef} />
                         {isMobile ? this.renderBroadControllerMbile() : this.renderBroadController()}
                         <div
-                            className="whiteboard-top-bar-btn" onClick={this.handleInvite}>
+                            className="whiteboard-top-bar-btn-mb" onClick={this.handleInvite}>
                             <img src={add}/>
                         </div>
                     </div>
