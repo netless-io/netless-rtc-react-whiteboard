@@ -167,8 +167,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 await timeout(800);
                 this.setState({isHandClap: false});
             });
-            console.log(3333);
-            console.log(room.state.sceneState.scenes);
             room.setViewMode(ViewMode.Broadcaster);
             const proportion = window.innerWidth / window.innerHeight;
             if (proportion > 1) {
@@ -447,7 +445,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                             setMemberState={this.setMemberState}
                                             memberState={this.state.room.state.memberState}
                                         /> :
-                                        <div className={this.state.roomState.broadcastState.mode === ViewMode.Follower ? "whiteboard-tool-box-disable" : "whiteboard-tool-box"}>
+                                        <div className="whiteboard-tool-box">
                                             <ToolBox
                                                 setMemberState={this.setMemberState}
                                                 customerComponent={[
