@@ -23,6 +23,7 @@ import {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
 import videojs from "video.js";
 import Draggable from "react-draggable";
 import VideoPlaceholder from "../components/whiteboard/VideoPlaceholder";
+import {isMobile} from "react-device-detect";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
@@ -223,6 +224,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     <div className="player-mid-box-time">
                         {displayWatch(Math.floor(this.state.player.scheduleTime / 1000))} / {displayWatch(Math.floor(this.state.player.timeDuration / 1000))}
                     </div>
+                    {isMobile ||
                     <Badge overflowCount={99} offset={[-3, 6]} count={this.state.isVisible ? 0 : (this.state.messages.length - this.state.seenMessagesLength)}>
                         <Popover
                             overlayClassName="whiteboard-chat"
@@ -243,6 +245,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                             </div>
                         </Popover>
                     </Badge>
+                    }
                 </div>
             );
         } else {
@@ -300,14 +303,16 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                         <img src={like}/>
                     </TweenOne>
                 </div>}
-                <Draggable>
-                <div className="player-video-out">
-                    <VideoPlaceholder
-                        controls={false}
-                        className="player-video"
-                    />
-                </div>
-                </Draggable>
+                {this.props.match.params.mediaSource &&
+                    <Draggable>
+                        <div className={isMobile ? "player-video-out-mb" : "player-video-out"}>
+                            <VideoPlaceholder
+                                controls={false}
+                                className="player-video"
+                            />
+                        </div>
+                    </Draggable>
+                }
                 {this.state.player && <PlayerWhiteboard className="player-box" player={this.state.player}/>}
             </div>
         );
