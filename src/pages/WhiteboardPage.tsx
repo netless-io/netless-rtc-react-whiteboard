@@ -167,6 +167,8 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 await timeout(800);
                 this.setState({isHandClap: false});
             });
+            console.log(3333);
+            console.log(room.state.sceneState.scenes);
             room.setViewMode(ViewMode.Broadcaster);
             const proportion = window.innerWidth / window.innerHeight;
             if (proportion > 1) {
