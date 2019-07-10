@@ -9,7 +9,7 @@ import * as uuidv4 from "uuid/v4";
 import {RouteComponentProps} from "react-router";
 import TweenOne from "rc-tween-one";
 import Dropzone from "react-dropzone";
-import Agora from "@netless/react-agora";
+import Agora from "../rtc";
 import {isMobile} from "react-device-detect";
 import {
     WhiteWebSdk,

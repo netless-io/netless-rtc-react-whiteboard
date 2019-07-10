@@ -72,7 +72,7 @@ const basic = {
                 }
             }, {
                 test: /\.(png|jpg)$/,
-                loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
+                loader: 'url-loader?limit=8192&name=icons/[hash:8].[name].[ext]'
             }]
     },
     plugins: [
