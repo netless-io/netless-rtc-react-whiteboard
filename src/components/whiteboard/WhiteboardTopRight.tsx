@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Button, Input, message, Modal, Popover, Tooltip} from "antd";
+import {Button, Input, message, Modal, Popover, Switch, Tooltip} from "antd";
 import {Room, RoomState} from "white-react-sdk";
 import {ViewMode} from "white-react-sdk";
 import Identicon from "react-identicons";
@@ -18,6 +18,7 @@ import QRCode from "qrcode.react";
 import {isMobile} from "react-device-detect";
 import {UploadBtnMobile} from "../../tools/UploadBtn";
 import {PPTProgressListener} from "../../tools/UploadManager";
+import {WhiteboardRoomType} from "../../pages/WhiteboardCreatorPage";
 
 export type WhiteboardTopRightState = {
     scaleAnimation: boolean;
@@ -25,6 +26,8 @@ export type WhiteboardTopRightState = {
     isFirst: boolean;
     isInviteVisible: boolean;
     isSetVisible: boolean;
+    url: string;
+    whiteboardRoomType: WhiteboardRoomType;
 };
 
 export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProps & {
@@ -32,6 +35,7 @@ export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProp
     number: string,
     uuid: string,
     roomState: RoomState,
+    whiteboardRoomType: WhiteboardRoomType,
     oss: {
         accessKeyId: string,
         accessKeySecret: string,
@@ -54,6 +58,8 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
             isFirst: true,
             isInviteVisible: false,
             isSetVisible: false,
+            url: location.href,
+            whiteboardRoomType: props.whiteboardRoomType,
         };
         this.renderBroadController = this.renderBroadController.bind(this);
     }
@@ -194,6 +200,15 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
         }
 
     }
+    private switchWhiteboardRoomType = (): void => {
+        if (this.state.whiteboardRoomType === WhiteboardRoomType.interactive) {
+            const shareUrl = this.state.url.replace(`${WhiteboardRoomType.interactive}`, `${WhiteboardRoomType.live}`);
+            this.setState({url: shareUrl, whiteboardRoomType: WhiteboardRoomType.live});
+        } else {
+            const shareUrl = this.state.url.replace(`${WhiteboardRoomType.live}`, `${WhiteboardRoomType.interactive}`);
+            this.setState({url: shareUrl, whiteboardRoomType: WhiteboardRoomType.interactive});
+        }
+    }
 
     public render(): React.ReactNode {
         if (isMobile) {
@@ -219,11 +234,11 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                         onCancel={() => this.setState({isInviteVisible: false})}
                     >
                         <div className="whiteboard-share-box">
-                            <QRCode value={`${this.handleUrl(location.href)}`} />
+                            <QRCode value={`${this.handleUrl(this.state.url)}`} />
                             <div className="whiteboard-share-text-box">
-                                <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(location.href)}`}/>
+                                <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(this.state.url)}`}/>
                                 <Clipboard
-                                    data-clipboard-text={`${this.handleUrl(location.href)}`}
+                                    data-clipboard-text={`${this.handleUrl(this.state.url)}`}
                                     component="div"
                                     onSuccess={() => {
                                         message.success("Copy already copied address to clipboard");
@@ -263,11 +278,22 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                         onCancel={() => this.setState({isInviteVisible: false})}
                     >
                         <div className="whiteboard-share-box">
-                            <QRCode value={`${this.handleUrl(location.href)}`} />
+                            <div className="whiteboard-share-box-image">
+                                <div className="whiteboard-share-box-btn">
+                                    <div className="whiteboard-share-box-title">{
+                                        this.state.whiteboardRoomType === WhiteboardRoomType.interactive ? "未开启只读模式" :
+                                            "已开启只读模式"
+                                    }</div>
+                                    <Switch onChange={() => this.switchWhiteboardRoomType()}/>
+                                </div>
+                                <div className="whiteboard-share-box-btn">
+                                    <QRCode value={`${this.handleUrl(this.state.url)}`} />
+                                </div>
+                            </div>
                             <div className="whiteboard-share-text-box">
-                                <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(location.href)}`}/>
+                                <Input readOnly className="whiteboard-share-text" size="large" value={`${this.handleUrl(this.state.url)}`}/>
                                 <Clipboard
-                                    data-clipboard-text={`${this.handleUrl(location.href)}`}
+                                    data-clipboard-text={`${this.handleUrl(this.state.url)}`}
                                     component="div"
                                     onSuccess={() => {
                                         message.success("Copy already copied address to clipboard");

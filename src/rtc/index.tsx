@@ -9,6 +9,8 @@ import {RtcBlockContextProvider} from "./RtcBlockContext";
 import TweenOne from "rc-tween-one";
 import "./index.less";
 import {RoomMember} from "white-react-sdk";
+// tslint:disable-next-line
+const AgoraRTS = require("./rtsLib/AgoraRTS.js");
 
 export type StreamsStatesType = {state: {isVideoOpen: boolean, isAudioOpen: boolean}, uid: number};
 export type RtcLayoutState = {
@@ -26,6 +28,7 @@ export type RtcLayoutProps = {
     channelId: string;
     roomMembers: ReadonlyArray<RoomMember>;
     agoraAppId: string;
+    isRtcReadOnly: boolean;
     setMediaState?: (state: boolean) => void;
     startBtn?: React.ReactNode;
     defaultStart?: boolean;
@@ -58,6 +61,10 @@ export default class Index extends React.Component<RtcLayoutProps, RtcLayoutStat
         this.setState({isStartBtnLoading: true});
         if (!this.agoraClient) {
             this.agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
+            if (AgoraRTS.checkSystemRequirements()) {
+                AgoraRTS.init(AgoraRTC);
+                AgoraRTS.proxy(this.agoraClient);
+            }
             this.agoraClient.init(this.props.agoraAppId, () => {
                 console.log("AgoraRTC client initialized");
             }, err => {
@@ -78,9 +85,11 @@ export default class Index extends React.Component<RtcLayoutProps, RtcLayoutStat
             this.setState({isStartBtnLoading: false});
             this.agoraClient.join(this.props.agoraAppId, channelId, uid, (uid: number) => {
                 console.log("User " + uid + " join channel successfully");
-                this.agoraClient.publish(localStream, err => {
-                    console.log("Publish local stream error: " + err);
-                });
+                if (AgoraRTC.checkSystemRequirements() && !this.props.isRtcReadOnly) {
+                    this.agoraClient.publish(localStream, err => {
+                        console.log("Publish local stream error: " + err);
+                    });
+                }
             }, err => {
                 console.log(err);
             });

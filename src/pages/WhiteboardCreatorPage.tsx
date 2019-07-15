@@ -11,7 +11,14 @@ export type WhiteboardCreatorPageState = {
     userId?: string;
     foundError: boolean;
 };
+
+export enum WhiteboardRoomType {
+    live = "live",
+    interactive = "interactive",
+
+}
 export type WhiteboardCreatorPageProps = InjectedIntlProps & RouteComponentProps<{
+    whiteboardRoomType: WhiteboardRoomType;
     uuid?: string;
 }>;
 
@@ -55,10 +62,11 @@ class WhiteboardCreatorPage extends React.Component<WhiteboardCreatorPageProps, 
     }
 
     public render(): React.ReactNode {
+        const whiteboardType = this.props.match.params.whiteboardRoomType;
         if (this.state.foundError) {
             return <PageError/>;
         } else if (this.state.uuid && this.state.userId) {
-            return <Redirect to={`/whiteboard/${this.state.uuid}/${this.state.userId}/`}/>;
+            return <Redirect to={`/whiteboard/${whiteboardType}/${this.state.uuid}/${this.state.userId}/`}/>;
         }
         return null;
     }

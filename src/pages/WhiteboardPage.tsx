@@ -41,6 +41,7 @@ import MenuPPTDoc from "../components/menu/MenuPPTDoc";
 import UploadBtn from "../tools/UploadBtn";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import WhiteboardRecord from "../components/whiteboard/WhiteboardRecord";
+import {WhiteboardRoomType} from "./WhiteboardCreatorPage";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 export enum MenuInnerType {
@@ -53,6 +54,7 @@ export enum MenuInnerType {
 export type WhiteboardPageProps = RouteComponentProps<{
     uuid: string;
     userId: string;
+    whiteboardRoomType: WhiteboardRoomType;
 }>;
 
 export type WhiteboardPageState = {
@@ -115,8 +117,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
     }
 
     private startJoinRoom = async (): Promise<void> => {
-        const uuid = this.props.match.params.uuid;
-        const userId = this.props.match.params.userId;
+        const {userId, uuid, whiteboardRoomType} = this.props.match.params;
         this.setState({userId: userId});
         const roomToken = await this.getRoomToken(uuid);
         if (netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${userId}`) === `Netless uuid ${userId}`) {
@@ -174,6 +175,9 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
             } else {
                 const zoomNumber = window.innerWidth / 1200;
                 room.moveCamera({scale: zoomNumber});
+            }
+            if (this.props.match.params.whiteboardRoomType === WhiteboardRoomType.live) {
+                await room.setWritable(false);
             }
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
         } else {
@@ -395,6 +399,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                     </MenuBox>
                     {isMobile || <Agora
                         roomMembers={this.state.room.state.roomMembers}
+                        isRtcReadOnly={this.props.match.params.whiteboardRoomType === WhiteboardRoomType.live}
                         agoraAppId={rtcAppId.agoraAppId}
                         setMediaState={this.setMediaState}
                         userId={parseInt(this.state.userId)}
@@ -412,6 +417,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                 <WhiteboardTopLeft room={this.state.room}/>
                                 <WhiteboardTopRight
                                     oss={ossConfigObj}
+                                    whiteboardRoomType={this.props.match.params.whiteboardRoomType}
                                     onProgress={this.progress}
                                     whiteboardRef={this.state.whiteboardLayerDownRef}
                                     roomState={this.state.roomState}

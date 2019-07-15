@@ -32,9 +32,10 @@ const basic = {
                 enforce: "pre",
                 loader: "source-map-loader",
                 exclude: [
-                    path.resolve(__dirname, "../submodules/white-framework/node_modules")
+                    path.resolve(__dirname, "../submodules/white-framework/node_modules"),
                 ]
-            }, {
+            },
+            {
                 test: /\.tsx?$/,
                 use: [
                     'ts-loader',
