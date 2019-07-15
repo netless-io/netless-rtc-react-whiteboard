@@ -32,9 +32,10 @@ const basic = {
                 enforce: "pre",
                 loader: "source-map-loader",
                 exclude: [
-                    path.resolve(__dirname, "../submodules/white-framework/node_modules")
+                    path.resolve(__dirname, "../submodules/white-framework/node_modules"),
                 ]
-            }, {
+            },
+            {
                 test: /\.tsx?$/,
                 use: [
                     'ts-loader',
@@ -72,7 +73,7 @@ const basic = {
                 }
             }, {
                 test: /\.(png|jpg)$/,
-                loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
+                loader: 'url-loader?limit=8192&name=icons/[hash:8].[name].[ext]'
             }]
     },
     plugins: [

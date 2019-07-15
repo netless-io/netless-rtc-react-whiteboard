@@ -138,18 +138,6 @@
     ali-oss "^6.1.1"
     uuid "^3.3.2"
 
-"@netless/react-agora@^0.1.8":
-  version "0.1.8"
-  resolved "https://registry.npmjs.org/@netless/react-agora/-/react-agora-0.1.8.tgz#e809ae306a807c24e4af6cbcc0721375d1f88c70"
-  integrity sha512-v/JMfSXf12LrKBrBdm6JP9vCSXt2br2vmOao+R8xz1Hbp4KgZ5ay0UaFTSs5jbrsvtwlU9TOdZdklc3nPCO90g==
-  dependencies:
-    "@types/agora-rtc-sdk" "^2.3.0"
-    "@types/is-touch-device" "^1.0.0"
-    agora-rtc-sdk "^2.6.1"
-    is-touch-device "^1.0.1"
-    rc-tween-one "^2.4.1"
-    react-identicons "^1.1.7"
-
 "@netless/react-loading-bar@^1.0.0":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@netless/react-loading-bar/-/react-loading-bar-1.0.1.tgz#41396223e40db3cd9dfbd925d0d4412db1e0cdcf"
@@ -190,7 +178,7 @@
   resolved "https://registry.npm.taobao.org/@popmotion/easing/download/@popmotion/easing-1.0.2.tgz#17d925c45b4bf44189e5a38038d149df42d8c0b4"
   integrity sha1-F9klxFtL9EGJ5aOAONFJ30LYwLQ=
 
-"@types/agora-rtc-sdk@^2.3.0":
+"@types/agora-rtc-sdk@^2.6.0":
   version "2.6.0"
   resolved "https://registry.npm.taobao.org/@types/agora-rtc-sdk/download/@types/agora-rtc-sdk-2.6.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fagora-rtc-sdk%2Fdownload%2F%40types%2Fagora-rtc-sdk-2.6.0.tgz#a31031fb19afe9f393f2efb89f415f13e24ab738"
   integrity sha1-oxAx+xmv6fOT8u+4n0FfE+JKtzg=
@@ -487,10 +475,10 @@ agentkeepalive@^3.4.1:
   dependencies:
     humanize-ms "^1.2.1"
 
-agora-rtc-sdk@^2.6.1:
-  version "2.7.1"
-  resolved "https://registry.npm.taobao.org/agora-rtc-sdk/download/agora-rtc-sdk-2.7.1.tgz#d99e5d4ed38ad1417474ee50fd0cbc7e8b257c5c"
-  integrity sha1-2Z5dTtOK0UF0dO5Q/Qy8foslfFw=
+agora-rtc-sdk@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.npm.taobao.org/agora-rtc-sdk/download/agora-rtc-sdk-2.8.0.tgz#720ee16fc1b063c8168c0b2594cc0f6ec634d621"
+  integrity sha1-cg7hb8GwY8gWjAsllMwPbsY01iE=
 
 ajv-keywords@^2.0.0:
   version "2.1.1"

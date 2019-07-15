@@ -25,8 +25,8 @@ export class AppRoutes extends React.Component<{}, {}> {
             <AppRouter historyType={HistoryType.HashRouter} language={language} routes={[
                 {path: "/replay/:uuid/:userId/:time?/:duration?/:mediaSource?/", component: PlayerPage},
                 {path: "/", component: PageNameInput},
-                {path: "/whiteboard/:uuid?/", component: WhiteboardCreatorPage},
-                {path: "/whiteboard/:uuid/:userId/", component: WhiteboardPage},
+                {path: "/whiteboard/:whiteboardRoomType/:uuid?/", component: WhiteboardCreatorPage},
+                {path: "/whiteboard/:whiteboardRoomType/:uuid/:userId/", component: WhiteboardPage},
             ]}/>
         );
     }
