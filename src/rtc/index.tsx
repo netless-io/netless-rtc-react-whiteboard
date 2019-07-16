@@ -9,6 +9,7 @@ import {RtcBlockContextProvider} from "./RtcBlockContext";
 import TweenOne from "rc-tween-one";
 import "./index.less";
 import {RoomMember} from "white-react-sdk";
+import {isMobile} from "react-device-detect";
 // tslint:disable-next-line
 const AgoraRTS = require("./rtsLib/AgoraRTS.js");
 
@@ -264,7 +265,7 @@ export default class Index extends React.Component<RtcLayoutProps, RtcLayoutStat
                         style={{
                             transform: "scale(0)",
                         }} onClick={() => this.startRtc(this.props.userId, this.props.channelId)}
-                        className="rtc-block-btn">
+                        className={isMobile ? "rtc-block-btn-mb" : "rtc-block-btn"}>
                         {this.state.isStartBtnLoading ? <img src={video}/> : <img src={video}/>}
                     </TweenOne>
                 );
