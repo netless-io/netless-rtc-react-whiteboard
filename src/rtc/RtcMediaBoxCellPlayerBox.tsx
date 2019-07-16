@@ -1,7 +1,6 @@
 import * as React from "react";
 import TweenOne from "rc-tween-one";
 import "./RtcMediaBoxCell.less";
-import {Stream} from "agora-rtc-sdk";
 import {StreamsStatesType} from "./index";
 
 export type RtcMediaBoxCellInnerState = {
@@ -10,7 +9,7 @@ export type RtcMediaBoxCellInnerState = {
 
 export type RtcMediaBoxCellInnerProps = {
     streamBoxId: string,
-    remoteStream: Stream,
+    remoteStream: any,
     streamsState?: StreamsStatesType,
     remoteStreamIndex?: number,
 };

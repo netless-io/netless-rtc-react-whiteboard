@@ -5,14 +5,13 @@ import Identicon from "react-identicons";
 import mute_gray from "./icons/mute_gray.svg";
 import voice from "./icons/voice.svg";
 import {RoomMember} from "white-react-sdk";
-import {Stream} from "agora-rtc-sdk";
 import "./RtcMediaBoxCell.less";
 import {SlidingBlockState} from "./slidingBlock";
 
 export type rtcVideoCellProps = {
     streamBoxId: string;
     roomMember: RoomMember | undefined;
-    localStream: Stream;
+    localStream: any;
     isAudioOpen: boolean;
     isVideoOpen: boolean;
     blockState:  SlidingBlockState;

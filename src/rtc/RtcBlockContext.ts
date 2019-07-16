@@ -1,12 +1,11 @@
 import * as React from "react";
 import {StreamsStatesType} from "./index";
 import {RoomMember} from "white-react-sdk";
-import {Stream} from "agora-rtc-sdk";
 export type RtcBlockContext = {
-    readonly remoteMediaStreams: Stream[];
+    readonly remoteMediaStreams: any[];
     readonly userId: number;
     readonly roomMembers: ReadonlyArray<RoomMember>;
-    readonly localStream: Stream;
+    readonly localStream: any;
     remoteMediaStreamsStates: StreamsStatesType[];
     setSliderFloating: () => void;
     setSliderExtending: () => void;
