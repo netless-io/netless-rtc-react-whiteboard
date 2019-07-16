@@ -69,6 +69,7 @@ export type WhiteboardPageState = {
     converterPercent: number;
     userId: string;
     isMenuOpen: boolean;
+    isReadyOnly: boolean;
     mediaSource?: string;
     isMediaRun?: boolean;
     startRecordTime?: number;
@@ -99,6 +100,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
             converterPercent: 0,
             userId: "",
             isMenuOpen: false,
+            isReadyOnly: props.match.params.whiteboardRoomType === WhiteboardRoomType.live,
         };
        this.cursor = new UserCursor();
     }
@@ -397,14 +399,29 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         menuInnerState={this.state.menuInnerState}>
                         {this.renderMenuInner()}
                     </MenuBox>
-                    {isMobile || <Agora
+                    {isMobile ? <Agora
                         roomMembers={this.state.room.state.roomMembers}
                         isRtcReadOnly={this.props.match.params.whiteboardRoomType === WhiteboardRoomType.live}
                         agoraAppId={rtcAppId.agoraAppId}
-                        defaultStart={true}
                         setMediaState={this.setMediaState}
+                        defaultStart={true}
+                        HidingPosition={Object.freeze({
+                            bottom: 48,
+                            left: 8,
+                            width: 32,
+                            height: 32,
+                        })}
                         userId={parseInt(this.state.userId)}
-                        channelId={this.props.match.params.uuid}/>}
+                        channelId={this.props.match.params.uuid}/> :
+                        <Agora
+                            roomMembers={this.state.room.state.roomMembers}
+                            isRtcReadOnly={this.state.isReadyOnly}
+                            agoraAppId={rtcAppId.agoraAppId}
+                            defaultStart={true}
+                            setMediaState={this.setMediaState}
+                            userId={parseInt(this.state.userId)}
+                            channelId={this.props.match.params.uuid}/>
+                    }
                     <div style={{backgroundColor: "white"}} id="page-wrap">
                         <Dropzone
                             accept={"image/*"}
