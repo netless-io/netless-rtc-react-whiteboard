@@ -401,6 +401,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         roomMembers={this.state.room.state.roomMembers}
                         isRtcReadOnly={this.props.match.params.whiteboardRoomType === WhiteboardRoomType.live}
                         agoraAppId={rtcAppId.agoraAppId}
+                        defaultStart={true}
                         setMediaState={this.setMediaState}
                         userId={parseInt(this.state.userId)}
                         channelId={this.props.match.params.uuid}/>}
