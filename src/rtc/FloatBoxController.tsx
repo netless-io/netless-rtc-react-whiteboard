@@ -5,11 +5,10 @@ import video_active from "./icons/video_active.svg";
 import video_white from "./icons/video_white.svg";
 import video_gray from "./icons/video_gray.svg";
 import {HtmlElementRefContainer} from "./HtmlElementRefContainer";
-import {Stream} from "agora-rtc-sdk";
 import "./FloatBoxController.less";
 
 export type FloatBoxControllerProps = {
-    localStream: Stream;
+    localStream: any;
     ignoreEventRefs: HtmlElementRefContainer;
     isAudioOpen: boolean;
     isVideoOpen: boolean;

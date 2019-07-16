@@ -8,15 +8,14 @@ import RtcStopWatch from "./RtcStopWatch";
 import RtcMediaBoxCell from "./RtcMediaBoxCell";
 import {StreamsStatesType} from "./index";
 import {RoomMember} from "white-react-sdk";
-import {Stream} from "agora-rtc-sdk";
 import "./FloatBoxExtend.less";
 import {SlidingBlockState} from "./slidingBlock";
 
 export type FloatBoxExtendProps = {
-    readonly remoteMediaStreams: Stream[];
+    readonly remoteMediaStreams: any[];
     readonly userId: number;
     readonly roomMembers: ReadonlyArray<RoomMember>;
-    readonly localStream: Stream;
+    readonly localStream: any;
     readonly remoteMediaStreamsStates: StreamsStatesType[];
     setSliderFloating: () => void;
     stopRtc: () => void;
@@ -30,7 +29,7 @@ export type FloatBoxExtendStates = {
     isAudioOpen: boolean,
     isVideoOpen: boolean,
     animationReverse: boolean;
-    remoteMediaStreams: Stream[];
+    remoteMediaStreams: any[];
 };
 
 export default class FloatBoxExtend extends React.Component<FloatBoxExtendProps, FloatBoxExtendStates> {

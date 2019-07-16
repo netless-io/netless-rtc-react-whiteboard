@@ -10,12 +10,11 @@ import {StreamsStatesType} from "./index";
 import {RoomMember} from "white-react-sdk";
 import "./RtcMediaBoxCell.less";
 import {SlidingBlockState} from "./slidingBlock";
-import {Stream} from "agora-rtc-sdk";
 
 export type rtcVideoCellProps = {
     streamBoxId: string;
     roomMember: RoomMember,
-    remoteStream?: Stream;
+    remoteStream?: any;
     remoteIndex?: number;
     blockState:  SlidingBlockState;
     streamsState?: StreamsStatesType;
