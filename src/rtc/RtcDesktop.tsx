@@ -7,11 +7,8 @@ import {SlidingBlockMask} from "./SlidingBlockMask";
 const AgoraRTC = require("./rtsLib/AgoraRTC-production.js");
 import {RtcBlockContextProvider} from "./RtcBlockContext";
 import TweenOne from "rc-tween-one";
-import "./index.less";
+import "./RtcDesktop.less";
 import {RoomMember} from "white-react-sdk";
-import {isMobile} from "react-device-detect";
-// tslint:disable-next-line
-const AgoraRTS = require("./rtsLib/AgoraRTS.js");
 
 export type StreamsStatesType = {state: {isVideoOpen: boolean, isAudioOpen: boolean}, uid: number};
 export type RtcLayoutState = {
@@ -38,7 +35,7 @@ export type RtcLayoutProps = {
     ExtendingPosition?: BlockPosition;
 };
 
-export default class Index extends React.Component<RtcLayoutProps, RtcLayoutState> {
+export default class RtcDesktop extends React.Component<RtcLayoutProps, RtcLayoutState> {
     private FloatingPosition: BlockPosition = FloatingPosition;
     private HidingPosition: BlockPosition = HidingPosition;
     private ExtendingPosition: BlockPosition = ExtendingPosition;
@@ -62,10 +59,6 @@ export default class Index extends React.Component<RtcLayoutProps, RtcLayoutStat
         this.setState({isStartBtnLoading: true});
         if (!this.agoraClient) {
             this.agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
-            if (AgoraRTS.checkSystemRequirements()) {
-                AgoraRTS.init(AgoraRTC);
-                AgoraRTS.proxy(this.agoraClient);
-            }
             this.agoraClient.init(this.props.agoraAppId, () => {
                 console.log("AgoraRTC client initialized");
             }, (err: any) => {
@@ -86,7 +79,7 @@ export default class Index extends React.Component<RtcLayoutProps, RtcLayoutStat
             this.setState({isStartBtnLoading: false});
             this.agoraClient.join(this.props.agoraAppId, channelId, uid, (uid: number) => {
                 console.log("User " + uid + " join channel successfully");
-                if (AgoraRTC.checkSystemRequirements() && !this.props.isRtcReadOnly) {
+                if (!this.props.isRtcReadOnly) {
                     this.agoraClient.publish(localStream, (err: any) => {
                         console.log("Publish local stream error: " + err);
                     });
@@ -123,7 +116,7 @@ export default class Index extends React.Component<RtcLayoutProps, RtcLayoutStat
                 remoteMediaStreams: remoteMediaStreams,
                 remoteMediaStreamsStates: remoteMediaStreamsStates,
             });
-            this.agoraClient.subscribe(stream, { video: true, audio: true});
+            this.agoraClient.subscribe(stream);
         });
         this.agoraClient.on("peer-leave", (evt: any) => {
             this.stop(evt.uid);
@@ -265,7 +258,7 @@ export default class Index extends React.Component<RtcLayoutProps, RtcLayoutStat
                         style={{
                             transform: "scale(0)",
                         }} onClick={() => this.startRtc(this.props.userId, this.props.channelId)}
-                        className={isMobile ? "rtc-block-btn-mb" : "rtc-block-btn"}>
+                        className="rtc-block-btn">
                         {this.state.isStartBtnLoading ? <img src={video}/> : <img src={video}/>}
                     </TweenOne>
                 );

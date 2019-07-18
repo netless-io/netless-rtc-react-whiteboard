@@ -9,7 +9,8 @@ import * as uuidv4 from "uuid/v4";
 import {RouteComponentProps} from "react-router";
 import TweenOne from "rc-tween-one";
 import Dropzone from "react-dropzone";
-import Agora from "../rtc";
+import RtcDesktop from "../rtc/RtcDesktop";
+import RtcMobile from "../rtc/RtcMobile";
 import {isMobile} from "react-device-detect";
 import {
     WhiteWebSdk,
@@ -399,25 +400,15 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         menuInnerState={this.state.menuInnerState}>
                         {this.renderMenuInner()}
                     </MenuBox>
-                    {isMobile ? <Agora
-                        roomMembers={this.state.room.state.roomMembers}
-                        isRtcReadOnly={this.props.match.params.whiteboardRoomType === WhiteboardRoomType.live}
-                        agoraAppId={rtcAppId.agoraAppId}
-                        setMediaState={this.setMediaState}
-                        defaultStart={true}
-                        HidingPosition={Object.freeze({
-                            bottom: 48,
-                            left: 8,
-                            width: 32,
-                            height: 32,
-                        })}
-                        userId={parseInt(this.state.userId)}
-                        channelId={this.props.match.params.uuid}/> :
-                        <Agora
+                    {isMobile ? <RtcMobile isRtcReadOnly={this.state.isReadyOnly}
+                                           userId={parseInt(this.state.userId)}
+                                           agoraAppId={rtcAppId.agoraAppId}
+                                           channelId={this.props.match.params.uuid}/> :
+                        <RtcDesktop
                             roomMembers={this.state.room.state.roomMembers}
                             isRtcReadOnly={this.state.isReadyOnly}
                             agoraAppId={rtcAppId.agoraAppId}
-                            defaultStart={true}
+                            defaultStart={false}
                             setMediaState={this.setMediaState}
                             userId={parseInt(this.state.userId)}
                             channelId={this.props.match.params.uuid}/>

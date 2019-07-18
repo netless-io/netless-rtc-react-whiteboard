@@ -6,7 +6,7 @@ import dropIcon from "./icons/drop_icon.svg";
 import {HtmlElementRefContainer} from "./HtmlElementRefContainer";
 import RtcStopWatch from "./RtcStopWatch";
 import RtcMediaBoxCell from "./RtcMediaBoxCell";
-import {StreamsStatesType} from "./index";
+import {StreamsStatesType} from "./RtcDesktop";
 import {RoomMember} from "white-react-sdk";
 import "./FloatBoxExtend.less";
 import {SlidingBlockState} from "./slidingBlock";

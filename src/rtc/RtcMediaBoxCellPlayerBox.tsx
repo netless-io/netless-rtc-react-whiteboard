@@ -1,7 +1,7 @@
 import * as React from "react";
 import TweenOne from "rc-tween-one";
 import "./RtcMediaBoxCell.less";
-import {StreamsStatesType} from "./index";
+import {StreamsStatesType} from "./RtcDesktop";
 
 export type RtcMediaBoxCellInnerState = {
     animationReverse: boolean,
