@@ -139,6 +139,56 @@ pages:
     rename: 重命名
     replay: 回放
 
+  classroom:
+    goback: 回到首页
+    docSet: 文档设置
+    to-be-broadcaster: 成为演讲者
+    audio-and-video-call: 音视频通话
+    upload-images-and-files: 上传图片和文件
+    playback: 点击回放
+    hot-key: 快捷键
+    add-page: 增减页面
+    attachment: 附件资料
+    page: 页面
+    cancel: 取消
+    delete: 删除
+    tool: 工具
+    selector: 选择工具
+    pencil: 铅笔
+    text: 文字
+    eraser: 橡皮
+    ellipse: 椭圆
+    rectangle: 矩形
+    other: 其他
+    switch-page: 切换页面
+    move-canvas: 移动画布
+    space-key: 空格键
+    drag: 拖动
+    scale-big: 放大画布
+    scale-small: 缩小画布
+    more: 更多
+    doc-name: 文档名称
+    doc-share: 分享
+    founder: 创建人
+    doc-member: 文档成员
+    online: 在线
+    in-lecture: 您正在演讲中...
+    out-lecture: 退出演讲模式，他人不再跟随您的视角
+    go-to-lecture: 进入演讲模式，他人会跟随您的视角
+    freedom-perspective: 目前为自由视角
+    current-speaker: 当前演讲者为
+    follow-perspective: 您将跟随其视角
+    others: 路人
+    testRoom: 测试房间
+    reconnected: 网络状况不稳定，正在重连中...
+    unconnect: 目前房间已经断开连接
+    refresh: 刷新
+    download: 下载
+    broadcaster-method: 演讲者模式
+    current-perspective: 当前视角
+    follow-perspective-title: 跟随视角
+    calling: 人通话中
+
   whiteboard:
     goback: 回到首页
     docSet: 文档设置

@@ -21,6 +21,7 @@ export type WhiteboardChatProps = {
     room: Room;
     messages: MessageType[];
     userId: string;
+    isClassroom?: boolean;
 };
 
 export type WhiteboardChatStates = {

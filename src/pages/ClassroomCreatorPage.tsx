@@ -1,27 +1,30 @@
 import * as React from "react";
 import {Redirect} from "@netless/i18n-react-router";
-import {InjectedIntlProps, injectIntl} from "react-intl";
 import PageError from "./PageError";
 import {netlessWhiteboardApi, RoomType} from "../apiMiddleware";
 import {message} from "antd";
 import {RouteComponentProps} from "react-router";
-import {NetlessRoomType} from "./ClassroomCreatorPage";
 
-export type WhiteboardCreatorPageState = {
+export type ClassroomCreatorPageState = {
     uuid?: string;
     userId?: string;
     foundError: boolean;
 };
 
-export type WhiteboardCreatorPageProps = InjectedIntlProps & RouteComponentProps<{
-    netlessRoomType: NetlessRoomType;
+export enum NetlessRoomType {
+    live = "live",
+    interactive = "interactive",
+
+}
+export type ClassroomCreatorPageProps = RouteComponentProps<{
+    classroomType: NetlessRoomType;
     uuid?: string;
 }>;
 
 
-class WhiteboardCreatorPage extends React.Component<WhiteboardCreatorPageProps, WhiteboardCreatorPageState> {
+class ClassroomCreatorPage extends React.Component<ClassroomCreatorPageProps, ClassroomCreatorPageState> {
 
-    public constructor(props: WhiteboardCreatorPageProps) {
+    public constructor(props: ClassroomCreatorPageProps) {
         super(props);
         this.state = {
             foundError: false,
@@ -58,14 +61,14 @@ class WhiteboardCreatorPage extends React.Component<WhiteboardCreatorPageProps, 
     }
 
     public render(): React.ReactNode {
-        const netlessRoomType = this.props.match.params.netlessRoomType;
+        const classroomType = this.props.match.params.classroomType;
         if (this.state.foundError) {
             return <PageError/>;
         } else if (this.state.uuid && this.state.userId) {
-            return <Redirect to={`/whiteboard/${netlessRoomType}/${this.state.uuid}/${this.state.userId}/`}/>;
+            return <Redirect to={`/classroom/${classroomType}/${this.state.uuid}/${this.state.userId}/`}/>;
         }
         return null;
     }
 }
 
-export default injectIntl(WhiteboardCreatorPage);
+export default ClassroomCreatorPage;

@@ -35,6 +35,7 @@ export type WhiteboardBottomRightProps = {
     roomState: RoomState;
     handleHotKeyMenuState: () => void;
     handleAnnexBoxMenuState: () => void;
+    isClassroom?: boolean;
 };
 
 class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, hotkeyTooltipState> {
@@ -178,6 +179,7 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
                         {/*</div>*/}
                         {/*</Tooltip>*/}
                         {this.renderAnnexBox()}
+                        {!this.props.isClassroom &&
                         <Badge overflowCount={99} offset={[-3, 6]} count={this.state.isVisible ? 0 : (this.state.messages.length - this.state.seenMessagesLength)}>
                             <Popover
                                 overlayClassName="whiteboard-chat"
@@ -196,6 +198,7 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
                                 </div>
                             </Popover>
                         </Badge>
+                        }
                     </div>
                 </div>
             );

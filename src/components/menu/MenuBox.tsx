@@ -36,9 +36,10 @@ export type MenuBoxProps = {
     menuInnerState: MenuInnerType;
     pageWrapId: string;
     outerContainerId: string;
-    isLeft?: boolean;
     resetMenu: () => void;
     setMenuState: (state: boolean) => void;
+    isLeft?: boolean;
+    isClassroom?: boolean;
 };
 
 
@@ -68,8 +69,8 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
         if (this.props.isLeft) {
             return (
                 <MenuLeft
-                    pageWrapId="page-wrap"
-                    outerContainerId="outer-container"
+                    pageWrapId={this.props.pageWrapId}
+                    outerContainerId={this.props.outerContainerId}
                     width={360}
                     styles={styles3}
                     isOpen={this.props.isVisible}
@@ -86,12 +87,12 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
         } else {
             return (
                 <Menu
-                    pageWrapId="page-wrap"
-                    outerContainerId="outer-container"
+                    pageWrapId={this.props.pageWrapId}
+                    outerContainerId={this.props.outerContainerId}
                     noOverlay
                     styles={this.state.menuStyles}
                     width={280}
-                    right={true}
+                    right={!this.props.isClassroom}
                     isOpen={this.props.isVisible}
                     onStateChange={async menuState => {
                         if (!menuState.isOpen) {

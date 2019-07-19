@@ -42,7 +42,7 @@ import MenuPPTDoc from "../components/menu/MenuPPTDoc";
 import UploadBtn from "../tools/UploadBtn";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import WhiteboardRecord from "../components/whiteboard/WhiteboardRecord";
-import {WhiteboardRoomType} from "./WhiteboardCreatorPage";
+import {NetlessRoomType} from "./ClassroomCreatorPage";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 export enum MenuInnerType {
@@ -55,7 +55,7 @@ export enum MenuInnerType {
 export type WhiteboardPageProps = RouteComponentProps<{
     uuid: string;
     userId: string;
-    whiteboardRoomType: WhiteboardRoomType;
+    netlessRoomType: NetlessRoomType;
 }>;
 
 export type WhiteboardPageState = {
@@ -101,7 +101,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
             converterPercent: 0,
             userId: "",
             isMenuOpen: false,
-            isReadyOnly: props.match.params.whiteboardRoomType === WhiteboardRoomType.live,
+            isReadyOnly: props.match.params.netlessRoomType === NetlessRoomType.live,
         };
        this.cursor = new UserCursor();
     }
@@ -120,7 +120,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
     }
 
     private startJoinRoom = async (): Promise<void> => {
-        const {userId, uuid, whiteboardRoomType} = this.props.match.params;
+        const {userId, uuid, netlessRoomType} = this.props.match.params;
         this.setState({userId: userId});
         const roomToken = await this.getRoomToken(uuid);
         if (netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${userId}`) === `Netless uuid ${userId}`) {
@@ -171,15 +171,14 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                 await timeout(800);
                 this.setState({isHandClap: false});
             });
-            const proportion = window.innerWidth / window.innerHeight;
-            if (proportion > 1) {
-                const zoomNumber = window.innerHeight / 675;
-                room.moveCamera({scale: zoomNumber});
-            } else {
-                const zoomNumber = window.innerWidth / 1200;
-                room.moveCamera({scale: zoomNumber});
-            }
-            if (this.props.match.params.whiteboardRoomType === WhiteboardRoomType.live) {
+            room.moveCameraToContain({
+                originX: - 600,
+                originY: - 337.5,
+                width: 1200,
+                height: 675,
+                animationMode: "immediately",
+            });
+            if (this.props.match.params.netlessRoomType === NetlessRoomType.live) {
                 await room.setWritable(false);
             }
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
@@ -275,6 +274,15 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
     }
 
     private resetMenu = () => {
+        if (this.state.room) {
+            this.state.room.moveCameraToContain({
+                originX: - 600,
+                originY: - 337.5,
+                width: 1200,
+                height: 675,
+                animationMode: "immediately",
+            });
+        }
         this.setState({
             isMenuVisible: false,
             isMenuLeft: false,
@@ -415,10 +423,10 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                     }
                     <div style={{backgroundColor: "white"}} id="page-wrap">
                         <Dropzone
+                            className="whiteboard-drop-upload-box"
                             accept={"image/*"}
                             disableClick={true}
-                            onDrop={this.onDropFiles}
-                            className="whiteboard-drop-upload-box">
+                            onDrop={this.onDropFiles}>
                             <TopLoadingBar loadingPercent={this.state.ossPercent}/>
                             <TopLoadingBar style={{backgroundColor: "red"}} loadingPercent={this.state.converterPercent}/>
                             <div className="whiteboard-out-box">
@@ -426,7 +434,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                 <WhiteboardTopLeft room={this.state.room}/>
                                 <WhiteboardTopRight
                                     oss={ossConfigObj}
-                                    whiteboardRoomType={this.props.match.params.whiteboardRoomType}
+                                    netlessRoomType={this.props.match.params.netlessRoomType}
                                     onProgress={this.progress}
                                     whiteboardRef={this.state.whiteboardLayerDownRef}
                                     roomState={this.state.roomState}

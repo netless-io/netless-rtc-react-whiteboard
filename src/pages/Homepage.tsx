@@ -8,7 +8,7 @@ import netless_black from "../assets/image/netless_black.svg";
 import {Link} from "@netless/i18n-react-router";
 import {netlessWhiteboardApi} from "../apiMiddleware";
 import {FormComponentProps} from "antd/lib/form";
-import {WhiteboardRoomType} from "./WhiteboardCreatorPage";
+import {NetlessRoomType} from "./ClassroomCreatorPage";
 
 const { TabPane } = Tabs;
 
@@ -26,13 +26,21 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
             url: "",
         };
     }
-    private handleClickBtn = (): void => {
+    private handleWhiteboardClickBtn = (): void => {
         if (this.state.name) {
             netlessWhiteboardApi.user.updateUserInf(this.state.name, uuidv4(), "1");
         } else {
             netlessWhiteboardApi.user.updateUserInf("Netless user", uuidv4(), "1");
         }
-        this.props.history.push(`/whiteboard/${WhiteboardRoomType.interactive}`);
+        this.props.history.push(`/whiteboard/${NetlessRoomType.interactive}`);
+    }
+    private handleClassroomClickBtn = (): void => {
+        if (this.state.name) {
+            netlessWhiteboardApi.user.updateUserInf(this.state.name, uuidv4(), "1");
+        } else {
+            netlessWhiteboardApi.user.updateUserInf("Netless user", uuidv4(), "1");
+        }
+        this.props.history.push(`/classroom/${NetlessRoomType.interactive}`);
     }
 
     private getActiveSelectedKey = (url: string): string => {
@@ -80,9 +88,15 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                                     <Button
                                         size="large"
                                         type="primary"
-                                        onClick={this.handleClickBtn}
+                                        onClick={this.handleWhiteboardClickBtn}
                                         className="name-button">
-                                        创建房间
+                                        创建白板房间
+                                    </Button>
+                                    <Button
+                                        size="large"
+                                        onClick={this.handleClassroomClickBtn}
+                                        className="name-button">
+                                        创建在线教室
                                     </Button>
                                 </div>
                             </TabPane>

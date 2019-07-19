@@ -18,7 +18,7 @@ import QRCode from "qrcode.react";
 import {isMobile} from "react-device-detect";
 import {UploadBtnMobile} from "../../tools/UploadBtn";
 import {PPTProgressListener} from "../../tools/UploadManager";
-import {WhiteboardRoomType} from "../../pages/WhiteboardCreatorPage";
+import {NetlessRoomType} from "../../pages/ClassroomCreatorPage";
 
 export type WhiteboardTopRightState = {
     scaleAnimation: boolean;
@@ -27,7 +27,7 @@ export type WhiteboardTopRightState = {
     isInviteVisible: boolean;
     isSetVisible: boolean;
     url: string;
-    whiteboardRoomType: WhiteboardRoomType;
+    netlessRoomType: NetlessRoomType;
 };
 
 export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProps & {
@@ -35,7 +35,7 @@ export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProp
     number: string,
     uuid: string,
     roomState: RoomState,
-    whiteboardRoomType: WhiteboardRoomType,
+    netlessRoomType: NetlessRoomType,
     oss: {
         accessKeyId: string,
         accessKeySecret: string,
@@ -59,7 +59,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
             isInviteVisible: false,
             isSetVisible: false,
             url: location.href,
-            whiteboardRoomType: props.whiteboardRoomType,
+            netlessRoomType: props.netlessRoomType,
         };
         this.renderBroadController = this.renderBroadController.bind(this);
     }
@@ -198,15 +198,14 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
         } else {
             return url;
         }
-
     }
     private switchWhiteboardRoomType = (): void => {
-        if (this.state.whiteboardRoomType === WhiteboardRoomType.interactive) {
-            const shareUrl = this.state.url.replace(`${WhiteboardRoomType.interactive}`, `${WhiteboardRoomType.live}`);
-            this.setState({url: shareUrl, whiteboardRoomType: WhiteboardRoomType.live});
+        if (this.state.netlessRoomType === NetlessRoomType.interactive) {
+            const shareUrl = this.state.url.replace(`${NetlessRoomType.interactive}`, `${NetlessRoomType.live}`);
+            this.setState({url: shareUrl, netlessRoomType: NetlessRoomType.live});
         } else {
-            const shareUrl = this.state.url.replace(`${WhiteboardRoomType.live}`, `${WhiteboardRoomType.interactive}`);
-            this.setState({url: shareUrl, whiteboardRoomType: WhiteboardRoomType.interactive});
+            const shareUrl = this.state.url.replace(`${NetlessRoomType.live}`, `${NetlessRoomType.interactive}`);
+            this.setState({url: shareUrl, netlessRoomType: NetlessRoomType.interactive});
         }
     }
 
@@ -281,7 +280,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                             <div className="whiteboard-share-box-image">
                                 <div className="whiteboard-share-box-btn">
                                     <div className="whiteboard-share-box-title">{
-                                        this.state.whiteboardRoomType === WhiteboardRoomType.interactive ? "未开启只读模式" :
+                                        this.state.netlessRoomType === NetlessRoomType.interactive ? "未开启只读模式" :
                                             "已开启只读模式"
                                     }</div>
                                     <Switch onChange={() => this.switchWhiteboardRoomType()}/>

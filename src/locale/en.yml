@@ -138,6 +138,54 @@ pages:
     go-back: Go back
     rename: Rename
     replay: Replay
+  classroom:
+    goback: Go back
+    docSet: Document set
+    to-be-broadcaster: Control
+    audio-and-video-call: Audio and video call
+    upload-images-and-files: Upload icons and files
+    playback: Playback
+    hot-key: Hot key
+    add-page: Add page
+    attachment: Attachment
+    page: Page
+    delete: Delete
+    tool: Tool
+    selector: Selector
+    pencil: Pencil
+    text: Text
+    eraser: Eraser
+    ellipse: Ellipse
+    rectangle: Rectangle
+    other: Other
+    switch-page: Switch page
+    move-canvas: Move
+    space-key: Space key
+    drag: Drag
+    scale-big: Scale big
+    scale-small: Scale small
+    more: More
+    doc-name: Document Name
+    doc-share: Document Share
+    founder: Founder
+    doc-member: Member
+    online: Online
+    in-lecture: You are lecturing
+    out-lecture: Exit the lecture mode, others no longer follow your perspective
+    go-to-lecture: Enter the lecture mode, others will follow your perspective
+    freedom-perspective: Currently a free perspective
+    current-speaker: Current speaker is
+    follow-perspective: You will be more with your perspective
+    others: Others
+    testRoom: Test Room
+    reconnected: The network is unstable and is reconnecting...
+    unconnect: The room is currently disconnected
+    refresh: Refresh
+    download: Download
+    broadcaster-method: Broadcaster method
+    current-perspective: Current perspective
+    follow-perspective-title: Follow
+    calling: Calling
 
   whiteboard:
     goback: Go back

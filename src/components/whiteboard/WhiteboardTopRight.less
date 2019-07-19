@@ -1,7 +1,7 @@
 @import "../../../theme";
 
 .whiteboard-box-top-right {
-  position: fixed;
+  position: absolute;
   right: 8px;
   height: 0;
   margin-top: 16px;
@@ -39,8 +39,8 @@
 
 .whiteboard-top-bar-box {
   margin-left: 16px;
-  height: 32px;
-  width: 32px;
+  height: 28px;
+  width: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,8 +48,9 @@
   background-color: white;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid #005BF6;
+  border: 1px solid @main_color_green;
   margin-bottom: 8px;
+  margin-top: 2px;
 }
 
 .whiteboard-top-bar-btn-mb {
@@ -62,8 +63,8 @@
   pointer-events: auto;
   user-select: none;
   background-color: white;
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .whiteboard-top-bar-btn {
@@ -77,7 +78,7 @@
   user-select: none;
   background-color: white;
   margin-left: 14px;
-  margin-right: 4px;
+  margin-right: 2px;
 }
 
 .whiteboard-perspective {
