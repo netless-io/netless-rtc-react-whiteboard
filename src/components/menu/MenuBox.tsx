@@ -39,7 +39,7 @@ export type MenuBoxProps = {
     resetMenu: () => void;
     setMenuState: (state: boolean) => void;
     isLeft?: boolean;
-    isClassroom?: boolean;
+    isPpt?: boolean;
 };
 
 
@@ -91,8 +91,8 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
                     outerContainerId={this.props.outerContainerId}
                     noOverlay
                     styles={this.state.menuStyles}
-                    width={this.props.isClassroom ? 360 : 280}
-                    right={!this.props.isClassroom}
+                    width={this.props.isPpt ? 360 : 280}
+                    right={false}
                     isOpen={this.props.isVisible}
                     onStateChange={async menuState => {
                         if (!menuState.isOpen) {

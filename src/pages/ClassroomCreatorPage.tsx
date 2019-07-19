@@ -14,10 +14,10 @@ export type ClassroomCreatorPageState = {
 export enum NetlessRoomType {
     live = "live",
     interactive = "interactive",
-
+    teacher_interactive = "teacher_interactive",
 }
 export type ClassroomCreatorPageProps = RouteComponentProps<{
-    classroomType: NetlessRoomType;
+    netlessRoomType: NetlessRoomType;
     uuid?: string;
 }>;
 
@@ -61,7 +61,7 @@ class ClassroomCreatorPage extends React.Component<ClassroomCreatorPageProps, Cl
     }
 
     public render(): React.ReactNode {
-        const classroomType = this.props.match.params.classroomType;
+        const classroomType = this.props.match.params.netlessRoomType;
         if (this.state.foundError) {
             return <PageError/>;
         } else if (this.state.uuid && this.state.userId) {

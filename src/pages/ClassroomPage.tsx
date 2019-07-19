@@ -15,8 +15,8 @@ import PageError from "./PageError";
 import * as loading from "../assets/image/loading.svg";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import * as OSS from "ali-oss";
-import {netlessToken, ossConfigObj} from "../appToken";
-import {message} from "antd";
+import {netlessToken, ossConfigObj, rtcAppId} from "../appToken";
+import {Button, message} from "antd";
 import {isMobile} from "react-device-detect";
 import {RouteComponentProps} from "react-router";
 import {UserCursor} from "../components/whiteboard/UserCursor";
@@ -32,11 +32,15 @@ import MenuHotKey from "../components/menu/MenuHotKey";
 import MenuAnnexBox from "../components/menu/MenuAnnexBox";
 import MenuPPTDoc from "../components/menu/MenuPPTDoc";
 import * as arrow from "../assets/image/arrow.svg";
+import * as camera from "../assets/image/camera.svg";
+import * as student from "../assets/image/student.svg";
+import * as teacher from "../assets/image/teacher.svg";
 import WhiteboardTopLeft from "../components/whiteboard/WhiteboardTopLeft";
 import WhiteboardTopRight from "../components/whiteboard/WhiteboardTopRight";
 import WhiteboardBottomLeft from "../components/whiteboard/WhiteboardBottomLeft";
 import WhiteboardRecord from "../components/whiteboard/WhiteboardRecord";
 import WhiteboardBottomRight, {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
+const AgoraRTC = require("../rtc/rtsLib/AgoraRTC-production.js");
 import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 export type ClassroomProps = RouteComponentProps<{
@@ -58,6 +62,8 @@ export type ClassroomState = {
     isMenuOpen: boolean;
     isReadyOnly: boolean;
     messages:  MessageType[],
+    isRtcStart: boolean,
+    isMaskAppear: boolean,
     mediaSource?: string;
     isMediaRun?: boolean;
     startRecordTime?: number;
@@ -73,6 +79,8 @@ export type ClassroomState = {
 class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
     private readonly cursor: UserCursor;
     private didLeavePage: boolean = false;
+    private agoraClient: any;
+    private localStream: any;
     public constructor(props: ClassroomProps) {
         super(props);
         this.state = {
@@ -89,6 +97,8 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             isMenuOpen: false,
             isReadyOnly: props.match.params.netlessRoomType === NetlessRoomType.live,
             messages: [],
+            isRtcStart: false,
+            isMaskAppear: false,
         };
         this.cursor = new UserCursor();
     }
@@ -99,6 +109,126 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         } else {
             return null;
         }
+    }
+    private startRtc = (uid: number, channelId: string, room: Room): void => {
+        const {netlessRoomType} = this.props.match.params;
+        if (!this.agoraClient) {
+            this.agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
+            this.agoraClient.init(rtcAppId.agoraAppId, () => {
+                console.log("AgoraRTC client initialized");
+            }, (err: any) => {
+                console.log("AgoraRTC client init failed", err);
+            });
+        }
+        let localStream: any;
+        let userRtcId: number;
+        if (netlessRoomType === NetlessRoomType.teacher_interactive) {
+            userRtcId = 52;
+            localStream = AgoraRTC.createStream({
+                streamID: 52,
+                audio: true,
+                video: true,
+                screen: false,
+                },
+            );
+        } else if (netlessRoomType === NetlessRoomType.interactive) {
+            if (room.state.roomMembers.length === 2) {
+                userRtcId = 1;
+                localStream = AgoraRTC.createStream({
+                        streamID: 1,
+                        audio: true,
+                        video: true,
+                        screen: false,
+                    },
+                );
+            } else if (room.state.roomMembers.length === 3) {
+                userRtcId = 2;
+                localStream = AgoraRTC.createStream({
+                        streamID: 2,
+                        audio: true,
+                        video: true,
+                        screen: false,
+                    },
+                );
+            } else if (room.state.roomMembers.length === 4) {
+                userRtcId = 3;
+                localStream = AgoraRTC.createStream({
+                        streamID: 3,
+                        audio: true,
+                        video: true,
+                        screen: false,
+                    },
+                );
+            } else {
+                userRtcId = uid;
+                localStream = AgoraRTC.createStream({
+                        streamID: uid,
+                        audio: true,
+                        video: true,
+                        screen: false,
+                    },
+                );
+            }
+        }
+        this.localStream = localStream;
+        this.localStream.init(()  => {
+            console.log("getUserMedia successfully");
+            this.setState({isRtcStart: true});
+            if (netlessRoomType === NetlessRoomType.teacher_interactive) {
+                this.localStream.play("netless-teacher");
+            } else if (netlessRoomType === NetlessRoomType.interactive) {
+                if (room.state.roomMembers.length === 2) {
+                    this.localStream.play("netless-student-1");
+                } else if (room.state.roomMembers.length === 3) {
+                    this.localStream.play("netless-student-2");
+                } else if (room.state.roomMembers.length === 4) {
+                    this.localStream.play("netless-student-3");
+                }
+            }
+            this.agoraClient.join(rtcAppId.agoraAppId, channelId, userRtcId, (userRtcId: number) => {
+                if (netlessRoomType !== NetlessRoomType.live) {
+                    this.agoraClient.publish(localStream, (err: any) => {
+                        console.log("Publish local stream error: " + err);
+                    });
+                }
+            }, (err: any) => {
+                console.log(err);
+            });
+        }, (err: any) => {
+            console.log("getUserMedia failed", err);
+        });
+        this.agoraClient.on("stream-published", () => {
+            console.log("Publish local stream successfully");
+        });
+        this.agoraClient.on("stream-added",  (evt: any) => {
+            const stream = evt.stream;
+            console.log("New stream added: " + stream.getId());
+            this.agoraClient.subscribe(stream);
+        });
+        this.agoraClient.on("peer-leave", (evt: any) => {
+            console.log("remote user left ", uid);
+        });
+        this.agoraClient.on("stream-subscribed", (evt: any) => {
+            const remoteStream = evt.stream;
+            if (remoteStream.getId() === 52) {
+                remoteStream.play("netless-teacher");
+            } else {
+                remoteStream.play(`netless-student-${remoteStream.getId()}`);
+            }
+            console.log("Subscribe remote stream successfully: " + remoteStream.getId());
+        });
+        this.agoraClient.on("mute-video", (evt: any) => {
+            const uid = evt.uid;
+        });
+        this.agoraClient.on("unmute-video", (evt: any) => {
+            const uid = evt.uid;
+        });
+        this.agoraClient.on("mute-audio", (evt: any) => {
+            const uid = evt.uid;
+        });
+        this.agoraClient.on("unmute-audio", (evt: any) => {
+            const uid = evt.uid;
+        });
     }
     private startJoinRoom = async (): Promise<void> => {
         const {userId, uuid, netlessRoomType} = this.props.match.params;
@@ -154,6 +284,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                 height: 675,
                 animationMode: "immediately",
             });
+            // this.startRtc(parseInt(this.state.userId), this.props.match.params.uuid, room);
             room.addMagixEventListener("message",  event => {
                 this.setState({messages: [...this.state.messages, event.payload]});
             });
@@ -227,7 +358,6 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         document.body.style.overflow = "hidden";
         window.addEventListener("resize", this.onWindowResize);
     }
-
     public async componentDidMount(): Promise<void> {
         await this.startJoinRoom();
         if (this.state.room && this.state.room.state.roomMembers) {
@@ -314,6 +444,16 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
     private setStopTime = (time: number): void => {
         this.setState({stopRecordTime: time});
     }
+    private stop = (): void => {
+        this.agoraClient.leave(() => {
+            console.log("Leave channel successfully");
+            this.setState({isRtcStart: false});
+            this.localStream.stop();
+            this.localStream.close();
+        }, (err: any) => {
+            console.log("Leave channel failed");
+        });
+    }
     public render(): React.ReactNode {
         if (this.state.connectedFail) {
             return <PageError/>;
@@ -336,7 +476,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                 <div id="outer-container-2">
                     <MenuBox
                         setMenuState={this.setMenuState}
-                        isClassroom={true}
+                        isPpt={this.state.menuInnerState === MenuInnerType.PPTBox}
                         resetMenu={this.resetMenu}
                         pageWrapId={"page-wrap-2"}
                         outerContainerId={"outer-container-2"}
@@ -355,7 +495,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                             <WhiteboardTopLeft room={this.state.room}/>
                             <WhiteboardTopRight
                                 oss={ossConfigObj}
-                                netlessRoomType={this.props.match.params.netlessRoomType}
+                                readOnly={this.state.room.state.roomMembers.length >= 4}
                                 onProgress={this.progress}
                                 whiteboardRef={this.state.whiteboardLayerDownRef}
                                 roomState={this.state.roomState}
@@ -407,16 +547,57 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                         </Dropzone>
                         <div className="classroom-box-right">
                             <div className="classroom-box-video">
-                                <div className="classroom-box-teacher-video">
-                                </div>
-                                <div className="classroom-box-students-video">
-                                    <div className="classroom-box-student-cell">
+                                {this.state.isRtcStart ?
+                                    <div
+                                        onMouseEnter={() => this.setState({isMaskAppear: true})}
+                                        onMouseLeave={() => this.setState({isMaskAppear: false})}
+                                        className="classroom-box-video-mid">
+                                        {this.state.isMaskAppear &&
+                                        <div className="classroom-box-video-mask">
+                                            <Button
+                                                onClick={() => this.stop()}
+                                                type="primary">结束</Button>
+                                        </div>}
+                                        <div className="classroom-box-teacher-video">
+                                            <div id="netless-teacher" className="classroom-box-teacher-layer-1">
+                                            </div>
+                                            <div className="classroom-box-teacher-layer-2">
+                                                <img src={teacher}/>
+                                            </div>
+                                        </div>
+                                        <div className="classroom-box-students-video">
+                                            <div className="classroom-box-student-cell">
+                                                <div id="netless-student-1" className="classroom-box-student-layer-1">
+                                                </div>
+                                                <div className="classroom-box-student-layer-2">
+                                                    <img src={student}/>
+                                                </div>
+                                            </div>
+                                            <div className="classroom-box-student-cell">
+                                                <div id="netless-student-2" className="classroom-box-student-layer-1">
+                                                </div>
+                                                <div style={{backgroundColor: "#2B2B2B"}} className="classroom-box-student-layer-2">
+                                                    <img src={student}/>
+                                                </div>
+                                            </div>
+                                            <div className="classroom-box-student-cell">
+                                                <div id="netless-student-3" className="classroom-box-student-layer-1">
+                                                </div>
+                                                <div className="classroom-box-student-layer-2">
+                                                    <img src={student}/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> :
+                                    <div className="classroom-box-video-mid-2">
+                                        <img style={{width: 108, marginBottom: 24}} src={camera}/>
+                                        <Button
+                                            style={{width: 108}}
+                                            onClick={() => this.startRtc(parseInt(this.state.userId), this.props.match.params.uuid, this.state.room!)}
+                                            type="primary">开始视频通讯</Button>
+
                                     </div>
-                                    <div className="classroom-box-student-cell">
-                                    </div>
-                                    <div className="classroom-box-student-cell">
-                                    </div>
-                                </div>
+                                }
                             </div>
                             <div className="classroom-box-chart">
                                 <WhiteboardChat

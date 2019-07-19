@@ -29,8 +29,8 @@ export class AppRoutes extends React.Component<{}, {}> {
                 {path: "/", component: PageNameInput},
                 {path: "/whiteboard/:netlessRoomType/:uuid?/", component: WhiteboardCreatorPage},
                 {path: "/whiteboard/:netlessRoomType/:uuid/:userId/", component: WhiteboardPage},
-                {path: "/classroom/:classroomType/:uuid?/", component: ClassroomCreatorPage},
-                {path: "/classroom/:classroomType/:uuid/:userId/", component: ClassroomPage},
+                {path: "/classroom/:netlessRoomType/:uuid?/", component: ClassroomCreatorPage},
+                {path: "/classroom/:netlessRoomType/:uuid/:userId/", component: ClassroomPage},
             ]}/>
         );
     }

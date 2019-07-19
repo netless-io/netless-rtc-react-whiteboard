@@ -425,7 +425,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                 <WhiteboardTopLeft room={this.state.room}/>
                                 <WhiteboardTopRight
                                     oss={ossConfigObj}
-                                    netlessRoomType={this.props.match.params.netlessRoomType}
                                     onProgress={this.progress}
                                     whiteboardRef={this.state.whiteboardLayerDownRef}
                                     roomState={this.state.roomState}

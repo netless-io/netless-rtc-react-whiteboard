@@ -30,12 +30,11 @@ export type WhiteboardTopRightState = {
     netlessRoomType: NetlessRoomType;
 };
 
-export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProps & {
+export type WhiteboardTopRightProps = RouteComponentProps<{netlessRoomType: NetlessRoomType}> & InjectedIntlProps & {
     room: Room,
     number: string,
     uuid: string,
     roomState: RoomState,
-    netlessRoomType: NetlessRoomType,
     oss: {
         accessKeyId: string,
         accessKeySecret: string,
@@ -44,6 +43,7 @@ export type WhiteboardTopRightProps = RouteComponentProps<{}> & InjectedIntlProp
         folder: string,
         prefix: string,
     },
+    readOnly?: boolean,
     whiteboardRef?: HTMLDivElement,
     onProgress?: PPTProgressListener,
 };
@@ -59,12 +59,9 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
             isInviteVisible: false,
             isSetVisible: false,
             url: location.href,
-            netlessRoomType: props.netlessRoomType,
+            netlessRoomType: this.props.match.params.netlessRoomType,
         };
         this.renderBroadController = this.renderBroadController.bind(this);
-    }
-
-    public componentWillMount(): void {
     }
 
     public componentWillReceiveProps(nextProps: WhiteboardTopRightProps): void {
@@ -191,21 +188,45 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
     }
 
     private handleUrl = (url: string): string => {
-        const regex = /[\w]+\/$/gm;
-        const match = regex.exec(url);
-        if (match) {
-            return url.substring(0, match.index);
+        let classUrl;
+        if (this.state.netlessRoomType === NetlessRoomType.teacher_interactive) {
+            classUrl = url.replace(`${NetlessRoomType.teacher_interactive}`, `${NetlessRoomType.interactive}`);
         } else {
-            return url;
+            classUrl = url;
+        }
+        if (this.props.readOnly) {
+            classUrl = classUrl.replace(`${NetlessRoomType.interactive}`, `${NetlessRoomType.live}`);
+        }
+        const regex = /[\w]+\/$/gm;
+        const match = regex.exec(classUrl);
+        if (match) {
+            return classUrl.substring(0, match.index);
+        } else {
+            return classUrl;
         }
     }
     private switchWhiteboardRoomType = (): void => {
         if (this.state.netlessRoomType === NetlessRoomType.interactive) {
             const shareUrl = this.state.url.replace(`${NetlessRoomType.interactive}`, `${NetlessRoomType.live}`);
             this.setState({url: shareUrl, netlessRoomType: NetlessRoomType.live});
+        } else if (this.state.netlessRoomType === NetlessRoomType.teacher_interactive) {
+            const shareUrl = this.state.url.replace(`${NetlessRoomType.teacher_interactive}`, `${NetlessRoomType.live}`);
+            this.setState({url: shareUrl, netlessRoomType: NetlessRoomType.live});
         } else {
             const shareUrl = this.state.url.replace(`${NetlessRoomType.live}`, `${NetlessRoomType.interactive}`);
             this.setState({url: shareUrl, netlessRoomType: NetlessRoomType.interactive});
+        }
+    }
+
+    private renderShareTitle = (): React.ReactNode => {
+        if (this.props.readOnly) {
+            return "分享只读房间";
+        } else {
+            if (this.state.netlessRoomType !== NetlessRoomType.live) {
+                return  "未开启只读模式";
+            } else {
+                return  "已开启只读模式";
+            }
         }
     }
 
@@ -280,10 +301,12 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                             <div className="whiteboard-share-box-image">
                                 <div className="whiteboard-share-box-btn">
                                     <div className="whiteboard-share-box-title">{
-                                        this.state.netlessRoomType === NetlessRoomType.interactive ? "未开启只读模式" :
-                                            "已开启只读模式"
+                                       this.renderShareTitle()
                                     }</div>
-                                    <Switch onChange={() => this.switchWhiteboardRoomType()}/>
+                                    {   this.props.readOnly ?
+                                        <Switch checked={true} disabled={true} onChange={() => this.switchWhiteboardRoomType()}/> :
+                                        <Switch onChange={() => this.switchWhiteboardRoomType()}/>
+                                    }
                                 </div>
                                 <div className="whiteboard-share-box-btn">
                                     <QRCode value={`${this.handleUrl(this.state.url)}`} />
