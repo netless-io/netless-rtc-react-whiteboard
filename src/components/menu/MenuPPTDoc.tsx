@@ -2,9 +2,11 @@ import * as React from "react";
 import "./MenuPPTDoc.less";
 import PPTDatas, {PPTDataType, PPTType} from "./PPTDatas";
 import {Room} from "white-react-sdk";
+import close from "../../assets/image/close_white.svg";
 
 export type MenuPPTDocProps = {
     room: Room;
+    handleAnnexBoxMenuState?: () => void;
 };
 export type MenuPPTDocStates = {
     docs: PPTDataType[];
@@ -69,14 +71,13 @@ class MenuPPTDoc extends React.Component<MenuPPTDocProps, MenuPPTDocStates> {
             }
         });
         this.setState({docs: docsArray});
-        const proportion = window.innerWidth / window.innerHeight;
-        if (proportion > 1) {
-            const zoomNumber = window.innerHeight / 675;
-            room.moveCamera({scale: zoomNumber});
-        } else {
-            const zoomNumber = window.innerWidth / 1200;
-            room.moveCamera({scale: zoomNumber});
-        }
+        room.moveCameraToContain({
+            originX: - 600,
+            originY: - 337.5,
+            width: 1200,
+            height: 675,
+            animationMode: "immediately",
+        });
     }
 
     public render(): React.ReactNode {
@@ -126,6 +127,10 @@ class MenuPPTDoc extends React.Component<MenuPPTDocProps, MenuPPTDocStates> {
                     <div className="menu-ppt-text-box">
                         Documents
                     </div>
+                    {this.props.handleAnnexBoxMenuState &&
+                    <div className="menu-close-btn" onClick={this.props.handleAnnexBoxMenuState}>
+                        <img className="menu-title-close-icon" src={close}/>
+                    </div>}
                 </div>
                 <div style={{height: 42}}/>
                 <div style={{width: "100%", height: 24}}/>

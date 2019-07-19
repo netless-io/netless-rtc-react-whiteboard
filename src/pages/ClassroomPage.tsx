@@ -254,6 +254,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                     handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}/>;
             case MenuInnerType.PPTBox:
                 return <MenuPPTDoc
+                    handleAnnexBoxMenuState={this.handlePptMenuState}
                     room={this.state.room!}/>;
             default:
                 return null;
@@ -273,19 +274,18 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             isMenuLeft: false,
         });
     }
+
+    private handlePptMenuState = (): void => {
+        this.setState({
+            isMenuVisible: !this.state.isMenuVisible,
+            menuInnerState: MenuInnerType.PPTBox,
+            isMenuLeft: false,
+        });
+    }
     private setMenuState = (state: boolean) => {
         this.setState({isMenuOpen: state});
     }
     private resetMenu = () => {
-        if (this.state.room) {
-            this.state.room.moveCameraToContain({
-                originX: - 600,
-                originY: - 337.5,
-                width: 1200,
-                height: 675,
-                animationMode: "immediately",
-            });
-        }
         this.setState({
             isMenuVisible: false,
             isMenuLeft: false,
@@ -315,7 +315,6 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         this.setState({stopRecordTime: time});
     }
     public render(): React.ReactNode {
-
         if (this.state.connectedFail) {
             return <PageError/>;
 
@@ -339,9 +338,8 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                         setMenuState={this.setMenuState}
                         isClassroom={true}
                         resetMenu={this.resetMenu}
-                        pageWrapId={"page-wrap-2" }
-                        outerContainerId={ "outer-container-2" }
-                        isLeft={this.state.isMenuLeft}
+                        pageWrapId={"page-wrap-2"}
+                        outerContainerId={"outer-container-2"}
                         isVisible={this.state.isMenuVisible}
                         menuInnerState={this.state.menuInnerState}>
                         {this.renderMenuInner()}
@@ -400,7 +398,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                     memberState={this.state.room.state.memberState}/>
                             </div>
                             <div onClick={this.handlePPtBoxMenuState}
-                                 className={(this.state.menuInnerState === MenuInnerType.PPTBox && this.state.isMenuVisible) ? "slide-box-active" : "slide-box"}>
+                                 className={"slide-box"}>
                                 <img src={arrow}/>
                             </div>
                             <div className="classroom-box-left" ref={this.setWhiteboardLayerDownRef}>

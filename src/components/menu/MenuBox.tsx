@@ -73,7 +73,7 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
                     outerContainerId={this.props.outerContainerId}
                     width={360}
                     styles={styles3}
-                    isOpen={this.props.isVisible}
+                    isOpen={true}
                     onStateChange={async menuState => {
                         if (!menuState.isOpen) {
                             await timeout(500);
@@ -91,7 +91,7 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
                     outerContainerId={this.props.outerContainerId}
                     noOverlay
                     styles={this.state.menuStyles}
-                    width={280}
+                    width={this.props.isClassroom ? 360 : 280}
                     right={!this.props.isClassroom}
                     isOpen={this.props.isVisible}
                     onStateChange={async menuState => {

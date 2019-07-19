@@ -274,15 +274,6 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
     }
 
     private resetMenu = () => {
-        if (this.state.room) {
-            this.state.room.moveCameraToContain({
-                originX: - 600,
-                originY: - 337.5,
-                width: 1200,
-                height: 675,
-                animationMode: "immediately",
-            });
-        }
         this.setState({
             isMenuVisible: false,
             isMenuLeft: false,
