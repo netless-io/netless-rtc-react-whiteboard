@@ -14,6 +14,7 @@ export type WhiteboardRecordProps = {
     setMediaSource: (source: string) => void;
     channelName: string;
     isMediaRun?: boolean;
+    isReadOnly?: boolean;
 };
 
 class WhiteboardRecord extends React.Component<WhiteboardRecordProps, WhiteboardRecordState> {
@@ -101,7 +102,7 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
     public render(): React.ReactNode {
         if (isMobile) {
             return (
-                <div onClick={this.record} className="record-box-mb">
+                <div style={{display: this.props.isReadOnly ? "none" : "flex"}} onClick={this.record} className="record-box-mb">
                     {this.state.isRecord ?
                         <div className="record-box-inner-rect-mb"/> :
                         <div className="record-box-inner-mb"/>
@@ -110,7 +111,7 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
             );
         } else {
             return (
-                <div onClick={this.record} className="record-box">
+                <div style={{display: this.props.isReadOnly ? "none" : "flex"}} onClick={this.record} className="record-box">
                     {this.state.isRecord ?
                         <div className="record-box-inner-rect"/> :
                         <div className="record-box-inner"/>

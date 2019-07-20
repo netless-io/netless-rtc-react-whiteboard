@@ -36,6 +36,7 @@ export type WhiteboardBottomRightProps = {
     handleHotKeyMenuState: () => void;
     handleAnnexBoxMenuState: () => void;
     isClassroom?: boolean;
+    isReadOnly?: boolean;
 };
 
 class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, hotkeyTooltipState> {
@@ -160,7 +161,7 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
     public render(): React.ReactNode {
         if (isMobile) {
             return (
-                <div className="whiteboard-box-bottom-right-mb">
+                <div style={{display: this.props.isReadOnly ? "none" : "flex"}} className="whiteboard-box-bottom-right-mb">
                     <div className="whiteboard-box-bottom-right-mid-mb">
                         {this.renderAnnexBoxMobile()}
                     </div>
@@ -168,7 +169,7 @@ class WhiteboardBottomRight extends React.Component<WhiteboardBottomRightProps, 
             );
         } else {
             return (
-                <div className="whiteboard-box-bottom-right">
+                <div style={{display: this.props.isReadOnly ? "none" : "flex"}} className="whiteboard-box-bottom-right">
                     <div className="whiteboard-box-bottom-right-mid">
                         {/*<Tooltip placement="top" title={"快捷键"} visible={this.state.hotkeyTooltipDisplay}>*/}
                         {/*<div*/}

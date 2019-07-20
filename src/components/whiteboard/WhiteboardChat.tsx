@@ -22,6 +22,7 @@ export type WhiteboardChatProps = {
     messages: MessageType[];
     userId: string;
     isClassroom?: boolean;
+    isReadonly?: boolean;
 };
 
 export type WhiteboardChatStates = {
@@ -139,7 +140,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
                             </MessageList>}
                             <div className="under-cell" ref={ref => this.messagesEnd = ref}/>
                         </div>
-                        <div className="chat-box-input">
+                        <div className={this.props.isReadonly ? "chat-box-input-disable" : "chat-box-input"}>
                             <TextComposer
                                 onSend={(event: any) => {
                                     this.props.room.dispatchMagixEvent("message", {
@@ -151,7 +152,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
                                 }}
                             >
                                 <Row align="center">
-                                    <TextInput fill="true"/>
+                                    <TextInput placeholder={this.props.isReadonly ? "只读用户不可参与互动~" : "输入聊天内容~"} fill="true"/>
                                     <SendButton fit />
                                 </Row>
                             </TextComposer>

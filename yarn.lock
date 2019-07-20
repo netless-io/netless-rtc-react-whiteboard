@@ -46,10 +46,17 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.4.5":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.5":
   version "7.4.5"
   resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
   integrity sha1-WCu1MfX53GfS/LaCl5iU914lPxI=
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
+"@babel/runtime@^7.2.0":
+  version "7.5.5"
+  resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.5.5.tgz?cache=0&sync_timestamp=1563398515522&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.5.5.tgz#74fba56d35efbeca444091c7850ccd494fd2f132"
+  integrity sha1-dPulbTXvvspEQJHHhQzNSU/S8TI=
   dependencies:
     regenerator-runtime "^0.13.2"
 
@@ -85,7 +92,7 @@
   resolved "https://registry.npm.taobao.org/@livechat/data-utils/download/@livechat/data-utils-0.2.7.tgz#5b7cf86bcc0e573a63a6c4df0013a9ca7d526779"
   integrity sha1-W3z4a8wOVzpjpsTfABOpyn1SZ3k=
 
-"@livechat/ui-kit@^0.4.0-1":
+"@livechat/ui-kit@^0.4.0-5":
   version "0.4.0-5"
   resolved "https://registry.npm.taobao.org/@livechat/ui-kit/download/@livechat/ui-kit-0.4.0-5.tgz#7bbf4d76094a28c133ba05af83ebe961765afe5e"
   integrity sha1-e79NdglKKMEzugWvg+vpYXZa/l4=
@@ -3040,10 +3047,15 @@ cssstyle@^1.0.0:
   dependencies:
     cssom "0.3.x"
 
-csstype@^2.2.0, csstype@^2.5.2:
+csstype@^2.2.0:
   version "2.6.5"
   resolved "https://registry.npm.taobao.org/csstype/download/csstype-2.6.5.tgz#1cd1dff742ebf4d7c991470ae71e12bb6751e034"
   integrity sha1-HNHf90Lr9NfJkUcK5x4Su2dR4DQ=
+
+csstype@^2.5.2:
+  version "2.6.6"
+  resolved "https://registry.npm.taobao.org/csstype/download/csstype-2.6.6.tgz#c34f8226a94bbb10c32cc0d714afdf942291fc41"
+  integrity sha1-w0+CJqlLuxDDLMDXFK/flCKR/EE=
 
 currently-unhandled@^0.4.1:
   version "0.4.1"
@@ -9565,9 +9577,9 @@ react-toggled@^1.2.7:
   integrity sha1-vhtyBYNY3R/+EYEeRCflyc8UDBA=
 
 react-transition-group@^4.0.1:
-  version "4.2.0"
-  resolved "https://registry.npm.taobao.org/react-transition-group/download/react-transition-group-4.2.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-transition-group%2Fdownload%2Freact-transition-group-4.2.0.tgz#cb1df235e128276def06617b72a9ab135d01955a"
-  integrity sha1-yx3yNeEoJ23vBmF7cqmrE10BlVo=
+  version "4.2.1"
+  resolved "https://registry.npm.taobao.org/react-transition-group/download/react-transition-group-4.2.1.tgz#61fc9e36568bff9a1fe4e60fae323c8a6dbc0680"
+  integrity sha1-YfyeNlaL/5of5OYPrjI8im28BoA=
   dependencies:
     "@babel/runtime" "^7.4.5"
     dom-helpers "^3.4.0"

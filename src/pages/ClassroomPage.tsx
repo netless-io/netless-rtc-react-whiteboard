@@ -35,6 +35,8 @@ import * as arrow from "../assets/image/arrow.svg";
 import * as camera from "../assets/image/camera.svg";
 import * as student from "../assets/image/student.svg";
 import * as teacher from "../assets/image/teacher.svg";
+import * as set_video from "../assets/image/set_video.svg";
+import * as close_white from "../assets/image/close_white.svg";
 import WhiteboardTopLeft from "../components/whiteboard/WhiteboardTopLeft";
 import WhiteboardTopRight from "../components/whiteboard/WhiteboardTopRight";
 import WhiteboardBottomLeft from "../components/whiteboard/WhiteboardBottomLeft";
@@ -169,6 +171,15 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                     },
                 );
             }
+        } else {
+            userRtcId = uid;
+            localStream = AgoraRTC.createStream({
+                    streamID: uid,
+                    audio: true,
+                    video: true,
+                    screen: false,
+                },
+            );
         }
         this.localStream = localStream;
         this.localStream.init(()  => {
@@ -206,7 +217,19 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             this.agoraClient.subscribe(stream);
         });
         this.agoraClient.on("peer-leave", (evt: any) => {
-            console.log("remote user left ", uid);
+            const stream = evt.stream;
+            if (stream.getId() === 52) {
+                const videoNode = document.getElementById("netless-teacher");
+                if (videoNode && videoNode.children[0]) {
+                    videoNode.removeChild(videoNode.children[0]);
+                }
+            } else if (stream.getId() <= 3) {
+                const videoNode = document.getElementById(`netless-student-${stream.getId()}`);
+                if (videoNode && videoNode.children[0]) {
+                    videoNode.removeChild(videoNode.children[0]);
+                }
+            }
+            console.log("remote user left ", stream.getId());
         });
         this.agoraClient.on("stream-subscribed", (evt: any) => {
             const remoteStream = evt.stream;
@@ -290,6 +313,9 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             });
             if (netlessRoomType === NetlessRoomType.live) {
                 await room.setWritable(false);
+                message.info("您是观众用户，只能观看直播不能互动");
+            } else {
+                message.info("开始互动课程");
             }
             this.setState({room: room, roomState: room.state, roomToken: roomToken});
         } else {
@@ -450,6 +476,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             this.setState({isRtcStart: false});
             this.localStream.stop();
             this.localStream.close();
+            this.setState({isMaskAppear: false});
         }, (err: any) => {
             console.log("Leave channel failed");
         });
@@ -472,6 +499,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                 <img src={loading}/>
             </div>;
         } else {
+            const isReadOnly = this.props.match.params.netlessRoomType === NetlessRoomType.live;
             return (
                 <div id="outer-container-2">
                     <MenuBox
@@ -495,7 +523,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                             <WhiteboardTopLeft room={this.state.room}/>
                             <WhiteboardTopRight
                                 oss={ossConfigObj}
-                                readOnly={this.state.room.state.roomMembers.length >= 4}
+                                readOnly={isReadOnly}
                                 onProgress={this.progress}
                                 whiteboardRef={this.state.whiteboardLayerDownRef}
                                 roomState={this.state.roomState}
@@ -509,9 +537,11 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                 userId={this.state.userId}
                                 mediaSource={this.state.mediaSource}
                                 stopTime={this.state.stopRecordTime}
+                                isReadOnly={isReadOnly}
                                 startTime={this.state.startRecordTime}/>
                             <WhiteboardRecord
                                 setMediaSource={this.setMediaSource}
+                                isReadOnly={isReadOnly}
                                 channelName={this.props.match.params.uuid}
                                 isMediaRun={this.state.isMediaRun}
                                 setStopTime={this.setStopTime}
@@ -522,8 +552,9 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                 handleAnnexBoxMenuState={this.handleAnnexBoxMenuState}
                                 handleHotKeyMenuState={this.handleHotKeyMenuState}
                                 isClassroom={true}
+                                isReadOnly={isReadOnly}
                                 room={this.state.room}/>
-                            <div className="whiteboard-tool-box">
+                            <div style={{display: isReadOnly ? "none" : "flex"}} className="whiteboard-tool-box">
                                 <ToolBox
                                     setMemberState={this.setMemberState}
                                     customerComponent={[
@@ -537,7 +568,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                     ]}
                                     memberState={this.state.room.state.memberState}/>
                             </div>
-                            <div onClick={this.handlePPtBoxMenuState}
+                            <div style={{display: isReadOnly ? "none" : "flex"}} onClick={this.handlePPtBoxMenuState}
                                  className={"slide-box"}>
                                 <img src={arrow}/>
                             </div>
@@ -548,16 +579,18 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                         <div className="classroom-box-right">
                             <div className="classroom-box-video">
                                 {this.state.isRtcStart ?
-                                    <div
-                                        onMouseEnter={() => this.setState({isMaskAppear: true})}
-                                        onMouseLeave={() => this.setState({isMaskAppear: false})}
-                                        className="classroom-box-video-mid">
+                                    <div className="classroom-box-video-mid">
                                         {this.state.isMaskAppear &&
                                         <div className="classroom-box-video-mask">
                                             <Button
                                                 onClick={() => this.stop()}
                                                 type="primary">结束</Button>
                                         </div>}
+                                        <div onClick={() => {
+                                            this.setState({isMaskAppear: !this.state.isMaskAppear});
+                                        }} className="classroom-box-video-set">
+                                            {this.state.isMaskAppear ? <img style={{width: 14}} src={close_white}/> : <img src={set_video}/>}
+                                        </div>
                                         <div className="classroom-box-teacher-video">
                                             <div id="netless-teacher" className="classroom-box-teacher-layer-1">
                                             </div>
@@ -590,12 +623,13 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                         </div>
                                     </div> :
                                     <div className="classroom-box-video-mid-2">
-                                        <img style={{width: 108, marginBottom: 24}} src={camera}/>
-                                        <Button
-                                            style={{width: 108}}
-                                            onClick={() => this.startRtc(parseInt(this.state.userId), this.props.match.params.uuid, this.state.room!)}
-                                            type="primary">开始视频通讯</Button>
-
+                                        <div className="classroom-box-video-mid-inner">
+                                            <img style={{width: 108, marginBottom: 24}} src={camera}/>
+                                            <Button
+                                                style={{width: 108}}
+                                                onClick={() => this.startRtc(parseInt(this.state.userId), this.props.match.params.uuid, this.state.room!)}
+                                                type="primary">开始视频通讯</Button>
+                                        </div>
                                     </div>
                                 }
                             </div>
@@ -604,6 +638,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                     room={this.state.room}
                                     messages={this.state.messages}
                                     isClassroom={true}
+                                    isReadonly={isReadOnly}
                                     userId={this.state.userId}/>
                             </div>
                         </div>

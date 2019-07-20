@@ -282,7 +282,7 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                                 size={28}
                                 string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.number)}`)}/>
                         </div>
-                        {this.renderBroadController()}
+                        {!this.props.readOnly && this.renderBroadController()}
                         <Tooltip placement="bottomLeft" title={"invite your friend"}>
                             <div
                                 style={{marginRight: 12}}
