@@ -43,6 +43,7 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
         if (isMobile) {
             return (
                 <div
+                    style={{display: this.props.isReadOnly ? "none" : "flex"}}
                     onClick={async () => {
                         await this.props.room.disconnect();
                         if (startTime && stopTime) {

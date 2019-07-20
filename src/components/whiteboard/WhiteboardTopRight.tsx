@@ -140,6 +140,9 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
         const perspectiveState = roomState.broadcastState;
         const isBroadcaster = perspectiveState.mode === ViewMode.Broadcaster;
         const hasBroadcaster = perspectiveState.broadcasterId !== undefined;
+        if (this.props.readOnly) {
+            return null;
+        }
         if (isBroadcaster) {
             return (
                 <div
@@ -236,11 +239,11 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                 <div className="whiteboard-box-top-right-mb">
                     <div
                         className="whiteboard-box-top-right-mid-mb">
-                        <UploadBtnMobile
+                        {!this.props.readOnly && <UploadBtnMobile
                             room={this.props.room}
                             oss={this.props.oss}
                             onProgress={this.props.onProgress}
-                            whiteboardRef={this.props.whiteboardRef} />
+                            whiteboardRef={this.props.whiteboardRef} />}
                         {isMobile ? this.renderBroadControllerMbile() : this.renderBroadController()}
                         <div
                             className="whiteboard-top-bar-btn-mb" onClick={this.handleInvite}>

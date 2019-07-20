@@ -14,6 +14,7 @@ import {
 import {Room} from "white-web-sdk";
 import {MessageType} from "./WhiteboardBottomRight";
 import {netlessWhiteboardApi, UserInfType} from "../../apiMiddleware";
+import {isMobile} from "react-device-detect";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
@@ -52,8 +53,10 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
         await timeout(0);
         this.scrollToBottom();
         const canvasArray: any = document.getElementsByClassName("identicon").item(0);
-        const url = canvasArray.toDataURL();
-        this.setState({url: url});
+        if (canvasArray) {
+            const url = canvasArray.toDataURL();
+            this.setState({url: url});
+        }
     }
 
     public async componentWillReceiveProps(): Promise<void> {
@@ -62,6 +65,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
     }
 
     public render(): React.ReactNode {
+        const isClassMobile = this.props.isClassroom && isMobile;
         const messages: MessageType[] = this.props.messages; // 有很多内容
         if (messages.length > 0) {
             let previousName = messages[0].name;
@@ -102,7 +106,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
             });
         }
         return (
-            <div className="chat-box">
+            <div className={isClassMobile ? "chat-box-mb" : "chat-box"}>
                 <ThemeProvider
                     theme={{
                         vars: {
@@ -134,13 +138,13 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
                     }}
                 >
                     <div>
-                        <div className="chat-box-message">
+                        <div className={isClassMobile ? "chat-box-message-mb" : "chat-box-message"}>
                             {messageNodes !== null && <MessageList>
                                 {messageNodes}
                             </MessageList>}
                             <div className="under-cell" ref={ref => this.messagesEnd = ref}/>
                         </div>
-                        <div className={this.props.isReadonly ? "chat-box-input-disable" : "chat-box-input"}>
+                        <div style={{width: isClassMobile ? "100%" : "360px"}} className={this.props.isReadonly ? "chat-box-input-disable" : "chat-box-input"}>
                             <TextComposer
                                 onSend={(event: any) => {
                                     this.props.room.dispatchMagixEvent("message", {
