@@ -17,6 +17,7 @@ export type WhiteboardBottomLeftInnerProps = {
     roomState: RoomState;
     uuid: string;
     userId: string;
+    isClassroom?: boolean;
     startTime?: number;
     stopTime?: number;
     mediaSource?: string;
