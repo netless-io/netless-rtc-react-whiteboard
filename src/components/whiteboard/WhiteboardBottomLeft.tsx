@@ -17,9 +17,11 @@ export type WhiteboardBottomLeftInnerProps = {
     roomState: RoomState;
     uuid: string;
     userId: string;
+    isClassroom?: boolean;
     startTime?: number;
     stopTime?: number;
     mediaSource?: string;
+    isReadOnly?: boolean;
 };
 
 export type WhiteboardBottomLeftProps = RouteComponentProps<{}> & WhiteboardBottomLeftInnerProps;
@@ -41,6 +43,7 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
         if (isMobile) {
             return (
                 <div
+                    style={{display: this.props.isReadOnly ? "none" : "flex"}}
                     onClick={async () => {
                         await this.props.room.disconnect();
                         if (startTime && stopTime) {
@@ -62,7 +65,7 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
             );
         } else {
             return (
-                <div className="whiteboard-box-bottom-left">
+                <div style={{display: this.props.isReadOnly ? "none" : "flex"}} className="whiteboard-box-bottom-left">
                     <ScaleController zoomScale={roomState.zoomScale} zoomChange={this.zoomChange}/>
                     <Tooltip placement="top" title={"回放"}>
                         <div

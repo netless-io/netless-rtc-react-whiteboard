@@ -1,0 +1,183 @@
+@import "../../theme";
+
+.classroom-box {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+.classroom-box-mb {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.classroom-box-left {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.classroom-box-right-mb {
+  width: 100%;
+  height: 264px;
+  flex-shrink: 0;
+}
+
+.classroom-box-left-mb {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.classroom-box-right {
+  width: 360px;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.classroom-box-teacher-video {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.classroom-box-teacher-layer-1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.classroom-box-teacher-layer-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: #3C3F41;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 54px;
+    margin-top: -64px;
+  }
+}
+
+.classroom-box-students-video {
+  width: 360px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+}
+
+.classroom-box-students-video-mb {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+}
+
+.classroom-box-student-cell {
+  width: 33.33%;
+  height: 80px;
+  position: relative;
+}
+
+.classroom-box-student-layer-1 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+}
+.classroom-box-student-layer-2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background-color: #3C3F41;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  img {
+    width: 42px;
+  }
+}
+.classroom-box-chart {
+  width: 100%;
+  height: calc(~'100vh - 320px');;
+}
+.classroom-box-chart-mb {
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+}
+.classroom-box-video {
+  width: 100%;
+  height: 320px;
+  background-color: #3C3F41;
+  flex-shrink: 0;
+}
+.classroom-box-video-mb {
+  width: 100%;
+  height: 100%;
+  background-color: #3C3F41;
+  flex-shrink: 0;
+}
+.classroom-box-video-mid {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.classroom-box-video-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 4;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.classroom-box-video-mid-2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.classroom-box-video-mid-inner {
+  display: flex;
+  flex-direction: column;
+  height: 116px;
+}
+.classroom-box-video-set {
+  width: 32px;
+  height: 32px;
+  background-color: #3C3F41;
+  border-radius: 50%;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  img {
+    width: 26px;
+  }
+}

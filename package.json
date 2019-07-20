@@ -12,6 +12,7 @@
     "build": "rimraf build && NODE_ENV=production react-app-rewired --max-old-space-size=4096 build --scripts-version react-scripts-ts"
   },
   "dependencies": {
+    "@livechat/ui-kit": "^0.4.0-5",
     "@netless/fetch-middleware": "^1.0.4",
     "@netless/i18n-react-router": "^1.0.5",
     "@netless/oss-upload-manager": "^1.0.6",
@@ -38,10 +39,9 @@
     "react-dropzone": "4.2.10",
     "react-identicons": "^1.1.7",
     "uuid": "^3.3.2",
-    "white-react-sdk": "^2.2.4"
+    "white-react-sdk": "^2.2.6"
   },
   "devDependencies": {
-    "@livechat/ui-kit": "^0.4.0-1",
     "@types/ali-oss": "^6.0.3",
     "@types/is-touch-device": "^1.0.0",
     "@types/js-yaml": "^3.11.2",

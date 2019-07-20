@@ -5,7 +5,10 @@ import {message} from "antd";
 import WhiteboardCreatorPage from "./WhiteboardCreatorPage";
 import WhiteboardPage from "./WhiteboardPage";
 import PlayerPage from "./PlayerPage";
-import PageNameInput from "./Homepage";
+import ClassroomPlayerPage from "./ClassroomPlayerPage";
+import Homepage from "./Homepage";
+import ClassroomCreatorPage from "./ClassroomCreatorPage";
+import ClassroomPage from "./ClassroomPage";
 message.config({
     top: (window.innerHeight / 2 - 64),
     maxCount: 1,
@@ -23,10 +26,13 @@ export class AppRoutes extends React.Component<{}, {}> {
     public render(): React.ReactNode {
         return (
             <AppRouter historyType={HistoryType.HashRouter} language={language} routes={[
-                {path: "/replay/:uuid/:userId/:time?/:duration?/:mediaSource?/", component: PlayerPage},
-                {path: "/", component: PageNameInput},
-                {path: "/whiteboard/:whiteboardRoomType/:uuid?/", component: WhiteboardCreatorPage},
-                {path: "/whiteboard/:whiteboardRoomType/:uuid/:userId/", component: WhiteboardPage},
+                {path: "/replay/whiteboard/:uuid/:userId/:time?/:duration?/:mediaSource?/", component: PlayerPage},
+                {path: "/replay/classroom/:uuid/:userId/:time?/:duration?/:mediaSource?/", component: ClassroomPlayerPage},
+                {path: "/", component: Homepage},
+                {path: "/whiteboard/:netlessRoomType/:uuid?/", component: WhiteboardCreatorPage},
+                {path: "/whiteboard/:netlessRoomType/:uuid/:userId/", component: WhiteboardPage},
+                {path: "/classroom/:netlessRoomType/:uuid?/", component: ClassroomCreatorPage},
+                {path: "/classroom/:netlessRoomType/:uuid/:userId/", component: ClassroomPage},
             ]}/>
         );
     }
