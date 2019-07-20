@@ -285,7 +285,6 @@ class WhiteboardTopRight extends React.Component<WhiteboardTopRightProps, Whiteb
                         {!this.props.readOnly && this.renderBroadController()}
                         <Tooltip placement="bottomLeft" title={"invite your friend"}>
                             <div
-                                style={{marginRight: 12}}
                                 className="whiteboard-top-bar-btn" onClick={this.handleInvite}>
                                 <img src={add}/>
                             </div>
