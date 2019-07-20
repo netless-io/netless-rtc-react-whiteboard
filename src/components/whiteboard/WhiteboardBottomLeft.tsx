@@ -38,27 +38,33 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
         room.zoomChange(scale);
     }
 
+    private goToReplay = async (): Promise<void> => {
+        const {startTime, stopTime, mediaSource, isClassroom} = this.props;
+        await this.props.room.disconnect();
+        let netlessRoom: string = "whiteboard";
+        if (isClassroom) {
+            netlessRoom = "classroom";
+        }
+        if (startTime && stopTime) {
+            const duration = (stopTime - startTime);
+            if (mediaSource) {
+                push(this.props.history, `/replay/${netlessRoom}/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}/${mediaSource}`);
+            } else {
+                push(this.props.history, `/replay/${netlessRoom}/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
+            }
+        } else if (startTime) {
+            push(this.props.history, `/replay/${netlessRoom}/${this.props.uuid}/${this.props.userId}/${startTime}/`);
+        } else {
+            push(this.props.history, `/replay/${netlessRoom}/${this.props.uuid}/${this.props.userId}/`);
+        }
+    }
     public render(): React.ReactNode {
-        const {roomState, startTime, stopTime, mediaSource} = this.props;
+        const {roomState} = this.props;
         if (isMobile) {
             return (
                 <div
                     style={{display: this.props.isReadOnly ? "none" : "flex"}}
-                    onClick={async () => {
-                        await this.props.room.disconnect();
-                        if (startTime && stopTime) {
-                            const duration = (stopTime - startTime);
-                            if (mediaSource) {
-                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}/${mediaSource}`);
-                            } else {
-                                push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
-                            }
-                        } else if (startTime) {
-                            push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
-                        } else {
-                            push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
-                        }
-                    }}
+                    onClick={this.goToReplay}
                     className="whiteboard-box-bottom-left-player-mb">
                     <img src={player}/>
                 </div>
@@ -69,21 +75,7 @@ class WhiteboardBottomLeft extends React.Component<WhiteboardBottomLeftProps, {}
                     <ScaleController zoomScale={roomState.zoomScale} zoomChange={this.zoomChange}/>
                     <Tooltip placement="top" title={"回放"}>
                         <div
-                            onClick={async () => {
-                                await this.props.room.disconnect();
-                                if (startTime && stopTime) {
-                                    const duration = (stopTime - startTime);
-                                    if (mediaSource) {
-                                        push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}/${mediaSource}`);
-                                    } else {
-                                        push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/${duration}`);
-                                    }
-                                } else if (startTime) {
-                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/${startTime}/`);
-                                } else {
-                                    push(this.props.history, `/replay/${this.props.uuid}/${this.props.userId}/`);
-                                }
-                            }}
+                            onClick={this.goToReplay}
                             className="whiteboard-box-bottom-left-player">
                             <img src={player}/>
                         </div>
