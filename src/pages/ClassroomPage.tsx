@@ -298,8 +298,10 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         this.agoraClient.leave(() => {
             console.log("Leave channel successfully");
             this.setState({isRtcStart: false});
-            this.localStream.stop();
-            this.localStream.close();
+            if (this.localStream) {
+                this.localStream.stop();
+                this.localStream.close();
+            }
             this.setState({isMaskAppear: false});
         }, (err: any) => {
             console.log("Leave channel failed");
@@ -565,111 +567,108 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
     private startRtc = (uid: number, channelId: string, room: Room): void => {
         const {netlessRoomType} = this.props.match.params;
         if (!this.agoraClient) {
-            this.agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
+            const agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
+            AgoraRTS.init(AgoraRTC);
+            AgoraRTS.proxy(agoraClient);
+            this.agoraClient = agoraClient;
             this.agoraClient.init(rtcAppId.agoraAppId, () => {
                 console.log("AgoraRTC client initialized");
             }, (err: any) => {
                 console.log("AgoraRTC client init failed", err);
             });
         }
-        if (isMobile && AgoraRTS.checkSystemRequirements()) {
-            AgoraRTS.init(AgoraRTC);
-            AgoraRTS.proxy(this.agoraClient);
-        }
 
-        let localStream: any;
-        let userRtcId: number;
-        if (netlessRoomType === NetlessRoomType.teacher_interactive) {
-            userRtcId = 52;
-            localStream = AgoraRTC.createStream({
-                    streamID: 52,
-                    audio: true,
-                    video: true,
-                    screen: false,
-                },
-            );
-        } else if (netlessRoomType === NetlessRoomType.interactive) {
-            if (room.state.roomMembers.length === 2) {
-                userRtcId = 1;
-                localStream = AgoraRTC.createStream({
-                        streamID: 1,
-                        audio: true,
-                        video: true,
-                        screen: false,
-                    },
-                );
-            } else if (room.state.roomMembers.length === 3) {
-                userRtcId = 2;
-                localStream = AgoraRTC.createStream({
-                        streamID: 2,
-                        audio: true,
-                        video: true,
-                        screen: false,
-                    },
-                );
-            } else if (room.state.roomMembers.length === 4) {
-                userRtcId = 3;
-                localStream = AgoraRTC.createStream({
-                        streamID: 3,
-                        audio: true,
-                        video: true,
-                        screen: false,
-                    },
-                );
-            } else {
-                userRtcId = uid;
-                localStream = AgoraRTC.createStream({
-                        streamID: uid,
-                        audio: true,
-                        video: true,
-                        screen: false,
-                    },
-                );
-            }
-        } else {
-            userRtcId = uid;
-            localStream = AgoraRTC.createStream({
-                    streamID: uid,
-                    audio: true,
-                    video: true,
-                    screen: false,
-                },
-            );
-        }
-        this.localStream = localStream;
-        this.localStream.init(()  => {
-            console.log("getUserMedia successfully");
-            this.setState({isRtcStart: true});
-            if (netlessRoomType === NetlessRoomType.teacher_interactive) {
-                this.localStream.play("netless-teacher");
-            } else if (netlessRoomType === NetlessRoomType.interactive) {
-                if (room.state.roomMembers.length === 2) {
-                    this.localStream.play("netless-student-1");
-                } else if (room.state.roomMembers.length === 3) {
-                    this.localStream.play("netless-student-2");
-                } else if (room.state.roomMembers.length === 4) {
-                    this.localStream.play("netless-student-3");
-                }
-            }
-            this.agoraClient.join(rtcAppId.agoraAppId, channelId, userRtcId, (userRtcId: number) => {
-                if (netlessRoomType !== NetlessRoomType.live) {
-                    this.agoraClient.publish(localStream, (err: any) => {
-                        console.log("Publish local stream error: " + err);
-                    });
-                }
+        if (netlessRoomType === NetlessRoomType.live) {
+            this.agoraClient.join(rtcAppId.agoraAppId, channelId, uid, (userRtcId: number) => {
+                this.setState({isRtcStart: true});
             }, (err: any) => {
                 console.log(err);
             });
-        }, (err: any) => {
-            console.log("getUserMedia failed", err);
-        });
+        } else {
+            let localStream: any;
+            let userRtcId: number;
+            if (netlessRoomType === NetlessRoomType.teacher_interactive) {
+                userRtcId = 52;
+                localStream = AgoraRTC.createStream({
+                        streamID: 52,
+                        audio: true,
+                        video: true,
+                        screen: false,
+                    },
+                );
+            } else if (netlessRoomType === NetlessRoomType.interactive) {
+                if (room.state.roomMembers.length === 2) {
+                    userRtcId = 1;
+                    localStream = AgoraRTC.createStream({
+                            streamID: 1,
+                            audio: true,
+                            video: true,
+                            screen: false,
+                        },
+                    );
+                } else if (room.state.roomMembers.length === 3) {
+                    userRtcId = 2;
+                    localStream = AgoraRTC.createStream({
+                            streamID: 2,
+                            audio: true,
+                            video: true,
+                            screen: false,
+                        },
+                    );
+                } else if (room.state.roomMembers.length === 4) {
+                    userRtcId = 3;
+                    localStream = AgoraRTC.createStream({
+                            streamID: 3,
+                            audio: true,
+                            video: true,
+                            screen: false,
+                        },
+                    );
+                } else {
+                    userRtcId = uid;
+                    localStream = AgoraRTC.createStream({
+                            streamID: uid,
+                            audio: true,
+                            video: true,
+                            screen: false,
+                        },
+                    );
+                }
+            }
+            localStream.setVideoProfile("240p");
+            this.localStream = localStream;
+            this.localStream.init(()  => {
+                console.log("getUserMedia successfully");
+                this.setState({isRtcStart: true});
+                if (netlessRoomType === NetlessRoomType.teacher_interactive) {
+                    this.localStream.play("netless-teacher");
+                } else if (netlessRoomType === NetlessRoomType.interactive) {
+                    if (room.state.roomMembers.length === 2) {
+                        this.localStream.play("netless-student-1");
+                    } else if (room.state.roomMembers.length === 3) {
+                        this.localStream.play("netless-student-2");
+                    } else if (room.state.roomMembers.length === 4) {
+                        this.localStream.play("netless-student-3");
+                    }
+                }
+                this.agoraClient.join(rtcAppId.agoraAppId, channelId, userRtcId, (userRtcId: number) => {
+                    this.agoraClient.publish(localStream, (err: any) => {
+                        console.log("Publish local stream error: " + err);
+                    });
+                }, (err: any) => {
+                    console.log(err);
+                });
+            }, (err: any) => {
+                console.log("getUserMedia failed", err);
+            });
+        }
         this.agoraClient.on("stream-published", () => {
             console.log("Publish local stream successfully");
         });
         this.agoraClient.on("stream-added",  (evt: any) => {
             const stream = evt.stream;
             console.log("New stream added: " + stream.getId());
-            this.agoraClient.subscribe(stream);
+            this.agoraClient.subscribe(stream, { video: true, audio: true });
         });
         this.agoraClient.on("peer-leave", (evt: any) => {
             const stream = evt.stream;

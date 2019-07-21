@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Badge, Icon, Popover} from "antd";
 import {WhiteWebSdk, PlayerWhiteboard, PlayerPhase, Player, Room} from "white-react-sdk";
-import * as loading from "../assets/image/loading.svg";
 import * as chat from "../assets/image/chat.svg";
 import "./PlayerPage.less";
 import {RouteComponentProps} from "react-router";
@@ -20,7 +19,6 @@ import {UserCursor} from "../components/whiteboard/UserCursor";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 import {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
-import videojs from "video.js";
 import Draggable from "react-draggable";
 import VideoPlaceholder from "../components/whiteboard/VideoPlaceholder";
 import {isMobile} from "react-device-detect";
