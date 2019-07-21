@@ -554,7 +554,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             });
             if (netlessRoomType === NetlessRoomType.live) {
                 await room.setWritable(false);
-                // this.startRtc(parseInt(this.state.userId), this.props.match.params.uuid, room);
+                this.startRtc(parseInt(this.state.userId), this.props.match.params.uuid, room);
                 message.info("您是观众用户，只能观看直播不能互动");
             } else {
                 message.info("开始互动课程");
@@ -567,20 +567,16 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
     private startRtc = (uid: number, channelId: string, room: Room): void => {
         const {netlessRoomType} = this.props.match.params;
         if (!this.agoraClient) {
-            this.agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
-            // AgoraRTS.init(AgoraRTC);
-            // AgoraRTS.proxy(agoraClient);
-            // this.agoraClient = agoraClient;
+            const agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
+            AgoraRTS.init(AgoraRTC);
+            AgoraRTS.proxy(agoraClient);
+            this.agoraClient = agoraClient;
             this.agoraClient.init(rtcAppId.agoraAppId, () => {
                 console.log("AgoraRTC client initialized");
             }, (err: any) => {
                 console.log("AgoraRTC client init failed", err);
             });
         }
-        // if (isMobile && AgoraRTS.checkSystemRequirements()) {
-        //     AgoraRTS.init(AgoraRTC);
-        //     AgoraRTS.proxy(this.agoraClient);
-        // }
 
         if (netlessRoomType === NetlessRoomType.live) {
             this.agoraClient.join(rtcAppId.agoraAppId, channelId, uid, (userRtcId: number) => {
@@ -672,7 +668,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         this.agoraClient.on("stream-added",  (evt: any) => {
             const stream = evt.stream;
             console.log("New stream added: " + stream.getId());
-            this.agoraClient.subscribe(stream);
+            this.agoraClient.subscribe(stream, { video: true, audio: true });
         });
         this.agoraClient.on("peer-leave", (evt: any) => {
             const stream = evt.stream;
