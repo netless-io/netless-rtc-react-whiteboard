@@ -220,7 +220,13 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
     public componentWillUnmount(): void {
         this.didLeavePage = true;
         if (this.agoraClient) {
-            this.stop();
+            this.agoraClient.leave(() => {
+                console.log("Leave channel successfully");
+                if (this.localStream) {
+                    this.localStream.stop();
+                    this.localStream.close();
+                }
+            });
         }
         window.removeEventListener("resize", this.onWindowResize);
     }

@@ -46,6 +46,7 @@ export type PlayerPageStates = {
     isVisible: boolean;
     messages: MessageType[];
     seenMessagesLength: number;
+    isPortrait: boolean;
 };
 
 export default class PlayerPage extends React.Component<PlayerPageProps, PlayerPageStates> {
@@ -55,6 +56,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
     public constructor(props: PlayerPageProps) {
         super(props);
         this.cursor = new UserCursor();
+        const isPortrait: boolean = (window.innerHeight / window.innerWidth) > 1;
         this.state = {
             currentTime: 0,
             phase: PlayerPhase.Pause,
@@ -66,6 +68,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
             isVisible: false,
             messages: [],
             seenMessagesLength: 0,
+            isPortrait: isPortrait,
         };
     }
 
@@ -130,9 +133,18 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
             player.addMagixEventListener("message",  event => {
                 this.setState({messages: [...this.state.messages, event.payload]});
             });
+            player.moveCameraToContain({
+                originX: - 600,
+                originY: - 337.5,
+                width: 1200,
+                height: 675,
+                animationMode: "immediately",
+            });
         }
     }
     private onWindowResize = (): void => {
+        const isPortrait: boolean = (window.innerHeight / window.innerWidth) > 1;
+        this.setState({isPortrait: isPortrait});
         if (this.state.player) {
             this.state.player.refreshViewSize();
         }
@@ -232,11 +244,14 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
 
     public render(): React.ReactNode {
         const {mediaSource} = this.props.match.params;
+        const {isPortrait} = this.state;
         return (
-            <div className="classroom-player-box">
+            <div className={isPortrait ? "classroom-player-box-portrait" : "classroom-player-box"}>
+                {isPortrait && <div className="classroom-player-box-chat-portrait">
+                    <WhiteboardChat isClassroom={true} isReadonly={true} messages={this.state.messages} room={this.props.room} userId={this.props.match.params.userId}/>
+                </div>}
                 <div className="classroom-player-left">
                     <div
-                        style={{display: "flex"}}
                         className="player-nav-box">
                         <div className="player-nav-left-box">
                             <div className="player-nav-left">
@@ -284,8 +299,8 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     </div>}
                     {this.state.player && <PlayerWhiteboard className="classroom-player" player={this.state.player}/>}
                 </div>
-                <div className="classroom-player-right">
-                    <div className="classroom-player-video">
+                <div className={isPortrait ? "classroom-player-right-portrait" : "classroom-player-right"}>
+                    <div className={isPortrait ? "classroom-player-video-portrait" : "classroom-player-video"}>
                         {mediaSource && <VideoPlaceholder
                             controls={false}
                             className="classroom-player-video-box"
@@ -294,9 +309,11 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                             <img src={teacher}/>
                         </div>
                     </div>
+                    {!isPortrait &&
                     <div className="classroom-player-chat">
                         <WhiteboardChat messages={this.state.messages} room={this.props.room} userId={this.props.match.params.userId}/>
                     </div>
+                    }
                 </div>
             </div>
         );

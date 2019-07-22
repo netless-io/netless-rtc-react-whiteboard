@@ -5,6 +5,13 @@
   flex-direction: row;
 }
 
+.classroom-player-box-portrait {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .classroom-player {
   width: 100%;
   height: 100%;
@@ -13,8 +20,20 @@
 
 .classroom-player-left {
   width: 100%;
-  height: 100%;
+  height: 70vw;
   position: relative;
+}
+
+.classroom-player-box-chat-portrait {
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+}
+
+.classroom-player-right-portrait {
+  width: 100%;
+  height: calc(~'100vh - 200px - 70vw');
+  flex-shrink: 0;
 }
 
 .classroom-player-right {
@@ -34,6 +53,13 @@
 .classroom-player-video-box {
   width: 100%;
   height: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+.classroom-player-video-portrait {
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -45,6 +71,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
   img {
     width: 45px;
   }
