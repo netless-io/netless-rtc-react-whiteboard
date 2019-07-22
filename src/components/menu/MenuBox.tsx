@@ -40,6 +40,7 @@ export type MenuBoxProps = {
     setMenuState: (state: boolean) => void;
     isLeft?: boolean;
     isPpt?: boolean;
+    isClassroom?: boolean;
 };
 
 
@@ -85,28 +86,53 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
                 </MenuLeft>
             );
         } else {
-            return (
-                <Menu
-                    pageWrapId={this.props.pageWrapId}
-                    outerContainerId={this.props.outerContainerId}
-                    noOverlay
-                    styles={this.state.menuStyles}
-                    width={this.props.isPpt ? 360 : 280}
-                    right={false}
-                    isOpen={this.props.isVisible}
-                    onStateChange={async menuState => {
-                        if (!menuState.isOpen) {
-                            await timeout(500);
-                            this.props.setMenuState(false);
-                        }
-                        else {
-                            this.props.setMenuState(true);
-                        }
-                        await this.getMenuStyle();
-                    }}>
-                    {this.props.children}
-                </Menu>
-            );
+            if (this.props.isClassroom) {
+                return (
+                    <Menu
+                        pageWrapId={this.props.pageWrapId}
+                        outerContainerId={this.props.outerContainerId}
+                        noOverlay
+                        styles={this.state.menuStyles}
+                        width={this.props.isPpt ? 360 : 280}
+                        right={false}
+                        isOpen={this.props.isVisible}
+                        onStateChange={async menuState => {
+                            if (!menuState.isOpen) {
+                                await timeout(500);
+                                this.props.setMenuState(false);
+                            }
+                            else {
+                                this.props.setMenuState(true);
+                            }
+                            await this.getMenuStyle();
+                        }}>
+                        {this.props.children}
+                    </Menu>
+                );
+            } else {
+                return (
+                    <Menu
+                        pageWrapId={this.props.pageWrapId}
+                        outerContainerId={this.props.outerContainerId}
+                        noOverlay
+                        styles={this.state.menuStyles}
+                        width={this.props.isPpt ? 360 : 280}
+                        right={true}
+                        isOpen={this.props.isVisible}
+                        onStateChange={async menuState => {
+                            if (!menuState.isOpen) {
+                                await timeout(500);
+                                this.props.setMenuState(false);
+                            }
+                            else {
+                                this.props.setMenuState(true);
+                            }
+                            await this.getMenuStyle();
+                        }}>
+                        {this.props.children}
+                    </Menu>
+                );
+            }
         }
     }
 }

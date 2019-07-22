@@ -32,7 +32,7 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
         } else {
             netlessWhiteboardApi.user.updateUserInf("Netless user", uuidv4(), "1");
         }
-        this.props.history.push(`/whiteboard/${NetlessRoomType.interactive}`);
+        this.props.history.push(`/whiteboard/${NetlessRoomType.teacher_interactive}`);
     }
     private handleClassroomClickBtn = (): void => {
         if (this.state.name) {
@@ -88,15 +88,15 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                                     <Button
                                         size="large"
                                         type="primary"
-                                        onClick={this.handleWhiteboardClickBtn}
-                                        className="name-button">
-                                        创建白板房间
-                                    </Button>
-                                    <Button
-                                        size="large"
                                         onClick={this.handleClassroomClickBtn}
                                         className="name-button">
                                         创建在线教室
+                                    </Button>
+                                    <Button
+                                        size="large"
+                                        onClick={this.handleWhiteboardClickBtn}
+                                        className="name-button">
+                                        创建白板房间
                                     </Button>
                                 </div>
                             </TabPane>

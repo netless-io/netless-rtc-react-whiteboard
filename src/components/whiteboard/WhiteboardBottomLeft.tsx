@@ -8,9 +8,7 @@ import {Tooltip} from "antd";
 import {withRouter} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
 import {push} from "@netless/i18n-react-router";
-import {netlessWhiteboardApi} from "../../apiMiddleware";
 import {isMobile} from "react-device-detect";
-import {InputProps} from "antd/lib/input/Input";
 
 export type WhiteboardBottomLeftInnerProps = {
     room: Room;

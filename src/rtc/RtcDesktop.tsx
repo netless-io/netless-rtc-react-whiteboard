@@ -41,6 +41,7 @@ export default class RtcDesktop extends React.Component<RtcLayoutProps, RtcLayou
     private ExtendingPosition: BlockPosition = ExtendingPosition;
     private agoraClient: any;
     private rtcClock: any;
+    private _isMounted: boolean = false;
     public constructor(props: RtcLayoutProps) {
         super(props);
         this.state = {
@@ -190,22 +191,23 @@ export default class RtcDesktop extends React.Component<RtcLayoutProps, RtcLayou
     }
 
     private stopLocal = (): void => {
-        this.agoraClient.leave(async () => {
+        this.agoraClient.leave( () => {
             if (this.rtcClock) {
                 clearInterval(this.rtcClock);
             }
-            await timeout(300);
             if (this.state.localStream) {
                 this.state.localStream.stop();
                 this.state.localStream.close();
-                if (this.props.setMediaState) {
-                    this.props.setMediaState(false);
+                if (this._isMounted) {
+                    if (this.props.setMediaState) {
+                        this.props.setMediaState(false);
+                    }
+                    this.setState({localStream: null,
+                        remoteMediaStreams: [],
+                        remoteMediaStreamsStates: [],
+                        joinRoomTime: 0});
+                    this.setSliderHiding();
                 }
-                this.setState({localStream: null,
-                    remoteMediaStreams: [],
-                    remoteMediaStreamsStates: [],
-                    joinRoomTime: 0});
-                this.setSliderHiding();
             }
         }, (err: any) => {
             console.log("Leave channel failed" + err);
@@ -213,6 +215,7 @@ export default class RtcDesktop extends React.Component<RtcLayoutProps, RtcLayou
     }
 
     public componentDidMount(): void {
+        this._isMounted = true;
         if (this.props.defaultStart) {
             this.startRtc(this.props.userId, this.props.channelId);
         }
@@ -224,6 +227,13 @@ export default class RtcDesktop extends React.Component<RtcLayoutProps, RtcLayou
         }
         if (this.props.ExtendingPosition) {
             this.ExtendingPosition = this.props.ExtendingPosition;
+        }
+    }
+
+    public componentWillUnmount(): void {
+        this._isMounted = false;
+        if (this.agoraClient) {
+            this.stopLocal();
         }
     }
 

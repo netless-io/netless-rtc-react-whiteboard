@@ -76,8 +76,6 @@ class RtcMobile extends React.Component<RtcMobileProps, {}> {
     public render(): React.ReactNode {
         return (
             <div>
-                <div className="rtc-video-box-mb" id="rtc_mobile_local_stream">
-                </div>
             </div>
         );
     }

@@ -17,7 +17,7 @@ import * as loading from "../assets/image/loading.svg";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import * as OSS from "ali-oss";
 import {netlessToken, ossConfigObj, rtcAppId} from "../appToken";
-import {Button, message} from "antd";
+import {Button, message, Radio} from "antd";
 import {isMobile} from "react-device-detect";
 import {RouteComponentProps} from "react-router";
 import {UserCursor} from "../components/whiteboard/UserCursor";
@@ -116,7 +116,9 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             return null;
         }
     }
-
+    private setMediaState = (state: boolean): void => {
+        this.setState({isMediaRun: state});
+    }
     private renderClipView = (): React.ReactNode => {
         if (this.state.isHandClap) {
             return <div className="whiteboard-box-gift-box">
@@ -217,6 +219,15 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
 
     public componentWillUnmount(): void {
         this.didLeavePage = true;
+        if (this.agoraClient) {
+            this.agoraClient.leave(() => {
+                console.log("Leave channel successfully");
+                if (this.localStream) {
+                    this.localStream.stop();
+                    this.localStream.close();
+                }
+            });
+        }
         window.removeEventListener("resize", this.onWindowResize);
     }
     private setMemberState = (modifyState: Partial<MemberState>) => {
@@ -298,6 +309,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         this.agoraClient.leave(() => {
             console.log("Leave channel successfully");
             this.setState({isRtcStart: false});
+            // this.setMediaState(false);
             if (this.localStream) {
                 this.localStream.stop();
                 this.localStream.close();
@@ -308,6 +320,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         });
     }
     public render(): React.ReactNode {
+        const {netlessRoomType} = this.props.match.params;
         if (this.state.connectedFail) {
             return <PageError/>;
 
@@ -325,10 +338,11 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                 <img src={loading}/>
             </div>;
         } else {
-            const isReadOnly = this.props.match.params.netlessRoomType === NetlessRoomType.live;
+            const isReadOnly = netlessRoomType === NetlessRoomType.live;
             return (
                 <div id="outer-container-2">
                     <MenuBox
+                        isClassroom={true}
                         setMenuState={this.setMenuState}
                         isPpt={this.state.menuInnerState === MenuInnerType.PPTBox}
                         resetMenu={this.resetMenu}
@@ -379,7 +393,9 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                 mediaSource={this.state.mediaSource}
                                 stopTime={this.state.stopRecordTime}
                                 isReadOnly={isReadOnly}
+                                isClassroom={true}
                                 startTime={this.state.startRecordTime}/>
+                            {netlessRoomType === NetlessRoomType.teacher_interactive &&
                             <WhiteboardRecord
                                 setMediaSource={this.setMediaSource}
                                 isReadOnly={isReadOnly}
@@ -387,6 +403,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                 isMediaRun={this.state.isMediaRun}
                                 setStopTime={this.setStopTime}
                                 setStartTime={this.setStartTime}/>
+                            }
                             <WhiteboardBottomRight
                                 userId={this.state.userId}
                                 roomState={this.state.roomState}
@@ -472,6 +489,10 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                                 style={{width: 108}}
                                                 onClick={() => this.startRtc(parseInt(this.state.userId), this.props.match.params.uuid, this.state.room!)}
                                                 type="primary">开始视频通讯</Button>
+                                            {/*<Radio.Group style={{marginTop: 16}} value="large">*/}
+                                                {/*<Radio.Button value="large">双人高清</Radio.Button>*/}
+                                                {/*<Radio.Button value="default">四人普清</Radio.Button>*/}
+                                            {/*</Radio.Group>*/}
                                         </div>
                                     </div>
                                 }
@@ -635,11 +656,12 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                     );
                 }
             }
-            localStream.setVideoProfile("240p");
+            localStream.setVideoProfile("480p");
             this.localStream = localStream;
             this.localStream.init(()  => {
                 console.log("getUserMedia successfully");
                 this.setState({isRtcStart: true});
+                this.setMediaState(true);
                 if (netlessRoomType === NetlessRoomType.teacher_interactive) {
                     this.localStream.play("netless-teacher");
                 } else if (netlessRoomType === NetlessRoomType.interactive) {
@@ -690,7 +712,13 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             if (remoteStream.getId() === 52) {
                 remoteStream.play("netless-teacher");
             } else {
-                remoteStream.play(`netless-student-${remoteStream.getId()}`);
+                if (isMobile) {
+                    if (remoteStream.getId() === 1) {
+                        remoteStream.play(`netless-student-1`);
+                    }
+                } else {
+                    remoteStream.play(`netless-student-${remoteStream.getId()}`);
+                }
             }
             console.log("Subscribe remote stream successfully: " + remoteStream.getId());
         });

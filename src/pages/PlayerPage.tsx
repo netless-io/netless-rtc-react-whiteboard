@@ -267,7 +267,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                                 <img src={home}/>
                             </div>
                             <div
-                                onClick={() => push(this.props.history, `/whiteboard/${this.props.match.params.uuid}/${this.props.match.params.userId}/`)}
+                                onClick={() => this.props.history.goBack()}
                                 className="player-nav-icon-box-right">
                                 <img src={board}/>
                             </div>
