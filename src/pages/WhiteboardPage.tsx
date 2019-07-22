@@ -369,7 +369,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         this.setState({isMenuOpen: state});
     }
     public render(): React.ReactNode {
-
+        const {netlessRoomType} = this.props.match.params;
         if (this.state.connectedFail) {
             return <PageError/>;
 
@@ -439,12 +439,14 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                                     mediaSource={this.state.mediaSource}
                                     stopTime={this.state.stopRecordTime}
                                     startTime={this.state.startRecordTime}/>
+                                {netlessRoomType === NetlessRoomType.teacher_interactive &&
                                 <WhiteboardRecord
                                     setMediaSource={this.setMediaSource}
                                     channelName={this.props.match.params.uuid}
                                     isMediaRun={this.state.isMediaRun}
                                     setStopTime={this.setStopTime}
                                     setStartTime={this.setStartTime}/>
+                                }
                                 <WhiteboardBottomRight
                                     userId={this.state.userId}
                                     roomState={this.state.roomState}

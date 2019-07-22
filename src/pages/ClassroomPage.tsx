@@ -116,7 +116,9 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             return null;
         }
     }
-
+    private setMediaState = (state: boolean): void => {
+        this.setState({isMediaRun: state});
+    }
     private renderClipView = (): React.ReactNode => {
         if (this.state.isHandClap) {
             return <div className="whiteboard-box-gift-box">
@@ -217,6 +219,9 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
 
     public componentWillUnmount(): void {
         this.didLeavePage = true;
+        if (this.agoraClient) {
+            this.stop();
+        }
         window.removeEventListener("resize", this.onWindowResize);
     }
     private setMemberState = (modifyState: Partial<MemberState>) => {
@@ -298,6 +303,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         this.agoraClient.leave(() => {
             console.log("Leave channel successfully");
             this.setState({isRtcStart: false});
+            this.setMediaState(false);
             if (this.localStream) {
                 this.localStream.stop();
                 this.localStream.close();
@@ -308,6 +314,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         });
     }
     public render(): React.ReactNode {
+        const {netlessRoomType} = this.props.match.params;
         if (this.state.connectedFail) {
             return <PageError/>;
 
@@ -325,7 +332,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                 <img src={loading}/>
             </div>;
         } else {
-            const isReadOnly = this.props.match.params.netlessRoomType === NetlessRoomType.live;
+            const isReadOnly = netlessRoomType === NetlessRoomType.live;
             return (
                 <div id="outer-container-2">
                     <MenuBox
@@ -379,7 +386,9 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                 mediaSource={this.state.mediaSource}
                                 stopTime={this.state.stopRecordTime}
                                 isReadOnly={isReadOnly}
+                                isClassroom={true}
                                 startTime={this.state.startRecordTime}/>
+                            {netlessRoomType === NetlessRoomType.teacher_interactive &&
                             <WhiteboardRecord
                                 setMediaSource={this.setMediaSource}
                                 isReadOnly={isReadOnly}
@@ -387,6 +396,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                 isMediaRun={this.state.isMediaRun}
                                 setStopTime={this.setStopTime}
                                 setStartTime={this.setStartTime}/>
+                            }
                             <WhiteboardBottomRight
                                 userId={this.state.userId}
                                 roomState={this.state.roomState}
@@ -635,7 +645,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                     );
                 }
             }
-            localStream.setVideoProfile("240p");
+            localStream.setVideoProfile("480p");
             this.localStream = localStream;
             this.localStream.init(()  => {
                 console.log("getUserMedia successfully");
@@ -654,6 +664,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                 this.agoraClient.join(rtcAppId.agoraAppId, channelId, userRtcId, (userRtcId: number) => {
                     this.agoraClient.publish(localStream, (err: any) => {
                         console.log("Publish local stream error: " + err);
+                        this.setMediaState(true);
                     });
                 }, (err: any) => {
                     console.log(err);

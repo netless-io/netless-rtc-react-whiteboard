@@ -2,7 +2,7 @@ import * as React from "react";
 import {Badge, Icon, Popover} from "antd";
 import {WhiteWebSdk, PlayerWhiteboard, PlayerPhase, Player, Room} from "white-react-sdk";
 import * as chat from "../assets/image/chat.svg";
-import "./PlayerPage.less";
+import "./ClassroomPlayerPage.less";
 import {RouteComponentProps} from "react-router";
 import SeekSlider from "@netless/react-seek-slider";
 import * as player_stop from "../assets/image/player_stop.svg";
@@ -21,6 +21,7 @@ import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 import {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
 import Draggable from "react-draggable";
 import VideoPlaceholder from "../components/whiteboard/VideoPlaceholder";
+import * as teacher from "../assets/image/teacher.svg";
 import {isMobile} from "react-device-detect";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
@@ -198,7 +199,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
             return (
                 <div
                     style={{display: "flex"}}
-                    className="player-schedule">
+                    className="classroom-player-schedule">
                     <div className="player-left-box">
                         <div
                             onClick={() => this.onClickOperationButton(this.state.player!)}
@@ -222,28 +223,6 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     <div className="player-mid-box-time">
                         {displayWatch(Math.floor(this.state.player.scheduleTime / 1000))} / {displayWatch(Math.floor(this.state.player.timeDuration / 1000))}
                     </div>
-                    {isMobile ||
-                    <Badge overflowCount={99} offset={[-3, 6]} count={this.state.isVisible ? 0 : (this.state.messages.length - this.state.seenMessagesLength)}>
-                        <Popover
-                            overlayClassName="whiteboard-chat"
-                            content={<WhiteboardChat messages={this.state.messages} room={this.props.room} userId={this.props.match.params.userId}/>}
-                            trigger="click"
-                            onVisibleChange={(visible: boolean) => {
-                                if (visible) {
-                                    this.setState({isVisible: true});
-                                } else {
-                                    this.setState({isVisible: false, seenMessagesLength: this.state.messages.length});
-                                }
-                            }}
-                            placement="topLeft">
-                            <div className="player-right-box">
-                                <div className="player-right-box-inner">
-                                    <img style={{width: 17}} src={chat}/>
-                                </div>
-                            </div>
-                        </Popover>
-                    </Badge>
-                    }
                 </div>
             );
         } else {
@@ -252,66 +231,73 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
     }
 
     public render(): React.ReactNode {
+        const {mediaSource} = this.props.match.params;
         return (
-            <div className="player-out-box">
-                <div
-                    style={{display: "flex"}}
-                    className="player-nav-box">
-                    <div className="player-nav-left-box">
-                        <div className="player-nav-left">
-                            <div
-                                onClick={() => push(this.props.history, `/`)}
-                                className="player-nav-icon-box-left">
-                                <img src={home}/>
-                            </div>
-                            <div
-                                onClick={() => push(this.props.history, `/whiteboard/${this.props.match.params.uuid}/${this.props.match.params.userId}/`)}
-                                className="player-nav-icon-box-right">
-                                <img src={board}/>
+            <div className="classroom-player-box">
+                <div className="classroom-player-left">
+                    <div
+                        style={{display: "flex"}}
+                        className="player-nav-box">
+                        <div className="player-nav-left-box">
+                            <div className="player-nav-left">
+                                <div
+                                    onClick={() => push(this.props.history, `/`)}
+                                    className="player-nav-icon-box-left">
+                                    <img src={home}/>
+                                </div>
+                                <div
+                                    onClick={() => this.props.history.goBack()}
+                                    className="player-nav-icon-box-right">
+                                    <img src={board}/>
+                                </div>
                             </div>
                         </div>
+                        <div className="player-nav-right">
+                            <Identicon
+                                size={18}
+                                string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.match.params.userId)}`)}/>
+                        </div>
                     </div>
-                    <div className="player-nav-right">
-                        <Identicon
-                            size={36}
-                            string={netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${parseInt(this.props.match.params.userId)}`)}/>
+                    {this.renderScheduleView()}
+                    {this.state.isHandClap && <div className="whiteboard-box-gift-box">
+                        <TweenOne
+                            animation={[
+                                {
+                                    scale: 1,
+                                    duration: 360,
+                                    ease: "easeInOutQuart",
+                                },
+                                {
+                                    opacity: 0,
+                                    scale: 2,
+                                    ease: "easeInOutQuart",
+                                    duration: 400,
+                                },
+                            ]}
+                            style={{
+                                transform: "scale(0)",
+                                borderTopLeftRadius: 4,
+                            }}className="whiteboard-box-gift-inner-box"
+                        >
+                            <img src={like}/>
+                        </TweenOne>
+                    </div>}
+                    {this.state.player && <PlayerWhiteboard className="classroom-player" player={this.state.player}/>}
+                </div>
+                <div className="classroom-player-right">
+                    <div className="classroom-player-video">
+                        {mediaSource && <VideoPlaceholder
+                            controls={false}
+                            className="classroom-player-video-box"
+                        />}
+                        <div className="classroom-player-video-box-layer2">
+                            <img src={teacher}/>
+                        </div>
+                    </div>
+                    <div className="classroom-player-chat">
+                        <WhiteboardChat messages={this.state.messages} room={this.props.room} userId={this.props.match.params.userId}/>
                     </div>
                 </div>
-                {this.renderScheduleView()}
-                {this.state.isHandClap && <div className="whiteboard-box-gift-box">
-                    <TweenOne
-                        animation={[
-                            {
-                                scale: 1,
-                                duration: 360,
-                                ease: "easeInOutQuart",
-                            },
-                            {
-                                opacity: 0,
-                                scale: 2,
-                                ease: "easeInOutQuart",
-                                duration: 400,
-                            },
-                        ]}
-                        style={{
-                            transform: "scale(0)",
-                            borderTopLeftRadius: 4,
-                        }}className="whiteboard-box-gift-inner-box"
-                    >
-                        <img src={like}/>
-                    </TweenOne>
-                </div>}
-                {this.props.match.params.mediaSource &&
-                <Draggable>
-                    <div className={isMobile ? "player-video-out-mb" : "player-video-out"}>
-                        <VideoPlaceholder
-                            controls={false}
-                            className="player-video"
-                        />
-                    </div>
-                </Draggable>
-                }
-                {this.state.player && <PlayerWhiteboard className="player-box" player={this.state.player}/>}
             </div>
         );
     }

@@ -227,6 +227,10 @@ export default class RtcDesktop extends React.Component<RtcLayoutProps, RtcLayou
         }
     }
 
+    public componentWillUnmount(): void {
+        this.stopLocal();
+    }
+
     private setSliderFloating = (): void => {
         this.setState({blockState: SlidingBlockState.Floating});
     }

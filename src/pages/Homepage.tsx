@@ -32,7 +32,7 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
         } else {
             netlessWhiteboardApi.user.updateUserInf("Netless user", uuidv4(), "1");
         }
-        this.props.history.push(`/whiteboard/${NetlessRoomType.interactive}`);
+        this.props.history.push(`/whiteboard/${NetlessRoomType.teacher_interactive}`);
     }
     private handleClassroomClickBtn = (): void => {
         if (this.state.name) {
