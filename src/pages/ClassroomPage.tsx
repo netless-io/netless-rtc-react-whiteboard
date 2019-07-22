@@ -303,7 +303,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         this.agoraClient.leave(() => {
             console.log("Leave channel successfully");
             this.setState({isRtcStart: false});
-            this.setMediaState(false);
+            // this.setMediaState(false);
             if (this.localStream) {
                 this.localStream.stop();
                 this.localStream.close();
@@ -650,6 +650,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             this.localStream.init(()  => {
                 console.log("getUserMedia successfully");
                 this.setState({isRtcStart: true});
+                this.setMediaState(true);
                 if (netlessRoomType === NetlessRoomType.teacher_interactive) {
                     this.localStream.play("netless-teacher");
                 } else if (netlessRoomType === NetlessRoomType.interactive) {
@@ -664,7 +665,6 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                 this.agoraClient.join(rtcAppId.agoraAppId, channelId, userRtcId, (userRtcId: number) => {
                     this.agoraClient.publish(localStream, (err: any) => {
                         console.log("Publish local stream error: " + err);
-                        this.setMediaState(true);
                     });
                 }, (err: any) => {
                     console.log(err);
