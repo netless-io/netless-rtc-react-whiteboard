@@ -88,15 +88,15 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                                     <Button
                                         size="large"
                                         type="primary"
-                                        onClick={this.handleWhiteboardClickBtn}
-                                        className="name-button">
-                                        创建白板房间
-                                    </Button>
-                                    <Button
-                                        size="large"
                                         onClick={this.handleClassroomClickBtn}
                                         className="name-button">
                                         创建在线教室
+                                    </Button>
+                                    <Button
+                                        size="large"
+                                        onClick={this.handleWhiteboardClickBtn}
+                                        className="name-button">
+                                        创建白板房间
                                     </Button>
                                 </div>
                             </TabPane>
