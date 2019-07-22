@@ -399,10 +399,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                         menuInnerState={this.state.menuInnerState}>
                         {this.renderMenuInner()}
                     </MenuBox>
-                    {isMobile ? <RtcMobile isRtcReadOnly={this.state.isReadyOnly}
-                                           userId={parseInt(this.state.userId)}
-                                           agoraAppId={rtcAppId.agoraAppId}
-                                           channelId={this.props.match.params.uuid}/> :
+                    {isMobile ||
                         <RtcDesktop
                             roomMembers={this.state.room.state.roomMembers}
                             isRtcReadOnly={this.state.isReadyOnly}

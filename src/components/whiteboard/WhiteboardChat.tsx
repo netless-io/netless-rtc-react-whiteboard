@@ -31,10 +31,10 @@ export type WhiteboardChatStates = {
     url: string;
 };
 
-
 class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChatStates> {
 
     private messagesEnd: HTMLDivElement | null = null;
+    private _isMounted: boolean = false;
 
     public constructor(props: WhiteboardChatProps) {
         super(props);
@@ -52,6 +52,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
     }
 
     public async componentDidMount(): Promise<void> {
+        this._isMounted = true;
         await timeout(0);
         this.scrollToBottom();
         const canvasArray: any = document.getElementsByClassName("identicon").item(0);
@@ -62,8 +63,14 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
     }
 
     public async componentWillReceiveProps(): Promise<void> {
-        await timeout(0);
-        this.scrollToBottom();
+        if (this._isMounted) {
+            await timeout(0);
+            this.scrollToBottom();
+        }
+    }
+
+    public componentWillUnmount(): void {
+        this._isMounted = true;
     }
 
     public render(): React.ReactNode {

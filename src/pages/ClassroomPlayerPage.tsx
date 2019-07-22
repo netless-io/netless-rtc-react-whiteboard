@@ -250,7 +250,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                 {isPortrait && <div className="classroom-player-box-chat-portrait">
                     <WhiteboardChat isClassroom={true} isReadonly={true} messages={this.state.messages} room={this.props.room} userId={this.props.match.params.userId}/>
                 </div>}
-                <div className="classroom-player-left">
+                <div className={isPortrait ? "classroom-player-left-portrait" : "classroom-player-left"}>
                     <div
                         className="player-nav-box">
                         <div className="player-nav-left-box">

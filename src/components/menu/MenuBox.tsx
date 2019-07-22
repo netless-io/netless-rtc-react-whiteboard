@@ -92,7 +92,7 @@ export default class MenuBox extends React.Component<MenuBoxProps, MenuBoxStyleS
                     noOverlay
                     styles={this.state.menuStyles}
                     width={this.props.isPpt ? 360 : 280}
-                    right={false}
+                    right={!this.props.isPpt}
                     isOpen={this.props.isVisible}
                     onStateChange={async menuState => {
                         if (!menuState.isOpen) {
