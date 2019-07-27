@@ -656,7 +656,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                     );
                 }
             }
-            localStream.setVideoProfile("480p");
+            localStream.setVideoProfile("480p_2");
             this.localStream = localStream;
             this.localStream.init(()  => {
                 console.log("getUserMedia successfully");
