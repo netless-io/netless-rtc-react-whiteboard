@@ -95,7 +95,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     beginTimestamp: time ? parseInt(time) : undefined,
                     duration: duration ? parseInt(duration) : undefined,
                     room: uuid,
-                    audioUrl: mediaSource,
+                    mediaURL: mediaSource,
                     roomToken: roomToken,
                     cursorAdapter: this.cursor,
                 }, {
