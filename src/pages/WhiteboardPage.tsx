@@ -10,7 +10,6 @@ import {RouteComponentProps} from "react-router";
 import TweenOne from "rc-tween-one";
 import Dropzone from "react-dropzone";
 import RtcDesktop from "../rtc/RtcDesktop";
-import RtcMobile from "../rtc/RtcMobile";
 import {isMobile} from "react-device-detect";
 import {
     WhiteWebSdk,

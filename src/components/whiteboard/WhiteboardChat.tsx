@@ -147,12 +147,15 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
                     }}
                 >
                     <div>
-                        <div className={isClassMobile ? "chat-box-message-mb" : "chat-box-message"}>
-                            {messageNodes !== null && <MessageList>
+                        <div className="chat-box-message" style={{height: isClassMobile ? (window.innerHeight - window.innerWidth * 1.2) : "calc(~'100vh - 370px')"}}>
+                            {messageNodes !== null ? <MessageList>
                                 {messageNodes}
-                            </MessageList>}
+                            </MessageList> : <div className="chat-box-message-empty">暂无聊天记录~</div>}
+                            {!isClassMobile &&
                             <div className="under-cell" ref={ref => this.messagesEnd = ref}/>
+                            }
                         </div>
+                        {!isClassMobile &&
                         <div style={{width: isClassMobile ? "100%" : "360px"}} className={this.props.isReadonly ? "chat-box-input-disable" : "chat-box-input"}>
                             <TextComposer
                                 onSend={(event: any) => {
@@ -170,6 +173,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
                                 </Row>
                             </TextComposer>
                         </div>
+                        }
                     </div>
                 </ThemeProvider>
             </div>

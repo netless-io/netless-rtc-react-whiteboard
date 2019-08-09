@@ -44,7 +44,7 @@ import WhiteboardBottomLeft from "../components/whiteboard/WhiteboardBottomLeft"
 import WhiteboardRecord from "../components/whiteboard/WhiteboardRecord";
 import WhiteboardBottomRight, {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
 const AgoraRTC = require("../rtc/rtsLib/AgoraRTC-production.js");
-const AgoraRTS = require("../rtc/rtsLib/AgoraRTS.js");
+// const AgoraRTS = require("../rtc/rtsLib/AgoraRTS.js");
 import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 import ToolBoxMobile from "@netless/react-mb-tool-box";
@@ -356,9 +356,10 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                          className="slide-box">
                         <img src={arrow}/>
                     </div>
-                    <div className={isMobile ? "classroom-box-mb" : "classroom-box"} id="page-wrap-2">
+                    <div
+                        className={isMobile ? "classroom-box-mb" : "classroom-box"} id="page-wrap-2">
                         {isMobile &&
-                        <div className="classroom-box-chart-mb">
+                        <div style={{height: (window.innerHeight - window.innerWidth * 1.2)}} className="classroom-box-chart-mb">
                             <WhiteboardChat
                                 room={this.state.room}
                                 messages={this.state.messages}
@@ -588,10 +589,11 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
     private startRtc = (uid: number, channelId: string, room: Room): void => {
         const {netlessRoomType} = this.props.match.params;
         if (!this.agoraClient) {
-            const agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
-            AgoraRTS.init(AgoraRTC);
-            AgoraRTS.proxy(agoraClient);
-            this.agoraClient = agoraClient;
+            // const agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
+            // AgoraRTS.init(AgoraRTC);
+            // AgoraRTS.proxy(agoraClient);
+            // this.agoraClient = agoraClient;
+            this.agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
             this.agoraClient.init(rtcAppId.agoraAppId, () => {
                 console.log("AgoraRTC client initialized");
             }, (err: any) => {
