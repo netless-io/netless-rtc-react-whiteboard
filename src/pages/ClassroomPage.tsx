@@ -356,9 +356,10 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                          className="slide-box">
                         <img src={arrow}/>
                     </div>
-                    <div className={isMobile ? "classroom-box-mb" : "classroom-box"} id="page-wrap-2">
+                    <div
+                        className={isMobile ? "classroom-box-mb" : "classroom-box"} id="page-wrap-2">
                         {isMobile &&
-                        <div className="classroom-box-chart-mb">
+                        <div style={{height: (window.innerHeight - window.innerWidth * 1.2)}} className="classroom-box-chart-mb">
                             <WhiteboardChat
                                 room={this.state.room}
                                 messages={this.state.messages}
