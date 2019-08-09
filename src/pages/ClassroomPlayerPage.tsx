@@ -22,7 +22,7 @@ import {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
 import Draggable from "react-draggable";
 import VideoPlaceholder from "../components/whiteboard/VideoPlaceholder";
 import * as teacher from "../assets/image/teacher.svg";
-import {isMobile} from "react-device-detect";
+import {isMobile, isSafari} from "react-device-detect";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
@@ -242,6 +242,21 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
         }
     }
 
+    private renderVideoPlaceHold = (mediaSource: string | undefined): React.ReactNode => {
+        if (mediaSource) {
+            if (isSafari) {
+                return <video
+                    id="white-sdk-video-js"/>;
+            } else {
+                return <VideoPlaceholder
+                    controls={false}
+                    className="classroom-player-video-box"
+                />;
+            }
+        } else {
+            return null;
+        }
+    }
     public render(): React.ReactNode {
         const {mediaSource} = this.props.match.params;
         const {isPortrait} = this.state;
@@ -300,11 +315,8 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     {this.state.player && <PlayerWhiteboard className="classroom-player" player={this.state.player}/>}
                 </div>
                 <div className={isPortrait ? "classroom-player-right-portrait" : "classroom-player-right"}>
+                    {this.renderVideoPlaceHold(mediaSource)}
                     <div className={isPortrait ? "classroom-player-video-portrait" : "classroom-player-video"}>
-                        {mediaSource && <VideoPlaceholder
-                            controls={false}
-                            className="classroom-player-video-box"
-                        />}
                         <div className="classroom-player-video-box-layer2">
                             <img src={teacher}/>
                         </div>
