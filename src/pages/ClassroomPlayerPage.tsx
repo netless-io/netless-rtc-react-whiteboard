@@ -245,7 +245,6 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
     private renderVideoPlaceHold = (mediaSource: string | undefined): React.ReactNode => {
         if (mediaSource) {
             if (isSafari) {
-                // alert(1);
                 return <video
                     className="classroom-player-video-box-safari"
                     id="white-sdk-video-js"/>;
@@ -254,7 +253,6 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     controls={false}
                     className="classroom-player-video-box"
                 />;
-                // return null;
             }
         } else {
             return null;
