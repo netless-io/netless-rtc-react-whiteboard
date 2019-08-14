@@ -168,7 +168,7 @@ class WhiteboardChat extends React.Component<WhiteboardChatProps, WhiteboardChat
                                 }}
                             >
                                 <Row align="center">
-                                    <TextInput placeholder={this.props.isReadonly ? "只读用户不可参与互动~" : "输入聊天内容~"} fill="true"/>
+                                    <TextInput placeholder={this.props.isReadonly ? "禁止输入" : "输入聊天内容~"} fill="true"/>
                                     <SendButton fit />
                                 </Row>
                             </TextComposer>

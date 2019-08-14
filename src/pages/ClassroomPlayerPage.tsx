@@ -246,6 +246,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
         if (mediaSource) {
             if (isSafari) {
                 return <video
+                    className="classroom-player-video-box-safari"
                     id="white-sdk-video-js"/>;
             } else {
                 return <VideoPlaceholder
@@ -315,15 +316,19 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                     {this.state.player && <PlayerWhiteboard className="classroom-player" player={this.state.player}/>}
                 </div>
                 <div className={isPortrait ? "classroom-player-right-portrait" : "classroom-player-right"}>
-                    {this.renderVideoPlaceHold(mediaSource)}
                     <div className={isPortrait ? "classroom-player-video-portrait" : "classroom-player-video"}>
+                        {this.renderVideoPlaceHold(mediaSource)}
                         <div className="classroom-player-video-box-layer2">
                             <img src={teacher}/>
                         </div>
                     </div>
                     {!isPortrait &&
                     <div className="classroom-player-chat">
-                        <WhiteboardChat messages={this.state.messages} room={this.props.room} userId={this.props.match.params.userId}/>
+                        <WhiteboardChat
+                            messages={this.state.messages}
+                            isReadonly={true}
+                            room={this.props.room}
+                            userId={this.props.match.params.userId}/>
                     </div>
                     }
                 </div>
