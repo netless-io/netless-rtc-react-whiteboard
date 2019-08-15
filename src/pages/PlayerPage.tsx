@@ -20,9 +20,7 @@ import {UserCursor} from "../components/whiteboard/UserCursor";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 import {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
-import videojs from "video.js";
 import Draggable from "react-draggable";
-import VideoPlaceholder from "../components/whiteboard/VideoPlaceholder";
 import {isMobile} from "react-device-detect";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
@@ -306,10 +304,9 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                 {this.props.match.params.mediaSource &&
                     <Draggable>
                         <div className={isMobile ? "player-video-out-mb" : "player-video-out"}>
-                            <VideoPlaceholder
-                                controls={false}
-                                className="player-video"
-                            />
+                            <video
+                                className="video-js video-layout"
+                                id="white-sdk-video-js"/>
                         </div>
                     </Draggable>
                 }
