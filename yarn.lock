@@ -2552,7 +2552,7 @@ color@^0.11.0:
 
 color@^3.1.2:
   version "3.1.2"
-  resolved "https://registry.npm.taobao.org/color/download/color-3.1.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcolor%2Fdownload%2Fcolor-3.1.2.tgz#68148e7f85d41ad7649c5fa8c8106f098d229e10"
+  resolved "https://registry.npm.taobao.org/color/download/color-3.1.2.tgz#68148e7f85d41ad7649c5fa8c8106f098d229e10"
   integrity sha1-aBSOf4XUGtdknF+oyBBvCY0inhA=
   dependencies:
     color-convert "^1.9.1"
@@ -4589,7 +4589,7 @@ global-prefix@^1.0.1:
 
 global@4.3.2, global@~4.3.0:
   version "4.3.2"
-  resolved "https://registry.npm.taobao.org/global/download/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
+  resolved "https://registry.npm.taobao.org/global/download/global-4.3.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fglobal%2Fdownload%2Fglobal-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
   integrity sha1-52mJJopsdMOJCLEwWxD8DjlOnQ8=
   dependencies:
     min-document "^2.19.0"
@@ -4597,7 +4597,7 @@ global@4.3.2, global@~4.3.0:
 
 global@^4.3.0, global@^4.3.1, global@^4.3.2:
   version "4.4.0"
-  resolved "https://registry.npm.taobao.org/global/download/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
+  resolved "https://registry.npm.taobao.org/global/download/global-4.4.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fglobal%2Fdownload%2Fglobal-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
   integrity sha1-PnsQUXkAajI+1xqvyj6cV6XMZAY=
   dependencies:
     min-document "^2.19.0"
@@ -9415,7 +9415,7 @@ react-device-detect@^1.6.2:
   resolved "https://registry.npm.taobao.org/react-device-detect/download/react-device-detect-1.6.2.tgz#2587e4d1dc15bdfce7a1bf5417624ecd2a2fc31f"
   integrity sha1-JYfk0dwVvfznob9UF2JOzSovwx8=
 
-react-dom@^16.3.2, react-dom@^16.8.4:
+react-dom@^16.3.2:
   version "16.8.6"
   resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha1-cdYwP2MeiwCX9WFl72CPBR/24Q8=
@@ -9424,6 +9424,16 @@ react-dom@^16.3.2, react-dom@^16.8.4:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.13.6"
+
+react-dom@^16.8.4:
+  version "16.9.0"
+  resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.9.0.tgz#5e65527a5e26f22ae3701131bcccaee9fb0d3962"
+  integrity sha1-XmVSel4m8irjcBExvMyu6fsNOWI=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.15.0"
 
 react-draggable@^3.3.0:
   version "3.3.0"
@@ -9586,7 +9596,7 @@ react-transition-group@^4.0.1:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^16.3.2, react@^16.8.4:
+react@^16.3.2:
   version "16.8.6"
   resolved "https://registry.npm.taobao.org/react/download/react-16.8.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha1-rWw6lhT9Ok6e9REX9U2IjaAfK74=
@@ -9595,6 +9605,15 @@ react@^16.3.2, react@^16.8.4:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.13.6"
+
+react@^16.8.4:
+  version "16.9.0"
+  resolved "https://registry.npm.taobao.org/react/download/react-16.9.0.tgz?cache=0&sync_timestamp=1565317892814&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact%2Fdownload%2Freact-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
+  integrity sha1-QLovmvE7waONddvy9DWaUYXE96o=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
 
 read-cmd-shim@^1.0.1, read-cmd-shim@~1.0.1:
   version "1.0.1"
@@ -10161,6 +10180,14 @@ scheduler@^0.13.6:
   version "0.13.6"
   resolved "https://registry.npm.taobao.org/scheduler/download/scheduler-0.13.6.tgz?cache=0&sync_timestamp=1559596534856&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fscheduler%2Fdownload%2Fscheduler-0.13.6.tgz#466a4ec332467b31a91b9bf74e5347072e4cd889"
   integrity sha1-RmpOwzJGezGpG5v3TlNHBy5M2Ik=
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.15.0:
+  version "0.15.0"
+  resolved "https://registry.npm.taobao.org/scheduler/download/scheduler-0.15.0.tgz#6bfcf80ff850b280fed4aeecc6513bc0b4f17f8e"
+  integrity sha1-a/z4D/hQsoD+1K7sxlE7wLTxf44=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -12026,19 +12053,19 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
   dependencies:
     isexe "^2.0.0"
 
-white-react-sdk@^2.2.10:
-  version "2.2.10"
-  resolved "https://registry.npm.taobao.org/white-react-sdk/download/white-react-sdk-2.2.10.tgz#2f078b442afb0eb267e16caabba7ccfb1328d183"
-  integrity sha1-LweLRCr7DrJn4Wyqu6fM+xMo0YM=
+white-react-sdk@^2.2.12:
+  version "2.2.12"
+  resolved "https://registry.npm.taobao.org/white-react-sdk/download/white-react-sdk-2.2.12.tgz#34ecd0f94d2bd9e78699d616932f362686d1d1b1"
+  integrity sha1-NOzQ+U0r2eeGmdYWky82JobR0bE=
   dependencies:
     react "^16.8.4"
     react-dom "^16.8.4"
-    white-web-sdk "2.2.10"
+    white-web-sdk "2.2.12"
 
-white-web-sdk@2.2.10:
-  version "2.2.10"
-  resolved "https://registry.npm.taobao.org/white-web-sdk/download/white-web-sdk-2.2.10.tgz#ccaf88a70eff6011aecb3ba006b0b59b566ed62d"
-  integrity sha1-zK+Ipw7/YBGuyzugBrC1m1Zu1i0=
+white-web-sdk@2.2.12:
+  version "2.2.12"
+  resolved "https://registry.npm.taobao.org/white-web-sdk/download/white-web-sdk-2.2.12.tgz#b6bf2d42077389a98781b8251c60619fe1e8adaa"
+  integrity sha1-tr8tQgdziamHgbglHGBhn+Horao=
   dependencies:
     bezier-js "^2.4.0"
     color "^3.1.2"
