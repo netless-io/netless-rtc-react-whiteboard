@@ -1,7 +1,7 @@
 {
   "name": "netless-rtc-react-whiteboard",
   "version": "2.0.0",
-  "main": "src/index.ts",
+  "main": "./main.js",
   "author": "Wushuang",
   "license": "MIT",
   "theme": "./theme.js",
@@ -9,8 +9,20 @@
   "proxy": "http://localhost:3009/",
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
-    "build": "rimraf build && NODE_ENV=production react-app-rewired --max-old-space-size=4096 build --scripts-version react-scripts-ts"
+    "build": "rimraf build && NODE_ENV=production react-app-rewired --max-old-space-size=4096 build --scripts-version react-scripts-ts",
+    "electron-dev": "nodemon --watch ./main.js --exec 'NODE_ENV=development electron .'",
+    "build:mac": "rm -rf ./dist && electron-builder"
   },
+  "build": {
+    "appId": "netless",
+    "files": [
+      "package.json",
+      "build/**/*",
+      "assets",
+      "main.js"
+    ]
+  },
+
   "dependencies": {
     "@livechat/ui-kit": "^0.4.0-5",
     "@netless/fetch-middleware": "^1.0.4",
@@ -55,8 +67,11 @@
     "@types/uuid": "^3.4.4",
     "@types/video.js": "^7.2.10",
     "@types/webaudioapi": "^0.0.27",
+    "electron": "^6.0.3",
+    "electron-builder": "^21.2.0",
     "fork-ts-checker-webpack-plugin": "^1.3.4",
     "js-yaml": "^3.12.0",
+    "nodemon": "^1.19.1",
     "react-app-rewire-define-plugin": "^1.0.0",
     "react-app-rewire-less": "^2.1.1",
     "react-app-rewire-yaml": "^1.1.0",
