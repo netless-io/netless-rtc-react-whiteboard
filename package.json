@@ -14,12 +14,15 @@
   },
   "build": {
     "appId": "netless",
+    "directories": {
+      "buildResources": "resources"
+    },
     "files": [
       "package.json",
-      "main.js"
+      "main.js",
+      "resources/icon.*"
     ]
   },
-
   "dependencies": {
     "@livechat/ui-kit": "^0.4.0-5",
     "@netless/fetch-middleware": "^1.0.4",
