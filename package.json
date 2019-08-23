@@ -10,15 +10,12 @@
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
     "build": "rimraf build && NODE_ENV=production react-app-rewired --max-old-space-size=4096 build --scripts-version react-scripts-ts",
-    "electron-dev": "nodemon --watch ./main.js --exec 'NODE_ENV=development electron .'",
-    "build:mac": "rm -rf ./dist && electron-builder"
+    "build:app": "rm -rf ./dist && electron-builder build --win --x64 && electron-builder build --mac --x64"
   },
   "build": {
     "appId": "netless",
     "files": [
       "package.json",
-      "build/**/*",
-      "assets",
       "main.js"
     ]
   },
