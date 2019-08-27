@@ -536,6 +536,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                     uuid: uuid,
                     roomToken: roomToken,
                     cursorAdapter: this.cursor,
+                    disableBezier: true,
                     userPayload: {id: userId, userId: userUuid, nickName: name, avatar: userUuid}},
                 {
                     onPhaseChanged: phase => {
