@@ -24,6 +24,7 @@ class MenuPPTDoc extends React.Component<MenuPPTDocProps, MenuPPTDocStates> {
     public componentDidMount(): void {
         const docs: PPTDataType[] = PPTDatas.map((PPTData: PPTDataType) => {
             const dataObj = JSON.parse(PPTData.data);
+            console.log(dataObj);
             if (PPTData.pptType === PPTType.static) {
                 const newDataObj = dataObj.map((data: any) => {
                     data.ppt.width = 1200;

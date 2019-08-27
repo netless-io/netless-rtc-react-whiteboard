@@ -1,7 +1,6 @@
 import * as React from "react";
-import {Badge, Icon, Popover} from "antd";
+import {Icon} from "antd";
 import {WhiteWebSdk, PlayerWhiteboard, PlayerPhase, Player, Room} from "white-react-sdk";
-import * as chat from "../assets/image/chat.svg";
 import "./ClassroomPlayerPage.less";
 import {RouteComponentProps} from "react-router";
 import SeekSlider from "@netless/react-seek-slider";
@@ -19,10 +18,9 @@ import {UserCursor} from "../components/whiteboard/UserCursor";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 import {MessageType} from "../components/whiteboard/WhiteboardBottomRight";
-import Draggable from "react-draggable";
-import VideoPlaceholder from "../components/whiteboard/VideoPlaceholder";
 import * as teacher from "../assets/image/teacher.svg";
 import {isMobile, isSafari} from "react-device-detect";
+import "video.js/dist/video-js.css";
 
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 
@@ -242,22 +240,6 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
         }
     }
 
-    private renderVideoPlaceHold = (mediaSource: string | undefined): React.ReactNode => {
-        if (mediaSource) {
-            if (isSafari) {
-                return <video
-                    className="classroom-player-video-box-safari"
-                    id="white-sdk-video-js"/>;
-            } else {
-                return <VideoPlaceholder
-                    controls={false}
-                    className="classroom-player-video-box"
-                />;
-            }
-        } else {
-            return null;
-        }
-    }
     public render(): React.ReactNode {
         const {mediaSource} = this.props.match.params;
         const {isPortrait} = this.state;
@@ -317,7 +299,10 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
                 </div>
                 <div className={isPortrait ? "classroom-player-right-portrait" : "classroom-player-right"}>
                     <div className={isPortrait ? "classroom-player-video-portrait" : "classroom-player-video"}>
-                        {this.renderVideoPlaceHold(mediaSource)}
+                        {/*{this.renderVideoPlaceHold(mediaSource)}*/}
+                        {mediaSource && <video
+                            className="video-js video-layout"
+                            id="white-sdk-video-js"/>}
                         <div className="classroom-player-video-box-layer2">
                             <img src={teacher}/>
                         </div>

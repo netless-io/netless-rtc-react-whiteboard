@@ -1,4 +1,4 @@
-import * as React from "react";
+import  * as React from "react";
 import {AppRouter, HistoryType} from "@netless/i18n-react-router";
 import {language} from "../locale";
 import {message} from "antd";

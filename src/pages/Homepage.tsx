@@ -42,32 +42,24 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
         }
         this.props.history.push(`/classroom/${NetlessRoomType.teacher_interactive}`);
     }
-
-    private getActiveSelectedKey = (url: string): string => {
-        let str = url;
-        const regex = /([^\/]+)/gm;
-        regex.exec(str);
-        regex.exec(str);
-        regex.exec(str);
-        regex.exec(str);
-        regex.exec(str);
-        const arr2 = regex.exec(str);
-        if (arr2 === null) {
-            str = "";
-        } else {
-            str = arr2[0];
-        }
-        return str;
-    }
     private handleClickBtnUrl = (): void => {
         const isUrl = this.state.url.substring(0, 4) === "http";
         if (this.state.url) {
             if (isUrl) {
-                const uuid = this.getActiveSelectedKey(this.state.url);
-                this.props.history.push(`/whiteboard/${uuid}/`);
+                window.open(this.state.url);
             } else {
                 if (this.state.url.length === 32) {
-                    this.props.history.push(`/whiteboard/${this.state.url}/`);
+                    const isNotLive = this.state.url.search("live") === -1;
+                    if (isNotLive) {
+                        const isNotInteractive = this.state.url.search("live") === -1;
+                        if (isNotInteractive) {
+                            this.props.history.push(`/classroom/${NetlessRoomType.teacher_interactive}/${this.state.url}/`);
+                        } else {
+                            this.props.history.push(`/classroom/${NetlessRoomType.interactive}/${this.state.url}/`);
+                        }
+                    } else {
+                        this.props.history.push(`/classroom/${NetlessRoomType.live}/${this.state.url}/`);
+                    }
                 }
             }
         }
@@ -116,6 +108,17 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                                 </div>
                             </TabPane>
                         </Tabs>
+                    </div>
+                    <div>
+                        <div>
+                            <img/>
+                        </div>
+                        <div>
+                            <img/>
+                        </div>
+                        <div>
+                            <img/>
+                        </div>
                     </div>
                 </div>
                 <div className="page-input-right-box"/>
