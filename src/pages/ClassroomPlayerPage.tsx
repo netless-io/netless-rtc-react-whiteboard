@@ -81,7 +81,7 @@ export default class PlayerPage extends React.Component<PlayerPageProps, PlayerP
 
     public async componentDidMount(): Promise<void> {
         const uuid = this.props.match.params.uuid;
-        const whiteWebSdk = new WhiteWebSdk();
+        const whiteWebSdk = new WhiteWebSdk({preloadDynamicPPT: true});
         const roomToken = await this.getRoomToken(uuid);
         if (uuid && roomToken) {
             const {time, duration} = this.props.match.params;
