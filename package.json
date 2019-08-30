@@ -51,7 +51,7 @@
     "react-dropzone": "4.2.10",
     "react-identicons": "^1.1.7",
     "uuid": "^3.3.2",
-    "white-react-sdk": "^2.2.13"
+    "white-react-sdk": "^2.2.14"
   },
   "devDependencies": {
     "@types/ali-oss": "^6.0.3",

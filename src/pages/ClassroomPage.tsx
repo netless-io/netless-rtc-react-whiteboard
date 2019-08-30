@@ -525,9 +525,9 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         if (roomToken && uuid) {
             let whiteWebSdk;
             if (isMobile) {
-                whiteWebSdk = new WhiteWebSdk({deviceType: DeviceType.Touch});
+                whiteWebSdk = new WhiteWebSdk({ deviceType: DeviceType.Touch, preloadDynamicPPT: true});
             } else {
-                whiteWebSdk = new WhiteWebSdk({deviceType: DeviceType.Desktop});
+                whiteWebSdk = new WhiteWebSdk({ deviceType: DeviceType.Desktop, preloadDynamicPPT: true});
             }
 
             const pptConverter = whiteWebSdk.pptConverter(netlessToken.sdkToken);

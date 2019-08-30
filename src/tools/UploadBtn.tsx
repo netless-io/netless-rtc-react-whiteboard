@@ -66,7 +66,7 @@ export default class UploadBtn extends React.Component<UploadBtnProps, ToolBoxUp
 
     private uploadStatic = (event: any) => {
         const uploadManager = new UploadManager(this.client, this.props.room);
-        const whiteWebSdk = new WhiteWebSdk();
+        const whiteWebSdk = new WhiteWebSdk({ preloadDynamicPPT: true });
         const pptConverter = whiteWebSdk.pptConverter(this.props.roomToken!);
         uploadManager.convertFile(
             event.file,
@@ -77,7 +77,7 @@ export default class UploadBtn extends React.Component<UploadBtnProps, ToolBoxUp
 
     private uploadDynamic = (event: any) => {
         const uploadManager = new UploadManager(this.client, this.props.room);
-        const whiteWebSdk = new WhiteWebSdk();
+        const whiteWebSdk = new WhiteWebSdk({ preloadDynamicPPT: true });
         const pptConverter = whiteWebSdk.pptConverter(this.props.roomToken!);
         uploadManager.convertFile(
             event.file,
