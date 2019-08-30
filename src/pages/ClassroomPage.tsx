@@ -715,13 +715,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
             if (remoteStream.getId() === 52) {
                 remoteStream.play("netless-teacher");
             } else {
-                if (isMobile) {
-                    if (remoteStream.getId() === 1) {
-                        remoteStream.play(`netless-student-1`);
-                    }
-                } else {
-                    remoteStream.play(`netless-student-${remoteStream.getId()}`);
-                }
+                remoteStream.play(`netless-student-${remoteStream.getId()}`);
             }
             console.log("Subscribe remote stream successfully: " + remoteStream.getId());
         });
