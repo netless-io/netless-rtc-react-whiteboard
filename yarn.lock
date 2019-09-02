@@ -12055,8 +12055,8 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
 
 white-react-sdk@^2.2.14:
   version "2.2.14"
-  resolved "https://registry.yarnpkg.com/white-react-sdk/-/white-react-sdk-2.2.14.tgz#8d593880e6d2860d8c3ab3cbe1060000dfd99076"
-  integrity sha512-riEzD0dYuTYSZ9T2B5qIo0Oentn8MPCqaNygb43AaVSKjY6yRDZZ7t6axl89Ih5VHB+RW0vOCamFeUXpfE/KGg==
+  resolved "https://registry.npm.taobao.org/white-react-sdk/download/white-react-sdk-2.2.14.tgz#8d593880e6d2860d8c3ab3cbe1060000dfd99076"
+  integrity sha1-jVk4gObShg2MOrPL4QYAAN/ZkHY=
   dependencies:
     react "^16.8.4"
     react-dom "^16.8.4"
@@ -12064,8 +12064,8 @@ white-react-sdk@^2.2.14:
 
 white-web-sdk@2.2.14:
   version "2.2.14"
-  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.2.14.tgz#442b1fd6256b0f395d09015bda327261200b4d54"
-  integrity sha512-GOKSZNLnBG3YmPE+gcE42kepmM48q9/imfIAsz02QtKzr5CJrW8zyQp5vVEk2+EkwQAQHCAWHhq7Jc4InDm7CQ==
+  resolved "https://registry.npm.taobao.org/white-web-sdk/download/white-web-sdk-2.2.14.tgz#442b1fd6256b0f395d09015bda327261200b4d54"
+  integrity sha1-RCsf1iVrDzldCQFb2jJyYSALTVQ=
   dependencies:
     bezier-js "^2.4.0"
     color "^3.1.2"
