@@ -408,17 +408,15 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                             </div>
                         </Dropzone>
                         <div className={isMobile ? "classroom-box-right-mb" : "classroom-box-right"}>
-                            <div className={isMobile ? "classroom-box-video-mb" : "classroom-box-video"}>
-                                <ClassroomMedia netlessRoom={netlessRoomType} userId={parseInt(userId)} uuid={uuid} room={this.state.room}/>
-                            </div>
-                            {!isMobile && <div className="classroom-box-chart">
-                                <WhiteboardChat
-                                    room={this.state.room}
-                                    messages={this.state.messages}
-                                    isClassroom={true}
-                                    isReadonly={isReadOnly}
-                                    userId={this.state.userId}/>
-                            </div>}
+                            <ClassroomMedia netlessRoom={netlessRoomType} userId={parseInt(userId)} uuid={uuid} room={this.state.room}/>
+                            {/*{!isMobile && <div className="classroom-box-chart">*/}
+                                {/*<WhiteboardChat*/}
+                                    {/*room={this.state.room}*/}
+                                    {/*messages={this.state.messages}*/}
+                                    {/*isClassroom={true}*/}
+                                    {/*isReadonly={isReadOnly}*/}
+                                    {/*userId={this.state.userId}/>*/}
+                            {/*</div>}*/}
                         </div>
                     </div>
                 </div>

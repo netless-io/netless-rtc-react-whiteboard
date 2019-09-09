@@ -14,6 +14,7 @@ const AgoraRTC = require("../../rtc/rtsLib/AgoraRTC-production.js");
 export type ClassroomMediaStates = {
     isRtcStart: boolean;
     isMaskAppear: boolean;
+    isFullScreen: boolean;
 };
 
 export type ClassroomMediaProps = {
@@ -33,6 +34,7 @@ class ClassroomMedia extends React.Component<ClassroomMediaProps, ClassroomMedia
         this.state = {
             isRtcStart: false,
             isMaskAppear: false,
+            isFullScreen: false,
         };
     }
 
@@ -49,65 +51,65 @@ class ClassroomMedia extends React.Component<ClassroomMediaProps, ClassroomMedia
     }
 
     public render(): React.ReactNode {
-
-        return (
-            <div>
-                {this.state.isRtcStart ?
-                    <div className="classroom-box-video-mid">
-                        {this.state.isMaskAppear &&
-                        <div className="classroom-box-video-mask">
-                            <Button
-                                onClick={() => this.stop()}
-                                type="primary">结束</Button>
-                        </div>}
-                        <div onClick={() => {
-                            this.setState({isMaskAppear: !this.state.isMaskAppear});
-                        }} className="classroom-box-video-set">
-                            {this.state.isMaskAppear ? <img style={{width: 14}} src={close_white}/> : <img src={set_video}/>}
+        if (this.state.isRtcStart) {
+            return (
+                <div className="classroom-box-video-mid">
+                    {this.state.isMaskAppear &&
+                    <div className="classroom-box-video-mask">
+                        <Button
+                            onClick={() => this.stop()}
+                            type="primary">结束</Button>
+                    </div>}
+                    <div onClick={() => {
+                        this.setState({isMaskAppear: !this.state.isMaskAppear});
+                    }} className="classroom-box-video-set">
+                        {this.state.isMaskAppear ? <img style={{width: 14}} src={close_white}/> : <img src={set_video}/>}
+                    </div>
+                    <div className="classroom-box-teacher-video">
+                        <div id="netless-teacher" className="classroom-box-teacher-layer-1">
                         </div>
-                        <div className="classroom-box-teacher-video">
-                            <div id="netless-teacher" className="classroom-box-teacher-layer-1">
-                            </div>
-                            <div className="classroom-box-teacher-layer-2">
-                                <img src={teacher}/>
-                            </div>
-                        </div>
-                        <div className={isMobile ? "classroom-box-students-video-mb" : "classroom-box-students-video"}>
-                            <div className="classroom-box-student-cell">
-                                <div id="netless-student-1" className="classroom-box-student-layer-1">
-                                </div>
-                                <div className="classroom-box-student-layer-2">
-                                    <img src={student}/>
-                                </div>
-                            </div>
-                            <div className="classroom-box-student-cell">
-                                <div id="netless-student-2" className="classroom-box-student-layer-1">
-                                </div>
-                                <div style={{backgroundColor: "#2B2B2B"}} className="classroom-box-student-layer-2">
-                                    <img src={student}/>
-                                </div>
-                            </div>
-                            <div className="classroom-box-student-cell">
-                                <div id="netless-student-3" className="classroom-box-student-layer-1">
-                                </div>
-                                <div className="classroom-box-student-layer-2">
-                                    <img src={student}/>
-                                </div>
-                            </div>
-                        </div>
-                    </div> :
-                    <div className="classroom-box-video-mid-2">
-                        <div className="classroom-box-video-mid-inner">
-                            <img style={{width: 108, marginBottom: 24}} src={camera}/>
-                            <Button
-                                onClick={() => this.startRtc(this.props.userId, this.props.uuid, this.props.room)}
-                                style={{width: 108}}
-                                type="primary">开始视频通讯</Button>
+                        <div className="classroom-box-teacher-layer-2">
+                            <img src={teacher}/>
                         </div>
                     </div>
-                }
-            </div>
-        );
+                    <div className={isMobile ? "classroom-box-students-video-mb" : "classroom-box-students-video"}>
+                        <div className="classroom-box-student-cell">
+                            <div id="netless-student-1" className="classroom-box-student-layer-1">
+                            </div>
+                            <div className="classroom-box-student-layer-2">
+                                <img src={student}/>
+                            </div>
+                        </div>
+                        <div className="classroom-box-student-cell">
+                            <div id="netless-student-2" className="classroom-box-student-layer-1">
+                            </div>
+                            <div style={{backgroundColor: "#2B2B2B"}} className="classroom-box-student-layer-2">
+                                <img src={student}/>
+                            </div>
+                        </div>
+                        <div className="classroom-box-student-cell">
+                            <div id="netless-student-3" className="classroom-box-student-layer-1">
+                            </div>
+                            <div className="classroom-box-student-layer-2">
+                                <img src={student}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <div className="classroom-box-video-mid-2">
+                    <div className="classroom-box-video-mid-inner">
+                        <img style={{width: 108, marginBottom: 24}} src={camera}/>
+                        <Button
+                            onClick={() => this.startRtc(this.props.userId, this.props.uuid, this.props.room)}
+                            style={{width: 108}}
+                            type="primary">开始视频通讯</Button>
+                    </div>
+                </div>
+            );
+        }
     }
 
     private stop = (): void => {
