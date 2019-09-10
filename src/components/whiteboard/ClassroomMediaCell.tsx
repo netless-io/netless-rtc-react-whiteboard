@@ -1,6 +1,5 @@
 import * as React from "react";
 import "./ClassroomMedia.less";
-import {isMobile} from "react-device-detect";
 import {Button} from "antd";
 import {rtcAppId} from "../../appToken";
 import {NetlessRoomType} from "../../pages/ClassroomCreatorPage";

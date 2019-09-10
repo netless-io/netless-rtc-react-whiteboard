@@ -408,7 +408,11 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                             </div>
                         </Dropzone>
                         <div className={isMobile ? "classroom-box-right-mb" : "classroom-box-right"}>
-                            <ClassroomMedia netlessRoom={netlessRoomType} userId={parseInt(userId)} uuid={uuid} room={this.state.room}/>
+                                <ClassroomMedia
+                                    netlessRoom={netlessRoomType}
+                                    userId={parseInt(userId)}
+                                    uuid={uuid}
+                                    room={this.state.room}/>
                             {/*{!isMobile && <div className="classroom-box-chart">*/}
                                 {/*<WhiteboardChat*/}
                                     {/*room={this.state.room}*/}
