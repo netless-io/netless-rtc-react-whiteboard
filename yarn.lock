@@ -185,6 +185,11 @@
   resolved "https://registry.npm.taobao.org/@popmotion/easing/download/@popmotion/easing-1.0.2.tgz#17d925c45b4bf44189e5a38038d149df42d8c0b4"
   integrity sha1-F9klxFtL9EGJ5aOAONFJ30LYwLQ=
 
+"@types/agora-rtc-sdk@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.npm.taobao.org/@types/agora-rtc-sdk/download/@types/agora-rtc-sdk-2.6.0.tgz#a31031fb19afe9f393f2efb89f415f13e24ab738"
+  integrity sha1-oxAx+xmv6fOT8u+4n0FfE+JKtzg=
+
 "@types/ali-oss@^6.0.3":
   version "6.0.3"
   resolved "https://registry.npm.taobao.org/@types/ali-oss/download/@types/ali-oss-6.0.3.tgz#7b061b60dd00902d5ec7ed5f58685f5a72996689"
@@ -476,6 +481,11 @@ agentkeepalive@^3.4.1:
   integrity sha1-oROSTdP6JKC8O3gQjEUMKr7gD2c=
   dependencies:
     humanize-ms "^1.2.1"
+
+agora-rtc-sdk@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.npm.taobao.org/agora-rtc-sdk/download/agora-rtc-sdk-2.9.0.tgz#e94ce100c67b16b9e3919ff314995daf6e4e5359"
+  integrity sha1-6UzhAMZ7FrnjkZ/zFJldr25OU1k=
 
 ajv-keywords@^2.0.0:
   version "2.1.1"

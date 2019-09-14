@@ -16,7 +16,7 @@ import PageError from "./PageError";
 import * as loading from "../assets/image/loading.svg";
 import {netlessWhiteboardApi, UserInfType} from "../apiMiddleware";
 import * as OSS from "ali-oss";
-import {netlessToken, ossConfigObj} from "../appToken";
+import {netlessToken, ossConfigObj, rtcAppId} from "../appToken";
 import {message} from "antd";
 import {isMobile} from "react-device-detect";
 import {RouteComponentProps} from "react-router";
@@ -42,8 +42,7 @@ import WhiteboardChat from "../components/whiteboard/WhiteboardChat";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 import ToolBoxMobile from "@netless/react-mb-tool-box";
 import * as like from "../assets/image/like.svg";
-import * as camera from "../assets/image/camera.svg";
-import ClassroomMedia from "../components/whiteboard/ClassroomMedia";
+import ClassroomMedia, {IdentityType} from "../components/whiteboard/ClassroomMedia";
 export type ClassroomProps = RouteComponentProps<{
     uuid: string;
     userId: string;
@@ -409,9 +408,10 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                         </Dropzone>
                         <div className={isMobile ? "classroom-box-right-mb" : "classroom-box-right"}>
                                 <ClassroomMedia
-                                    netlessRoom={netlessRoomType}
                                     userId={parseInt(userId)}
-                                    uuid={uuid}
+                                    channelId={uuid}
+                                    identity={(netlessRoomType === NetlessRoomType.teacher_interactive) ? IdentityType.host : IdentityType.guest}
+                                    agoraAppId={rtcAppId.agoraAppId}
                                     room={this.state.room}/>
                             {/*{!isMobile && <div className="classroom-box-chart">*/}
                                 {/*<WhiteboardChat*/}
@@ -428,7 +428,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
         }
     }
     private startJoinRoom = async (): Promise<void> => {
-        const {userId, uuid} = this.props.match.params;
+        const {userId, uuid, netlessRoomType} = this.props.match.params;
         this.setState({userId: userId});
         const roomToken = await this.getRoomToken(uuid);
         if (netlessWhiteboardApi.user.getUserInf(UserInfType.uuid, `${userId}`) === `Netless uuid ${userId}`) {
@@ -452,7 +452,12 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                     roomToken: roomToken,
                     cursorAdapter: this.cursor,
                     disableBezier: true,
-                    userPayload: {id: userId, userId: userUuid, nickName: name, avatar: userUuid}},
+                    userPayload: {
+                        userId: parseInt(userId),
+                        name: name,
+                        avatar: userUuid,
+                        identity: (netlessRoomType === NetlessRoomType.teacher_interactive) ? IdentityType.host : IdentityType.guest,
+                    }},
                 {
                     onPhaseChanged: phase => {
                         if (!this.didLeavePage) {

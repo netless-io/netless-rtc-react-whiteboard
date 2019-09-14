@@ -1,334 +1,298 @@
 import * as React from "react";
 import "./ClassroomMedia.less";
-import {isMobile} from "react-device-detect";
-import {Button} from "antd";
-import {rtcAppId} from "../../appToken";
-import {NetlessRoomType} from "../../pages/ClassroomCreatorPage";
-import {Room} from "white-react-sdk";
-import * as camera from "../../assets/image/camera.svg";
-import * as student from "../../assets/image/student.svg";
-import * as teacher from "../../assets/image/teacher.svg";
-import * as set_video from "../../assets/image/set_video.svg";
-import * as close_white from "../../assets/image/close_white.svg";
-const AgoraRTC = require("../../rtc/rtsLib/AgoraRTC-production.js");
+import {Room, RoomMember} from "white-react-sdk";
+import AgoraRTC, {Client, Stream} from "agora-rtc-sdk";
+import {message} from "antd";
+import ClassroomMediaCell from "./ClassroomMediaCell";
+import ClassroomMediaHostCell from "./ClassroomMediaHostCell";
+import {CSSProperties} from "react";
+
+export type NetlessStream = {
+    state: {isVideoOpen: boolean, isAudioOpen: boolean},
+} & Stream;
+
+export enum IdentityType {
+    host = "host",
+    guest = "guest",
+    listener = "listener",
+}
+
 export type ClassroomMediaStates = {
     isRtcStart: boolean;
     isMaskAppear: boolean;
     isFullScreen: boolean;
-    array: number[];
+    remoteMediaStreams: NetlessStream[];
+    localStream: NetlessStream | null;
 };
 
 export type ClassroomMediaProps = {
-    netlessRoom: NetlessRoomType;
     userId: number;
-    uuid: string;
+    channelId: string;
     room: Room;
+    agoraAppId: string;
+    identity: IdentityType;
+    isRTCReady?: (state: boolean) => void;
 };
 
-class ClassroomMedia extends React.Component<ClassroomMediaProps, ClassroomMediaStates> {
+export default class ClassroomMedia extends React.Component<ClassroomMediaProps, ClassroomMediaStates> {
 
-    private agoraClient: any;
-    private localStream: any;
+    private agoraClient: Client;
 
     public constructor(props: ClassroomMediaProps) {
         super(props);
         this.state = {
-            isRtcStart: true,
+            isRtcStart: false,
             isMaskAppear: false,
             isFullScreen: false,
-            array: [1, 2, 3, 4],
+            remoteMediaStreams: [],
+            localStream: null,
         };
     }
 
-    public componentWillUnmount(): void {
-        if (this.agoraClient) {
-            this.agoraClient.leave(() => {
-                console.log("Leave channel successfully");
-                if (this.localStream) {
-                    this.localStream.stop();
-                    this.localStream.close();
-                }
-            });
-        }
-    }
-
-    private renderStudent = (): React.ReactNode => {
-        const {array} = this.state;
-        if (array.length === 1) {
-            return (
-                <div style={{width: "100%", height: 180, backgroundColor: "#2B2B2B"}}className="classroom-box-student-cell">
-                    <div id="netless-student-1" className="classroom-box-student-layer-1">
-                    </div>
-                    <div style={{backgroundColor: "#2B2B2B"}} className="classroom-box-student-layer-2">
-                        <img src={student}/>
-                    </div>
-                </div>
-            );
-        } else if (array.length === 2) {
-            const nodes = this.state.array.map((data: any, index: number) => {
+    private renderMediaBoxArray = (): React.ReactNode => {
+        const {remoteMediaStreams} = this.state;
+        const {room, identity} = this.props;
+        const hostRoomMember = room.state.roomMembers.find((roomMember: RoomMember) => roomMember.payload.identity === IdentityType.host);
+        if (hostRoomMember) {
+            const mediaStreams = remoteMediaStreams.filter(data => data.getId() !== hostRoomMember.payload.userId);
+            const nodes = mediaStreams.map((data: NetlessStream, index: number) => {
                 return (
-                    <div style={{width: "50%", height: 180}} className="classroom-box-student-cell">
-                        <div id="netless-student-1" className="classroom-box-student-layer-1">
-                        </div>
-                        <div style={{backgroundColor: (index % 2 === 0) ? "#3C3F41" : "#2B2B2B"}} className="classroom-box-student-layer-2">
-                            <img src={student}/>
-                        </div>
-                    </div>
+                    <ClassroomMediaCell
+                        streamsLength={mediaStreams.length}
+                        identity={identity}
+                        key={`${data.getId()}`}
+                        stream={data}/>
                 );
             });
             return nodes;
         } else {
-            const nodes = this.state.array.map((data: any, index: number) => {
+            const nodes = remoteMediaStreams.map((data: NetlessStream, index: number) => {
                 return (
-                    <div style={{width: "33.33%", height: 90}} className="classroom-box-student-cell">
-                        <div id="netless-student-1" className="classroom-box-student-layer-1">
-                        </div>
-                        <div style={{backgroundColor: (index % 2 === 0) ? "#3C3F41" : "#2B2B2B"}}  className="classroom-box-student-layer-2">
-                            <img src={student}/>
-                        </div>
-                    </div>
+                    <ClassroomMediaCell
+                        streamsLength={remoteMediaStreams.length}
+                        identity={identity}
+                        key={`${data.getId()}`}
+                        stream={data}/>
                 );
             });
             return nodes;
         }
     }
 
-    private renderInner = (): React.ReactNode => {
-        if (this.state.isRtcStart) {
-            return (
-                <div className="classroom-box-video-mid">
-                    {this.state.isMaskAppear &&
-                    <div className="classroom-box-video-mask">
-                        <Button
-                            onClick={() => this.stop()}
-                            type="primary">结束</Button>
-                    </div>}
-                    <div onClick={() => {
-                        this.setState({isMaskAppear: !this.state.isMaskAppear});
-                    }} className="classroom-box-video-set">
-                        {this.state.isMaskAppear ? <img style={{width: 14}} src={close_white}/> : <img src={set_video}/>}
-                    </div>
-                    <div>
-                        <div className="classroom-box-teacher-video">
-                            <div id="netless-teacher" className="classroom-box-teacher-layer-1">
-                            </div>
-                            <div className="classroom-box-teacher-layer-2">
-                                <img src={teacher}/>
-                            </div>
-                        </div>
-                        <div className="classroom-box-students-video">
-                            {this.renderStudent()}
-                            {/*<div className="classroom-box-student-cell">*/}
-                                {/*<div id="netless-student-1" className="classroom-box-student-layer-1">*/}
-                                {/*</div>*/}
-                                {/*<div className="classroom-box-student-layer-2">*/}
-                                    {/*<img src={student}/>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                            {/*<div className="classroom-box-student-cell">*/}
-                                {/*<div id="netless-student-2" className="classroom-box-student-layer-1">*/}
-                                {/*</div>*/}
-                                {/*<div style={{backgroundColor: "#2B2B2B"}} className="classroom-box-student-layer-2">*/}
-                                    {/*<img src={student}/>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                            {/*<div className="classroom-box-student-cell">*/}
-                                {/*<div id="netless-student-3" className="classroom-box-student-layer-1">*/}
-                                {/*</div>*/}
-                                {/*<div className="classroom-box-student-layer-2">*/}
-                                    {/*<img src={student}/>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                            {/*<div className="classroom-box-student-cell">*/}
-                                {/*<div id="netless-student-3" className="classroom-box-student-layer-1">*/}
-                                {/*</div>*/}
-                                {/*<div className="classroom-box-student-layer-2">*/}
-                                    {/*<img src={student}/>*/}
-                                {/*</div>*/}
-                            {/*</div>*/}
-                        </div>
-                    </div>
-                </div>
-            );
+    private renderRemoteHostBox = (): React.ReactNode => {
+        const {remoteMediaStreams} = this.state;
+        const {room} = this.props;
+        const hostRoomMember = room.state.roomMembers.find((roomMember: RoomMember) => roomMember.payload.identity === IdentityType.host);
+        if (hostRoomMember) {
+            const hostStream = remoteMediaStreams.find((stream: NetlessStream) => stream.getId() === hostRoomMember.payload.userId);
+            if (hostStream) {
+                return <ClassroomMediaHostCell streamsLength={remoteMediaStreams.length} key={`${hostStream.getId()}`} stream={hostStream}/>;
+            } else {
+                return null;
+            }
         } else {
-            return (
-                <div className="classroom-box-video-mid-2">
-                    <div className="classroom-box-video-mid-inner">
-                        <img style={{width: 108, marginBottom: 24}} src={camera}/>
-                        <Button
-                            onClick={() => this.startRtc(this.props.userId, this.props.uuid, this.props.room)}
-                            style={{width: 108}}
-                            type="primary">开始视频通讯</Button>
-                    </div>
-                </div>
-            );
+            return null;
         }
     }
 
+    private renderSelfBox = (): React.ReactNode => {
+        const {localStream} = this.state;
+        if (localStream) {
+            return (
+                <div style={this.handleLocalVideoBox()} id="rtc_local_stream">
+                </div>
+            );
+
+        } else {
+            return null;
+        }
+    }
     public render(): React.ReactNode {
+        const {userId, channelId} = this.props;
        return (
-           <div className="classroom-box-media-box">
-               {this.renderInner()}
+           <div>
+               <div onClick={() => this.startRtc(userId, channelId)}>start</div>
+               <div onClick={() => this.stopLocal()}>stop</div>
+               <div className="netless-video-box">
+                   {this.renderRemoteHostBox()}
+                   {this.renderSelfBox()}
+                   {this.renderMediaBoxArray()}
+               </div>
            </div>
        );
     }
 
-    private stop = (): void => {
-        this.agoraClient.leave(() => {
-            console.log("Leave channel successfully");
-            this.setState({isRtcStart: false});
-            // this.setMediaState(false);
-            if (this.localStream) {
-                this.localStream.stop();
-                this.localStream.close();
+    private handleLocalVideoBox = (): CSSProperties => {
+        const {remoteMediaStreams} = this.state;
+        const {identity, room} = this.props;
+        if (identity === IdentityType.host) {
+            if (remoteMediaStreams.length === 0) {
+                return {width: "100%", height: 360};
+            } else {
+                return {width: "100%", height: 180};
             }
-            this.setState({isMaskAppear: false});
-        }, (err: any) => {
-            console.log("Leave channel failed");
-        });
-    }
-    private startRtc = (uid: number, channelId: string, room: Room): void => {
-        const {netlessRoom} = this.props;
-        if (!this.agoraClient) {
-            this.agoraClient = AgoraRTC.createClient({mode: "live", codec: "h264"});
-            this.agoraClient.init(rtcAppId.agoraAppId, () => {
-                console.log("AgoraRTC client initialized");
-            }, (err: any) => {
-                console.log("AgoraRTC client init failed", err);
-            });
+        } else {
+            const hostRoomMember = room.state.roomMembers.find((roomMember: RoomMember) => roomMember.payload.identity === IdentityType.host);
+            if (hostRoomMember) {
+                const hostStream = remoteMediaStreams.find((stream: NetlessStream) => stream.getId() === hostRoomMember.payload.userId);
+                if (hostStream) {
+                    if (remoteMediaStreams.length === 0) {
+                        return {width: "100%", height: 360};
+                    } else if (remoteMediaStreams.length === 1) {
+                        return {width: "100%", height: 180};
+                    } else if (remoteMediaStreams.length === 2) {
+                        return {width: "50%", height: 180};
+                    } else {
+                        return {width: "33.33%", height: 90};
+                    }
+                } else {
+                    if (remoteMediaStreams.length === 0) {
+                        return {width: "100%", height: 360};
+                    } else {
+                        return {width: "100%", height: 180};
+                    }
+                }
+            } else {
+                if (remoteMediaStreams.length === 0) {
+                    return {width: "100%", height: 360};
+                } else {
+                    return {width: "100%", height: 180};
+                }
+            }
         }
+    }
 
-        if (netlessRoom === NetlessRoomType.live) {
-            this.agoraClient.join(rtcAppId.agoraAppId, channelId, uid, (userRtcId: number) => {
-                this.setState({isRtcStart: true});
+    private startRtc = (userId: number, channelId: string): void => {
+        this.agoraClient = AgoraRTC.createClient({mode: "rtc", codec: "h264"});
+        this.agoraClient.init(this.props.agoraAppId, () => {
+            console.log("AgoraRTC client initialized");
+        }, (err: any) => {
+            console.log("AgoraRTC client init failed", err);
+        });
+        const localStream = AgoraRTC.createStream({
+            streamID: userId,
+            audio: true,
+            video: true,
+        });
+        localStream.init(()  => {
+            console.log("getUserMedia successfully");
+            const netlessLocalStream = {
+                ...localStream,
+                state: {isVideoOpen: true, isAudioOpen: true},
+            };
+            this.setState({localStream: netlessLocalStream});
+            netlessLocalStream.play("rtc_local_stream");
+            this.agoraClient.join(this.props.agoraAppId, channelId, userId, (uid: string) => {
+                console.log("User " + uid + " join channel successfully");
+                this.agoraClient.publish(localStream, (err: any) => {
+                    console.log("Publish local stream error: " + err);
+                });
             }, (err: any) => {
                 console.log(err);
             });
-        } else {
-            let localStream: any;
-            let userRtcId: number;
-            if (netlessRoom === NetlessRoomType.teacher_interactive) {
-                userRtcId = 52;
-                localStream = AgoraRTC.createStream({
-                        streamID: 52,
-                        audio: true,
-                        video: true,
-                        screen: false,
-                    },
-                );
-            } else if (netlessRoom === NetlessRoomType.interactive) {
-                if (room.state.roomMembers.length === 2) {
-                    userRtcId = 1;
-                    localStream = AgoraRTC.createStream({
-                            streamID: 1,
-                            audio: true,
-                            video: true,
-                            screen: false,
-                        },
-                    );
-                } else if (room.state.roomMembers.length === 3) {
-                    userRtcId = 2;
-                    localStream = AgoraRTC.createStream({
-                            streamID: 2,
-                            audio: true,
-                            video: true,
-                            screen: false,
-                        },
-                    );
-                } else if (room.state.roomMembers.length === 4) {
-                    userRtcId = 3;
-                    localStream = AgoraRTC.createStream({
-                            streamID: 3,
-                            audio: true,
-                            video: true,
-                            screen: false,
-                        },
-                    );
-                } else {
-                    userRtcId = uid;
-                    localStream = AgoraRTC.createStream({
-                            streamID: uid,
-                            audio: true,
-                            video: true,
-                            screen: false,
-                        },
-                    );
-                }
-            }
-            localStream.setVideoProfile("480p_2");
-            this.localStream = localStream;
-            this.localStream.init(()  => {
-                console.log("getUserMedia successfully");
-                this.setState({isRtcStart: true});
-                // this.setMediaState(true);
-                if (netlessRoom === NetlessRoomType.teacher_interactive) {
-                    this.localStream.play("netless-teacher");
-                } else if (netlessRoom === NetlessRoomType.interactive) {
-                    if (room.state.roomMembers.length === 2) {
-                        this.localStream.play("netless-student-1");
-                    } else if (room.state.roomMembers.length === 3) {
-                        this.localStream.play("netless-student-2");
-                    } else if (room.state.roomMembers.length === 4) {
-                        this.localStream.play("netless-student-3");
-                    }
-                }
-                this.agoraClient.join(rtcAppId.agoraAppId, channelId, userRtcId, (userRtcId: number) => {
-                    this.agoraClient.publish(localStream, (err: any) => {
-                        console.log("Publish local stream error: " + err);
-                    });
-                }, (err: any) => {
-                    console.log(err);
-                });
-            }, (err: any) => {
-                console.log("getUserMedia failed", err);
-            });
-        }
+        }, (err: any) => {
+            console.log("getUserMedia failed", err);
+        });
+
+        // 监听
         this.agoraClient.on("stream-published", () => {
             console.log("Publish local stream successfully");
         });
         this.agoraClient.on("stream-added",  (evt: any) => {
             const stream = evt.stream;
             console.log("New stream added: " + stream.getId());
-            this.agoraClient.subscribe(stream, { video: true, audio: true });
-        });
-        this.agoraClient.on("peer-leave", (evt: any) => {
-            const stream = evt.stream;
-            if (stream.getId() === 52) {
-                const videoNode = document.getElementById("netless-teacher");
-                if (videoNode && videoNode.children[0]) {
-                    videoNode.removeChild(videoNode.children[0]);
-                }
-            } else if (stream.getId() <= 3) {
-                const videoNode = document.getElementById(`netless-student-${stream.getId()}`);
-                if (videoNode && videoNode.children[0]) {
-                    videoNode.removeChild(videoNode.children[0]);
-                }
-            }
-            console.log("remote user left ", stream.getId());
+            this.agoraClient.subscribe(stream);
         });
         this.agoraClient.on("stream-subscribed", (evt: any) => {
             const remoteStream = evt.stream;
-            if (remoteStream.getId() === 52) {
-                remoteStream.play("netless-teacher");
-            } else {
-                remoteStream.play(`netless-student-${remoteStream.getId()}`);
-            }
+            remoteStream.state = {isVideoOpen: true, isAudioOpen: true};
+            const remoteMediaStreams = this.state.remoteMediaStreams;
+            remoteMediaStreams.push(remoteStream);
+            this.setState({
+                remoteMediaStreams: remoteMediaStreams,
+            });
             console.log("Subscribe remote stream successfully: " + remoteStream.getId());
+        });
+        this.agoraClient.on("peer-leave", (evt: any) => {
+            const uid = evt.uid;
+            this.stop(uid);
+            console.log("remote user left ", uid);
         });
         this.agoraClient.on("mute-video", (evt: any) => {
             const uid = evt.uid;
+            const streams = this.state.remoteMediaStreams.map((data: any) => {
+                if (data.getId() === uid) {
+                    data.state.isVideoOpen = false;
+                }
+                return data;
+            });
+            this.setState({remoteMediaStreams: streams});
         });
         this.agoraClient.on("unmute-video", (evt: any) => {
             const uid = evt.uid;
+            const streams = this.state.remoteMediaStreams.map((data: any) => {
+                if (data.getId() === uid) {
+                    data.state.isVideoOpen = true;
+                }
+                return data;
+            });
+            this.setState({remoteMediaStreams: streams});
         });
         this.agoraClient.on("mute-audio", (evt: any) => {
             const uid = evt.uid;
+            const streams = this.state.remoteMediaStreams.map((data: any) => {
+                if (data.getId() === uid) {
+                    data.state.isAudioOpen = false;
+                }
+                return data;
+            });
+            this.setState({remoteMediaStreams: streams});
         });
         this.agoraClient.on("unmute-audio", (evt: any) => {
             const uid = evt.uid;
+            const streams = this.state.remoteMediaStreams.map(data => {
+                if (data.getId() === uid) {
+                    data.state.isAudioOpen = true;
+                }
+                return data;
+            });
+            this.setState({remoteMediaStreams: streams});
         });
     }
+
+    private stop = (streamId: number): void => {
+        const mediaStreams = this.state.remoteMediaStreams;
+        const stream = mediaStreams.find((stream: NetlessStream) => {
+            return stream.getId() === streamId;
+        });
+        if (stream) {
+            const newMediaStreams = this.state.remoteMediaStreams.map(data => {
+                if (stream.getId() === stream.getId()) {
+                    data.state.isVideoOpen = false;
+                    data.state.isAudioOpen = false;
+                }
+                return data;
+            });
+            newMediaStreams.splice(newMediaStreams.indexOf(stream), 1);
+            this.setState({
+                remoteMediaStreams: newMediaStreams,
+            });
+        }
+    }
+
+    private stopLocal = (): void => {
+        const localStream = this.state.localStream;
+        if (localStream) {
+            this.agoraClient.leave(() => {
+                localStream.stop();
+                localStream.close();
+                this.setState({remoteMediaStreams: []});
+                console.log("client leaves channel success");
+            }, (err: any) => {
+                console.log("channel leave failed");
+                console.error(err);
+            });
+        }
+    }
+
 }
-
-
-export default ClassroomMedia;

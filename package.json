@@ -34,6 +34,7 @@
     "@netless/react-seek-slider": "^1.0.4",
     "@netless/react-tool-box": "^1.0.6",
     "@types/html2canvas": "^0.0.35",
+    "agora-rtc-sdk": "^2.9.0",
     "ali-oss": "^6.1.1",
     "antd": "^3.10.4",
     "html2canvas": "^1.0.0-rc.3",
@@ -54,6 +55,7 @@
     "white-react-sdk": "^2.2.14"
   },
   "devDependencies": {
+    "@types/agora-rtc-sdk": "^2.6.0",
     "@types/ali-oss": "^6.0.3",
     "@types/is-touch-device": "^1.0.0",
     "@types/js-yaml": "^3.11.2",
