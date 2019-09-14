@@ -7,7 +7,8 @@ import ClassroomMediaCell from "./ClassroomMediaCell";
 import ClassroomMediaHostCell from "./ClassroomMediaHostCell";
 import {CSSProperties} from "react";
 import * as camera from "../../assets/image/camera.svg";
-
+import * as set_video from "../../assets/image/set_video.svg";
+import * as close_white from "../../assets/image/close_white.svg";
 export type NetlessStream = {
     state: {isVideoOpen: boolean, isAudioOpen: boolean},
 } & Stream;
@@ -122,6 +123,11 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
                    </Button>
                </div>}
                <div className="netless-video-box">
+                   <div onClick={() => {
+                       this.setState({isMaskAppear: !this.state.isMaskAppear});
+                   }} className="classroom-box-video-set">
+                       {this.state.isMaskAppear ? <img style={{width: 14}} src={close_white}/> : <img src={set_video}/>}
+                   </div>
                    {this.renderRemoteHostBox()}
                    {this.renderSelfBox()}
                    {this.renderMediaBoxArray()}
