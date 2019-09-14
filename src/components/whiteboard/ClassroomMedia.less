@@ -61,8 +61,32 @@
 }
 
 .netless-video-box {
+    position: absolute;
+    z-index: 1;
     width: 360px;
     height: 360px;
     display: flex;
     flex-wrap: wrap;
+    background-color: #3C3F41;
+}
+
+.netless-video-mask {
+    position: absolute;
+    z-index: 2;
+    width: 360px;
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3C3F41;
+    flex-direction: column;
+    img {
+        margin-bottom: 16px;
+        width: 96px;
+    }
+}
+.netless-video-out-box {
+    width: 360px;
+    height: 360px;
+    position: relative;
 }

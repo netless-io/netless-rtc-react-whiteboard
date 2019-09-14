@@ -2,10 +2,11 @@ import * as React from "react";
 import "./ClassroomMedia.less";
 import {Room, RoomMember} from "white-react-sdk";
 import AgoraRTC, {Client, Stream} from "agora-rtc-sdk";
-import {message} from "antd";
+import {Button, message} from "antd";
 import ClassroomMediaCell from "./ClassroomMediaCell";
 import ClassroomMediaHostCell from "./ClassroomMediaHostCell";
 import {CSSProperties} from "react";
+import * as camera from "../../assets/image/camera.svg";
 
 export type NetlessStream = {
     state: {isVideoOpen: boolean, isAudioOpen: boolean},
@@ -109,17 +110,24 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
     }
     public render(): React.ReactNode {
         const {userId, channelId} = this.props;
-       return (
-           <div>
-               <div onClick={() => this.startRtc(userId, channelId)}>start</div>
-               <div onClick={() => this.stopLocal()}>stop</div>
+        return (
+            <div className="netless-video-out-box">
+               {/*<div onClick={() => this.startRtc(userId, channelId)}>start</div>*/}
+               {/*<div onClick={() => this.stopLocal()}>stop</div>*/}
+               {!this.state.localStream &&
+               <div className="netless-video-mask">
+                   <img src={camera}/>
+                   <Button onClick={() => this.startRtc(userId, channelId)} type="primary">
+                       开始视频
+                   </Button>
+               </div>}
                <div className="netless-video-box">
                    {this.renderRemoteHostBox()}
                    {this.renderSelfBox()}
                    {this.renderMediaBoxArray()}
                </div>
-           </div>
-       );
+            </div>
+        );
     }
 
     private handleLocalVideoBox = (): CSSProperties => {
