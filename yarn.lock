@@ -185,6 +185,11 @@
   resolved "https://registry.npm.taobao.org/@popmotion/easing/download/@popmotion/easing-1.0.2.tgz#17d925c45b4bf44189e5a38038d149df42d8c0b4"
   integrity sha1-F9klxFtL9EGJ5aOAONFJ30LYwLQ=
 
+"@types/agora-rtc-sdk@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.npm.taobao.org/@types/agora-rtc-sdk/download/@types/agora-rtc-sdk-2.6.0.tgz#a31031fb19afe9f393f2efb89f415f13e24ab738"
+  integrity sha1-oxAx+xmv6fOT8u+4n0FfE+JKtzg=
+
 "@types/ali-oss@^6.0.3":
   version "6.0.3"
   resolved "https://registry.npm.taobao.org/@types/ali-oss/download/@types/ali-oss-6.0.3.tgz#7b061b60dd00902d5ec7ed5f58685f5a72996689"
@@ -476,6 +481,11 @@ agentkeepalive@^3.4.1:
   integrity sha1-oROSTdP6JKC8O3gQjEUMKr7gD2c=
   dependencies:
     humanize-ms "^1.2.1"
+
+agora-rtc-sdk@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.npm.taobao.org/agora-rtc-sdk/download/agora-rtc-sdk-2.9.0.tgz#e94ce100c67b16b9e3919ff314995daf6e4e5359"
+  integrity sha1-6UzhAMZ7FrnjkZ/zFJldr25OU1k=
 
 ajv-keywords@^2.0.0:
   version "2.1.1"
@@ -12055,8 +12065,8 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
 
 white-react-sdk@^2.2.14:
   version "2.2.14"
-  resolved "https://registry.yarnpkg.com/white-react-sdk/-/white-react-sdk-2.2.14.tgz#8d593880e6d2860d8c3ab3cbe1060000dfd99076"
-  integrity sha512-riEzD0dYuTYSZ9T2B5qIo0Oentn8MPCqaNygb43AaVSKjY6yRDZZ7t6axl89Ih5VHB+RW0vOCamFeUXpfE/KGg==
+  resolved "https://registry.npm.taobao.org/white-react-sdk/download/white-react-sdk-2.2.14.tgz#8d593880e6d2860d8c3ab3cbe1060000dfd99076"
+  integrity sha1-jVk4gObShg2MOrPL4QYAAN/ZkHY=
   dependencies:
     react "^16.8.4"
     react-dom "^16.8.4"
@@ -12064,8 +12074,8 @@ white-react-sdk@^2.2.14:
 
 white-web-sdk@2.2.14:
   version "2.2.14"
-  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.2.14.tgz#442b1fd6256b0f395d09015bda327261200b4d54"
-  integrity sha512-GOKSZNLnBG3YmPE+gcE42kepmM48q9/imfIAsz02QtKzr5CJrW8zyQp5vVEk2+EkwQAQHCAWHhq7Jc4InDm7CQ==
+  resolved "https://registry.npm.taobao.org/white-web-sdk/download/white-web-sdk-2.2.14.tgz#442b1fd6256b0f395d09015bda327261200b4d54"
+  integrity sha1-RCsf1iVrDzldCQFb2jJyYSALTVQ=
   dependencies:
     bezier-js "^2.4.0"
     color "^3.1.2"

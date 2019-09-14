@@ -9,6 +9,7 @@ import ClassroomPlayerPage from "./ClassroomPlayerPage";
 import Homepage from "./Homepage";
 import ClassroomCreatorPage from "./ClassroomCreatorPage";
 import ClassroomPage from "./ClassroomPage";
+import Iframe from "../plugin/Iframe";
 message.config({
     top: (window.innerHeight / 2 - 64),
     maxCount: 1,
@@ -29,6 +30,7 @@ export class AppRoutes extends React.Component<{}, {}> {
                 {path: "/replay/whiteboard/:uuid/:userId/:time?/:duration?/:mediaSource?/", component: PlayerPage},
                 {path: "/replay/classroom/:uuid/:userId/:time?/:duration?/:mediaSource?/", component: ClassroomPlayerPage},
                 {path: "/", component: Homepage},
+                {path: "/plugin/", component: Iframe},
                 {path: "/whiteboard/:netlessRoomType/:uuid?/", component: WhiteboardCreatorPage},
                 {path: "/whiteboard/:netlessRoomType/:uuid/:userId/", component: WhiteboardPage},
                 {path: "/classroom/:netlessRoomType/:uuid?/", component: ClassroomCreatorPage},

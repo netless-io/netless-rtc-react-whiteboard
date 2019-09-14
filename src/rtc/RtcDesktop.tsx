@@ -1,10 +1,9 @@
 import * as React from "react";
 import {BlockPosition, SlidingBlockState} from "./slidingBlock";
-const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));
 import video from "./icons/video_white.svg";
 import {ExtendingPosition, FloatingPosition, HidingPosition} from "./RtcSlidingBlockPosition";
 import {SlidingBlockMask} from "./SlidingBlockMask";
-const AgoraRTC = require("./rtsLib/AgoraRTC-production.js");
+import AgoraRTC, {Client} from "agora-rtc-sdk";
 import {RtcBlockContextProvider} from "./RtcBlockContext";
 import TweenOne from "rc-tween-one";
 import "./RtcDesktop.less";
@@ -39,7 +38,7 @@ export default class RtcDesktop extends React.Component<RtcLayoutProps, RtcLayou
     private FloatingPosition: BlockPosition = FloatingPosition;
     private HidingPosition: BlockPosition = HidingPosition;
     private ExtendingPosition: BlockPosition = ExtendingPosition;
-    private agoraClient: any;
+    private agoraClient: Client;
     private rtcClock: any;
     private _isMounted: boolean = false;
     public constructor(props: RtcLayoutProps) {
