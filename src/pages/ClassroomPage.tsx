@@ -413,14 +413,14 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                                     identity={(netlessRoomType === NetlessRoomType.teacher_interactive) ? IdentityType.host : IdentityType.guest}
                                     agoraAppId={rtcAppId.agoraAppId}
                                     room={this.state.room}/>
-                            {/*{!isMobile && <div className="classroom-box-chart">*/}
-                                {/*<WhiteboardChat*/}
-                                    {/*room={this.state.room}*/}
-                                    {/*messages={this.state.messages}*/}
-                                    {/*isClassroom={true}*/}
-                                    {/*isReadonly={isReadOnly}*/}
-                                    {/*userId={this.state.userId}/>*/}
-                            {/*</div>}*/}
+                            {!isMobile && <div className="classroom-box-chart">
+                                <WhiteboardChat
+                                    room={this.state.room}
+                                    messages={this.state.messages}
+                                    isClassroom={true}
+                                    isReadonly={isReadOnly}
+                                    userId={this.state.userId}/>
+                            </div>}
                         </div>
                     </div>
                 </div>
