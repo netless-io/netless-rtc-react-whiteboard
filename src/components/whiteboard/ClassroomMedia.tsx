@@ -57,9 +57,11 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
         const hostRoomMember = room.state.roomMembers.find((roomMember: RoomMember) => roomMember.payload.identity === IdentityType.host);
         if (hostRoomMember) {
             const mediaStreams = remoteMediaStreams.filter(data => data.getId() !== hostRoomMember.payload.userId);
+            const hasHost = !!remoteMediaStreams.find(data => data.getId() === hostRoomMember.payload.userId);
             const nodes = mediaStreams.map((data: NetlessStream, index: number) => {
                 return (
                     <ClassroomMediaCell
+                        hasHost={hasHost}
                         streamsLength={mediaStreams.length}
                         identity={identity}
                         key={`${data.getId()}`}
@@ -71,6 +73,7 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
             const nodes = remoteMediaStreams.map((data: NetlessStream, index: number) => {
                 return (
                     <ClassroomMediaCell
+                        hasHost={false}
                         streamsLength={remoteMediaStreams.length}
                         identity={identity}
                         key={`${data.getId()}`}
@@ -128,6 +131,12 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
                    }} className="classroom-box-video-set">
                        {this.state.isMaskAppear ? <img style={{width: 14}} src={close_white}/> : <img src={set_video}/>}
                    </div>
+                   {this.state.isMaskAppear &&
+                   <div className="classroom-box-video-mask">
+                       <Button
+                           onClick={() => this.stopLocal()}
+                           type="primary">结束</Button>
+                   </div>}
                    {this.renderRemoteHostBox()}
                    {this.renderSelfBox()}
                    {this.renderMediaBoxArray()}
@@ -142,6 +151,8 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
         if (identity === IdentityType.host) {
             if (remoteMediaStreams.length === 0) {
                 return {width: "100%", height: 360};
+            } else if (remoteMediaStreams.length === 3) {
+                return {width: "100%", height: 270};
             } else {
                 return {width: "100%", height: 180};
             }
@@ -162,6 +173,8 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
                 } else {
                     if (remoteMediaStreams.length === 0) {
                         return {width: "100%", height: 360};
+                    } else if (remoteMediaStreams.length === 3) {
+                        return {width: "100%", height: 270};
                     } else {
                         return {width: "100%", height: 180};
                     }
@@ -169,6 +182,8 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
             } else {
                 if (remoteMediaStreams.length === 0) {
                     return {width: "100%", height: 360};
+                } else if (remoteMediaStreams.length === 3) {
+                    return {width: "100%", height: 270};
                 } else {
                     return {width: "100%", height: 180};
                 }
@@ -300,11 +315,13 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
             this.agoraClient.leave(() => {
                 localStream.stop();
                 localStream.close();
-                this.setState({remoteMediaStreams: []});
+                this.setState({remoteMediaStreams: [], localStream: null});
                 console.log("client leaves channel success");
+                this.setState({isMaskAppear: false});
             }, (err: any) => {
                 console.log("channel leave failed");
                 console.error(err);
+                this.setState({isMaskAppear: false});
             });
         }
     }
