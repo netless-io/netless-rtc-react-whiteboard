@@ -116,8 +116,6 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
         const {userId, channelId} = this.props;
         return (
             <div className="netless-video-out-box">
-               {/*<div onClick={() => this.startRtc(userId, channelId)}>start</div>*/}
-               {/*<div onClick={() => this.stopLocal()}>stop</div>*/}
                {!this.state.localStream &&
                <div className="netless-video-mask">
                    <img src={camera}/>
