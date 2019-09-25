@@ -131,9 +131,9 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         if (roomToken && uuid) {
             let whiteWebSdk;
             if (isMobile) {
-                whiteWebSdk = new WhiteWebSdk({ deviceType: DeviceType.Touch, preloadDynamicPPT: true});
+                whiteWebSdk = new WhiteWebSdk({ deviceType: DeviceType.Touch});
             } else {
-                whiteWebSdk = new WhiteWebSdk({ deviceType: DeviceType.Desktop, preloadDynamicPPT: true});
+                whiteWebSdk = new WhiteWebSdk({ deviceType: DeviceType.Desktop});
             }
 
             const pptConverter = whiteWebSdk.pptConverter(netlessToken.sdkToken);
