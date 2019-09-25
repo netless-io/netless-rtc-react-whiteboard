@@ -62,6 +62,7 @@ class WhiteboardRecord extends React.Component<WhiteboardRecordProps, Whiteboard
                     const resp = await this.recrod.query();
                     if (resp.serverResponse.fileList) {
                         const res = await this.recrod.stop();
+                        alert(res.serverResponse.fileList);
                         this.props.setMediaSource(res.serverResponse.fileList);
                         message.info("结束录制");
                         const time =  new Date();

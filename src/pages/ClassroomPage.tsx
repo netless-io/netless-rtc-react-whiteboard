@@ -407,7 +407,7 @@ class ClassroomPage extends React.Component<ClassroomProps, ClassroomState> {
                             </div>
                         </Dropzone>
                         <div className={isMobile ? "classroom-box-right-mb" : "classroom-box-right"}>
-                                <ClassroomMedia
+                                <ClassroomMedia setMediaState={this.setMediaState}
                                     userId={parseInt(userId)}
                                     channelId={uuid}
                                     identity={(netlessRoomType === NetlessRoomType.teacher_interactive) ? IdentityType.host : IdentityType.guest}
