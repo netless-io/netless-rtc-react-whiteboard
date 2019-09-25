@@ -33,7 +33,7 @@ export type ClassroomMediaProps = {
     room: Room;
     agoraAppId: string;
     identity: IdentityType;
-    isRTCReady?: (state: boolean) => void;
+    setMediaState: (state: boolean) => void;
 };
 
 export default class ClassroomMedia extends React.Component<ClassroomMediaProps, ClassroomMediaStates> {
@@ -210,6 +210,7 @@ export default class ClassroomMedia extends React.Component<ClassroomMediaProps,
             this.setState({localStream: netlessLocalStream});
             netlessLocalStream.play("rtc_local_stream");
             this.agoraClient.join(this.props.agoraAppId, channelId, userId, (uid: string) => {
+                this.props.setMediaState(true);
                 console.log("User " + uid + " join channel successfully");
                 this.agoraClient.publish(localStream, (err: any) => {
                     console.log("Publish local stream error: " + err);
