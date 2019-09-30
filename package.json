@@ -52,7 +52,7 @@
     "react-dropzone": "4.2.10",
     "react-identicons": "^1.1.7",
     "uuid": "^3.3.2",
-    "white-react-sdk": "^2.3.5"
+    "white-react-sdk": "^2.3.6"
   },
   "devDependencies": {
     "@types/agora-rtc-sdk": "^2.6.0",
