@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Badge, Icon, Popover} from "antd";
-import {WhiteWebSdk, PlayerWhiteboard, PlayerPhase, Player, Room} from "white-react-sdk";
+import {WhiteWebSdk, PlayerWhiteboard, PlayerPhase, Player, Room} from "@netless/white-react-sdk";
 import * as loading from "../assets/image/loading.svg";
 import * as chat from "../assets/image/chat.svg";
 import "./PlayerPage.less";

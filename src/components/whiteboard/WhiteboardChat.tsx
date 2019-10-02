@@ -11,7 +11,7 @@ import {
     TextInput,
     SendButton,
 } from "@livechat/ui-kit";
-import {Room} from "white-web-sdk";
+import {Room} from "@netless/white-web-sdk";
 import {MessageType} from "./WhiteboardBottomRight";
 import {netlessWhiteboardApi, UserInfType} from "../../apiMiddleware";
 import {isMobile} from "react-device-detect";

@@ -4,7 +4,7 @@ import TweenOne from "rc-tween-one";
 import Identicon from "react-identicons";
 import mute_gray from "./icons/mute_gray.svg";
 import voice from "./icons/voice.svg";
-import {RoomMember} from "white-react-sdk";
+import {RoomMember} from "@netless/white-react-sdk";
 import "./RtcMediaBoxCell.less";
 import {SlidingBlockState} from "./slidingBlock";
 

@@ -180,6 +180,33 @@
     antd "^3.17.0"
     rc-tween-one "^2.4.1"
 
+"@netless/white-react-sdk@^2.3.7":
+  version "2.3.7"
+  resolved "https://registry.npmjs.org/@netless/white-react-sdk/-/white-react-sdk-2.3.7.tgz#7c37dc547108710396dbdfda27d0465e44987c23"
+  integrity sha512-/n527uBBDqrbw9WipTuSVs40pjacqtEBgSg29KPoSm/n+Js2R/giEyX23+wrMGxERk1qc9FvcMbt4jtm0dSMoA==
+  dependencies:
+    "@netless/white-web-sdk" "^2.3.6"
+    react "~16.8.0"
+    react-dom "~16.8.0"
+
+"@netless/white-web-sdk@^2.3.6":
+  version "2.3.6"
+  resolved "https://registry.npmjs.org/@netless/white-web-sdk/-/white-web-sdk-2.3.6.tgz#efa692149c16f61e9bb82be503f7b8ccedde5f97"
+  integrity sha512-BMgJGFT+lkXrI8UWAj/yxWnJPrPda4SpSPccrDEMS8SAxbrvDCOQKfG0eeLUAkT9ybuIbq8Ty90KNTu/UfV2CA==
+  dependencies:
+    bezier-js "^2.4.0"
+    color "^3.1.2"
+    mobx "^4.9.3"
+    mobx-react "^5.4.3"
+    query-string "5"
+    react "^16.8.0"
+    react-dom "^16.8.0"
+    spark-md5 "^3.0.0"
+    url-parse "^1.4.6"
+    uuid "^3.3.2"
+    video.js "^7.4.1"
+    xml-js "^1.6.11"
+
 "@popmotion/easing@^1.0.1":
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/@popmotion/easing/download/@popmotion/easing-1.0.2.tgz#17d925c45b4bf44189e5a38038d149df42d8c0b4"
@@ -2562,7 +2589,7 @@ color@^0.11.0:
 
 color@^3.1.2:
   version "3.1.2"
-  resolved "https://registry.npm.taobao.org/color/download/color-3.1.2.tgz#68148e7f85d41ad7649c5fa8c8106f098d229e10"
+  resolved "https://registry.npm.taobao.org/color/download/color-3.1.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcolor%2Fdownload%2Fcolor-3.1.2.tgz#68148e7f85d41ad7649c5fa8c8106f098d229e10"
   integrity sha1-aBSOf4XUGtdknF+oyBBvCY0inhA=
   dependencies:
     color-convert "^1.9.1"
@@ -2607,10 +2634,15 @@ commander@2.17.x:
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha1-vXerfebelCBc6sxy8XFtKfIKd78=
 
-commander@^2.12.1, commander@^2.9.0, commander@~2.20.0:
+commander@^2.12.1, commander@~2.20.0:
   version "2.20.0"
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
   integrity sha1-1YuytcHuj4ew00ACfp6U4iLFpCI=
+
+commander@^2.9.0:
+  version "2.20.1"
+  resolved "https://registry.npm.taobao.org/commander/download/commander-2.20.1.tgz#3863ce3ca92d0831dcf2a102f5fb4b5926afd0f9"
+  integrity sha1-OGPOPKktCDHc8qEC9ftLWSav0Pk=
 
 commander@~2.13.0:
   version "2.13.0"
@@ -3649,7 +3681,7 @@ error-ex@^1.2.0:
 
 es-abstract@^1.13.0:
   version "1.14.2"
-  resolved "https://registry.npm.taobao.org/es-abstract/download/es-abstract-1.14.2.tgz#7ce108fad83068c8783c3cdf62e504e084d8c497"
+  resolved "https://registry.npm.taobao.org/es-abstract/download/es-abstract-1.14.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fes-abstract%2Fdownload%2Fes-abstract-1.14.2.tgz#7ce108fad83068c8783c3cdf62e504e084d8c497"
   integrity sha1-fOEI+tgwaMh4PDzfYuUE4ITYxJc=
   dependencies:
     es-to-primitive "^1.2.0"
@@ -7090,9 +7122,9 @@ mobx-react@^5.4.3:
     react-lifecycles-compat "^3.0.2"
 
 mobx@^4.9.3:
-  version "4.13.0"
-  resolved "https://registry.npm.taobao.org/mobx/download/mobx-4.13.0.tgz#af4be9aac596c622a2bba4bfdaa67a5adb2ed90f"
-  integrity sha1-r0vpqsWWxiKiu6S/2qZ6Wtsu2Q8=
+  version "4.13.1"
+  resolved "https://registry.npm.taobao.org/mobx/download/mobx-4.13.1.tgz#317c35f255f0ae343efa261458177da0e0637792"
+  integrity sha1-MXw18lXwrjQ++iYUWBd9oOBjd5I=
 
 moment@2.x, moment@^2.24.0:
   version "2.24.0"
@@ -9458,8 +9490,8 @@ react-dom@^16.3.2, react-dom@~16.8.0:
 
 react-dom@^16.8.0:
   version "16.10.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.10.1.tgz#479a6511ba34a429273c213cbc2a9ac4d296dac1"
-  integrity sha512-SmM4ZW0uug0rn95U8uqr52I7UdNf6wdGLeXDmNLfg3y5q5H9eAbdjF5ubQc3bjDyRrvdAB2IKG7X0GzSpnn5Mg==
+  resolved "https://registry.npm.taobao.org/react-dom/download/react-dom-16.10.1.tgz#479a6511ba34a429273c213cbc2a9ac4d296dac1"
+  integrity sha1-R5plEbo0pCknPCE8vCqaxNKW2sE=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -9639,8 +9671,8 @@ react@^16.3.2, react@~16.8.0:
 
 react@^16.8.0:
   version "16.10.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.10.1.tgz#967c1e71a2767dfa699e6ba702a00483e3b0573f"
-  integrity sha512-2bisHwMhxQ3XQz4LiJJwG3360pY965pTl/MRrZYxIBKVj4fOHoDs5aZAkYXGxDRO1Li+SyjTAilQEbOmtQJHzA==
+  resolved "https://registry.npm.taobao.org/react/download/react-16.10.1.tgz#967c1e71a2767dfa699e6ba702a00483e3b0573f"
+  integrity sha1-lnwecaJ2ffppnmunAqAEg+OwVz8=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -10217,8 +10249,8 @@ scheduler@^0.13.6:
 
 scheduler@^0.16.1:
   version "0.16.1"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.16.1.tgz#a6fb6ddec12dc2119176e6eb54ecfe69a9eba8df"
-  integrity sha512-MIuie7SgsqMYOdCXVFZa8SKoNorJZUWHW8dPgto7uEHn1lX3fg2Gu0TzgK8USj76uxV7vB5eRMnZs/cdEHg+cg==
+  resolved "https://registry.npm.taobao.org/scheduler/download/scheduler-0.16.1.tgz?cache=0&sync_timestamp=1569695279882&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fscheduler%2Fdownload%2Fscheduler-0.16.1.tgz#a6fb6ddec12dc2119176e6eb54ecfe69a9eba8df"
+  integrity sha1-pvtt3sEtwhGRdubrVOz+aanrqN8=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -10865,7 +10897,7 @@ string.prototype.trimleft@^2.0.0:
 
 string.prototype.trimright@^2.0.0:
   version "2.1.0"
-  resolved "https://registry.npm.taobao.org/string.prototype.trimright/download/string.prototype.trimright-2.1.0.tgz#669d164be9df9b6f7559fa8e89945b168a5a6c58"
+  resolved "https://registry.npm.taobao.org/string.prototype.trimright/download/string.prototype.trimright-2.1.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fstring.prototype.trimright%2Fdownload%2Fstring.prototype.trimright-2.1.0.tgz#669d164be9df9b6f7559fa8e89945b168a5a6c58"
   integrity sha1-Zp0WS+nfm291WfqOiZRbFopabFg=
   dependencies:
     define-properties "^1.1.3"
@@ -12093,33 +12125,6 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
   integrity sha1-pFBD1U9YBTFtqNYvn1CRjT2nCwo=
   dependencies:
     isexe "^2.0.0"
-
-white-react-sdk@^2.3.6:
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/white-react-sdk/-/white-react-sdk-2.3.6.tgz#f828e494afd22b539d4b9a6093b95c7a2ade1844"
-  integrity sha512-k/XBtvuz/N1bJo50gdbaZ8WOHaQE8/g2NT5jg/adyCyqvCXnlDYofv2slIbp4KceuYRLZeihAnu/6edACK2Oig==
-  dependencies:
-    react "~16.8.0"
-    react-dom "~16.8.0"
-    white-web-sdk "2.3.6"
-
-white-web-sdk@2.3.6:
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.3.6.tgz#5757438370b562429009256e0bed78b95a5aff91"
-  integrity sha512-0ZY8T4gf8N2LQeXf6HXTD/IltN+rQfMUP8KZ+ketjF2d9OTmfdzmkLaAzsqAU5bEuqzpgjrDmEsuORzlzFjrag==
-  dependencies:
-    bezier-js "^2.4.0"
-    color "^3.1.2"
-    mobx "^4.9.3"
-    mobx-react "^5.4.3"
-    query-string "5"
-    react "^16.8.0"
-    react-dom "^16.8.0"
-    spark-md5 "^3.0.0"
-    url-parse "^1.4.6"
-    uuid "^3.3.2"
-    video.js "^7.4.1"
-    xml-js "^1.6.11"
 
 wide-align@^1.1.0:
   version "1.1.3"

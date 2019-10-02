@@ -42,7 +42,7 @@ function setupProcessEnv(config, env) {
         case "testing":
         default: {
             scope = "development";
-            consoleLambdaOrigin = "https://cloudcapiv4.herewhite.com";
+            consoleLambdaOrigin = "https://scdncloudcapiv4.herewhite.com";
             break;
         }
     }
