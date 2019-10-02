@@ -2,7 +2,7 @@ import * as React from "react";
 import close from "../../assets/image/close.svg";
 import add_icon from "../../assets/image/add_icon.svg";
 import TweenOne from "rc-tween-one";
-import {Room, RoomState, Scene} from "white-react-sdk";
+import {Room, RoomState, Scene} from "@netless/white-react-sdk";
 import html2canvas from "html2canvas";
 import "./MenuAnnexBox.less";
 

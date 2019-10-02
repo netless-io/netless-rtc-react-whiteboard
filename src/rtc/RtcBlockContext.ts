@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StreamsStatesType} from "./RtcDesktop";
-import {RoomMember} from "white-react-sdk";
+import {RoomMember} from "@netless/white-react-sdk";
 export type RtcBlockContext = {
     readonly remoteMediaStreams: any[];
     readonly userId: number;

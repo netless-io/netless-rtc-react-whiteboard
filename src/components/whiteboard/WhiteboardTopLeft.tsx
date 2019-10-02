@@ -5,7 +5,7 @@ import {RouteComponentProps} from "react-router";
 import {withRouter} from "react-router-dom";
 import {Button, message, Modal} from "antd";
 import {push} from "@netless/i18n-react-router";
-import {Room} from "white-react-sdk";
+import {Room} from "@netless/white-react-sdk";
 import {netlessWhiteboardApi} from "../../apiMiddleware";
 import {isMobile} from "react-device-detect";
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./MenuPPTDoc.less";
 import PPTDatas, {PPTDataType, PPTType} from "./PPTDatas";
-import {Room} from "white-react-sdk";
+import {Room} from "@netless/white-react-sdk";
 import close from "../../assets/image/close_white.svg";
 
 export type MenuPPTDocProps = {

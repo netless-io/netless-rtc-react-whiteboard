@@ -7,7 +7,7 @@ import AgoraRTC, {Client} from "agora-rtc-sdk";
 import {RtcBlockContextProvider} from "./RtcBlockContext";
 import TweenOne from "rc-tween-one";
 import "./RtcDesktop.less";
-import {RoomMember} from "white-react-sdk";
+import {RoomMember} from "@netless/white-react-sdk";
 
 export type StreamsStatesType = {state: {isVideoOpen: boolean, isAudioOpen: boolean}, uid: number};
 export type RtcLayoutState = {

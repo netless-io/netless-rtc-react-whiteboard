@@ -6,7 +6,7 @@ export enum RoomType {
     historied = "historied",
 }
 
-const fetcher = new Fetcher(5000, "https://cloudcapiv4.herewhite.com");
+const fetcher = new Fetcher(5000, "https://scdncloudcapiv4.herewhite.com");
 
 export class RoomOperator {
 
