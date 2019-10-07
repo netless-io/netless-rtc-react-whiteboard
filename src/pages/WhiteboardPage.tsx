@@ -22,7 +22,7 @@ import {
     ViewMode,
     DeviceType,
 } from "white-react-sdk";
-import "@netless/white-web-sdk/style/index.css";
+import "white-web-sdk/style/index.css";
 import "./WhiteboardPage.less";
 import PageError from "./PageError";
 import WhiteboardTopLeft from "../components/whiteboard/WhiteboardTopLeft";
