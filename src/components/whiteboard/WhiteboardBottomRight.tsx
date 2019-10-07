@@ -7,7 +7,7 @@ import * as chat from "../../assets/image/chat.svg";
 import "./WhiteboardBottomRight.less";
 import WhiteboardChat from "./WhiteboardChat";
 import {Badge, message, Popover, Tooltip} from "antd";
-import {Room, Scene, RoomState} from "@netless/white-web-sdk";
+import {Room, Scene, RoomState} from "white-web-sdk";
 import {netlessWhiteboardApi} from "../../apiMiddleware";
 import {isMobile} from "react-device-detect";
 

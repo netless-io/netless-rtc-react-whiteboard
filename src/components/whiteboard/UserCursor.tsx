@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CursorAdapter, CursorDescription, Cursor, RoomMember, Color} from "@netless/white-react-sdk";
+import {CursorAdapter, CursorDescription, Cursor, RoomMember, Color} from "white-react-sdk";
 import Identicon from "react-identicons";
 import "./UserCursor.less";
 import * as selector from "../../assets/image/selector.svg";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Button, Input, message, Modal, Popover, Switch, Tooltip} from "antd";
-import {Room, RoomState, ViewMode} from "@netless/white-react-sdk";
+import {Room, RoomState, ViewMode} from "white-react-sdk";
 import Identicon from "react-identicons";
 import {InjectedIntlProps, injectIntl} from "react-intl";
 import Clipboard from "react-clipboard.js";

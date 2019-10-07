@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./WhiteboardPerspectiveSet.less";
 import {message, Switch} from "antd";
-import {RoomState, ViewMode, Room} from "@netless/white-react-sdk";
+import {RoomState, ViewMode, Room} from "white-react-sdk";
 import {FormattedMessage, InjectedIntlProps, injectIntl} from "react-intl";
 import Identicon from "react-identicons";
 

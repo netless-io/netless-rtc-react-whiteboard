@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./ClassroomMedia.less";
-import {Room, RoomMember} from "@netless/white-react-sdk";
+import {Room, RoomMember} from "white-react-sdk";
 import AgoraRTC, {Client, Stream} from "agora-rtc-sdk";
 import {Button, message} from "antd";
 import ClassroomMediaCell from "./ClassroomMediaCell";

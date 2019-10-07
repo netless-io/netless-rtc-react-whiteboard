@@ -7,7 +7,7 @@ import {HtmlElementRefContainer} from "./HtmlElementRefContainer";
 import RtcStopWatch from "./RtcStopWatch";
 import RtcMediaBoxCell from "./RtcMediaBoxCell";
 import {StreamsStatesType} from "./RtcDesktop";
-import {RoomMember} from "@netless/white-react-sdk";
+import {RoomMember} from "white-react-sdk";
 import "./FloatBoxExtend.less";
 import {SlidingBlockState} from "./slidingBlock";
 

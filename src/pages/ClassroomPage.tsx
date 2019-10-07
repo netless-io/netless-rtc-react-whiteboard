@@ -10,7 +10,7 @@ import {
     RoomState,
     RoomWhiteboard,
     WhiteWebSdk,
-} from "@netless/white-react-sdk";
+} from "white-react-sdk";
 import * as uuidv4 from "uuid/v4";
 import PageError from "./PageError";
 import * as loading from "../assets/image/loading.svg";

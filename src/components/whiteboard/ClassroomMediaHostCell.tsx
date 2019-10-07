@@ -1,7 +1,7 @@
 import * as React from "react";
 import {IdentityType, NetlessStream} from "./ClassroomMedia";
 import "./ClassroomMediaCell.less";
-import {RoomMember} from "@netless/white-react-sdk";
+import {RoomMember} from "white-react-sdk";
 import {CSSProperties} from "react";
 
 export type ClassroomMediaCellProps = {

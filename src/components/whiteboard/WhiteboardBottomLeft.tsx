@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Room, RoomState} from "@netless/white-react-sdk";
+import {Room, RoomState} from "white-react-sdk";
 import "./WhiteboardBottomLeft.less";
 import ScaleController from "@netless/react-scale-controller";
 import * as player from "../../assets/image/player.svg";
