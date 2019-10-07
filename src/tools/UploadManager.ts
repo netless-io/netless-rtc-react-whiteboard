@@ -1,4 +1,4 @@
-import {Room, PptConverter, PptKind, Ppt} from "@netless/white-react-sdk";
+import {Room, PptConverter, PptKind, Ppt} from "white-react-sdk";
 import uuidv4 from "uuid/v4";
 import {MultipartUploadResult} from "ali-oss";
 const timeout = (ms: any) => new Promise(res => setTimeout(res, ms));

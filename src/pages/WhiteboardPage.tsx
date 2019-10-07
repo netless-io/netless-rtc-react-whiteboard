@@ -21,7 +21,7 @@ import {
     MemberState,
     ViewMode,
     DeviceType,
-} from "@netless/white-react-sdk";
+} from "white-react-sdk";
 import "@netless/white-web-sdk/style/index.css";
 import "./WhiteboardPage.less";
 import PageError from "./PageError";

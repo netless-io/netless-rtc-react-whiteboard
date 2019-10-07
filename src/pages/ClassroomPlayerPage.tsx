@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Icon} from "antd";
-import {WhiteWebSdk, PlayerWhiteboard, PlayerPhase, Player, Room} from "@netless/white-react-sdk";
+import {WhiteWebSdk, PlayerWhiteboard, PlayerPhase, Player, Room} from "white-react-sdk";
 import "./ClassroomPlayerPage.less";
 import {RouteComponentProps} from "react-router";
 import SeekSlider from "@netless/react-seek-slider";
