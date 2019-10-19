@@ -8,7 +8,7 @@ import netless_black from "../assets/image/netless_black.svg";
 import {Link} from "@netless/i18n-react-router";
 import {netlessWhiteboardApi} from "../apiMiddleware";
 import {FormComponentProps} from "antd/lib/form";
-import {NetlessRoomType} from "./ClassroomCreatorPage";
+import {IdentityType} from "./WhiteboardCreatorPage";
 
 const { TabPane } = Tabs;
 
@@ -27,20 +27,7 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
         };
     }
     private handleWhiteboardClickBtn = (): void => {
-        if (this.state.name) {
-            netlessWhiteboardApi.user.updateUserInf(this.state.name, uuidv4(), "1");
-        } else {
-            netlessWhiteboardApi.user.updateUserInf("Netless user", uuidv4(), "1");
-        }
-        this.props.history.push(`/whiteboard/${NetlessRoomType.teacher_interactive}`);
-    }
-    private handleClassroomClickBtn = (): void => {
-        if (this.state.name) {
-            netlessWhiteboardApi.user.updateUserInf(this.state.name, uuidv4(), "1");
-        } else {
-            netlessWhiteboardApi.user.updateUserInf("Netless user", uuidv4(), "1");
-        }
-        this.props.history.push(`/classroom/${NetlessRoomType.teacher_interactive}`);
+        this.props.history.push(`/whiteboard/${IdentityType.host}`);
     }
     private handleClickBtnUrl = (): void => {
         const isUrl = this.state.url.substring(0, 4) === "http";
@@ -53,12 +40,12 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                     if (isNotLive) {
                         const isNotInteractive = this.state.url.search("live") === -1;
                         if (isNotInteractive) {
-                            this.props.history.push(`/classroom/${NetlessRoomType.teacher_interactive}/${this.state.url}/`);
+                            this.props.history.push(`/classroom/${IdentityType.host}/${this.state.url}/`);
                         } else {
-                            this.props.history.push(`/classroom/${NetlessRoomType.interactive}/${this.state.url}/`);
+                            this.props.history.push(`/classroom/${IdentityType.guest}/${this.state.url}/`);
                         }
                     } else {
-                        this.props.history.push(`/classroom/${NetlessRoomType.live}/${this.state.url}/`);
+                        this.props.history.push(`/classroom/${IdentityType.listener}/${this.state.url}/`);
                     }
                 }
             }
@@ -78,13 +65,7 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                                 <div className="page-input-left-inner-box">
                                     <Input className="page-input" onChange={e => this.setState({name: e.target.value})} size={"large"} placeholder={"输入用户名"}/>
                                     <Button
-                                        size="large"
                                         type="primary"
-                                        onClick={this.handleClassroomClickBtn}
-                                        className="name-button">
-                                        创建在线教室
-                                    </Button>
-                                    <Button
                                         size="large"
                                         onClick={this.handleWhiteboardClickBtn}
                                         className="name-button">
@@ -108,17 +89,6 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                                 </div>
                             </TabPane>
                         </Tabs>
-                    </div>
-                    <div>
-                        <div>
-                            <img/>
-                        </div>
-                        <div>
-                            <img/>
-                        </div>
-                        <div>
-                            <img/>
-                        </div>
                     </div>
                 </div>
                 <div className="page-input-right-box"/>

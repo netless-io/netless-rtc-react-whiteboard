@@ -4,16 +4,8 @@ import {language} from "../locale";
 import {message} from "antd";
 import WhiteboardCreatorPage from "./WhiteboardCreatorPage";
 import WhiteboardPage from "./WhiteboardPage";
-import PlayerPage from "./PlayerPage";
-import ClassroomPlayerPage from "./ClassroomPlayerPage";
 import Homepage from "./Homepage";
-import ClassroomCreatorPage from "./ClassroomCreatorPage";
-import ClassroomPage from "./ClassroomPage";
-import Iframe from "../plugin/Iframe";
-message.config({
-    top: (window.innerHeight / 2 - 64),
-    maxCount: 1,
-});
+import ReplayPage from "./ReplayPage";
 export class AppRoutes extends React.Component<{}, {}> {
 
     public constructor(props: {}) {
@@ -27,14 +19,10 @@ export class AppRoutes extends React.Component<{}, {}> {
     public render(): React.ReactNode {
         return (
             <AppRouter historyType={HistoryType.HashRouter} language={language} routes={[
-                {path: "/replay/whiteboard/:uuid/:userId/:time?/:duration?/:mediaSource?/", component: PlayerPage},
-                {path: "/replay/classroom/:uuid/:userId/:time?/:duration?/:mediaSource?/", component: ClassroomPlayerPage},
                 {path: "/", component: Homepage},
-                {path: "/plugin/", component: Iframe},
-                {path: "/whiteboard/:netlessRoomType/:uuid?/", component: WhiteboardCreatorPage},
-                {path: "/whiteboard/:netlessRoomType/:uuid/:userId/", component: WhiteboardPage},
-                {path: "/classroom/:netlessRoomType/:uuid?/", component: ClassroomCreatorPage},
-                {path: "/classroom/:netlessRoomType/:uuid/:userId/", component: ClassroomPage},
+                {path: "/whiteboard/:identityType/:uuid?/", component: WhiteboardCreatorPage},
+                {path: "/whiteboard/:identityType/:uuid/:userId/", component: WhiteboardPage},
+                {path: "/replay/:uuid/:userId/:startTime?/:endTime?/:mediaUrl?/", component: ReplayPage},
             ]}/>
         );
     }

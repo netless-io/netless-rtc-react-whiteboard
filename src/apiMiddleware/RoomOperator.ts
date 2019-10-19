@@ -35,19 +35,4 @@ export class RoomOperator {
         });
         return json as any;
     }
-
-    public async staticConversionApi(sourceUrl: string, targetBucket: string, targetFolder: string): Promise<any> {
-        const json = await fetcher.post<any>({
-            path: `services/static-conversion/tasks`,
-            query: {
-                token: netlessToken.sdkToken,
-            },
-            body: {
-                sourceUrl: sourceUrl,
-                targetBucket: targetBucket,
-                targetFolder: targetFolder,
-            },
-        });
-        return json as any;
-    }
 }
