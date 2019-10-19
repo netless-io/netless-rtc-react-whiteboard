@@ -1,25 +1,27 @@
 import * as React from "react";
 import {Redirect} from "@netless/i18n-react-router";
-import {InjectedIntlProps, injectIntl} from "react-intl";
-import PageError from "./PageError";
 import {netlessWhiteboardApi, RoomType} from "../apiMiddleware";
 import {message} from "antd";
 import {RouteComponentProps} from "react-router";
-import {NetlessRoomType} from "./ClassroomCreatorPage";
-
+import PageError from "./PageError";
+export enum IdentityType {
+    host = "host",
+    guest = "guest",
+    listener = "listener",
+}
 export type WhiteboardCreatorPageState = {
     uuid?: string;
     userId?: string;
     foundError: boolean;
 };
 
-export type WhiteboardCreatorPageProps = InjectedIntlProps & RouteComponentProps<{
-    netlessRoomType: NetlessRoomType;
+export type WhiteboardCreatorPageProps = RouteComponentProps<{
+    identityType: IdentityType;
     uuid?: string;
 }>;
 
 
-class WhiteboardCreatorPage extends React.Component<WhiteboardCreatorPageProps, WhiteboardCreatorPageState> {
+export default class WhiteboardCreatorPage extends React.Component<WhiteboardCreatorPageProps, WhiteboardCreatorPageState> {
 
     public constructor(props: WhiteboardCreatorPageProps) {
         super(props);
@@ -58,14 +60,12 @@ class WhiteboardCreatorPage extends React.Component<WhiteboardCreatorPageProps, 
     }
 
     public render(): React.ReactNode {
-        const netlessRoomType = this.props.match.params.netlessRoomType;
+        const identityType = this.props.match.params.identityType;
         if (this.state.foundError) {
             return <PageError/>;
         } else if (this.state.uuid && this.state.userId) {
-            return <Redirect to={`/whiteboard/${netlessRoomType}/${this.state.uuid}/${this.state.userId}/`}/>;
+            return <Redirect to={`/whiteboard/${identityType}/${this.state.uuid}/${this.state.userId}/`}/>;
         }
         return null;
     }
 }
-
-export default injectIntl(WhiteboardCreatorPage);
