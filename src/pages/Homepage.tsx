@@ -1,12 +1,10 @@
 import * as React from "react";
-import * as uuidv4 from "uuid/v4";
 import {Input, Button, Tabs} from "antd";
 import "./Homepage.less";
 import {withRouter} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
 import netless_black from "../assets/image/netless_black.svg";
 import {Link} from "@netless/i18n-react-router";
-import {netlessWhiteboardApi} from "../apiMiddleware";
 import {FormComponentProps} from "antd/lib/form";
 import {IdentityType} from "./WhiteboardCreatorPage";
 
