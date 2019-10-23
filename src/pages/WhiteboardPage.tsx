@@ -13,6 +13,7 @@ export type WhiteboardPageProps = RouteComponentProps<{
 
 export type WhiteboardPageState = {
     recordData: RecordDataType | null;
+    room: any,
 };
 export type RecordDataType = {startTime?: number, endTime?: number, mediaUrl?: string};
 class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPageState> {
@@ -20,6 +21,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
         super(props);
         this.state = {
             recordData: null,
+            room: null,
         };
     }
 
@@ -112,7 +114,7 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
                     },
                 ],
                 roomCallback: (room: any) => {
-                    (window as any).room = room;
+                    this.setState({room: room});
                 },
                 pagePreviewPosition: "right",
                 boardBackgroundColor: "#F2F2F2",
@@ -142,7 +144,9 @@ class WhiteboardPage extends React.Component<WhiteboardPageProps, WhiteboardPage
     }
 
     public componentWillUnmount(): void {
-        // alert(1);
+        if (this.state.room) {
+            this.state.room.disconnect();
+        }
     }
 
     public render(): React.ReactNode {
