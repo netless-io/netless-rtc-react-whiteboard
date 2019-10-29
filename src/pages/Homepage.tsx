@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Input, Button, Tabs} from "antd";
 import "./Homepage.less";
-import {withRouter} from "react-router-dom";
 import {RouteComponentProps} from "react-router";
 import netless_black from "../assets/image/netless_black.svg";
 import {Link} from "@netless/i18n-react-router";
@@ -16,7 +15,7 @@ export type HomepageStates = {
     url: string;
 };
 
-class Homepage extends React.Component<HomepageProps, HomepageStates> {
+export default class Homepage extends React.Component<HomepageProps, HomepageStates> {
     public constructor(props: HomepageProps) {
         super(props);
         this.state = {
@@ -61,7 +60,7 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
                         <Tabs className="page-input-left-mid-box-tab" defaultActiveKey="1">
                             <TabPane tab="创建房间" key="1">
                                 <div className="page-input-left-inner-box">
-                                    <Input className="page-input" onChange={e => this.setState({name: e.target.value})} size={"large"} placeholder={"输入用户名"}/>
+                                    <Input style={{width: 240, fontSize: 14}} onChange={e => this.setState({name: e.target.value})} size={"large"} placeholder={"输入用户名"}/>
                                     <Button
                                         type="primary"
                                         size="large"
@@ -93,5 +92,3 @@ class Homepage extends React.Component<HomepageProps, HomepageStates> {
             </div>);
     }
 }
-
-export default withRouter(Homepage);

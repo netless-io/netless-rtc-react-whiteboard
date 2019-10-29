@@ -1,5 +1,5 @@
 import * as React from "react";
-import {RouteComponentProps, withRouter} from "react-router";
+import {RouteComponentProps} from "react-router";
 import "./WhiteboardPage.less";
 import {netlessWhiteboardApi} from "../apiMiddleware";
 import WhiteFastSDK from "@netless/white-fast-web-sdk";
@@ -12,11 +12,16 @@ export type ReplayPageProps = RouteComponentProps<{
 }>;
 
 export type WhiteboardPageState = {
+    player: any;
 };
 
-class ReplayPage extends React.Component<ReplayPageProps, WhiteboardPageState> {
+export default class ReplayPage extends React.Component<ReplayPageProps, WhiteboardPageState> {
+    private netlessPlayer: any;
     public constructor(props: ReplayPageProps) {
         super(props);
+        this.state = {
+            player: null,
+        };
     }
 
     private getRoomToken = async (uuid: string): Promise<string | null> => {
@@ -41,21 +46,21 @@ class ReplayPage extends React.Component<ReplayPageProps, WhiteboardPageState> {
         const {userId, uuid, startTime, mediaUrl} = this.props.match.params;
         const roomToken = await this.getRoomToken(uuid);
         if (roomToken) {
-            WhiteFastSDK.Player("netless-replay", {
+            this.netlessPlayer = WhiteFastSDK.Player("netless-replay", {
                 uuid: uuid,
                 roomToken: roomToken,
                 userId: userId,
                 userName: "伍双",
                 userAvatarUrl: "https://ohuuyffq2.qnssl.com/netless_icon.png",
-                logoUrl: "https://white-sdk.oss-cn-beijing.aliyuncs.com/video/netless_black.svg",
+                logoUrl: "https://white-sdk.oss-cn-beijing.aliyuncs.com/video/netless_black2.svg",
                 boardBackgroundColor: "#F2F2F2",
                 playerCallback: (player: any) => {
-                    console.log(player);
+                    this.setState({player: player});
                 },
                 clickLogoCallback: () => {
                     this.props.history.push("/");
                 },
-                roomName: "伍双的教室",
+                // roomName: "伍双的教室",
                 beginTimestamp: startTime && parseInt(startTime),
                 duration: this.getDuration(),
                 // mediaUrl: mediaUrl,
@@ -70,12 +75,14 @@ class ReplayPage extends React.Component<ReplayPageProps, WhiteboardPageState> {
     public async componentDidMount(): Promise<void> {
         await this.startReplay();
     }
-
+    public componentWillUnmount(): void {
+        if (this.netlessPlayer) {
+            this.netlessPlayer.release();
+        }
+    }
     public render(): React.ReactNode {
         return (
             <div id="netless-replay" className="whiteboard-box"/>
         );
     }
 }
-
-export default withRouter(ReplayPage);
