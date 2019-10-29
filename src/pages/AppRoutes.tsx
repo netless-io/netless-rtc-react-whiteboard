@@ -18,7 +18,7 @@ export class AppRoutes extends React.Component<{}, {}> {
 
     public render(): React.ReactNode {
         return (
-            <AppRouter historyType={HistoryType.HashRouter} language={language} routes={[
+            <AppRouter historyType={HistoryType.BrowserRouter} language={language} routes={[
                 {path: "/", component: Homepage},
                 {path: "/whiteboard/:identityType/:uuid?/", component: WhiteboardCreatorPage},
                 {path: "/whiteboard/:identityType/:uuid/:userId/", component: WhiteboardPage},
