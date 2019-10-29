@@ -72,7 +72,7 @@ export default class Homepage extends React.Component<HomepageProps, HomepageSta
                             </TabPane>
                             <TabPane tab="加入房间" key="2">
                                 <div className="page-input-left-inner-box">
-                                    <Input className="page-input"
+                                    <Input  style={{width: 240, fontSize: 14}}
                                            onChange={e => this.setState({url: e.target.value})}
                                            size={"large"} placeholder={"输入房间地址或者 UUID"}/>
                                     <Button
