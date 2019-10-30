@@ -30,7 +30,7 @@ export default class Homepage extends React.Component<HomepageProps, HomepageSta
         const isUrl = this.state.url.substring(0, 4) === "http";
         if (this.state.url) {
             if (isUrl) {
-                window.open(this.state.url);
+                window.open(this.state.url, "_self");
             } else {
                 if (this.state.url.length === 32) {
                     const isNotLive = this.state.url.search("live") === -1;
