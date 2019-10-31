@@ -133,7 +133,7 @@ export const agoraAppId = "";
 
 ```shell
 # 启动项目
-yarn start
+yarn dev
 ```
 
 ### 6. 构建
