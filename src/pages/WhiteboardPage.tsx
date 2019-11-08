@@ -73,14 +73,14 @@ export default class WhiteboardPage extends React.Component<WhiteboardPageProps,
                 clickLogoCallback: () => {
                     // this.props.history.push("/");
                 },
-                exitRoomCallback: () => {
-                    this.props.history.push("/");
-                },
                 recordDataCallback: (data: RecordDataType) => {
                     this.setState({recordData: data});
                 },
                 replayCallback: () => {
                     this.handleReplayUrl();
+                },
+                exitRoomCallback: () => {
+                    this.props.history.push("/");
                 },
                 rtc: {
                     type: "agora",
@@ -91,32 +91,6 @@ export default class WhiteboardPage extends React.Component<WhiteboardPageProps,
                 language: "Chinese",
                 toolBarPosition: "left",
                 isManagerOpen: true,
-                uploadToolBox: [
-                    {
-                        enable: true,
-                        type: "image",
-                        icon: "",
-                        title: "",
-                        script: "",
-                    },
-                    {
-                        enable: true,
-                        type: "static_conversion",
-                        icon: "",
-                        title: "",
-                        script: "",
-                    },
-                    {
-                        enable: true,
-                        type: "dynamic_conversion",
-                        icon: "",
-                        title: "",
-                        script: "",
-                    },
-                ],
-                roomCallback: (room: any) => {
-                    this.setState({room: room});
-                },
                 pagePreviewPosition: "right",
                 boardBackgroundColor: "#F2F2F2",
                 isReadOnly: false,
