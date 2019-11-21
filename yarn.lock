@@ -113,10 +113,10 @@
   resolved "https://registry.npmjs.org/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-fast-web-sdk@^1.1.21":
-  version "1.1.21"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.21.tgz#4bebb028a3fb239fd2be345025f93e2c9188945d"
-  integrity sha512-oty9sOu5U1JzlaN0n8X4IkIKybZwkwKOPOz/StMAxmnrQYoOAfMkwSrxIu70bMwolnr+tUFDLbeXO65Dvndj0Q==
+"@netless/white-fast-web-sdk@^1.1.22":
+  version "1.1.22"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.22.tgz#5658f5eef6858301091d60dafbfa33b1d7b3f0fc"
+  integrity sha512-ToAIiSkVR2BmFVinZgD2kOYSAKl2nKhsH8rBH3Ko63YBKENBIUMqfgdoHCAF0q2/CmRPoodySPHNyTl3ipQm6g==
   dependencies:
     "@netless/fetch-middleware" "^1.0.4"
     "@netless/i18n-react-router" "^1.0.5"
@@ -12393,9 +12393,9 @@ verror@1.10.0:
     extsprintf "^1.2.0"
 
 "video.js@^6.8.0 || ^7.0.0", video.js@^7.4.1:
-  version "7.6.5"
-  resolved "https://registry.npmjs.org/video.js/-/video.js-7.6.5.tgz#af66a71bc05fd79c581c1673ac5a78a6b31bc831"
-  integrity sha512-r0kC9SNJhXz9th/wwbRaLVOIZTvXkF+rhFq9/FWU+e+EJClwClRCgP8STGmfrPHDXrfWiJwH9YY21JZK61vGGQ==
+  version "7.6.6"
+  resolved "https://registry.npmjs.org/video.js/-/video.js-7.6.6.tgz#e7c9163d53f9b0e05ccb5ac0f79d02fa49b4d3ac"
+  integrity sha512-AXzHwymhvMpS7c7rF29u0j0/3tSs+v2gIk5UY8OkiDHSEHL7T0+t3hid4JHW7aGvTruUUgwyf4C74cX2RDL1Pw==
   dependencies:
     "@babel/runtime" "^7.4.5"
     "@videojs/http-streaming" "1.10.6"
