@@ -3,7 +3,7 @@ declare module "*.svg" {
     export = content;
 }
 
-declare module "white-fast-web-sdk" {
+declare module "@netless/white-fast-web-sdk" {
     const WhiteFastSDK: any;
     export default WhiteFastSDK;
 }
