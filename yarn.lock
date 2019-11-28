@@ -46,10 +46,17 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.5":
+"@babel/runtime@^7.1.2":
   version "7.7.2"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.7.2.tgz#111a78002a5c25fc8e3361bedc9529c696b85a6a"
   integrity sha512-JONRbXbTXc9WQE2mAZd1p0Z3DZ/6vaQIkgYMSTP3KjRCyd7rCZCcfhCyX+YjwcKxcZ82UrxbRD358bpExNgrjw==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
+"@babel/runtime@^7.4.5":
+  version "7.7.4"
+  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.7.4.tgz#b23a856751e4bf099262f867767889c0e3fe175b"
+  integrity sha512-r24eVUUr0QqNZa+qrImUk8fn5SPhHq+IfYvIoIMg0do3GdK9sMdiLKP3GYVVaxpPKORgm8KRKaNTEhAjgIpLMw==
   dependencies:
     regenerator-runtime "^0.13.2"
 
@@ -113,10 +120,10 @@
   resolved "https://registry.npmjs.org/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-fast-web-sdk@^1.1.23":
-  version "1.1.23"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.23.tgz#dbea3bd7bbb9ddb4c64065b7cc2ce55f01f8a0c5"
-  integrity sha512-Ud865kdhyKYaKrNVagczZbhI/m+32qzP6OLsUmFQ/hkyjfeY39Qll7MQftcbkzAq4d5D+49PXBBOUbxMGfNYww==
+"@netless/white-fast-web-sdk@^1.1.30":
+  version "1.1.30"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.30.tgz#1f55f7618a8e4343383676754b3a47911160fa49"
+  integrity sha512-+4MxUlsQHDqqVWwU+Bh7WXDgFp/M7U92gYQ2humnrfUan/386TUmKq3BxLZ6dpVWjDNGSHiOSMykx6zI92YLkA==
   dependencies:
     "@netless/fetch-middleware" "^1.0.4"
     "@netless/i18n-react-router" "^1.0.5"
@@ -659,7 +666,7 @@ ansistyles@~0.1.3:
   resolved "https://registry.npmjs.org/ansistyles/-/ansistyles-0.1.3.tgz#5de60415bda071bb37127854c864f41b23254539"
   integrity sha1-XeYEFb2gcbs3EnhUyGT0GyMlRTk=
 
-antd@^3.10.4, antd@^3.17.0, antd@^3.24.3:
+antd@^3.10.4:
   version "3.25.2"
   resolved "https://registry.npmjs.org/antd/-/antd-3.25.2.tgz#6994e2f9639194c08dce4634c6296577ad44ac9d"
   integrity sha512-+qF1bgU7rUkPIkggIIV0fmm+9pPacl50BBd6NNUR2+kKJOFYjwrnP39ZqJRsYNy5bX9VgR454fz9KEuW7HPjog==
@@ -704,6 +711,65 @@ antd@^3.10.4, antd@^3.17.0, antd@^3.24.3:
     rc-switch "~1.9.0"
     rc-table "~6.9.4"
     rc-tabs "~9.6.4"
+    rc-time-picker "~3.7.1"
+    rc-tooltip "~3.7.3"
+    rc-tree "~2.1.0"
+    rc-tree-select "~2.9.1"
+    rc-trigger "^2.6.2"
+    rc-upload "~2.9.1"
+    rc-util "^4.10.0"
+    react-lazy-load "^3.0.13"
+    react-lifecycles-compat "^3.0.4"
+    react-slick "~0.25.2"
+    resize-observer-polyfill "^1.5.1"
+    shallowequal "^1.1.0"
+    warning "~4.0.3"
+
+antd@^3.17.0, antd@^3.24.3:
+  version "3.25.3"
+  resolved "https://registry.npmjs.org/antd/-/antd-3.25.3.tgz#284cbf83cf5ab6c26dffb6066576f202ea60af50"
+  integrity sha512-qTegXllFsswzfSUyZHS8hebfUSqJ7uriDRcbE4Iwsa+/+IioHwDqha8cSzdbqrUqdjnozVV2vFDiGvRrI5fwEA==
+  dependencies:
+    "@ant-design/create-react-context" "^0.2.4"
+    "@ant-design/icons" "~2.1.1"
+    "@ant-design/icons-react" "~2.0.1"
+    "@types/react-slick" "^0.23.4"
+    array-tree-filter "^2.1.0"
+    babel-runtime "6.x"
+    classnames "~2.2.6"
+    copy-to-clipboard "^3.2.0"
+    css-animation "^1.5.0"
+    dom-closest "^0.2.0"
+    enquire.js "^2.1.6"
+    lodash "^4.17.13"
+    moment "^2.24.0"
+    omit.js "^1.0.2"
+    prop-types "^15.7.2"
+    raf "^3.4.1"
+    rc-animate "^2.10.2"
+    rc-calendar "~9.15.5"
+    rc-cascader "~0.17.4"
+    rc-checkbox "~2.1.6"
+    rc-collapse "~1.11.3"
+    rc-dialog "~7.5.2"
+    rc-drawer "~3.0.0"
+    rc-dropdown "~2.4.1"
+    rc-editor-mention "^1.1.13"
+    rc-form "^2.4.10"
+    rc-input-number "~4.5.0"
+    rc-mentions "~0.4.0"
+    rc-menu "~7.5.1"
+    rc-notification "~3.3.1"
+    rc-pagination "~1.20.5"
+    rc-progress "~2.5.0"
+    rc-rate "~2.5.0"
+    rc-resize-observer "^0.1.0"
+    rc-select "~9.2.0"
+    rc-slider "~8.7.1"
+    rc-steps "~3.5.0"
+    rc-switch "~1.9.0"
+    rc-table "~6.9.4"
+    rc-tabs "~9.7.0"
     rc-time-picker "~3.7.1"
     rc-tooltip "~3.7.3"
     rc-tree "~2.1.0"
@@ -9487,6 +9553,23 @@ rc-tabs@~9.6.4:
     resize-observer-polyfill "^1.5.1"
     warning "^4.0.3"
 
+rc-tabs@~9.7.0:
+  version "9.7.0"
+  resolved "https://registry.npmjs.org/rc-tabs/-/rc-tabs-9.7.0.tgz#ae09695bef5963d6e64e7bc10521c76dfdd8448b"
+  integrity sha512-kvmgp8/MfLzFZ06hWHignqomFQ5nF7BqKr5O1FfhE4VKsGrep52YSF/1MvS5oe0NPcI9XGNS2p751C5v6cYDpQ==
+  dependencies:
+    "@ant-design/create-react-context" "^0.2.4"
+    babel-runtime "6.x"
+    classnames "2.x"
+    lodash "^4.17.5"
+    prop-types "15.x"
+    raf "^3.4.1"
+    rc-hammerjs "~0.6.0"
+    rc-util "^4.0.4"
+    react-lifecycles-compat "^3.0.4"
+    resize-observer-polyfill "^1.5.1"
+    warning "^4.0.3"
+
 rc-time-picker@~3.7.1:
   version "3.7.2"
   resolved "https://registry.npmjs.org/rc-time-picker/-/rc-time-picker-3.7.2.tgz#fabe5501adf1374d31a2d3b47f1ba89fc2dc2467"
@@ -9654,9 +9737,9 @@ react-app-rewired@^1.5.2:
     dotenv "^4.0.0"
 
 react-burger-menu@^2.6.10:
-  version "2.6.12"
-  resolved "https://registry.npmjs.org/react-burger-menu/-/react-burger-menu-2.6.12.tgz#5f7d42b3723b76152eda1b6730d3a04120dfc356"
-  integrity sha512-ZS7bQHO9PBKzkftzcICppG7Iq98yyAMipt2btLVBOY6aIxuUbLxJ93vBR7tLqzrThSz1GbQZNhOWycCrf8Bq8Q==
+  version "2.6.13"
+  resolved "https://registry.npmjs.org/react-burger-menu/-/react-burger-menu-2.6.13.tgz#51b86eb35076c5fbe80027e2ce4c58bd6708f724"
+  integrity sha512-tloQs8F2+YHR/FYfQpu4z+OQzgGHzUZYZXBxGmb6/6eckjQ1GvzeNpHp4IZigpe0ovamg1HgDRK3qNlOPezjlA==
   dependencies:
     browserify-optional "^1.0.0"
     classnames "^2.2.6"
@@ -9710,9 +9793,9 @@ react-dev-utils@^5.0.1:
     text-table "0.2.0"
 
 react-device-detect@^1.9.10:
-  version "1.9.10"
-  resolved "https://registry.npmjs.org/react-device-detect/-/react-device-detect-1.9.10.tgz#3ea17e1383fef87886fb85cc850747dad306d050"
-  integrity sha512-Rb618NuNwJojJeIgI5UoONwztbd4wMT4TBofzvYOHnPNu61LYYz8b78cXQb7kXRrPn6iI5T1gFtNQh0GxHEPxw==
+  version "1.11.11"
+  resolved "https://registry.npmjs.org/react-device-detect/-/react-device-detect-1.11.11.tgz#79fe25105ce807e87634ad09d7e30a0a7dca8817"
+  integrity sha512-4QuZdo4F7tN+GDz/T5a0txCgnBxEpdx9sfKUjt/9xBfzw07yXMBPJl1ydzdsZiGysU6raEaEUQbw0XEcsdR4YQ==
   dependencies:
     ua-parser-js "^0.7.20"
 
