@@ -120,10 +120,10 @@
   resolved "https://registry.npmjs.org/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-fast-web-sdk@^1.1.32":
-  version "1.1.32"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.32.tgz#a7642a726e96b8496a83c2dd3b86a251a018fa46"
-  integrity sha512-KgPQ152ovShxdrQt2C1awIgR+PCm8vK8LTwAOIgS/e+JZ1Jfd1d14wUmPzQYiRKDGMkbPXV1i7J/FtU4wiyLSg==
+"@netless/white-fast-web-sdk@^1.1.35":
+  version "1.1.35"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.35.tgz#dd352ddaaba26c51a371750be4c7ba043a5fd8c1"
+  integrity sha512-r+KX0kXZTKTS4jzsimT2dsXwiyn8/qhrWPYYC5tDGLIrFIS+BBSxZB9Qv6uj3Lk/SaBeW+zJXqYveX2kHqtj/g==
   dependencies:
     "@netless/fetch-middleware" "^1.0.4"
     "@netless/i18n-react-router" "^1.0.5"
