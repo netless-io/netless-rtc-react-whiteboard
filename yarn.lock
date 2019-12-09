@@ -120,10 +120,10 @@
   resolved "https://registry.npmjs.org/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-fast-web-sdk@^1.1.37":
-  version "1.1.37"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.37.tgz#1873b7791a13c3e3675f8d1f20ed5525544c6505"
-  integrity sha512-rBbWYYgiOKv0XGyEFnFlgGcnH92nXkbbS/X0PyO8PeBUYLSnb2LgE+CT6mgyYwmt/AmCn9V/Cg7YL6qYripoHA==
+"@netless/white-fast-web-sdk@^1.1.38":
+  version "1.1.38"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.38.tgz#c6c0efb76a3f116a28149b1ed02aa0408a3705b0"
+  integrity sha512-dqbIbHZxMj3fHvCy8CauMIGz0dpViL7J3EoyUVzJt/UGHsD9JaH2b0WWuhwy2ghrLFX2ZehuSxSs/h5dWlS60A==
   dependencies:
     "@netless/fetch-middleware" "^1.0.4"
     "@netless/i18n-react-router" "^1.0.5"
@@ -9666,9 +9666,9 @@ rc-trigger@^3.0.0-rc.2:
     rc-util "^4.4.0"
 
 rc-tween-one@^2.4.1, rc-tween-one@^2.5.0:
-  version "2.6.7"
-  resolved "https://registry.npmjs.org/rc-tween-one/-/rc-tween-one-2.6.7.tgz#4b4adb51d416573b2aff499675f91443d9ef89a3"
-  integrity sha512-UpoaCoob3tCeWiq4nqPqlVFD+sEua336W9VqjtsbMQEnQvobrpMIXVz5ydsSEiNNYPjhWtIpm6k+RAG/D3HQDA==
+  version "2.6.8"
+  resolved "https://registry.npmjs.org/rc-tween-one/-/rc-tween-one-2.6.8.tgz#75edf141af491a28b18812dc419efa6b0238e2a7"
+  integrity sha512-xb0gNGVq3LNMqT/VCvlEVlW4FQhvbe5LrcoMwGAn6LNcBZR6qzh3Ip8oIhx3iN4Lex2mKJ9HN9vopuxzSZRZGA==
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.6.1"
