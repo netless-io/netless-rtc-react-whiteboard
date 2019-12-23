@@ -120,10 +120,19 @@
   resolved "https://registry.npmjs.org/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-fast-web-sdk@^1.1.39":
-  version "1.1.39"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.39.tgz#bd42bdad89598c26151981b042ff85ef07a68695"
-  integrity sha512-RwaA4s/UeXjv/Ph1QC4ekqd4emvmxoBnYvXcHBbTI0dgzxwmpjqwTYOx+fC6K70GZAgGZlc5aDL09kJ6SY6CzQ==
+"@netless/white-audio-plugin@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.0.2.tgz#6c84fbb66d032323ba78592902a11f8e8b24e7f8"
+  integrity sha512-qF01X5L7m/UYUo/x0SilYaa6fq7gsACMNTYxNwuhY30bb5PHwsuMl7l+6V6evKicU0dtpm8ma9qi+xJXSrFccg==
+  dependencies:
+    react "^16.8.0"
+    react-dom "^16.8.0"
+    white-web-sdk "^2.3.18"
+
+"@netless/white-fast-web-sdk@^1.1.40":
+  version "1.1.40"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.40.tgz#87e1e02e5006deb8efe61dd45423807e511ece79"
+  integrity sha512-vMG1XN5I9xU5qgIqUXZxlFpUQjniNcaz3jpjkFz1/LI9U33BTaSqjPG20Ia7wA+tj2YCdiuiibVSKoCOYTGxZA==
   dependencies:
     "@netless/fetch-middleware" "^1.0.4"
     "@netless/i18n-react-router" "^1.0.5"
@@ -132,6 +141,8 @@
     "@netless/react-mb-tool-box" "^1.0.3"
     "@netless/react-scale-controller" "^1.0.2"
     "@netless/react-seek-slider" "^1.0.4"
+    "@netless/white-audio-plugin" "^1.0.2"
+    "@netless/white-video-plugin" "^1.0.5"
     ali-oss "^6.1.1"
     antd "^3.24.3"
     is-color "^1.0.2"
@@ -152,7 +163,16 @@
     react-dropzone "4.2.10"
     react-tiny-virtual-list "^2.2.0"
     uuid "^3.3.2"
-    white-react-sdk "^2.3.17"
+    white-web-sdk "^2.3.18"
+
+"@netless/white-video-plugin@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@netless/white-video-plugin/-/white-video-plugin-1.0.5.tgz#f0a7a8ff06e272655214e3863d1099b3444bf5bb"
+  integrity sha512-wo6q7HQFihQZ1rLYkB1lWVbaI9ZOWXylP61J4V2HLWU4/MPHgfbFlcr+xLMXFwghAZXJHjcfUJbw/0Wf05qmAw==
+  dependencies:
+    react "^16.8.0"
+    react-dom "^16.8.0"
+    white-web-sdk "^2.3.18"
 
 "@snyk/cli-interface@1.5.0":
   version "1.5.0"
@@ -727,9 +747,9 @@ antd@^3.10.4:
     warning "~4.0.3"
 
 antd@^3.17.0, antd@^3.24.3:
-  version "3.26.3"
-  resolved "https://registry.npmjs.org/antd/-/antd-3.26.3.tgz#046747567d25e381b1b298c3a5c5b970ed716a0d"
-  integrity sha512-1/0yyEfLWK1/hfE8ir9aWYu/iQEYIuUmkQDz0oj5PtDavGNB0yM5TyYRpwzk/06fS6Riop3uDBy2giUlsMFCmA==
+  version "3.26.4"
+  resolved "https://registry.npmjs.org/antd/-/antd-3.26.4.tgz#7caef11896eb9b1ec2b1d8c41c92f7c60ef8e52b"
+  integrity sha512-3kv0jpOPw/HzIGUAQO9wpoF0KZiGJa/jz5KC2ICkjaU1p9mlpq/ZkbW7cFY5P/iWrMvaa1rFYjcU6To4ietNKw==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -742,6 +762,7 @@ antd@^3.17.0, antd@^3.24.3:
     css-animation "^1.5.0"
     dom-closest "^0.2.0"
     enquire.js "^2.1.6"
+    is-mobile "^2.1.0"
     lodash "^4.17.13"
     moment "^2.24.0"
     omit.js "^1.0.2"
@@ -3135,7 +3156,7 @@ debug@^3.0.0, debug@^3.1.0, debug@^3.1.1, debug@^3.2.5, debug@^3.2.6:
   dependencies:
     ms "^2.1.1"
 
-debuglog@*, debuglog@^1.0.1:
+debuglog@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debuglog/-/debuglog-1.0.1.tgz#aa24ffb9ac3df9a2351837cfb2d279360cd78492"
   integrity sha1-qiT/uaw9+aI1GDfPstJ5NgzXhJI=
@@ -5258,7 +5279,7 @@ import-local@^1.0.0:
     pkg-dir "^2.0.0"
     resolve-cwd "^2.0.0"
 
-imurmurhash@*, imurmurhash@^0.1.4:
+imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha1-khi5srkoojixPcT7a21XbyMUU+o=
@@ -5649,6 +5670,11 @@ is-installed-globally@^0.1.0:
   dependencies:
     global-dirs "^0.1.0"
     is-path-inside "^1.0.0"
+
+is-mobile@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/is-mobile/-/is-mobile-2.1.0.tgz#4c0cab72f3358dd9986007389b30729fae80da0b"
+  integrity sha512-M5OhlZwh+aTlmRUvDg0Wq3uWVNa+w4DyZ2SjbrS+BhSLu9Po+JXHendC305ZEu+Hh7lywb19Zu4kYXu3L1Oo8A==
 
 is-npm@^1.0.0:
   version "1.0.0"
@@ -6759,11 +6785,6 @@ lockfile@^1.0.4:
   dependencies:
     signal-exit "^3.0.2"
 
-lodash._baseindexof@*:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/lodash._baseindexof/-/lodash._baseindexof-3.1.0.tgz#fe52b53a1c6761e42618d654e4a25789ed61822c"
-  integrity sha1-/lK1OhxnYeQmGNZU5KJXie1hgiw=
-
 lodash._baseuniq@~4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash._baseuniq/-/lodash._baseuniq-4.6.0.tgz#0ebb44e456814af7905c6212fa2c9b2d51b841e8"
@@ -6772,32 +6793,10 @@ lodash._baseuniq@~4.6.0:
     lodash._createset "~4.0.0"
     lodash._root "~3.0.0"
 
-lodash._bindcallback@*:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/lodash._bindcallback/-/lodash._bindcallback-3.0.1.tgz#e531c27644cf8b57a99e17ed95b35c748789392e"
-  integrity sha1-5THCdkTPi1epnhftlbNcdIeJOS4=
-
-lodash._cacheindexof@*:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/lodash._cacheindexof/-/lodash._cacheindexof-3.0.2.tgz#3dc69ac82498d2ee5e3ce56091bafd2adc7bde92"
-  integrity sha1-PcaayCSY0u5ePOVgkbr9Ktx73pI=
-
-lodash._createcache@*:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/lodash._createcache/-/lodash._createcache-3.1.2.tgz#56d6a064017625e79ebca6b8018e17440bdcf093"
-  integrity sha1-VtagZAF2JeeevKa4AY4XRAvc8JM=
-  dependencies:
-    lodash._getnative "^3.0.0"
-
 lodash._createset@~4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/lodash._createset/-/lodash._createset-4.0.3.tgz#0f4659fbb09d75194fa9e2b88a6644d363c9fe26"
   integrity sha1-D0ZZ+7CddRlPqeK4imZE02PJ/iY=
-
-lodash._getnative@*, lodash._getnative@^3.0.0:
-  version "3.9.1"
-  resolved "https://registry.yarnpkg.com/lodash._getnative/-/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
-  integrity sha1-VwvH3t5G1hzc3mh9ZdPuy6o6r/U=
 
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
@@ -6878,11 +6877,6 @@ lodash.merge@^4.6.1:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
-
-lodash.restparam@*:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.restparam/-/lodash.restparam-3.6.1.tgz#936a4e309ef330a7645ed4145986c85ae5b20805"
-  integrity sha1-k2pOMJ7zMKdkXtQUWYbIWuWyCAU=
 
 lodash.set@^4.3.2:
   version "4.3.2"
@@ -7875,7 +7869,6 @@ npm@^6.4.1:
     cmd-shim "^3.0.3"
     columnify "~1.5.4"
     config-chain "^1.1.12"
-    debuglog "*"
     detect-indent "~5.0.0"
     detect-newline "^2.1.0"
     dezalgo "~1.0.3"
@@ -7890,7 +7883,6 @@ npm@^6.4.1:
     has-unicode "~2.0.1"
     hosted-git-info "^2.8.5"
     iferr "^1.0.2"
-    imurmurhash "*"
     infer-owner "^1.0.4"
     inflight "~1.0.6"
     inherits "^2.0.4"
@@ -7909,14 +7901,8 @@ npm@^6.4.1:
     libnpx "^10.2.0"
     lock-verify "^2.1.0"
     lockfile "^1.0.4"
-    lodash._baseindexof "*"
     lodash._baseuniq "~4.6.0"
-    lodash._bindcallback "*"
-    lodash._cacheindexof "*"
-    lodash._createcache "*"
-    lodash._getnative "*"
     lodash.clonedeep "~4.5.0"
-    lodash.restparam "*"
     lodash.union "~4.6.0"
     lodash.uniq "~4.5.0"
     lodash.without "~4.4.0"
@@ -9827,9 +9813,9 @@ rc-util@^4.0.4, rc-util@^4.1.1, rc-util@^4.10.0, rc-util@^4.11.2, rc-util@^4.13.
     shallowequal "^1.1.0"
 
 rc-util@^4.16.1:
-  version "4.16.2"
-  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.16.2.tgz#058ef38c83bbf7cf03043a1044cd736b6e043657"
-  integrity sha512-Tbq1ezlGs3w/Sw6CKufGVUU7MFQuAFj7XeHRZr1dzKGfe1K5fq57+w7jYvdIdUQQwB1ZJMEcectKtaPi8V6BjQ==
+  version "4.16.3"
+  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.16.3.tgz#d9b7b09fbab65bc03b3d35b5b8e4fa94c5afd40c"
+  integrity sha512-lKPdlCQEigsruOXbwbCDuDNfL5tX7nTBzqc38KXSYgGZMXLgVpkFPgLdZ1Q7ee0YVkDOTtMJslX+X5Payk8LsA==
   dependencies:
     add-dom-event-listener "^1.1.0"
     babel-runtime "6.x"
@@ -12255,10 +12241,15 @@ typescript@^3.5.1:
   resolved "https://registry.npmjs.org/typescript/-/typescript-3.7.2.tgz#27e489b95fa5909445e9fef5ee48d81697ad18fb"
   integrity sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
 
-ua-parser-js@^0.7.18, ua-parser-js@^0.7.20:
+ua-parser-js@^0.7.18:
   version "0.7.20"
   resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.20.tgz#7527178b82f6a62a0f243d1f94fd30e3e3c21098"
   integrity sha512-8OaIKfzL5cpx8eCMAhhvTlft8GYF8b2eQr6JkCyVdrgjcytyOmPCXrqXFcUnhonRpLlh5yxEZVohm6mzaowUOw==
+
+ua-parser-js@^0.7.20:
+  version "0.7.21"
+  resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
+  integrity sha512-+O8/qh/Qj8CgC6eYBVBykMrNtp5Gebn4dlGD/kKXVkJNDwyrAwSIqwz8CDf+tsAIWVycKcku6gIXJ0qwx/ZXaQ==
 
 uglify-es@^3.3.4:
   version "3.3.9"
@@ -12917,19 +12908,10 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
   dependencies:
     isexe "^2.0.0"
 
-white-react-sdk@^2.3.17:
-  version "2.3.17"
-  resolved "https://registry.npmjs.org/white-react-sdk/-/white-react-sdk-2.3.17.tgz#ee03b851c81381fa445f5b8fca5d9faaa01a3f0a"
-  integrity sha512-8uapCNKIxEb1da9l4cuYsfrMxefd9BEjJPb9KRptSwgy6Ui+G27vsJoWq0ov80NS/Vl1usDcRAXwM2tmgT2/zg==
-  dependencies:
-    react "~16.8.0"
-    react-dom "~16.8.0"
-    white-web-sdk "2.3.17"
-
-white-web-sdk@2.3.17:
-  version "2.3.17"
-  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.3.17.tgz#b9319c792b201934764aad895de4772d70840601"
-  integrity sha512-lKeFtgrEP15bSwDi8m9fNhtzwy35IMwp+ww76wqEneWEbI/vIvX5bNcf//5xPxSmgePesqFjkfEEhj3HCUj/5w==
+white-web-sdk@^2.3.18:
+  version "2.3.18"
+  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.3.18.tgz#eed456a7a4492f9f4aa59b77e8bf0b95ffa3cec0"
+  integrity sha512-MDjP5dCFabMoMJlojFd5IliiQGNUKqUrr83A4JYntEO5ehgjqZhcKCSYokA3QAGw92RugO76FxZwjPG64+mBZA==
   dependencies:
     bezier-js "^2.4.0"
     color "^3.1.2"
