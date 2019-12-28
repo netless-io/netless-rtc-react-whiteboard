@@ -120,19 +120,19 @@
   resolved "https://registry.npmjs.org/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-audio-plugin@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.0.5.tgz#16f88e92664cf1525d9edfe98dd226a998552981"
-  integrity sha512-ktOvCCgRkFV3o6QFmrtW3Yh4iSMFCC4yhyahw2Oj1JqPay0KJ5UK2UoA5WjWuceuYjMmm827hUebuKKPbt4lig==
+"@netless/white-audio-plugin@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.0.7.tgz#949a6f2cf64168132b4ec3addd11a5b33f57549b"
+  integrity sha512-EwAoISwS5I3BbL4qH6GybKBGf+URXjAj/1lfH0aQDenirV5KP5iNkr4dIWtRY0lIaPEHS7MvLHuUOke0do0pdg==
   dependencies:
     react "^16.8.0"
     react-dom "^16.8.0"
     white-web-sdk "^2.3.18"
 
-"@netless/white-fast-web-sdk@^1.1.42":
-  version "1.1.42"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.42.tgz#736fcf6e001a6f164b850b27532b9b81380e475a"
-  integrity sha512-PoKzxQvR4fyCT9ADEmCJ9ZLIpSzpBO/ub6pwk4jpDY6++OyecyZ8qSUK/5SYc3As3gbJBKMih/gGsT/YqtMLOQ==
+"@netless/white-fast-web-sdk@^1.1.43":
+  version "1.1.43"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.43.tgz#4eee3d2c02a63ac4d647a7e33385ac3b3c5ffe62"
+  integrity sha512-eSCNGE2IektmBOcIzLxCxb+qkR2r7uqgYSVLXiCa7mqD78HpMr4c5gO0yt84ZZBWecx2ah2E+1tv8t3varNC+w==
   dependencies:
     "@netless/fetch-middleware" "^1.0.4"
     "@netless/i18n-react-router" "^1.0.5"
@@ -141,8 +141,8 @@
     "@netless/react-mb-tool-box" "^1.0.3"
     "@netless/react-scale-controller" "^1.0.2"
     "@netless/react-seek-slider" "^1.0.4"
-    "@netless/white-audio-plugin" "^1.0.5"
-    "@netless/white-video-plugin" "^1.0.8"
+    "@netless/white-audio-plugin" "^1.0.7"
+    "@netless/white-video-plugin" "^1.1.6"
     ali-oss "^6.1.1"
     antd "^3.24.3"
     is-color "^1.0.2"
@@ -165,10 +165,10 @@
     uuid "^3.3.2"
     white-react-sdk "^2.3.18"
 
-"@netless/white-video-plugin@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.npmjs.org/@netless/white-video-plugin/-/white-video-plugin-1.0.8.tgz#dc42871cd8a3612ddb88e3fd0f8e28234cc2aa86"
-  integrity sha512-D4lGMq69fwFJniGyBawRAWRPOoz74tewFrw+BpuBVBtV0tYzV5JdnkuIl6DoNCaQtkIG5FCrXxTRsOu3Z52B+w==
+"@netless/white-video-plugin@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.npmjs.org/@netless/white-video-plugin/-/white-video-plugin-1.1.6.tgz#2ee32ac65b6d04b5612d099f746409a4ba9cdfed"
+  integrity sha512-mJKWYCOCfqx7f8gHz1rjOst+o5pfCeXLctxMdcm51bLtguc7YGkhZrD4lWE7szhWkvJ+VsvS5Nx2PgEzsVfcgQ==
   dependencies:
     react "^16.8.0"
     react-dom "^16.8.0"
@@ -9542,7 +9542,17 @@ rc-notification@~3.3.1:
     rc-animate "2.x"
     rc-util "^4.0.4"
 
-rc-pagination@~1.20.11, rc-pagination@~1.20.5:
+rc-pagination@~1.20.11:
+  version "1.20.12"
+  resolved "https://registry.npmjs.org/rc-pagination/-/rc-pagination-1.20.12.tgz#1ac7928f7a9d303d22e324c0c9a6e691756cf40c"
+  integrity sha512-V1pL0d4nTW00+8b0qS8t12jawmaP14RKT+jFdc32SD76MO3N2kBE/B/zZWPnJHjHTcs0EVhgQC4b2Vgiyy1OJA==
+  dependencies:
+    babel-runtime "6.x"
+    classnames "^2.2.6"
+    prop-types "^15.5.7"
+    react-lifecycles-compat "^3.0.4"
+
+rc-pagination@~1.20.5:
   version "1.20.11"
   resolved "https://registry.npmjs.org/rc-pagination/-/rc-pagination-1.20.11.tgz#ff8ccbf422e229b0e36039bd33b5c9b619d74ad2"
   integrity sha512-2wKO5kO+ELx1/zlqTY8TwGBruzofi+1BcZ7Z4xalMlLbDMTuUU4FDljbBBP/n9D2llK+NtgWA619PMBhInozZw==
@@ -9641,9 +9651,9 @@ rc-switch@~1.9.0:
     react-lifecycles-compat "^3.0.4"
 
 rc-table@~6.10.5:
-  version "6.10.7"
-  resolved "https://registry.npmjs.org/rc-table/-/rc-table-6.10.7.tgz#68142b941cafa26ce888028d59248707a76d0207"
-  integrity sha512-nz6eo/rD/eDnMNbQCoKpHFAQLbsWapR3gryOvSmTyPquG32kirKcMpF8j5ulGYCs7Mdtc30jfmwCl+souN1ZmQ==
+  version "6.10.10"
+  resolved "https://registry.npmjs.org/rc-table/-/rc-table-6.10.10.tgz#952cb1c7afb8e2e4505019307d36cf3dea316cff"
+  integrity sha512-xEVkw2nf+UNOJL3VLSCqa+v4IM8l2O1EtR6GLSztWokq6D2t8ntac7e0ImBjcg29yPQwMHm+2YIiC3fvRiSE1A==
   dependencies:
     classnames "^2.2.5"
     component-classes "^1.2.6"
@@ -9826,9 +9836,9 @@ rc-util@^4.0.4, rc-util@^4.1.1, rc-util@^4.10.0, rc-util@^4.11.2, rc-util@^4.13.
     shallowequal "^1.1.0"
 
 rc-util@^4.16.1:
-  version "4.18.0"
-  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.18.0.tgz#b014712709ea2f777e5c207dca23ecd211cf73dd"
-  integrity sha512-hftkePUmXu2AeaYQRqMdEJ+bkqNRKZEk59pUmqMKD68+69Csc1xeIc74P73leuZEYij23yG4OMnutejVjc8Jdg==
+  version "4.18.1"
+  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.18.1.tgz#5a6312503cd5366ef0bede021dce42d373f404a8"
+  integrity sha512-3aRHG32ZvqBymtJUGoQnbZS+XANzO6XTiFEFAYI3BfuxESEazopAy0kBwcAI6BlLHsW1oLiy3ysE9uYwylh2ag==
   dependencies:
     add-dom-event-listener "^1.1.0"
     babel-runtime "6.x"
@@ -12922,18 +12932,18 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
     isexe "^2.0.0"
 
 white-react-sdk@^2.3.18:
-  version "2.3.18"
-  resolved "https://registry.npmjs.org/white-react-sdk/-/white-react-sdk-2.3.18.tgz#d9c4f8e6f2bd730cc0d100209ec72d39e198d5b8"
-  integrity sha512-HG+n7u8opQyqiYMrHeFmLUwob/EvHS6iApZi6EmnbGnytNYCuiFhNQgxADQTg0Hd9DvptRsUn9d8kTdk7h+2JQ==
+  version "2.3.19"
+  resolved "https://registry.npmjs.org/white-react-sdk/-/white-react-sdk-2.3.19.tgz#2c15c3f8f1303acc07829eafe78400dc75de5f14"
+  integrity sha512-cyShTnkWdTzzoJp4L0zLXNm8VMETgMhZvSv+rah//KmSZiryAx23PWtYhbwUUluGJvASG6+TZKYvKcUHvwGhoQ==
   dependencies:
     react "~16.8.0"
     react-dom "~16.8.0"
-    white-web-sdk "2.3.18"
+    white-web-sdk "2.3.19"
 
-white-web-sdk@2.3.18, white-web-sdk@^2.3.18:
-  version "2.3.18"
-  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.3.18.tgz#eed456a7a4492f9f4aa59b77e8bf0b95ffa3cec0"
-  integrity sha512-MDjP5dCFabMoMJlojFd5IliiQGNUKqUrr83A4JYntEO5ehgjqZhcKCSYokA3QAGw92RugO76FxZwjPG64+mBZA==
+white-web-sdk@2.3.19, white-web-sdk@^2.3.18:
+  version "2.3.19"
+  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.3.19.tgz#44e1b67424a96ddaa2052b7464366e0133cf8436"
+  integrity sha512-4uqW1u4MOxqr8+NMmeS+XPB600zfkAnLmpyzlMy/EpuZ9wzb0gl0yu3j6iHpnJdXrpLccThL3OQSKtBpCxvfTA==
   dependencies:
     bezier-js "^2.4.0"
     color "^3.1.2"
