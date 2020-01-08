@@ -120,7 +120,7 @@
   resolved "https://registry.npmjs.org/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-audio-plugin@^1.1.1":
+"@netless/white-audio-plugin@^1.1.4":
   version "1.1.4"
   resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.1.4.tgz#b7fce4989fce41d062eed7eb7a7f3f3fade46018"
   integrity sha512-vKkC0QtX3kuX3aaU4eO98VPB+eC1PiCJj7WxoxOcEkmpHtUIWe8XFvne+VO8xygArP6V4yo2S0LjIzsMRYEpSQ==
@@ -129,20 +129,19 @@
     react-dom "^16.8.0"
     white-web-sdk "^2.5.3"
 
-"@netless/white-fast-web-sdk@^1.1.48":
-  version "1.1.48"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.1.48.tgz#169a5e10f14a7e2407751107be58a07df2921242"
-  integrity sha512-gWtZFBMny9Z2KRBeB+ZAps4S1tdVEwTQ+RCmmu1lY0ctWOWSN1k4/gt2dAhNSdJ3f+M/f8zeQuVvUdNrt+fqPQ==
+"@netless/white-fast-web-sdk@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.0.tgz#e82165da058de766dba87888c84ac9aae8314bf1"
+  integrity sha512-+kddd+g6mYKNqNz4g4eZ/urzDgmjg4on5SFQLQa8lPzPs1yYHzrWAY3YBAgBlEfSF7iCVGf5sRG0pab7w4uMlg==
   dependencies:
     "@netless/fetch-middleware" "^1.0.4"
-    "@netless/i18n-react-router" "^1.0.5"
     "@netless/oss-upload-manager" "^1.0.6"
     "@netless/react-loading-bar" "^1.0.0"
     "@netless/react-mb-tool-box" "^1.0.3"
     "@netless/react-scale-controller" "^1.0.2"
     "@netless/react-seek-slider" "^1.0.4"
-    "@netless/white-audio-plugin" "^1.1.1"
-    "@netless/white-video-plugin" "^1.1.8"
+    "@netless/white-audio-plugin" "^1.1.4"
+    "@netless/white-video-plugin" "^1.1.10"
     ali-oss "^6.1.1"
     antd "^3.24.3"
     is-color "^1.0.2"
@@ -165,7 +164,7 @@
     uuid "^3.3.2"
     white-react-sdk "^2.5.3"
 
-"@netless/white-video-plugin@^1.1.8":
+"@netless/white-video-plugin@^1.1.10":
   version "1.1.10"
   resolved "https://registry.npmjs.org/@netless/white-video-plugin/-/white-video-plugin-1.1.10.tgz#481e77bdef99051fc94fc2280d3c46c149d99837"
   integrity sha512-GSl3kjMG4n+7c8+O34yhQCHgFf/KXcrLAoTGnyDTQDyiOj6dbWY03ilAoczm0zzWPY0JZkPVH+t5HDHUuD9m7w==
