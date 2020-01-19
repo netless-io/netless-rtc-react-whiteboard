@@ -54,9 +54,9 @@
     regenerator-runtime "^0.13.2"
 
 "@babel/runtime@^7.4.5":
-  version "7.8.0"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.8.0.tgz#8c81711517c56b3d00c6de706b0fb13dc3531549"
-  integrity sha512-Z7ti+HB0puCcLmFE3x90kzaVgbx6TRrYIReaygW6EkBEnJh1ajS4/inhF7CypzWeDV3NFl1AfWj0eMtdihojxw==
+  version "7.8.3"
+  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.8.3.tgz#0811944f73a6c926bb2ad35e918dcc1bfab279f1"
+  integrity sha512-fVHx1rzEmwB130VTkLnxR+HmxcTjGzH12LYQcFFoBwakMd3aOMD4OsRN7tGG/UOYE2ektgFrS8uACAoRk1CY0w==
   dependencies:
     regenerator-runtime "^0.13.2"
 
@@ -160,10 +160,10 @@
     react-dom "^16.8.0"
     white-web-sdk "^2.5.4"
 
-"@netless/white-fast-web-sdk@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.2.tgz#7b13b201965fb2332c4b48d86e3a5c250d444ec7"
-  integrity sha512-NiZ/Je3SqB7YOk76ynjiQrzrIxfbdy4qen3DEXT2pig3c77xwn6mDJ2Yweck9ZzK6H64pQx6Ud2x57KDFkkwVQ==
+"@netless/white-fast-web-sdk@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.3.tgz#377d62727ce6c20214e9e12b410f913ad702aa5c"
+  integrity sha512-UnGCq9C3PyB2g+RDmo1g73vE3iggNhRy52bJLm+i16K9e6j8HSwCfcZWU1NJwV+KHqGOvgVRJfyJkeqm9qm3rg==
   dependencies:
     "@netless/cursor-adapter" "^0.0.1"
     "@netless/cursor-icon" "^0.0.1"
@@ -196,7 +196,7 @@
     react-dropzone "4.2.10"
     react-tiny-virtual-list "^2.2.0"
     uuid "^3.3.2"
-    white-react-sdk "^2.5.4"
+    white-react-sdk "^2.5.6"
 
 "@netless/white-video-plugin@^1.1.11":
   version "1.1.11"
@@ -780,9 +780,9 @@ antd@^3.10.4:
     warning "~4.0.3"
 
 antd@^3.17.0, antd@^3.24.3:
-  version "3.26.6"
-  resolved "https://registry.npmjs.org/antd/-/antd-3.26.6.tgz#7e583e11e757679ca6d2fda0bc418a177f5d3653"
-  integrity sha512-GgDiGjY/DooqpPxcWSMk8Xhj6hF1KuyIHzFZ/BgjpaXF+Ca9MKHch8Vmo5yuUPiXekbaOyoKaZj8g/Z2Tr3Lxg==
+  version "3.26.7"
+  resolved "https://registry.npmjs.org/antd/-/antd-3.26.7.tgz#271555f4862b747019defb972f70b7dd4015fd3f"
+  integrity sha512-WPsU3ulEUA1vZfVO9PmDNWkYueaLPoE74EJlfPqW2rZjKl7YMkMxJleSVCM9FqVI4PNLbIVr0hoieM9yZiEBFQ==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -7428,16 +7428,16 @@ mobx-react@^5.4.0:
     react-lifecycles-compat "^3.0.2"
 
 mobx-react@^6.1.4:
-  version "6.1.4"
-  resolved "https://registry.npmjs.org/mobx-react/-/mobx-react-6.1.4.tgz#818e7991c321c05bd9b8156d94be17dad165501e"
-  integrity sha512-wzrJF1RflhyLh8ne4FJfMbG8ZgRFmZ62b4nbyhJzwQpAmrkSnSsAWG9mIff4ffV/Q7OU+uOYf7rXvSmiuUe4cw==
+  version "6.1.5"
+  resolved "https://registry.npmjs.org/mobx-react/-/mobx-react-6.1.5.tgz#66a6f67bfe845216abc05d3aea47ceec8e31e2dd"
+  integrity sha512-EfWoXmGE2CfozH4Xirb65+il1ynHFCmxBSUabMSf+511YfjVs6QRcCrHkiVw+Il8iWp1gIyfa9qKkUgbDA9/2w==
   dependencies:
     mobx-react-lite "^1.4.2"
 
 mobx@^4.9.0:
-  version "4.15.1"
-  resolved "https://registry.npmjs.org/mobx/-/mobx-4.15.1.tgz#492cba4c64682f6ea4e24d2d5e3c32e7b9ae1c12"
-  integrity sha512-WVRLD/OmEM0fLVPDfdNih4kY+a/ZuP//eK92yqH7uRb2e6H998qf8QqHn90LDc0aXsjcJnqHJ81oVZ+e18jskA==
+  version "4.15.2"
+  resolved "https://registry.npmjs.org/mobx/-/mobx-4.15.2.tgz#693b5a57d4d647380b61cad8bf5e1af75aac266e"
+  integrity sha512-UD13tY4g0SZPBM5zeKNLNrbUgnamd3d7ShF5ZPOeFBlKKY4e6sUYpdXt02nU1ONOUzYkRTT1FGMXeYwN8blErQ==
 
 moment@2.x, moment@^2.24.0:
   version "2.24.0"
@@ -9869,9 +9869,9 @@ rc-util@^4.0.4, rc-util@^4.1.1, rc-util@^4.10.0, rc-util@^4.11.2, rc-util@^4.13.
     shallowequal "^1.1.0"
 
 rc-util@^4.16.1:
-  version "4.18.1"
-  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.18.1.tgz#5a6312503cd5366ef0bede021dce42d373f404a8"
-  integrity sha512-3aRHG32ZvqBymtJUGoQnbZS+XANzO6XTiFEFAYI3BfuxESEazopAy0kBwcAI6BlLHsW1oLiy3ysE9uYwylh2ag==
+  version "4.19.0"
+  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.19.0.tgz#f3b5e3a02cc0a667d127784068e1236c095dbcbf"
+  integrity sha512-mptALlLwpeczS3nrv83DbwJNeupolbuvlIEjcvimSiWI8NUBjpF0HgG3kWp1RymiuiRCNm9yhaXqDz0a99dpgQ==
   dependencies:
     add-dom-event-listener "^1.1.0"
     babel-runtime "6.x"
@@ -12969,18 +12969,18 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
   dependencies:
     isexe "^2.0.0"
 
-white-react-sdk@^2.5.4:
-  version "2.5.4"
-  resolved "https://registry.npmjs.org/white-react-sdk/-/white-react-sdk-2.5.4.tgz#8de85bdb20b0b0541f5cc25d415b07591b41c15b"
-  integrity sha512-ATwrKYvnx++9RrEyMvHE99+A9FhDvxznTfv+H8eyXpMlaPRqQ523+dPuRzefIGRDfReBFYlFClUptKXcmzBfoQ==
+white-react-sdk@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.npmjs.org/white-react-sdk/-/white-react-sdk-2.5.6.tgz#48f376d6aa4617d5793e8dda0935fab95a5c3784"
+  integrity sha512-scbLp/2W/UPfbtLRlPMciloQQBK5q2B5CroVZNOU6dqc5Njh2HvSkGtQK7dQ21SY/i5gNbKmEYlRXe5Qb+Kdgg==
   dependencies:
     react "~16.8.0"
-    white-web-sdk "2.5.4"
+    white-web-sdk "2.5.6"
 
-white-web-sdk@2.5.4, white-web-sdk@^2.5.3, white-web-sdk@^2.5.4:
-  version "2.5.4"
-  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.5.4.tgz#91e8d96eae51b950c1bdb035a98c7b6a4866dcf2"
-  integrity sha512-/QaCh4/MrkM9+sWrGgh6yQrlHm0gLoXl9OPPY5ntOdQzPjsVh8bxnPQ5zKbxWQGRhlkQNodWGaKDXiobE8KDEQ==
+white-web-sdk@2.5.6, white-web-sdk@^2.5.3, white-web-sdk@^2.5.4:
+  version "2.5.6"
+  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.5.6.tgz#9bf1aae61043cd8270b834bb696b1d4ab9fd3ba0"
+  integrity sha512-Z3wGIEIDsSrdLF60Dkbhz07YhXUbpVCygW4TeVeFhjDBk58Cx+pzQl7ZoAQx00JKLMg7OKAFb5mLcT23jCkFBA==
   dependencies:
     atob "^2.1.0"
     base64-js "^1.3.1"
