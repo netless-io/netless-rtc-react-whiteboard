@@ -160,10 +160,10 @@
     react-dom "^16.8.0"
     white-web-sdk "^2.5.8"
 
-"@netless/white-fast-web-sdk@^1.2.7":
-  version "1.2.7"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.7.tgz#42a9a09e2f905ddbc39b5e5bef5114e34ff6c848"
-  integrity sha512-+gzqDHL5FMu9mbZCwQz9/xg/Vt+DK/Zr28LqfVYvHI1CykHjEH/GmC1ZPzPv4/79Q8l8A+h1l67aW2lIMoP7tw==
+"@netless/white-fast-web-sdk@^1.2.8":
+  version "1.2.8"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.8.tgz#c1d14c9113ff009d08812f5f540bb07f7a98e25a"
+  integrity sha512-KqTsDoQkCihCdsxt7GzzNKBaa37GXuIMgIVrPvM3BJWh0iUbtWXE7n5hMmzud23FxqnnAApJUFQNEcDJiXRSog==
   dependencies:
     "@netless/cursor-adapter" "^0.0.1"
     "@netless/cursor-icon" "^0.0.1"
