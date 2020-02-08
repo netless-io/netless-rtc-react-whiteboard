@@ -160,10 +160,10 @@
     react-dom "^16.8.0"
     white-web-sdk "^2.5.8"
 
-"@netless/white-fast-web-sdk@^1.2.8":
-  version "1.2.8"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.8.tgz#c1d14c9113ff009d08812f5f540bb07f7a98e25a"
-  integrity sha512-KqTsDoQkCihCdsxt7GzzNKBaa37GXuIMgIVrPvM3BJWh0iUbtWXE7n5hMmzud23FxqnnAApJUFQNEcDJiXRSog==
+"@netless/white-fast-web-sdk@^1.2.9":
+  version "1.2.9"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.9.tgz#7f550884db6f1bb745b37b2d430a6fcd0bdc3012"
+  integrity sha512-Roah4PMiiIJI43NQ4L6Z4oI3h4RZq5Y8FuvRaQAQT00a29WKBfotWgfLFjkTDYYe98Qs9fUQ6xReZh+i+YkZBA==
   dependencies:
     "@netless/cursor-adapter" "^0.0.1"
     "@netless/cursor-icon" "^0.0.1"
@@ -780,9 +780,9 @@ antd@^3.10.4:
     warning "~4.0.3"
 
 antd@^3.17.0, antd@^3.24.3:
-  version "3.26.8"
-  resolved "https://registry.npmjs.org/antd/-/antd-3.26.8.tgz#e40982c5cdb6c5c2c5f037ead27889b5f71e4ea3"
-  integrity sha512-Cz9VVGXG3e2qVAfBwC9SfYGe8bhsD/fQr5tiuRWXkQGSJe4FPJEd04u+6QgBCuQ8Y36kBZr1xDiWky6dwoJvsA==
+  version "3.26.9"
+  resolved "https://registry.npmjs.org/antd/-/antd-3.26.9.tgz#233c9d090c44146997984966d3b3657c9426bac1"
+  integrity sha512-youf+hBJHB4nuhV7yEbm2VQSMtX9RxrNQvjlc+iIPj4FeJsuTQXIfSSAc5GhwDeVAI4+nuapCv7XLFIQ+f2ZFg==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -7435,9 +7435,9 @@ mobx-react@^5.4.0:
     react-lifecycles-compat "^3.0.2"
 
 mobx-react@^6.1.4:
-  version "6.1.4"
-  resolved "https://registry.npmjs.org/mobx-react/-/mobx-react-6.1.4.tgz#818e7991c321c05bd9b8156d94be17dad165501e"
-  integrity sha512-wzrJF1RflhyLh8ne4FJfMbG8ZgRFmZ62b4nbyhJzwQpAmrkSnSsAWG9mIff4ffV/Q7OU+uOYf7rXvSmiuUe4cw==
+  version "6.1.7"
+  resolved "https://registry.npmjs.org/mobx-react/-/mobx-react-6.1.7.tgz#2fe620851ef33df38e50645101321830a07fc4e2"
+  integrity sha512-TXwqweY7yEbMl+0F5jOO5bHWUbgeNJr8o1or+1NdhWWg6duIqsGW1D6ojNmn2RO27vRJHkZrp4kjv6919nHS0A==
   dependencies:
     mobx-react-lite "^1.4.2"
 
