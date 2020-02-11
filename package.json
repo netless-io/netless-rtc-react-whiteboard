@@ -25,7 +25,7 @@
   "dependencies": {
     "@netless/fetch-middleware": "^1.0.4",
     "@netless/i18n-react-router": "^1.0.5",
-    "@netless/white-fast-web-sdk": "^1.2.10",
+    "@netless/white-fast-web-sdk": "^1.2.11",
     "agora-rtc-sdk": "^2.9.0",
     "ali-oss": "^6.1.1",
     "antd": "^3.10.4",
