@@ -151,19 +151,19 @@
   resolved "https://registry.npmjs.org/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-audio-plugin@^1.1.8":
-  version "1.1.8"
-  resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.1.8.tgz#c664a9a538104da01817cc1fa31bf13c8e95e660"
-  integrity sha512-6+OucqBRuF1JeNP3i1PtafpBkKQ2z3rbHiFtuL7F6hIvaX2V/tKPbENrkRR6KCyk1nbgPm0D6L9ON4PKX2JpEg==
+"@netless/white-audio-plugin@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.1.9.tgz#0f36869fe37323f14e6e75cef4206a951f4a254e"
+  integrity sha512-CrwzWouWWMNc+FRKLS3AX43E7AfyGjqeK1LnY+DFReLLHq7CkjKYmLg3DlxNjZww0fdkN6ANRTMLv5xNsTUHYw==
   dependencies:
     react "^16.8.0"
     react-dom "^16.8.0"
     white-web-sdk "^2.5.9"
 
-"@netless/white-fast-web-sdk@^1.2.11":
-  version "1.2.11"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.11.tgz#e723b52b0dce26d2930bde64be31f1867a2681c5"
-  integrity sha512-ZAgwWu/an7Kb2PDijrA4EuSH8QroYSmoJrmtLQfb85tG6rsgh60j0PrW2VaAgGO6yIbsRnprnQUbu46Y41KDwQ==
+"@netless/white-fast-web-sdk@^1.2.13":
+  version "1.2.13"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.13.tgz#ac014717c4f555a1999f27ebd8077351fee464e5"
+  integrity sha512-6YFi0a1q+SF6jeOWn5wop228eUXX9pS7D20Rn4r2PsW2Z4XR135AjnHGm/NeTqwQlS/exduOro/zvLKTFZ+vUQ==
   dependencies:
     "@netless/cursor-adapter" "^0.0.1"
     "@netless/cursor-icon" "^0.0.1"
@@ -174,8 +174,8 @@
     "@netless/react-mb-tool-box" "^1.0.3"
     "@netless/react-scale-controller" "^1.0.2"
     "@netless/react-seek-slider" "^1.0.4"
-    "@netless/white-audio-plugin" "^1.1.8"
-    "@netless/white-video-plugin" "^1.1.15"
+    "@netless/white-audio-plugin" "^1.1.9"
+    "@netless/white-video-plugin" "^1.1.16"
     ali-oss "^6.1.1"
     antd "^3.24.3"
     is-color "^1.0.2"
@@ -198,10 +198,10 @@
     uuid "^3.3.2"
     white-react-sdk "^2.5.9"
 
-"@netless/white-video-plugin@^1.1.15":
-  version "1.1.15"
-  resolved "https://registry.npmjs.org/@netless/white-video-plugin/-/white-video-plugin-1.1.15.tgz#dd4e5f89c7495d6fcb1dd40a21824c52ba67f6ba"
-  integrity sha512-pQI+xUctRmn5XRIGfKtNN4zTnIPVTC/2QfDmKXH3tt7U97tW7RqWZZJU+qlhH56+/4qHTAh8JspAYlnGmnlCHw==
+"@netless/white-video-plugin@^1.1.16":
+  version "1.1.16"
+  resolved "https://registry.npmjs.org/@netless/white-video-plugin/-/white-video-plugin-1.1.16.tgz#7663d877f0320bb7c7fd1d1af4b3c6f448835129"
+  integrity sha512-metfRxODCZ0sVhEyBGFHQ0NWCN4xBbmSDjThaY2B+4bQ2iQzF5oHlYVlCm2t6HpNv4HTUsAkuHa2ZqtZiCCy9Q==
   dependencies:
     react "^16.8.0"
     react-dom "^16.8.0"
