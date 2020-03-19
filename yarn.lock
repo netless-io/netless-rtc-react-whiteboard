@@ -54,11 +54,11 @@
     regenerator-runtime "^0.13.2"
 
 "@babel/runtime@^7.4.5":
-  version "7.8.4"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.8.4.tgz#d79f5a2040f7caa24d53e563aad49cbc05581308"
-  integrity sha512-neAp3zt80trRVBI1x0azq6c57aNBqYZH8KhMm3TaB7wEI5Q4A2SHfBHE8w9gOhI/lrqxtEbXZgQIrHP+wvSGwQ==
+  version "7.8.7"
+  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.8.7.tgz#8fefce9802db54881ba59f90bb28719b4996324d"
+  integrity sha512-+AATMUFppJDw6aiR5NVPHqIQBlV/Pj8wY/EZH+lmvRdUo9xBaz/rF3alAwFJQavvKfeOlPE7oaaDHVbcySbCsg==
   dependencies:
-    regenerator-runtime "^0.13.2"
+    regenerator-runtime "^0.13.4"
 
 "@icons/material@^0.2.4":
   version "0.2.4"
@@ -153,10 +153,10 @@
   resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.1.10.tgz#9958c95244e952f115d579922d3678722806be53"
   integrity sha512-rranezLHocHzhiv5fQENxedTKC3vBJ/e7FVLCOUFy3y+hxtS4q+PpL62nfgrAEfKhlkwq83zYIJJLOK5VBatIw==
 
-"@netless/white-fast-web-sdk@^1.2.17":
-  version "1.2.17"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.2.17.tgz#46a51277bf340ab2f6c2ad34c252643d1010c8db"
-  integrity sha512-30y52MtnBf5m62tn8+3McOP2sYBJIbDXXRtPpC7HjvLhlKwDtrKXzo/bhG1zgG4UOvOPk0eBU9/2Wu0EYHyO5g==
+"@netless/white-fast-web-sdk@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.3.0.tgz#2be624df5038934e152395b4a57ca3bdd5aa2beb"
+  integrity sha512-18IDJ9NgSSJpchh+8aEgmtM9RXHG0ZBCKFNoOGDbsPT/QIH7qjnE3I+we4qh5E8r6z55Cg0HAWgsdaQ8D/5MGQ==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
@@ -189,7 +189,7 @@
     react-dropzone "4.2.10"
     react-tiny-virtual-list "^2.2.0"
     uuid "^3.3.2"
-    white-react-sdk "^2.6.2"
+    white-web-sdk "^2.7.0"
 
 "@netless/white-video-plugin@^1.1.17":
   version "1.1.17"
@@ -769,9 +769,9 @@ antd@^3.10.4:
     warning "~4.0.3"
 
 antd@^3.17.0, antd@^3.24.3:
-  version "3.26.11"
-  resolved "https://registry.npmjs.org/antd/-/antd-3.26.11.tgz#28d17b8c664251b879e25ad22b3102b1d04c5a10"
-  integrity sha512-LJZW/XWfv7u5L0mnctmwJEIRuT2rVi5A9SR4JE1vfMwjfJQT6n8bphcytElYXxCHr9xjQSONhuGLgeMz6AVoWQ==
+  version "3.26.13"
+  resolved "https://registry.npmjs.org/antd/-/antd-3.26.13.tgz#fd6b618a33d5dec0f649263f30eae691425f7e47"
+  integrity sha512-7DjaXAUig51kzVw9T9Mi4slmq0eFl6qGk7t3kjA5t3Sv/Yn2llwNWT0lJDbseooesRRWeFLNByfZV37cUCRJYQ==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -2484,9 +2484,9 @@ cli-width@^2.0.0:
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
 clipboard@^2.0.0:
-  version "2.0.4"
-  resolved "https://registry.npmjs.org/clipboard/-/clipboard-2.0.4.tgz#836dafd66cf0fea5d71ce5d5b0bf6e958009112d"
-  integrity sha512-Vw26VSLRpJfBofiVaFb/I8PVfdI1OxKcYShe6fm0sP/DtmiWQNCjhM/okTvdCo0G+lMMm1rMYbk4IK4x1X+kgQ==
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/clipboard/-/clipboard-2.0.6.tgz#52921296eec0fdf77ead1749421b21c968647376"
+  integrity sha512-g5zbiixBRk/wyKakSwCKd7vQXDjFnAMGHoEyBogG/bw9kTD9GvdAvaoRR1ALcEzt3pVKxZR0pViekPMIS0QyGg==
   dependencies:
     good-listener "^1.2.2"
     select "^1.1.2"
@@ -7107,9 +7107,9 @@ math-random@^1.0.1:
   integrity sha512-rUxjysqif/BZQH2yhd5Aaq7vXMSx9NdEsQcyA07uEzIvxgI7zIr33gGsh+RU0/XjmQpCW7RsVof1vlkvQVCK5A==
 
 mathjs@^6.2.2:
-  version "6.6.0"
-  resolved "https://registry.npmjs.org/mathjs/-/mathjs-6.6.0.tgz#0d71c7cc6b50bd112e160b55703a395caf4db4b1"
-  integrity sha512-gYYc1+irFbwuwYUx6O8G2YauvbD1+tPBbq829PaxAiRWpPzPEE8pvwGgvdMuk6c3pqhm6Do/mN26vLiQP46H5A==
+  version "6.6.1"
+  resolved "https://registry.npmjs.org/mathjs/-/mathjs-6.6.1.tgz#46675c9e97b8cb8cf9a66402b1360a6996abf103"
+  integrity sha512-RCFCYkf1IV3u0DAeqj2Rqqwyi302kFxHoYbfp/Bxm6kUg0ALYH7YT0bYzsO8qgCLv9RS3bWMZnAgUbLgiDjLcw==
   dependencies:
     complex.js "^2.0.11"
     decimal.js "^10.2.0"
@@ -9375,9 +9375,9 @@ rc-calendar@~9.15.5:
     react-lifecycles-compat "^3.0.4"
 
 rc-calendar@~9.15.7:
-  version "9.15.9"
-  resolved "https://registry.npmjs.org/rc-calendar/-/rc-calendar-9.15.9.tgz#7a3457ee10f27b9972a755fe6415ef352f01a97a"
-  integrity sha512-XOPzJlXYmLFIcwalXmzxKZrrAMD6dEPLRVoHG3wbBpErqjE8ugnXVjm9yXgtQh3Ho3Imhmt+KO0WGLv5T4WuAA==
+  version "9.15.10"
+  resolved "https://registry.npmjs.org/rc-calendar/-/rc-calendar-9.15.10.tgz#21cf87baa789e585ab17b62cf77184657a7d036f"
+  integrity sha512-xh1A3rYejKskAvkjnd9BcHXFbBnAYsHMGHBdtoAkbwp43B6yEieNL0g0Tzz8s1gApDZV2j5vF1jJ9IIpPYFNLw==
   dependencies:
     babel-runtime "6.x"
     classnames "2.x"
@@ -9599,9 +9599,9 @@ rc-progress@~2.5.0:
     prop-types "^15.5.8"
 
 rc-queue-anim@^1.6.12:
-  version "1.8.3"
-  resolved "https://registry.npmjs.org/rc-queue-anim/-/rc-queue-anim-1.8.3.tgz#0c2d5b6f373f24369ed79e2bd85daa5408133900"
-  integrity sha512-7ebMPLTEXTWSYdJ1aVNZCdkd9kU1GYbgRIEG3UwMNUgh6LHhmPupRjp9Z4v75ZC3VmikT7B3rxxFMKACRLhxkg==
+  version "1.8.4"
+  resolved "https://registry.npmjs.org/rc-queue-anim/-/rc-queue-anim-1.8.4.tgz#ce6a3f9ebc864bb88140aa38cdef0ce180247483"
+  integrity sha512-HBVwdTcxqDsjDm7dIja7l4gi0gbHxBzNNeWuz+Nfg+KAmNTMKc7Z7O/qCkUq4SHgUhpqYmOfvCh019iMc1NcVg==
   dependencies:
     babel-runtime "6.x"
     prop-types "^15.6.0"
@@ -9679,9 +9679,9 @@ rc-switch@~1.9.0:
     react-lifecycles-compat "^3.0.4"
 
 rc-table@~6.10.5:
-  version "6.10.12"
-  resolved "https://registry.npmjs.org/rc-table/-/rc-table-6.10.12.tgz#f79322b5ef7480babcac96b48de124f14a3990e2"
-  integrity sha512-+GyaUX1KP9gsB3PgPS0ZyALLJgQzM69x1+Sf3Ucg9BSb+KHbXF3GskeOmr4cR4LxGTnRA0mGlxvVX0l6E2OqGQ==
+  version "6.10.14"
+  resolved "https://registry.npmjs.org/rc-table/-/rc-table-6.10.14.tgz#12e9db6f1935e81491cabc856ff680de21dd451f"
+  integrity sha512-yn47IqxXA4bzPAs1Aai7WwNzOBpuH1mm+GYrIIOUuGySaxz20Wr3udbRF+gLzEbG14CWUxomvcUaXyWPWdH08w==
   dependencies:
     classnames "^2.2.5"
     component-classes "^1.2.6"
@@ -9864,13 +9864,14 @@ rc-util@^4.0.4, rc-util@^4.1.1, rc-util@^4.10.0, rc-util@^4.11.2, rc-util@^4.13.
     shallowequal "^1.1.0"
 
 rc-util@^4.16.1:
-  version "4.19.0"
-  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.19.0.tgz#f3b5e3a02cc0a667d127784068e1236c095dbcbf"
-  integrity sha512-mptALlLwpeczS3nrv83DbwJNeupolbuvlIEjcvimSiWI8NUBjpF0HgG3kWp1RymiuiRCNm9yhaXqDz0a99dpgQ==
+  version "4.20.1"
+  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.20.1.tgz#a5976eabfc3198ed9b8e79ffb8c53c231db36e77"
+  integrity sha512-EGlDg9KPN0POzmAR2hk9ZyFc3DmJIrXwlC8NoDxJguX2LTINnVqwadLIVauLfYgYISMiFYFrSHiFW+cqUhZ5dA==
   dependencies:
     add-dom-event-listener "^1.1.0"
     babel-runtime "6.x"
     prop-types "^15.5.10"
+    react-is "^16.12.0"
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.1.0"
 
@@ -9980,7 +9981,7 @@ react-device-detect@^1.9.10:
   dependencies:
     ua-parser-js "^0.7.20"
 
-react-dom@^16.3.2, react-dom@^16.8.0:
+react-dom@^16.3.2:
   version "16.12.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.12.0.tgz#0da4b714b8d13c2038c9396b54a92baea633fe11"
   integrity sha512-LMxFfAGrcS3kETtQaCkTKjMiifahaMySFDn71fZUNpPHZQEzmk/GiAeIT8JSOrHB23fnuCOMruL2a8NYlw+8Gw==
@@ -9989,6 +9990,16 @@ react-dom@^16.3.2, react-dom@^16.8.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.18.0"
+
+react-dom@^16.8.0:
+  version "16.13.0"
+  resolved "https://registry.npmjs.org/react-dom/-/react-dom-16.13.0.tgz#cdde54b48eb9e8a0ca1b3dc9943d9bb409b81866"
+  integrity sha512-y09d2c4cG220DzdlFkPTnVvGTszVvNpC73v+AaLGLHbkpy3SSgvYq8x0rNwPJ/Rk/CicTNgk0hbHNw1gMEZAXg==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.19.0"
 
 react-dom@~16.8.0:
   version "16.8.6"
@@ -10031,6 +10042,11 @@ react-intl@^2.7.2:
     intl-messageformat "^2.1.0"
     intl-relativeformat "^2.1.0"
     invariant "^2.1.1"
+
+react-is@^16.12.0:
+  version "16.13.0"
+  resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
+  integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
 
 react-is@^16.7.0, react-is@^16.8.1:
   version "16.12.0"
@@ -10140,10 +10156,19 @@ react-tiny-virtual-list@^2.2.0:
   dependencies:
     prop-types "^15.5.7"
 
-react@^16.3.2, react@^16.8.0:
+react@^16.3.2:
   version "16.12.0"
   resolved "https://registry.npmjs.org/react/-/react-16.12.0.tgz#0c0a9c6a142429e3614834d5a778e18aa78a0b83"
   integrity sha512-fglqy3k5E+81pA8s+7K0/T3DBCF0ZDOher1elBFzF7O6arXJgzyu/FW+COxFvAWXJoJN9KIZbT2LXlukwphYTA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+
+react@^16.8.0:
+  version "16.13.0"
+  resolved "https://registry.npmjs.org/react/-/react-16.13.0.tgz#d046eabcdf64e457bbeed1e792e235e1b9934cf7"
+  integrity sha512-TSavZz2iSLkq5/oiE7gnFzmURKZMltmi193rm5HEoUDAXpzT9Kzw6oNZnGoai/4+fUnm7FqS5dwgUL34TujcWQ==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -10352,6 +10377,11 @@ regenerator-runtime@^0.13.2:
   version "0.13.3"
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
   integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
+
+regenerator-runtime@^0.13.4:
+  version "0.13.5"
+  resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.5.tgz#d878a1d094b4306d10b9096484b33ebd55e26697"
+  integrity sha512-ZS5w8CpKFinUzOwW3c83oPeVXoNsrLsaCoLtJvAClH135j/R77RuymhiSErhm2lKcwSCIpmvIWSbDkIfAqKQlA==
 
 regenerator-transform@^0.10.0:
   version "0.10.1"
@@ -10765,6 +10795,14 @@ scheduler@^0.18.0:
   version "0.18.0"
   resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.18.0.tgz#5901ad6659bc1d8f3fdaf36eb7a67b0d6746b1c4"
   integrity sha512-agTSHR1Nbfi6ulI0kYNK0203joW2Y5W4po4l+v03tOoiJKpTBbxpNhWDvqc/4IcOw+KLmSiQLTasZ4cab2/UWQ==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.19.0.tgz#a715d56302de403df742f4a9be11975b32f5698d"
+  integrity sha512-xowbVaTPe9r7y7RUejcK73/j8tt2jfiyTednOvHbA8JoClvMYCp+r8QegLwK/n8zWQAtZb1fFnER4XLBZXrCxA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -11441,9 +11479,9 @@ source-map@~0.1.30:
     amdefine ">=0.0.4"
 
 spark-md5@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/spark-md5/-/spark-md5-3.0.0.tgz#3722227c54e2faf24b1dc6d933cc144e6f71bfef"
-  integrity sha1-NyIifFTi+vJLHcbZM8wUTm9xv+8=
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/spark-md5/-/spark-md5-3.0.1.tgz#83a0e255734f2ab4e5c466e5a2cfc9ba2aa2124d"
+  integrity sha512-0tF3AGSD1ppQeuffsLDIOWlKUd3lS92tFxcsrh5Pe3ZphhnoK+oXIBTzOAThZCiuINZLvpiLH/1VS1/ANEJVig==
 
 spdx-correct@^3.0.0:
   version "3.1.0"
@@ -12964,18 +13002,10 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
   dependencies:
     isexe "^2.0.0"
 
-white-react-sdk@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/white-react-sdk/-/white-react-sdk-2.6.2.tgz#fedc4867d348718496d8a6189a409e0d13d0b675"
-  integrity sha512-MYmSXHQiP0hHwvVp6q+dlpxfpOe4IuIBtYodmAIEroLdjxe6igI2X1Oo8fYnXNoybbd+xqmLceeFytiak6yumQ==
-  dependencies:
-    react "^16.8.0"
-    white-web-sdk "2.6.2"
-
-white-web-sdk@2.6.2, white-web-sdk@^2.5.3:
-  version "2.6.2"
-  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.6.2.tgz#a7bad8ebf15721b61a837ae56eaed9c9df2da402"
-  integrity sha512-gVotqSn9tjrNAdkhKbzzY3t9/o6JwFvM/1h31ytLtldGA7tybE16RNsfu7MzP8pokWm1uOGVgdGSZWNzG5mViQ==
+white-web-sdk@^2.5.3, white-web-sdk@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.7.0.tgz#4259a3b2c42bf0773845866ce4bc614464a60c89"
+  integrity sha512-aa/3s9KSaozhIS7Ba25158tEG1zr/hXTEK28kQ0TyD9bJrmMq6Q3I8uLKafuyiYFm77NQlcAohdhddjdQFPnDA==
   dependencies:
     atob "^2.1.0"
     base64-js "^1.3.1"
