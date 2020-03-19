@@ -27,4 +27,3 @@ export class AppRoutes extends React.Component<{}, {}> {
         );
     }
 }
-
