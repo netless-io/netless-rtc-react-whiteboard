@@ -149,14 +149,14 @@
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
 "@netless/white-audio-plugin@^1.1.10":
-  version "1.1.10"
-  resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.1.10.tgz#9958c95244e952f115d579922d3678722806be53"
-  integrity sha512-rranezLHocHzhiv5fQENxedTKC3vBJ/e7FVLCOUFy3y+hxtS4q+PpL62nfgrAEfKhlkwq83zYIJJLOK5VBatIw==
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.2.3.tgz#9320e836cf8fadd79b9640b1d48814358883a08a"
+  integrity sha512-Ca7s9BaaFnoh3+4RoLjyJVWRPIFA49y63wiyrRcyENrrHSEbLeVDuoOzN4K2DIbh/YvNshiXLtlsc9tG2rHVNg==
 
-"@netless/white-fast-web-sdk@^1.3.3":
-  version "1.3.3"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.3.3.tgz#0a330bad62e278058e4991053dd6d610bc04de76"
-  integrity sha512-4XNqBSXxombNuFDXYDHy3P83/Ixc9QZb6iAD1FcdT+hDesgBhoavncArfEn6ocmoOcjaiUrKVrP6UbM1bNfGSQ==
+"@netless/white-fast-web-sdk@^1.3.4":
+  version "1.3.4"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.3.4.tgz#2c0a149b88c9ce55371df29b1e2db2dd31850b80"
+  integrity sha512-BifBfRuxsKSPKbeXTvV1VTmfxCs3IDrcw/rQ8p7fswq91RIaFG+Rsi9kmn3ARl4WlCu61oBlKJ6H4VeWfnzI6A==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
@@ -189,12 +189,12 @@
     react-dropzone "4.2.10"
     react-tiny-virtual-list "^2.2.0"
     uuid "^3.3.2"
-    white-web-sdk "^2.7.2"
+    white-web-sdk "^2.7.5"
 
 "@netless/white-video-plugin@^1.1.17":
-  version "1.1.17"
-  resolved "https://registry.npmjs.org/@netless/white-video-plugin/-/white-video-plugin-1.1.17.tgz#c6c8b9c498a2e7e1332546cd5690e9bbab8658fd"
-  integrity sha512-aNXibSgM4faGY+hozgIU2iWJV2OexL3WOgSZ/SZkycji2eioFFaeUySamx7bz5xIZa034vAxmbsFCU9VLACY7g==
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/@netless/white-video-plugin/-/white-video-plugin-1.2.2.tgz#3a390142e4386b8756d19df18407515bcc2505ce"
+  integrity sha512-hKcBTdrlZ25XAwxvMTTcZP3pVSdyLdRrD9t4W2hlny0MllB2cWvM4ulml9U1MLfx13L0Xg/zxSQjry/vCXaTCQ==
 
 "@snyk/cli-interface@1.5.0":
   version "1.5.0"
@@ -7125,9 +7125,9 @@ math-random@^1.0.1:
   integrity sha512-rUxjysqif/BZQH2yhd5Aaq7vXMSx9NdEsQcyA07uEzIvxgI7zIr33gGsh+RU0/XjmQpCW7RsVof1vlkvQVCK5A==
 
 mathjs@^6.2.2:
-  version "6.6.2"
-  resolved "https://registry.npmjs.org/mathjs/-/mathjs-6.6.2.tgz#9411824ca113c158194ed55f47c816bafa63ec8d"
-  integrity sha512-kdAUnUbIwIkvd5ahUOFeZYZ6JfTSUDpQVsEkohWN7ZE5rTJgYsuIP7BWNswbHJt8a2C2zfSWS+7rMpDMLgJQhQ==
+  version "6.6.4"
+  resolved "https://registry.npmjs.org/mathjs/-/mathjs-6.6.4.tgz#f3217dc17eec9e7ebb7a3b2966c06a6061197ae7"
+  integrity sha512-fvmP89ujJbDAC8ths7FZh7PWdA71dfA5WJVAzJbQhSDCHK1aBk8WRf1XcTw51ERs+sKx9nYBGsRshqmb/oe8Ag==
   dependencies:
     complex.js "^2.0.11"
     decimal.js "^10.2.0"
@@ -7429,9 +7429,9 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
     minimist "0.0.8"
 
 mobx-react-lite@2:
-  version "2.0.3"
-  resolved "https://registry.npmjs.org/mobx-react-lite/-/mobx-react-lite-2.0.3.tgz#5e5f9c4b472c415796cbc7a21d9dfbb0c0db1895"
-  integrity sha512-9YwjomobyZOc5WQPBqZFGyFpDr89KpWgfRuPD2jMP7V7X3poTSyWZTskqSpuo7TB4QISXezUT3t7NNN7MVoF7Q==
+  version "2.0.6"
+  resolved "https://registry.npmjs.org/mobx-react-lite/-/mobx-react-lite-2.0.6.tgz#e1307a2b271c6a6016c8ad815a25014b7f95997d"
+  integrity sha512-h/5GqxNIoSqnjt7SHxVtU7i1Kg0Xoxj853amzmzLgLRZKK9WwPc9tMuawW79ftmFSQhML0Zwt8kEuG1DIjQNBA==
 
 mobx-react@^5.4.0:
   version "5.4.4"
@@ -7442,9 +7442,9 @@ mobx-react@^5.4.0:
     react-lifecycles-compat "^3.0.2"
 
 mobx-react@^6.1.4:
-  version "6.2.0"
-  resolved "https://registry.npmjs.org/mobx-react/-/mobx-react-6.2.0.tgz#782b46bcfd505489a65882b74b78272155934501"
-  integrity sha512-Lb1Dqj4wxky1lkBjfPw5+FN8GOQym2N3xhuxa1y5qgU1kiS8xOj1qRxz2SoDgzDavMIN6ykBqOle6wdBs3KPcQ==
+  version "6.2.2"
+  resolved "https://registry.npmjs.org/mobx-react/-/mobx-react-6.2.2.tgz#45e8e7c4894cac8399bba0a91060d7cfb8ea084b"
+  integrity sha512-Us6V4ng/iKIRJ8pWxdbdysC6bnS53ZKLKlVGBqzHx6J+gYPYbOotWvhHZnzh/W5mhpYXxlXif4kL2cxoWJOplQ==
   dependencies:
     mobx-react-lite "2"
 
@@ -10026,9 +10026,9 @@ react-dom@~16.8.0:
     scheduler "^0.13.6"
 
 react-draggable@^4.1.0:
-  version "4.2.0"
-  resolved "https://registry.npmjs.org/react-draggable/-/react-draggable-4.2.0.tgz#40cc5209082ca7d613104bf6daf31372cc0e1114"
-  integrity sha512-5wFq//gEoeTYprnd4ze8GrFc+Rbnx+9RkOMR3vk4EbWxj02U6L6T3yrlKeiw4X5CtjD2ma2+b3WujghcXNRzkw==
+  version "4.3.1"
+  resolved "https://registry.npmjs.org/react-draggable/-/react-draggable-4.3.1.tgz#f9c0cdcf2279ec5b79c65b70cdfd9361d82fa9ee"
+  integrity sha512-m8QeV+eIi7LhD5mXoLqDzLbokc6Ncwa0T34fF6uJzWSs4vc4fdZI/XGqHYoEn91T8S6qO+BSXslONh7Jz9VPQQ==
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
@@ -13016,10 +13016,10 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
   dependencies:
     isexe "^2.0.0"
 
-white-web-sdk@^2.5.3, white-web-sdk@^2.7.2:
-  version "2.7.2"
-  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.7.2.tgz#570b4106aeeb5f1a467a633311ec8155beacc393"
-  integrity sha512-8BVIHn9VE7DhjK72xPaI13tybPFOV14T8pAZKsjGIbEOg/qpex8EU2RW2Z8QSX3SbGjECOjkX1RFaH6b9lnG6Q==
+white-web-sdk@^2.5.3, white-web-sdk@^2.7.5:
+  version "2.7.5"
+  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.7.5.tgz#1af5a602b0095ee0237ef7487b0e6a05030c39d2"
+  integrity sha512-D/c37iMYvnE+8FsBhguWiNhLHeDDPJ9sctwU6xg0wVyBHebiQ62L4CeBt8O2pdmpzj72HsQRwNdSapaIMEaFZQ==
   dependencies:
     atob "^2.1.0"
     base64-js "^1.3.1"
