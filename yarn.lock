@@ -153,10 +153,10 @@
   resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.2.3.tgz#9320e836cf8fadd79b9640b1d48814358883a08a"
   integrity sha512-Ca7s9BaaFnoh3+4RoLjyJVWRPIFA49y63wiyrRcyENrrHSEbLeVDuoOzN4K2DIbh/YvNshiXLtlsc9tG2rHVNg==
 
-"@netless/white-fast-web-sdk@^1.3.4":
-  version "1.3.4"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.3.4.tgz#2c0a149b88c9ce55371df29b1e2db2dd31850b80"
-  integrity sha512-BifBfRuxsKSPKbeXTvV1VTmfxCs3IDrcw/rQ8p7fswq91RIaFG+Rsi9kmn3ARl4WlCu61oBlKJ6H4VeWfnzI6A==
+"@netless/white-fast-web-sdk@^1.3.5":
+  version "1.3.5"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.3.5.tgz#68640edaaae5179aa7596666382dcbdc632e2d46"
+  integrity sha512-pbjnS9ax/PYsyG0HDFfMeZVNmWcVK5J61sPZHFVufHRRIS3OrkFNqdChmHzcHePoFP1lwO9Y5S8uY0dKwC32QA==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
