@@ -53,10 +53,10 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.5.5":
-  version "7.9.2"
-  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.9.2.tgz#d90df0583a3a252f09aaa619665367bae518db06"
-  integrity sha512-NE2DtOdufG7R5vnfQUTehdTfNycfUANEtCa9PssN9O/xmTzP4E08UI797ixaei6hBEVL9BI/PsdJS5x7mWoB9Q==
+"@babel/runtime@^7.5.5", "@babel/runtime@^7.9.2":
+  version "7.9.6"
+  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.9.6.tgz#a9102eb5cadedf3f31d08a9ecf294af7827ea29f"
+  integrity sha512-64AF1xY3OAkFHqOb9s4jpgk1Mm5vDZ4L3acHvAml+53nO1XbXLuDodsVpO4OIUsmemlUHMxNdYMNJmsvOwLrvQ==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -153,10 +153,10 @@
   resolved "https://registry.npmjs.org/@netless/white-audio-plugin/-/white-audio-plugin-1.2.3.tgz#9320e836cf8fadd79b9640b1d48814358883a08a"
   integrity sha512-Ca7s9BaaFnoh3+4RoLjyJVWRPIFA49y63wiyrRcyENrrHSEbLeVDuoOzN4K2DIbh/YvNshiXLtlsc9tG2rHVNg==
 
-"@netless/white-fast-web-sdk@^1.3.5":
-  version "1.3.5"
-  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.3.5.tgz#68640edaaae5179aa7596666382dcbdc632e2d46"
-  integrity sha512-pbjnS9ax/PYsyG0HDFfMeZVNmWcVK5J61sPZHFVufHRRIS3OrkFNqdChmHzcHePoFP1lwO9Y5S8uY0dKwC32QA==
+"@netless/white-fast-web-sdk@^1.3.6":
+  version "1.3.6"
+  resolved "https://registry.npmjs.org/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.3.6.tgz#4eae94a33013293bfced91fa7d620e2f63c5a342"
+  integrity sha512-WinHnvJhzMi1nryDBUFL/xrbPkKEYhd3VVIalOU6i1bucyLCBnb6M/lAjGjSZaF4PKVz8gGC14Jf2GcmLVJk1Q==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
@@ -189,7 +189,7 @@
     react-dropzone "4.2.10"
     react-tiny-virtual-list "^2.2.0"
     uuid "^3.3.2"
-    white-web-sdk "^2.7.5"
+    white-web-sdk "^2.8.0"
 
 "@netless/white-video-plugin@^1.1.17":
   version "1.2.2"
@@ -444,10 +444,10 @@
     "@types/events" "*"
     "@types/node" "*"
 
-"@videojs/http-streaming@1.12.2":
-  version "1.12.2"
-  resolved "https://registry.npmjs.org/@videojs/http-streaming/-/http-streaming-1.12.2.tgz#9ee790ff5e83eb3aab08ba3c8e434ace92a16013"
-  integrity sha512-/YoApr0Ihaqo2eOLSQA3AdUDgor3VPeRAc+mCFvEB8265OUHxhIBUQ+JoGEKYk6PY2XLK1JqNC0lDuqpr61TPQ==
+"@videojs/http-streaming@1.12.3":
+  version "1.12.3"
+  resolved "https://registry.npmjs.org/@videojs/http-streaming/-/http-streaming-1.12.3.tgz#99d0779ca14f127eb4f42b5be7b31585687ca5f5"
+  integrity sha512-VohBOKZXPXRFl6c3E3MXWfp7sFQ8H73K2XdShT5WnOLblyQjnvsqTa8+lgQXFyiy/oQcR1vVY1cwiT3m4bJYPQ==
   dependencies:
     aes-decrypter "3.0.0"
     global "^4.3.0"
@@ -787,9 +787,9 @@ antd@^3.10.4:
     warning "~4.0.3"
 
 antd@^3.17.0, antd@^3.24.3:
-  version "3.26.15"
-  resolved "https://registry.npmjs.org/antd/-/antd-3.26.15.tgz#c5f4e5628502f9cdfb0c351c71320d5c0e2421be"
-  integrity sha512-OAcfz9D1Qt+4Fme4E0DfCKuWm/1RIVrJZzaTYVCGOnVAHJjoxEtKCoCrcj/8wwCS9LbXHVci/s2u/gY+QmtCSw==
+  version "3.26.16"
+  resolved "https://registry.npmjs.org/antd/-/antd-3.26.16.tgz#699c01d07be23ed8c06cc21ef6a0abc71603c6ae"
+  integrity sha512-EYRwlEf8FCPCVRk5yDcgjSZOC0exu+m75SwlSQU+Mh17f9wGhLeL2/DV7/Sra1r+BZlfiahFdkgrLY7UgMMBEQ==
   dependencies:
     "@ant-design/create-react-context" "^0.2.4"
     "@ant-design/icons" "~2.1.1"
@@ -3360,6 +3360,11 @@ destroy@^1.0.4, destroy@~1.0.4:
   resolved "https://registry.npmjs.org/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
 
+detect-hover@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/detect-hover/-/detect-hover-1.0.2.tgz#589fb0b469220897a9eee3fa36a917e1eda37a21"
+  integrity sha1-WJ+wtGkiCJep7uP6NqkX4e2jeiE=
+
 detect-indent@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/detect-indent/-/detect-indent-4.0.0.tgz#f76d064352cdf43a1cb6ce619c4ee3a9475de208"
@@ -3371,6 +3376,16 @@ detect-indent@~5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-5.0.0.tgz#3871cc0a6a002e8c3e5b3cf7f336264675f06b9d"
   integrity sha1-OHHMCmoALow+Wzz38zYmRnXwa50=
+
+detect-it@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npmjs.org/detect-it/-/detect-it-3.0.5.tgz#816396c0fe12b11af08299a7c2b8381e58d15175"
+  integrity sha1-gWOWwP4SsRrwgpmnwrg4HljRUXU=
+  dependencies:
+    detect-hover "^1.0.2"
+    detect-passive-events "^1.0.4"
+    detect-pointer "^1.0.2"
+    detect-touch-events "^2.0.1"
 
 detect-libc@^1.0.2:
   version "1.0.3"
@@ -3387,6 +3402,16 @@ detect-node@^2.0.3:
   resolved "https://registry.npmjs.org/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
   integrity sha512-ZIzRpLJrOj7jjP2miAtgqIfmzbxa4ZOr5jJc601zklsfEx9oTzmmj2nVpIPRpNlRTIh8lc1kyViIY7BWSGNmKw==
 
+detect-passive-events@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/detect-passive-events/-/detect-passive-events-1.0.4.tgz#6ed477e6e5bceb79079735dcd357789d37f9a91a"
+  integrity sha1-btR35uW863kHlzXc01d4nTf5qRo=
+
+detect-pointer@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/detect-pointer/-/detect-pointer-1.0.2.tgz#1e0e4e261dab45055c50c74fb5a4ff09ceb18fbd"
+  integrity sha1-Hg5OJh2rRQVcUMdPtaT/Cc6xj70=
+
 detect-port-alt@1.1.6:
   version "1.1.6"
   resolved "https://registry.npmjs.org/detect-port-alt/-/detect-port-alt-1.1.6.tgz#24707deabe932d4a3cf621302027c2b266568275"
@@ -3394,6 +3419,11 @@ detect-port-alt@1.1.6:
   dependencies:
     address "^1.0.1"
     debug "^2.6.0"
+
+detect-touch-events@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/detect-touch-events/-/detect-touch-events-2.0.1.tgz#365833cf0c5c40c4090a08096b8a688db00fa337"
+  integrity sha1-NlgzzwxcQMQJCggJa4pojbAPozc=
 
 dezalgo@^1.0.0, dezalgo@~1.0.3:
   version "1.0.3"
@@ -5680,9 +5710,9 @@ is-fullwidth-code-point@^2.0.0:
   integrity sha1-o7MKXE8ZkYMWeqq5O+764937ZU8=
 
 is-function@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/is-function/-/is-function-1.0.1.tgz#12cfb98b65b57dd3d193a3121f5f6e2f437602b5"
-  integrity sha1-Es+5i2W1fdPRk6MSH19uL0N2ArU=
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/is-function/-/is-function-1.0.2.tgz#4f097f30abf6efadac9833b17ca5dc03f8144e08"
+  integrity sha512-lw7DUp0aWXYg+CBCN+JKkcE0Q2RayZnSvnZBlwgxHBQhqt5pZNVy4Ri7H9GmmXkdu7LUthszM+Tor1u/2iBcpQ==
 
 is-generator-fn@^1.0.0:
   version "1.0.0"
@@ -7125,9 +7155,9 @@ math-random@^1.0.1:
   integrity sha512-rUxjysqif/BZQH2yhd5Aaq7vXMSx9NdEsQcyA07uEzIvxgI7zIr33gGsh+RU0/XjmQpCW7RsVof1vlkvQVCK5A==
 
 mathjs@^6.2.2:
-  version "6.6.4"
-  resolved "https://registry.npmjs.org/mathjs/-/mathjs-6.6.4.tgz#f3217dc17eec9e7ebb7a3b2966c06a6061197ae7"
-  integrity sha512-fvmP89ujJbDAC8ths7FZh7PWdA71dfA5WJVAzJbQhSDCHK1aBk8WRf1XcTw51ERs+sKx9nYBGsRshqmb/oe8Ag==
+  version "6.6.5"
+  resolved "https://registry.npmjs.org/mathjs/-/mathjs-6.6.5.tgz#6bbad1fa3ac09e8f7106ef64af8d3908f877b8e8"
+  integrity sha512-jvRqk7eoEHBcx/lskmy05m+8M7xDHAJcJzRJoqIsqExtlTHPDQO0Zv85g5F0rasDAXF+DLog/70hcqCJijSzPQ==
   dependencies:
     complex.js "^2.0.11"
     decimal.js "^10.2.0"
@@ -9694,9 +9724,9 @@ rc-switch@~1.9.0:
     react-lifecycles-compat "^3.0.4"
 
 rc-table@~6.10.5:
-  version "6.10.14"
-  resolved "https://registry.npmjs.org/rc-table/-/rc-table-6.10.14.tgz#12e9db6f1935e81491cabc856ff680de21dd451f"
-  integrity sha512-yn47IqxXA4bzPAs1Aai7WwNzOBpuH1mm+GYrIIOUuGySaxz20Wr3udbRF+gLzEbG14CWUxomvcUaXyWPWdH08w==
+  version "6.10.15"
+  resolved "https://registry.npmjs.org/rc-table/-/rc-table-6.10.15.tgz#181f4c70c4fd74f657ee8f23196e7eb08a0365ca"
+  integrity sha512-LAr0M/gqt+irOjvPNBLApmQ0CUHNOfKsEBhu1uIuB3OlN1ynA9z+sdoTQyNd9+8NSl0MYnQOOfhtLChAY7nU0A==
   dependencies:
     classnames "^2.2.5"
     component-classes "^1.2.6"
@@ -9879,9 +9909,9 @@ rc-util@^4.0.4, rc-util@^4.1.1, rc-util@^4.10.0, rc-util@^4.11.2, rc-util@^4.13.
     shallowequal "^1.1.0"
 
 rc-util@^4.16.1:
-  version "4.20.3"
-  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.20.3.tgz#c4d4ee6171cf685dc75572752a764310325888d3"
-  integrity sha512-NBBc9Ad5yGAVTp4jV+pD7tXQGqHxGM2onPSZFyVoJ5fuvRF+ZgzSjZ6RXLPE0pVVISRJ07h+APgLJPBcAeZQlg==
+  version "4.20.5"
+  resolved "https://registry.npmjs.org/rc-util/-/rc-util-4.20.5.tgz#f7c77569e971ae6a8ad56f899cadd22275398325"
+  integrity sha512-f67s4Dt1quBYhrVPq5QMKmK3eS2hN1NNIAyhaiG0HmvqiGYAXMQ7SP2AlGqv750vnzhJs38JklbkWT1/wjhFPg==
   dependencies:
     add-dom-event-listener "^1.1.0"
     prop-types "^15.5.10"
@@ -9953,9 +9983,9 @@ react-clipboard.js@^2.0.7:
     prop-types "^15.5.0"
 
 react-color@^2.17.3:
-  version "2.18.0"
-  resolved "https://registry.npmjs.org/react-color/-/react-color-2.18.0.tgz#34956f0bac394f6c3bc01692fd695644cc775ffd"
-  integrity sha512-FyVeU1kQiSokWc8NPz22azl1ezLpJdUyTbWL0LPUpcuuYDrZ/Y1veOk9rRK5B3pMlyDGvTk4f4KJhlkIQNRjEA==
+  version "2.18.1"
+  resolved "https://registry.npmjs.org/react-color/-/react-color-2.18.1.tgz#2cda8cc8e06a9e2c52ad391a30ddad31972472f4"
+  integrity sha512-X5XpyJS6ncplZs74ak0JJoqPi+33Nzpv5RYWWxn17bslih+X7OlgmfpmGC1fNvdkK7/SGWYf1JJdn7D2n5gSuQ==
   dependencies:
     "@icons/material" "^0.2.4"
     lodash "^4.17.11"
@@ -9989,11 +10019,11 @@ react-dev-utils@^5.0.1:
     text-table "0.2.0"
 
 react-device-detect@^1.9.10:
-  version "1.11.14"
-  resolved "https://registry.npmjs.org/react-device-detect/-/react-device-detect-1.11.14.tgz#02ba2398e2ce81fb0eaed3e62a9ad713ab3870a7"
-  integrity sha512-WSjch241xI+rXHVtJaSYxNUT2WAykzfJgMI2Hg9xjNNTlIZdJu/fmWf4iedNH7qzFq+JaJ6fDJu3mrKFLerKBw==
+  version "1.12.1"
+  resolved "https://registry.npmjs.org/react-device-detect/-/react-device-detect-1.12.1.tgz#0a2e0b02dbbceff7d619c57074a9e0ebab74bb35"
+  integrity sha512-BQ7xIEHx0VqPBGEtEFJRybHnhZ1Qn3BXX8dRR3EKLRfSTKpITUw925VYCGnygZDpmgYSq5NX0IvHGhy0w7Sckg==
   dependencies:
-    ua-parser-js "^0.7.20"
+    ua-parser-js "^0.7.21"
 
 react-dom@^16.3.2:
   version "16.12.0"
@@ -12354,7 +12384,7 @@ ua-parser-js@^0.7.18:
   resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.20.tgz#7527178b82f6a62a0f243d1f94fd30e3e3c21098"
   integrity sha512-8OaIKfzL5cpx8eCMAhhvTlft8GYF8b2eQr6JkCyVdrgjcytyOmPCXrqXFcUnhonRpLlh5yxEZVohm6mzaowUOw==
 
-ua-parser-js@^0.7.20:
+ua-parser-js@^0.7.21:
   version "0.7.21"
   resolved "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.21.tgz#853cf9ce93f642f67174273cc34565ae6f308777"
   integrity sha512-+O8/qh/Qj8CgC6eYBVBykMrNtp5Gebn4dlGD/kKXVkJNDwyrAwSIqwz8CDf+tsAIWVycKcku6gIXJ0qwx/ZXaQ==
@@ -12685,6 +12715,11 @@ uuid@^3.0.1, uuid@^3.3.2, uuid@^3.3.3:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
 
+uuid@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.npmjs.org/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
+  integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
+
 validate-npm-package-license@^3.0.1, validate-npm-package-license@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/validate-npm-package-license/-/validate-npm-package-license-3.0.4.tgz#fc91f6b9c7ba15c857f4cb2c5defeec39d4f410a"
@@ -12725,12 +12760,12 @@ verror@1.10.0:
     extsprintf "^1.2.0"
 
 "video.js@^6.8.0 || ^7.0.0", video.js@^7.4.0:
-  version "7.7.5"
-  resolved "https://registry.npmjs.org/video.js/-/video.js-7.7.5.tgz#7b066c4eb56fdf4980d3be09491ce520ffe8ed75"
-  integrity sha512-+HSp2KNZmGzkmTecXyaXxEGi3F41WAm43PqNp3hWq5wYUQOHwcRu5YhhCz+5q0fDV+SlnFMSSLl/I6QLMlYv/g==
+  version "7.7.6"
+  resolved "https://registry.npmjs.org/video.js/-/video.js-7.7.6.tgz#f2c492387682318a21ef442cf63847d72faaa1db"
+  integrity sha512-1GRhDHab2PZYqeFXJAH3ypLeq91uKbjqXrxwfZXyz6phwwyI1i5j6VeUkoVLxilrT+2KZ1IxOa0wRijnITDzWQ==
   dependencies:
-    "@babel/runtime" "^7.5.5"
-    "@videojs/http-streaming" "1.12.2"
+    "@babel/runtime" "^7.9.2"
+    "@videojs/http-streaming" "1.12.3"
     "@videojs/xhr" "2.5.1"
     global "4.3.2"
     keycode "^2.2.0"
@@ -13016,15 +13051,16 @@ which@1, which@^1.2.12, which@^1.2.14, which@^1.2.9, which@^1.3.0, which@^1.3.1:
   dependencies:
     isexe "^2.0.0"
 
-white-web-sdk@^2.5.3, white-web-sdk@^2.7.5:
-  version "2.7.5"
-  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.7.5.tgz#1af5a602b0095ee0237ef7487b0e6a05030c39d2"
-  integrity sha512-D/c37iMYvnE+8FsBhguWiNhLHeDDPJ9sctwU6xg0wVyBHebiQ62L4CeBt8O2pdmpzj72HsQRwNdSapaIMEaFZQ==
+white-web-sdk@^2.5.3, white-web-sdk@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.npmjs.org/white-web-sdk/-/white-web-sdk-2.8.0.tgz#c464ef72c0c1f1ce37dc1f72b341b3bf1d662e25"
+  integrity sha512-X6TLIt74KCPzfWT7bWJWQYteZWOXAdi+x+UYSMbtEIlZc+XgA5LqWpnN2qdO9rLsaFHmLdLE4f/5/FjrvtOCFw==
   dependencies:
     atob "^2.1.0"
     base64-js "^1.3.1"
     bezier-js "^2.4.4"
     color "^3.1.0"
+    detect-it "^3.0.5"
     ieee754 "^1.1.13"
     isarray "^1.0.0"
     mathjs "^6.2.2"
@@ -13036,7 +13072,7 @@ white-web-sdk@^2.5.3, white-web-sdk@^2.7.5:
     spark-md5 "^3.0.0"
     textarea-caret-ts "^4.1.0"
     url-parse "^1.4.0"
-    uuid "^3.3.3"
+    uuid "^7.0.3"
     video.js "^7.4.0"
     xml-js "^1.6.11"
 
