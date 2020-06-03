@@ -85,7 +85,7 @@ export default class WhiteboardPage extends React.Component<WhiteboardPageProps,
                 rtc: {
                     type: "agora",
                     rtcObj: AgoraRTC,
-                    appId: "8595fd46955f427db44b4e9ba90f015d",
+                    appId: "7276f931285b4f22a9a6f2961b4ec1e2",
                     recordConfig: {
                         customerId: "b4e2bc22a89549b2a84969b844258fe3",
                         customerCertificate: "594daac9c32b491795f8cbd27a7d5265",
