@@ -148,15 +148,15 @@
   resolved "https://registry.yarnpkg.com/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-audio-plugin@^1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@netless/white-audio-plugin/-/white-audio-plugin-1.2.4.tgz#b6fd338c3f822554e0735ac6dc4e1a6ef373c1e5"
-  integrity sha512-KdY9hUEaLCOfXDmKBJs5z/PrNcwY7QpqaY3RmgRhGHm0hAYAXD0QFvddkQMKSLrAi+lLF2SLScUTndeAGaTwHQ==
+"@netless/white-audio-plugin@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@netless/white-audio-plugin/-/white-audio-plugin-1.2.6.tgz#95462dd67c53f50fd7067f7f9abb0ea7372a6cb6"
+  integrity sha512-FhxeDafDj8RSmPPsZiNAkl5KjO4I99pNgCrUmjQVuzxNZ5/tXMiNckQb7lRrgI9dStRNcW0FPgRcuf0GZI5LiQ==
 
-"@netless/white-fast-web-sdk@^1.4.4":
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.4.tgz#f2b8c15b171fb4df942b81db3391ec8701fb3e80"
-  integrity sha512-Djhgd1rofiYzBh5UczGL9SMXKGjN9uvV5jh49vY6JH/+ZTyzZl8PohpJk6c5fJmtF/WqGjaMsJWnZ/J27RhbFw==
+"@netless/white-fast-web-sdk@^1.4.5":
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.5.tgz#1a64145484565ec2d75e03b2878d266ece9a87e1"
+  integrity sha512-zvjbzCSrzMYZ6qB2CTsF7SofjyscFMwZnXt9b/3Zb6JyXfmUxAIYSEUsrqo1zwFnVmSZ99K13+kcaTtdjk8GOg==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
@@ -167,8 +167,8 @@
     "@netless/react-mb-tool-box" "^1.0.3"
     "@netless/react-scale-controller" "^1.0.2"
     "@netless/react-seek-slider" "^1.0.4"
-    "@netless/white-audio-plugin" "^1.2.4"
-    "@netless/white-video-plugin" "^1.2.4"
+    "@netless/white-audio-plugin" "^1.2.6"
+    "@netless/white-video-plugin" "^1.2.6"
     ali-oss "^6.1.1"
     antd "^3.24.3"
     is-color "^1.0.2"
@@ -189,12 +189,12 @@
     react-dropzone "4.2.10"
     react-tiny-virtual-list "^2.2.0"
     uuid "^3.3.2"
-    white-web-sdk "^2.9.6"
+    white-web-sdk "^2.9.7"
 
-"@netless/white-video-plugin@^1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@netless/white-video-plugin/-/white-video-plugin-1.2.4.tgz#021bc54020aba3739ce1cce5a9529b793c135fac"
-  integrity sha512-xHo9w8KWYlonfXSo71k5qz9472MCcxnCOB3NLwSz5NA1Z1/qm6f8X8jY8StDDm3tOEo0BGqJS6w20Pi9lOg8Mw==
+"@netless/white-video-plugin@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@netless/white-video-plugin/-/white-video-plugin-1.2.6.tgz#01eea79b94e6ed666ec77e4ec6898f9816f9d4d7"
+  integrity sha512-s/fLhPLjWBZRoTNq7mSkUdnMJp+octTNGFx9pOtZwPrms2CbxkABPeXERmnaqJrUDrrlwKsQm4kla6+syVLVFQ==
 
 "@snyk/cli-interface@1.5.0":
   version "1.5.0"
@@ -13076,10 +13076,10 @@ white-web-sdk@^2.5.3:
     video.js "^7.4.0"
     xml-js "^1.6.11"
 
-white-web-sdk@^2.9.6:
-  version "2.9.6"
-  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.9.6.tgz#4656b6e31d99089ca74d2bee90f6bade5fe33c47"
-  integrity sha512-cbghyyTs7R3Fb/nSVbPeo8kTR2rt5AkX24w6TQ+sO7hBteZL++aXq7BE/HEaqDViEiVtvNS5R4oiv+8Qy/5O0w==
+white-web-sdk@^2.9.7:
+  version "2.9.7"
+  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.9.7.tgz#4a892c34494377b361f6a0bf971c290a8347f214"
+  integrity sha512-1SsOE8G4Yooedn67PVcC5XS7M7XGwS8Wij8V1LPuDib+dbx/kHrPd420i99UvE/MWcGFMp5ZEkWRYZAnTkJKUw==
   dependencies:
     atob "^2.1.0"
     base64-js "^1.3.1"
