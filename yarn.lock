@@ -153,10 +153,10 @@
   resolved "https://registry.yarnpkg.com/@netless/white-audio-plugin/-/white-audio-plugin-1.2.6.tgz#95462dd67c53f50fd7067f7f9abb0ea7372a6cb6"
   integrity sha512-FhxeDafDj8RSmPPsZiNAkl5KjO4I99pNgCrUmjQVuzxNZ5/tXMiNckQb7lRrgI9dStRNcW0FPgRcuf0GZI5LiQ==
 
-"@netless/white-fast-web-sdk@^1.4.6":
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.6.tgz#1aef330ab1f4db52dbc8a7e174fa1831b55afdbc"
-  integrity sha512-GXmt2V2KkxtP8omI56x/SJ/3hy8JGr4XsePFf72tcvUSVfXN/CRLguvFBJktjXgJM5JpsqkFSrG8VDHqjLrcKA==
+"@netless/white-fast-web-sdk@^1.4.7":
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.7.tgz#e793c98dad1378f86bcc4ee25d1426919b787f97"
+  integrity sha512-f6KM27hRS3ZYIJK01LIqvp4QRy81Ju8VZqxzG/+prAZZdTzm7A4WJJckMTP6zAV67ocjeYCQhb5Kizjeadloog==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
