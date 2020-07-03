@@ -65,6 +65,11 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
+"@netless/canvas-polyfill@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@netless/canvas-polyfill/-/canvas-polyfill-0.0.3.tgz#caf77b6b1b666db54cde5edda3751ee292bc088a"
+  integrity sha512-X3KodHfvMAIrmVBsj7kbWdcWA+eCr/uhqpix10GKXE+UovIyJd05KyFNMKIAXOMQI79NJrYiHcPBLszRRogygA==
+
 "@netless/cursor-adapter@^0.0.3":
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/@netless/cursor-adapter/-/cursor-adapter-0.0.3.tgz#a6a5fb41024f77866f479074bd29e333b312b7f9"
@@ -153,10 +158,10 @@
   resolved "https://registry.yarnpkg.com/@netless/white-audio-plugin/-/white-audio-plugin-1.2.6.tgz#95462dd67c53f50fd7067f7f9abb0ea7372a6cb6"
   integrity sha512-FhxeDafDj8RSmPPsZiNAkl5KjO4I99pNgCrUmjQVuzxNZ5/tXMiNckQb7lRrgI9dStRNcW0FPgRcuf0GZI5LiQ==
 
-"@netless/white-fast-web-sdk@^1.4.7":
-  version "1.4.7"
-  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.7.tgz#e793c98dad1378f86bcc4ee25d1426919b787f97"
-  integrity sha512-f6KM27hRS3ZYIJK01LIqvp4QRy81Ju8VZqxzG/+prAZZdTzm7A4WJJckMTP6zAV67ocjeYCQhb5Kizjeadloog==
+"@netless/white-fast-web-sdk@^1.4.8":
+  version "1.4.8"
+  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.8.tgz#b650391643a442ad4320b0a62d7d9aa6e06339ec"
+  integrity sha512-WtbWadPkJ2IPNsUeSEynkyA/sNQwurhk0C46qAskEvZVfj1NhXVTyNvG4Cg5DcPuBIqKj12lse7GZ7aBUAOtOQ==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
@@ -189,7 +194,7 @@
     react-dropzone "4.2.10"
     react-tiny-virtual-list "^2.2.0"
     uuid "^3.3.2"
-    white-web-sdk "^2.9.7"
+    white-web-sdk "^2.9.8"
 
 "@netless/white-video-plugin@^1.2.6":
   version "1.2.6"
@@ -13076,11 +13081,12 @@ white-web-sdk@^2.5.3:
     video.js "^7.4.0"
     xml-js "^1.6.11"
 
-white-web-sdk@^2.9.7:
-  version "2.9.7"
-  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.9.7.tgz#4a892c34494377b361f6a0bf971c290a8347f214"
-  integrity sha512-1SsOE8G4Yooedn67PVcC5XS7M7XGwS8Wij8V1LPuDib+dbx/kHrPd420i99UvE/MWcGFMp5ZEkWRYZAnTkJKUw==
+white-web-sdk@^2.9.8:
+  version "2.9.8"
+  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.9.8.tgz#758277d900238299c23622ffeeb88822295980c0"
+  integrity sha512-zdZ5HS3qWJ/7+DWq+FiUd/rxE41xv0YqJhVhcAFqUifQhhrhHPX4Tle60/pN70AD+uvWoSRo4CaSoj0z9JgqWA==
   dependencies:
+    "@netless/canvas-polyfill" "^0.0.3"
     atob "^2.1.0"
     base64-js "^1.3.1"
     bezier-js "^2.4.4"
