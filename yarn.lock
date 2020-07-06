@@ -153,15 +153,15 @@
   resolved "https://registry.yarnpkg.com/@netless/react-seek-slider/-/react-seek-slider-1.0.4.tgz#d21523f6476f35118df782acf97a8e2255d2744a"
   integrity sha512-smL1iufVg8XxsvO1GzLD4NZf3wFTev7FRIiHlIYDCjIgTS7/Yq6N2n8JMh2ZDjYi1nMBxDstkQPxZOEOpc/N8g==
 
-"@netless/white-audio-plugin@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@netless/white-audio-plugin/-/white-audio-plugin-1.2.6.tgz#95462dd67c53f50fd7067f7f9abb0ea7372a6cb6"
-  integrity sha512-FhxeDafDj8RSmPPsZiNAkl5KjO4I99pNgCrUmjQVuzxNZ5/tXMiNckQb7lRrgI9dStRNcW0FPgRcuf0GZI5LiQ==
+"@netless/white-audio-plugin@^1.2.15":
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/@netless/white-audio-plugin/-/white-audio-plugin-1.2.15.tgz#d495a1a8689ad9330919625fed5e30599ec2855a"
+  integrity sha512-prYPK63rU3HpG8e/Z84qiwmJnqxx42NU1DNGoNPcChXwgPGWbHgdReQIhGaHB2xmq9mPQAC+d5UTI6VEHzspxQ==
 
-"@netless/white-fast-web-sdk@^1.4.8":
-  version "1.4.8"
-  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.8.tgz#b650391643a442ad4320b0a62d7d9aa6e06339ec"
-  integrity sha512-WtbWadPkJ2IPNsUeSEynkyA/sNQwurhk0C46qAskEvZVfj1NhXVTyNvG4Cg5DcPuBIqKj12lse7GZ7aBUAOtOQ==
+"@netless/white-fast-web-sdk@^1.4.9":
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.9.tgz#74277aa2d028b98f3cefa626195709fec685aba8"
+  integrity sha512-bLUAJPLbVpwz8rhc3EDZ7ca1YwAAMLNnTctAfQTTf8BlN/OHfCfpzZqfK3IGT69NKO4kDwP7oPDFjIkrJSrPww==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
@@ -172,8 +172,8 @@
     "@netless/react-mb-tool-box" "^1.0.3"
     "@netless/react-scale-controller" "^1.0.2"
     "@netless/react-seek-slider" "^1.0.4"
-    "@netless/white-audio-plugin" "^1.2.6"
-    "@netless/white-video-plugin" "^1.2.6"
+    "@netless/white-audio-plugin" "^1.2.15"
+    "@netless/white-video-plugin" "^1.2.15"
     ali-oss "^6.1.1"
     antd "^3.24.3"
     is-color "^1.0.2"
@@ -196,10 +196,10 @@
     uuid "^3.3.2"
     white-web-sdk "^2.9.8"
 
-"@netless/white-video-plugin@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@netless/white-video-plugin/-/white-video-plugin-1.2.6.tgz#01eea79b94e6ed666ec77e4ec6898f9816f9d4d7"
-  integrity sha512-s/fLhPLjWBZRoTNq7mSkUdnMJp+octTNGFx9pOtZwPrms2CbxkABPeXERmnaqJrUDrrlwKsQm4kla6+syVLVFQ==
+"@netless/white-video-plugin@^1.2.15":
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/@netless/white-video-plugin/-/white-video-plugin-1.2.15.tgz#99bbfeb058e898faec636f477a0c609f789746cb"
+  integrity sha512-nuuuRfqP+u2zhQYzxUXBtZTf0ywyQ3GrUtkf2Eas27A/A8wcXoodnwnRE+KddeMGsMQt6T3uYDhqT/K9Wb2XDA==
 
 "@snyk/cli-interface@1.5.0":
   version "1.5.0"
