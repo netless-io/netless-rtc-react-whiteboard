@@ -158,10 +158,10 @@
   resolved "https://registry.yarnpkg.com/@netless/white-audio-plugin/-/white-audio-plugin-1.2.15.tgz#d495a1a8689ad9330919625fed5e30599ec2855a"
   integrity sha512-prYPK63rU3HpG8e/Z84qiwmJnqxx42NU1DNGoNPcChXwgPGWbHgdReQIhGaHB2xmq9mPQAC+d5UTI6VEHzspxQ==
 
-"@netless/white-fast-web-sdk@^1.4.9":
-  version "1.4.9"
-  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.9.tgz#74277aa2d028b98f3cefa626195709fec685aba8"
-  integrity sha512-bLUAJPLbVpwz8rhc3EDZ7ca1YwAAMLNnTctAfQTTf8BlN/OHfCfpzZqfK3IGT69NKO4kDwP7oPDFjIkrJSrPww==
+"@netless/white-fast-web-sdk@^1.4.10":
+  version "1.4.10"
+  resolved "https://registry.yarnpkg.com/@netless/white-fast-web-sdk/-/white-fast-web-sdk-1.4.10.tgz#908d987dc2449a1f55b0e285734ab5adc903677c"
+  integrity sha512-jjzyviuE7Sejrxq4Uc6+dypHrTy63/NmEHg7olibKoo401P9b/6RRL94dXHVrQmGi2TJnvK7aKN1b3RTTD1m3w==
   dependencies:
     "@netless/cursor-adapter" "^0.0.3"
     "@netless/cursor-icon" "^0.0.1"
@@ -194,7 +194,7 @@
     react-dropzone "4.2.10"
     react-tiny-virtual-list "^2.2.0"
     uuid "^3.3.2"
-    white-web-sdk "^2.9.8"
+    white-web-sdk "^2.9.9"
 
 "@netless/white-video-plugin@^1.2.15":
   version "1.2.15"
@@ -13081,10 +13081,10 @@ white-web-sdk@^2.5.3:
     video.js "^7.4.0"
     xml-js "^1.6.11"
 
-white-web-sdk@^2.9.8:
-  version "2.9.8"
-  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.9.8.tgz#758277d900238299c23622ffeeb88822295980c0"
-  integrity sha512-zdZ5HS3qWJ/7+DWq+FiUd/rxE41xv0YqJhVhcAFqUifQhhrhHPX4Tle60/pN70AD+uvWoSRo4CaSoj0z9JgqWA==
+white-web-sdk@^2.9.9:
+  version "2.9.9"
+  resolved "https://registry.yarnpkg.com/white-web-sdk/-/white-web-sdk-2.9.9.tgz#4e62369ad52b39e8cb0247275f8212750d746a59"
+  integrity sha512-lsSokNjDOW2ThtMF6865kbnLGdp9UMTmQBAHOgAkVrLP21TRPmBsDLSHsuMvnupqT8j2wzqncr7Bx5ODUeKOYA==
   dependencies:
     "@netless/canvas-polyfill" "^0.0.3"
     atob "^2.1.0"
