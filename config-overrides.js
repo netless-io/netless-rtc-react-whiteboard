@@ -49,6 +49,7 @@ function setupProcessEnv(config, env) {
     config = rewireDefinePlugin(config, env, {
         "process.env.SCOPE": JSON.stringify(scope),
         "process.env.CONSOLE_LAMBDA_ORIGIN": JSON.stringify(consoleLambdaOrigin),
+        "process.env.sdkToken": JSON.stringify(process.env.sdkToken)
     });
     return config;
 }
