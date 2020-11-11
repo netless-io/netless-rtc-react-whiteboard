@@ -10,4 +10,4 @@ docker build -f Dockerfile -t registry-dev.netless.link/demo/$image:$version-$ha
 docker push registry-dev.netless.link/demo/$image:$version-$hash
 docker push registry-dev.netless.link/demo/$image:latest
 
-ssh k8s-site -tt "kubectl patch deployment demo-rtc -n demo --patch '{\"spec\": {\"template\": {\"metadata\": {\"annotations\": {\"version\": \"$version-$hash\"}}}}}'"
+ssh k8s-company-dev -tt "kubectl patch deployment demo-rtc -n demo --patch '{\"spec\": {\"template\": {\"metadata\": {\"annotations\": {\"version\": \"$version-$hash\"}}}}}'"
